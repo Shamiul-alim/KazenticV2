@@ -1,0 +1,35 @@
+
+name = "my-next-app"
+
+[runtime]
+env = "production"
+
+[define]
+"process.env.NODE_ENV" = "'production'"
+
+[env]
+NEXT_TELEMETRY_DISABLED = "1"
+NEXT_TURBOPACK_TRACING = true
+
+
+[install]
+auto = true
+exact = true
+production = false
+prefer = "offline"
+registry = "https://registry.npmjs.org"
+
+
+
+[resolver]
+extensions = [".ts", ".tsx", ".js", ".jsx", ".json"]
+
+
+[transpiler]
+jsx = "automatic"
+jsxImportSource = "react"
+
+
+[test]
+smol = true
+randomize = true
