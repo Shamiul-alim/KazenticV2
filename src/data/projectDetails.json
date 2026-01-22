@@ -1,0 +1,572 @@
+[
+    {
+        "id": 1,
+        "name": "Kazentic",
+        "projectType": "Web Development",
+        "createdDate": "Apr 20, 2025",
+        "days": 23,
+        "expectedDelivery": "Apr 20, 2025",
+        "tasks": {
+            "completed": 4,
+            "total": 30,
+            "percentage": 80
+        },
+        "estimatedTime": {
+            "spent": 118,
+            "total": 118,
+            "percentage": 20
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "workflow": [
+            {
+                "name": "Completed",
+                "value": 59,
+                "color": "#A7F3D0"
+            },
+            {
+                "name": "On Hold",
+                "value": 12,
+                "color": "#DDD6FE"
+            },
+            {
+                "name": "To Do",
+                "value": 2,
+                "color": "#FECACA"
+            },
+            {
+                "name": "Backlog",
+                "value": 7,
+                "color": "#E5E7EB"
+            },
+            {
+                "name": "In Progress",
+                "value": 7,
+                "color": "#93C5FD"
+            },
+            {
+                "name": "Cancelled",
+                "value": 3,
+                "color": "#FCA5A5"
+            },
+            {
+                "name": "Review",
+                "value": 9,
+                "color": "#C7D2FE"
+            }
+        ],
+        "members": [
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "Wireframe",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Kazentic",
+        "projectType": "Web Development",
+        "createdDate": "Apr 20, 2025",
+        "days": 23,
+        "expectedDelivery": "Apr 20, 2025",
+        "tasks": {
+            "completed": 4,
+            "total": 30,
+            "percentage": 80
+        },
+        "estimatedTime": {
+            "spent": 118,
+            "total": 118,
+            "percentage": 20
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "workflow": [
+            {
+                "name": "Completed",
+                "value": 59,
+                "color": "#A7F3D0"
+            },
+            {
+                "name": "On Hold",
+                "value": 12,
+                "color": "#DDD6FE"
+            },
+            {
+                "name": "To Do",
+                "value": 2,
+                "color": "#FECACA"
+            },
+            {
+                "name": "Backlog",
+                "value": 7,
+                "color": "#E5E7EB"
+            },
+            {
+                "name": "In Progress",
+                "value": 7,
+                "color": "#93C5FD"
+            },
+            {
+                "name": "Cancelled",
+                "value": 3,
+                "color": "#FCA5A5"
+            },
+            {
+                "name": "Review",
+                "value": 9,
+                "color": "#C7D2FE"
+            }
+        ],
+        "members": [
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👨‍💻"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "Wireframe",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Kazentic",
+        "projectType": "Web Development",
+        "createdDate": "Apr 20, 2025",
+        "days": 23,
+        "expectedDelivery": "Apr 20, 2025",
+        "tasks": {
+            "completed": 4,
+            "total": 30,
+            "percentage": 80
+        },
+        "estimatedTime": {
+            "spent": 118,
+            "total": 118,
+            "percentage": 20
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "workflow": [
+            {
+                "name": "Completed",
+                "value": 59,
+                "color": "#B7FFE9"
+            },
+            {
+                "name": "On Hold",
+                "value": 12,
+                "color": "#C1BCFF"
+            },
+            {
+                "name": "Backlog",
+                "value": 7,
+                "color": "#BDE8FE"
+            },
+            {
+                "name": "To Do",
+                "value": 2,
+                "color": "#FFD4BC"
+            },
+            {
+                "name": "In Progress",
+                "value": 7,
+                "color": "#FFB9B9"
+            },
+            {
+                "name": "Cancelled",
+                "value": 3,
+                "color": "#E0C8FF"
+            },
+            {
+                "name": "Review",
+                "value": 9,
+                "color": "#ABB7BF"
+            }
+        ],
+        "members": [
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "Wireframe",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Kazentic",
+        "projectType": "Web Development",
+        "createdDate": "Apr 20, 2025",
+        "days": 23,
+        "expectedDelivery": "Apr 20, 2025",
+        "tasks": {
+            "completed": 4,
+            "total": 30,
+            "percentage": 80
+        },
+        "estimatedTime": {
+            "spent": 118,
+            "total": 118,
+            "percentage": 20
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "workflow": [
+            {
+                "name": "Completed",
+                "value": 59,
+                "color": "#A7F3D0"
+            },
+            {
+                "name": "On Hold",
+                "value": 12,
+                "color": "#DDD6FE"
+            },
+            {
+                "name": "To Do",
+                "value": 2,
+                "color": "#FECACA"
+            },
+            {
+                "name": "Backlog",
+                "value": 7,
+                "color": "#E5E7EB"
+            },
+            {
+                "name": "In Progress",
+                "value": 7,
+                "color": "#93C5FD"
+            },
+            {
+                "name": "Cancelled",
+                "value": 3,
+                "color": "#FCA5A5"
+            },
+            {
+                "name": "Review",
+                "value": 9,
+                "color": "#C7D2FE"
+            }
+        ],
+        "members": [
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👨‍💻"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "Wireframe",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Kazentic",
+        "projectType": "Web Development",
+        "createdDate": "Apr 20, 2025",
+        "days": 23,
+        "expectedDelivery": "Apr 20, 2025",
+        "tasks": {
+            "completed": 4,
+            "total": 30,
+            "percentage": 80
+        },
+        "estimatedTime": {
+            "spent": 118,
+            "total": 118,
+            "percentage": 20
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "workflow": [
+            {
+                "name": "Completed",
+                "value": 59,
+                "color": "#A7F3D0"
+            },
+            {
+                "name": "On Hold",
+                "value": 12,
+                "color": "#DDD6FE"
+            },
+            {
+                "name": "To Do",
+                "value": 2,
+                "color": "#FECACA"
+            },
+            {
+                "name": "Backlog",
+                "value": 7,
+                "color": "#E5E7EB"
+            },
+            {
+                "name": "In Progress",
+                "value": 7,
+                "color": "#93C5FD"
+            },
+            {
+                "name": "Cancelled",
+                "value": 3,
+                "color": "#FCA5A5"
+            },
+            {
+                "name": "Review",
+                "value": 9,
+                "color": "#C7D2FE"
+            }
+        ],
+        "members": [
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👨‍💻"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            },
+            {
+                "name": "John Doe",
+                "role": "Developer",
+                "avatar": "👤"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "Wireframe",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "extension": "PDF"
+            }
+        ]
+    }
+]
