@@ -5,6 +5,8 @@ import { Folder } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/Button";
 import CreateForm from "./CreateForm";
+import { useRouter } from "next/navigation";
+import rowData from "@/data/projectDetails.json";
 
 const ProjectSection = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
@@ -12,14 +14,7 @@ const ProjectSection = () => {
   const toggleForm = () => {
     setIsFormVisible((prev) => !prev);
   };
-  const rowData = Array(5).fill({
-    name: "Kazentic",
-    type: "Type",
-    start: "1 Aug 2025",
-    end: "1 Aug 2025",
-    progress: "70",
-    days: "23 days",
-  });
+  const router = useRouter();
 
   return (
     <div className="w-full h-lvw bg-[#FFFFFF] text-[#191F38]">
@@ -84,9 +79,9 @@ const ProjectSection = () => {
           </div>
           <Button
             variant="sucess"
-            // onClick={(e) => {
-            //   toggleForm();
-            // }}
+            onClick={(e) => {
+              toggleForm();
+            }}
           >
             <Image
               src="/assets/plus.svg"
@@ -260,10 +255,11 @@ const ProjectSection = () => {
               </div>
             </div>
 
-            {rowData.map((row, i) => (
+            {rowData.map((row) => (
               <div
-                key={i}
+                key={row.id}
                 className="grid grid-cols-[45px_440px_100px_120px_120px_100px_100px_100px_80px] items-center py-2.5 px-4 border-b border-[#EBEBEB] last:border-0 text-[12px] tracking-tighter leading-3.5 hover:bg-gray-50 transition-colors font-medium text-[#191F38] cursor-pointer"
+                onClick={() => router.push(`/project/${row.id}`)}
               >
                 <input
                   type="checkbox"
@@ -284,8 +280,8 @@ const ProjectSection = () => {
                     Type
                   </Button>
                 </div>
-                <div>{row.start}</div>
-                <div>{row.end}</div>
+                <div>{row.createdDate}</div>
+                <div>{row.expectedDelivery}</div>
                 <div>
                   <Button variant="active">
                     <Image
@@ -306,7 +302,7 @@ const ProjectSection = () => {
                     height={14}
                     className=""
                   />
-                  <span className="font-semibold">{row.progress}%</span>
+                  <span className="font-semibold">{row.tasks.percentage}%</span>
                 </div>
                 <div className="">{row.days}</div>
                 <button>
@@ -327,6 +323,7 @@ const ProjectSection = () => {
               <div
                 key={i}
                 className="bg-[#FDFDFD] border border-[#EBEBEB] rounded-xl w-53.75 h-42.25 p-3 hover:bg-gray-50 cursor-pointer"
+                onClick={() => router.push(`/project/${row.id}`)}
               >
                 <div className="flex justify-between items-start mb-2.5">
                   <div className="flex items-center gap-2">
@@ -392,11 +389,11 @@ const ProjectSection = () => {
                     <div className="w-full bg-[#E5EDFF] rounded-full h-2 mr-2">
                       <div
                         className="bg-[#4157FE] h-2 rounded-full"
-                        style={{ width: `${row.progress}%` }}
+                        style={{ width: `${row.tasks.percentage}%` }}
                       ></div>
                     </div>
                     <span className="text-[12px] font-medium text-[#697588] leading-5 tracking-tighter">
-                      {row.progress}%
+                      {row.tasks.percentage}%
                     </span>
                   </div>
                 </div>
