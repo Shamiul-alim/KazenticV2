@@ -70,48 +70,12 @@ export default function WeeklyView({ onEventClick }: WeeklyViewProps) {
                 {/* Grid Columns */}
                 <div className="flex-1 grid grid-cols-7 relative z-10">
                     {weekDays.map((_, i) => (
-                        <div key={i} className="border-r border-gray-100 last:border-r-0 relative min-h-[1400px]">
+                        <div key={i} className="border-r border-gray-100 last:border-r-0 relative min-h-[1400px] bg-transparent">
 
                             {/* Events for this day */}
                             {i === 0 && (
-                                <div className="p-1 space-y-1">
-                                    <div className="h-[44px]">
-                                        <EventItem
-                                            event={{
-                                                title: 'Holiday',
-                                                typeLabel: 'Type',
-                                                duration: '3h',
-                                                priority: 'High',
-                                                startTime: '7:00',
-                                                endTime: '7:30 AM',
-                                                color: 'green'
-                                            }}
-                                            variant="row"
-                                            onClick={() => { }}
-                                        />
-                                    </div>
-                                    <div className="h-[44px]">
-                                        <EventItem
-                                            event={{
-                                                title: 'V3 Reported Design Update',
-                                                typeLabel: 'Type',
-                                                duration: '3h',
-                                                priority: 'High',
-                                                startTime: '7:30',
-                                                endTime: '8:00 AM',
-                                                color: 'blue',
-                                                assignees: ['https://i.pravatar.cc/150?u=1']
-                                            }}
-                                            variant="row"
-                                            onClick={() => { }}
-                                        />
-                                    </div>
-                                </div>
-                            )}
-
-                            {i === 6 && (
-                                <div className="p-1 space-y-1">
-                                    <div className="h-[44px]">
+                                <div className="p-2 space-y-2 relative z-10">
+                                    <div className="h-[56px]">
                                         <EventItem
                                             event={{
                                                 title: 'Holiday',
@@ -121,11 +85,45 @@ export default function WeeklyView({ onEventClick }: WeeklyViewProps) {
                                                 startTime: '7:00-7:30 AM',
                                                 color: 'green'
                                             }}
-                                            variant="row"
+                                            variant="block"
                                             onClick={() => { }}
                                         />
                                     </div>
-                                    <div className="h-[44px]">
+                                    <div className="h-[64px]">
+                                        <EventItem
+                                            event={{
+                                                title: 'V3 Reported Design Update',
+                                                typeLabel: 'Type',
+                                                duration: '3h',
+                                                priority: 'High',
+                                                startTime: '7:30-8:00 AM',
+                                                color: 'blue',
+                                                assignees: ['https://i.pravatar.cc/150?u=1']
+                                            }}
+                                            variant="block"
+                                            onClick={() => { }}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                            {i === 6 && (
+                                <div className="p-2 space-y-2 relative z-10">
+                                    <div className="h-[56px]">
+                                        <EventItem
+                                            event={{
+                                                title: 'Holiday',
+                                                typeLabel: 'Type',
+                                                duration: '3h',
+                                                priority: 'High',
+                                                startTime: '7:00-7:30 AM',
+                                                color: 'green'
+                                            }}
+                                            variant="block"
+                                            onClick={() => { }}
+                                        />
+                                    </div>
+                                    <div className="h-[64px]">
                                         <EventItem
                                             event={{
                                                 title: 'V3 Reported Design Update',
@@ -135,7 +133,7 @@ export default function WeeklyView({ onEventClick }: WeeklyViewProps) {
                                                 startTime: '7:30-8:00 AM',
                                                 color: 'blue'
                                             }}
-                                            variant="row"
+                                            variant="block"
                                             onClick={() => { }}
                                         />
                                     </div>
