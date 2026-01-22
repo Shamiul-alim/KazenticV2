@@ -5,8 +5,8 @@ import { ChevronLeft, ChevronRight, Filter, Settings, Plus, User } from 'lucide-
 import AllDaySection from './calender-ui/AllDaySection';
 import TimeColumn from './calender-ui/TimeColumn';
 import CalendarDay from './calender-ui/CalendarDay';
-import { AssigneeSidebar } from '../SprintReport/list/AssigneeSidebar';
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/SprintReport/ui/popover";
+import { AssigneeSidebar } from '../sprint-report/list/AssigneeSidebar';
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover";
 import { EventDetailsModal } from './calender-ui/EventDetailsModal';
 import { EventSettings } from './settings/EventSettings';
 

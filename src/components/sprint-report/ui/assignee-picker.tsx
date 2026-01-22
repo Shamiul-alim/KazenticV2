@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Search, Check } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/SprintReport/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar"
 import { cn } from "@/lib/utils"
 
 const assignees = [

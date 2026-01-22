@@ -8,7 +8,7 @@ import {
     Settings,
     Plus
 } from "lucide-react"
-import { Button } from "@/components/SprintReport/ui/button"
+import { Button } from "@/components/sprint-report/ui/button"
 
 export const CalendarHeader = () => {
     return (

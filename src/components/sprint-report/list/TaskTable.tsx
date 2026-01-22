@@ -30,12 +30,12 @@ import {
 } from "lucide-react"
 
 // --- UI Components ---
-import { Checkbox } from "@/components/SprintReport/ui/checkbox"
-import { Avatar, AvatarFallback } from "@/components/SprintReport/ui/avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/SprintReport/ui/popover"
-import { StatusPicker } from "@/components/SprintReport/ui/status-picker"
-import { AssigneePicker } from "@/components/SprintReport/ui/assignee-picker"
-import { CustomDatePicker } from "@/components/SprintReport/ui/date-picker-custom"
+import { Checkbox } from "@/components/sprint-report/ui/checkbox"
+import { Avatar, AvatarFallback } from "@/components/sprint-report/ui/avatar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover"
+import { StatusPicker } from "@/components/sprint-report/ui/status-picker"
+import { AssigneePicker } from "@/components/sprint-report/ui/assignee-picker"
+import { CustomDatePicker } from "@/components/sprint-report/ui/date-picker-custom"
 
 // --- Utilities ---
 import { cn } from "@/lib/utils"
