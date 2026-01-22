@@ -5,6 +5,10 @@ import { ChevronLeft, ChevronRight, Filter, Settings, Plus, User } from 'lucide-
 import AllDaySection from './calender-ui/AllDaySection';
 import TimeColumn from './calender-ui/TimeColumn';
 import CalendarDay from './calender-ui/CalendarDay';
+import WeeklyView from './calender-ui/WeeklyView';
+import MonthlyView from './calender-ui/MonthlyView';
+import YearlyView from './calender-ui/YearlyView';
+import ScheduleView from './calender-ui/ScheduleView';
 import { AssigneeSidebar } from '../sprint-report/list/AssigneeSidebar';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover";
 import { EventDetailsModal } from './calender-ui/EventDetailsModal';
@@ -73,7 +77,7 @@ export default function Calendar() {
                                     <ChevronLeft size={18} />
                                 </button>
                                 <span className="px-3 text-sm font-bold text-gray-600 whitespace-nowrap min-w-[90px] text-center">
-                                    Mon, Aug 1
+                                    {view === "Day" ? "Mon, Aug 1" : view === "Week" ? "Aug 25 - Aug 31" : view === "Month" ? "August 2026" : "2026"}
                                 </span>
                                 <button className="p-1 hover:bg-gray-50 rounded-md text-gray-400 hover:text-gray-600 transition-colors">
                                     <ChevronRight size={18} />
@@ -151,20 +155,45 @@ export default function Calendar() {
                     </header>
 
                     {/* 2. SCROLLABLE CONTENT */}
-                    <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
+                    <div className="flex-1 overflow-hidden relative">
+                        {view === "Day" ? (
+                            <div className="h-full overflow-y-auto no-scrollbar">
+                                {/* All Day Section */}
+                                <AllDaySection onEventClick={setSelectedEvent} />
 
-                        {/* All Day Section */}
-                        <AllDaySection onEventClick={setSelectedEvent} />
+                                {/* Main Grid Area */}
+                                <div className="flex w-full">
+                                    {/* Time Column Sidebar */}
+                                    <TimeColumn />
 
-                        {/* Main Grid Area */}
-                        <div className="flex w-full">
-                            {/* Time Column Sidebar */}
-                            <TimeColumn />
-
-                            {/* The Calendar Grid */}
-                            <CalendarDay onEventClick={setSelectedEvent} />
-                        </div>
-
+                                    {/* The Calendar Grid */}
+                                    <CalendarDay onEventClick={setSelectedEvent} />
+                                </div>
+                            </div>
+                        ) : view === "Week" ? (
+                            <div className="h-full">
+                                <WeeklyView onEventClick={setSelectedEvent} />
+                            </div>
+                        ) : view === "Month" ? (
+                            <div className="h-full">
+                                <MonthlyView onEventClick={setSelectedEvent} />
+                            </div>
+                        ) : view === "Year" ? (
+                            <div className="h-full">
+                                <YearlyView onMonthClick={(m) => {
+                                    // Optionally switch to Month view when a month is clicked
+                                    // setView("Month");
+                                }} />
+                            </div>
+                        ) : view === "Schedule" ? (
+                            <div className="h-full">
+                                <ScheduleView />
+                            </div>
+                        ) : (
+                            <div className="h-full flex items-center justify-center text-slate-400 font-medium">
+                                {view} View Coming Soon
+                            </div>
+                        )}
                     </div>
                     <AssigneeSidebar
                         isOpen={isAssigneeOpen}
