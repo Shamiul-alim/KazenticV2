@@ -7,7 +7,7 @@ import TimeColumn from './calender-ui/TimeColumn';
 import CalendarDay from './calender-ui/CalendarDay';
 import { AssigneeSidebar } from '../sprint-report/list/AssigneeSidebar';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover";
-import { EventDetailsSidebar } from './calender-ui/EventDetailsSidebar';
+import { EventDetailsModal } from './calender-ui/EventDetailsModal';
 import { EventSettings } from './settings/EventSettings';
 import { CreateEventSidebar } from './calender-ui/CreateEventSidebar';
 import { ScheduleMeetingModal } from './calender-ui/ScheduleMeetingModal';
@@ -170,7 +170,7 @@ export default function Calendar() {
                         isOpen={isAssigneeOpen}
                         onClose={() => setIsAssigneeOpen(false)}
                     />
-                    <EventDetailsSidebar
+                    <EventDetailsModal
                         isOpen={!!selectedEvent}
                         onClose={() => setSelectedEvent(null)}
                         event={selectedEvent}
