@@ -7,14 +7,18 @@ import TimeColumn from './calender-ui/TimeColumn';
 import CalendarDay from './calender-ui/CalendarDay';
 import { AssigneeSidebar } from '../sprint-report/list/AssigneeSidebar';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover";
-import { EventDetailsModal } from './calender-ui/EventDetailsModal';
+import { EventDetailsSidebar } from './calender-ui/EventDetailsSidebar';
 import { EventSettings } from './settings/EventSettings';
+import { CreateEventSidebar } from './calender-ui/CreateEventSidebar';
+import { ScheduleMeetingModal } from './calender-ui/ScheduleMeetingModal';
 
 export default function Calendar() {
     const [isAssigneeOpen, setIsAssigneeOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState<any>(null);
     const [view, setView] = useState("Day");
     const [showSettings, setShowSettings] = useState(false);
+    const [isCreateEventOpen, setIsCreateEventOpen] = useState(false);
+    const [isScheduleMeetingOpen, setIsScheduleMeetingOpen] = useState(false);
 
     const viewOptions = [
         "Day", "Week", "Month", "Year", "4 Days", "Schedule", "Custom"
@@ -100,12 +104,49 @@ export default function Calendar() {
                                 <span className="hidden sm:inline">Settings</span>
                             </button>
 
-                            <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold bg-[#3b82f6] text-white rounded-lg hover:bg-blue-700 shadow-sm whitespace-nowrap transition-all ml-auto md:ml-0">
-                                <span className="hidden sm:inline">Create</span>
-                                <span className="sm:hidden">New</span>
-                                <ChevronLeft className="-rotate-90 text-white/80 hidden sm:block" size={12} />
-                                <Plus className="sm:hidden" size={16} />
-                            </button>
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold bg-[#3b82f6] text-white rounded-lg hover:bg-blue-700 shadow-sm whitespace-nowrap transition-all ml-auto md:ml-0">
+                                        <span className="hidden sm:inline">Create</span>
+                                        <span className="sm:hidden">New</span>
+                                        <ChevronLeft className="-rotate-90 text-white/80 hidden sm:block" size={12} />
+                                        <Plus className="sm:hidden" size={16} />
+                                    </button>
+                                </PopoverTrigger>
+                                <PopoverContent className="p-0 w-[200px] bg-white border border-slate-100 shadow-2xl rounded-xl overflow-hidden" align="end" sideOffset={8}>
+                                    <div className="flex flex-col">
+                                        <button
+                                            onClick={() => setIsCreateEventOpen(true)}
+                                            className="px-4 py-3 text-[13px] font-bold text-slate-400 bg-white hover:bg-slate-50 transition-colors text-left w-full"
+                                        >
+                                            Event
+                                        </button>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <button
+                                                    className="flex items-center justify-between px-4 py-3.5 text-[15px] font-semibold text-blue-600 bg-blue-50/30 hover:bg-blue-50 transition-colors group w-full"
+                                                >
+                                                    Meeting
+                                                    <ChevronRight size={18} className="text-blue-500 transition-transform group-hover:translate-x-0.5" />
+                                                </button>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="p-0 w-[180px] bg-white border border-slate-100 shadow-2xl rounded-xl overflow-hidden" align="end" side="left" sideOffset={12}>
+                                                <div className="flex flex-col">
+                                                    <div className="px-4 py-3 text-[14px] font-bold text-slate-400 bg-white">
+                                                        Instant Meeting
+                                                    </div>
+                                                    <button
+                                                        onClick={() => setIsScheduleMeetingOpen(true)}
+                                                        className="flex items-center justify-start px-4 py-3.5 text-[15px] font-semibold text-blue-600 bg-blue-50/30 hover:bg-blue-50 transition-colors w-full"
+                                                    >
+                                                        Schedule a Meeting
+                                                    </button>
+                                                </div>
+                                            </PopoverContent>
+                                        </Popover>
+                                    </div>
+                                </PopoverContent>
+                            </Popover>
                         </div>
                     </header>
 
@@ -129,10 +170,18 @@ export default function Calendar() {
                         isOpen={isAssigneeOpen}
                         onClose={() => setIsAssigneeOpen(false)}
                     />
-                    <EventDetailsModal
+                    <EventDetailsSidebar
                         isOpen={!!selectedEvent}
                         onClose={() => setSelectedEvent(null)}
                         event={selectedEvent}
+                    />
+                    <CreateEventSidebar
+                        isOpen={isCreateEventOpen}
+                        onClose={() => setIsCreateEventOpen(false)}
+                    />
+                    <ScheduleMeetingModal
+                        isOpen={isScheduleMeetingOpen}
+                        onClose={() => setIsScheduleMeetingOpen(false)}
                     />
                 </>
             )}
