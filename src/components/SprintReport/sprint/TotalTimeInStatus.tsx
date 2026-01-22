@@ -16,6 +16,7 @@ import { LayoutGrid } from 'lucide-react';
 import { Card } from '../ui/card';
 import { ChartHeader } from '../ui/chart-header';
 import { TotalTimeStatusSettings } from './Settings/total-time-status-setting';
+import { FilterPopover } from '../list/FilterPopover';
 
 const data = [
     { name: 'Active', value: 85, color: '#a7f3d0', label: '20h 44m' },
@@ -54,6 +55,7 @@ export const TotalTimeInStatus = () => {
                 <ChartHeader
                     title="Total Time In Status"
                     onSettingsClick={() => setIsSettingsOpen(true)}
+                    filterContent={<FilterPopover />}
                 />
 
                 {/* Sub Header */}
@@ -109,7 +111,7 @@ export const TotalTimeInStatus = () => {
                         {data.map((entry, index) => (
                             <div key={index} className="flex items-center gap-2 group cursor-pointer">
                                 <div className="w-2.5 h-2.5 rounded-full transition-transform group-hover:scale-125 shadow-sm" style={{ backgroundColor: entry.color }}></div>
-                                <span className="text-[11px] text-gray-500 font-bold uppercase tracking-tight">{entry.name}</span>
+                                <span className="text-[11px] text-gray-500 font-bold uppercase tracking-tight whitespace-nowrap">{entry.name}</span>
                             </div>
                         ))}
                     </div>
