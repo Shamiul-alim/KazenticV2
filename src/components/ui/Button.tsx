@@ -23,10 +23,13 @@ const buttonVariants = cva("", {
       type: "px-1.5 py-0.5 bg-[#F2F9FE] text-[#4157FE] rounded-sm border border-[#4157FE80] text-[11px] font-medium leading-4 tracking-tighter",
       inactive:
         "flex items-center gap-1 px-[5.43px] h-5 bg-[#EBEBEB] border border-[#69758880] rounded-md text-[11px] font-medium leading-4 tracking-tighter text-[#697588] cursor-pointer",
+      trasparent:
+        "flex items-center gap-1 px-1.5 pr-2 py-1  rounded-lg text-xs leading-3 tracking-tighter font-medium text-[#4157FE] cursor-pointer",
     },
     size: {
       default: "px-1.5 py-1",
       sm: "px-1.5 py-0.5",
+      md: "h-6 px-1.5",
       lg: "h-10 rounded-md px-8",
       icon: "h-9 w-9",
     },

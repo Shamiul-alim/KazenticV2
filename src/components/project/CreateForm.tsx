@@ -1,7 +1,9 @@
 import { useForm, FieldValues } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { X, ChevronDown, Calendar, UserPlus } from "lucide-react";
+import { X, ChevronDown, UserPlus } from "lucide-react";
+import Image from "next/image";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FloatingFormProps {
   onClose: () => void;
@@ -21,7 +23,7 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black/20 z-100">
       {/* Modal Container */}
-      <div className="bg-[#FFFFFF] rounded-[16px] w-[95%] sm:w-[580px] max-h-[92vh] overflow-y-auto relative shadow-2xl hide-scrollbar flex flex-col">
+      <div className="bg-[#FFFFFF] rounded-3xl w-[95%] sm:w-145 max-h-[92vh] overflow-y-auto relative shadow-2xl hide-scrollbar flex flex-col">
         {/* Header */}
         <div className="p-3 pb-2 flex justify-between items-start">
           <div>
@@ -47,15 +49,15 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
           {/* Project Icon & Name */}
           <div className="space-y-2">
             <Label>Project Icon & name</Label>
-            <div className="flex items-center border border-[#EBEBEB] rounded-lg p-1 px-2 bg-white focus-within:ring-1 ring-[#4157FE]/30 transition-all">
-              <div className="w-8 h-8 bg-[#4157FE] rounded flex items-center justify-center text-white font-bold text-[0.75rem] shrink-0">
+            <div className="flex items-center">
+              <div className="w-8 h-8 bg-[#4157FE] rounded-tl-md rounded-bl-md flex items-center justify-center text-[#FFFFFF] font-medium text-[0.75rem] shrink-0 leading-5 tracking-tighter">
                 P
               </div>
               <input
                 {...register("projectName", { required: true })}
                 placeholder="Project Name"
-                className="w-full h-9 px-3 text-[0.875rem] outline-none placeholder:text-[#C1C1C1]"
-              />
+                className="flex h-8 w-full rounded-tr-md rounded-br-md border border-[#EBEBEB]  bg-[#FFFFFF] px-4 py-3 text-[11px] font-medium leading-5 tracking-tighter text-[#9BA2AD]  focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              ></input>
             </div>
           </div>
 
@@ -70,11 +72,14 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
                   {...register("startDate", {
                     required: "Please provide project start date",
                   })}
-                  className={`h-11 border-[#EBEBEB] rounded-lg text-[0.875rem] pr-10 ${errors.startDate ? "border-red-500 bg-red-50/10" : ""}`}
+                  className={`${errors.startDate ? "border-red-500 bg-red-50/10" : ""}`}
                 />
-                <Calendar
-                  className="absolute right-3 top-3 text-[#6F6F6F]"
-                  size={18}
+                <Image
+                  src="/assets/calendar-normal.svg"
+                  alt="group"
+                  width={16}
+                  height={16}
+                  className="absolute right-3 top-2"
                 />
               </div>
               {errors.startDate && (
@@ -86,10 +91,7 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
 
             <div className="space-y-2">
               <Label>Project Identifier</Label>
-              <Input
-                placeholder="Enter Project Identifier"
-                className="h-11 border-[#EBEBEB] rounded-lg text-[0.875rem] placeholder:text-[#C1C1C1]"
-              />
+              <Input placeholder="Enter Project Identifier" className="" />
             </div>
           </div>
 
@@ -98,14 +100,13 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
             <div className="space-y-2">
               <Label>Expected Delivery Date</Label>
               <div className="relative">
-                <Input
-                  type="text"
-                  placeholder="dd/mm/yyyy"
-                  className="h-11 border-[#EBEBEB] rounded-lg text-[0.875rem] pr-10"
-                />
-                <Calendar
-                  className="absolute right-3 top-3 text-[#6F6F6F]"
-                  size={18}
+                <Input type="text" placeholder="dd/mm/yyyy" className="" />
+                <Image
+                  src="/assets/calendar-normal.svg"
+                  alt="group"
+                  width={16}
+                  height={16}
+                  className="absolute right-3 top-2"
                 />
               </div>
             </div>
@@ -114,7 +115,7 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
               <Label>Github Repository URL</Label>
               <Input
                 placeholder="https://github.com/username/re..."
-                className="h-11 border-[#EBEBEB] rounded-lg text-[0.875rem] placeholder:text-[#C1C1C1]"
+                className=""
               />
             </div>
           </div>
@@ -123,7 +124,7 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
           <div className="space-y-2">
             <Label>Project Type</Label>
             <div className="relative">
-              <select className="w-full h-11 border border-[#EBEBEB] rounded-lg px-4 outline-none appearance-none text-[0.875rem] text-[#6F6F6F] bg-white cursor-pointer">
+              <select className="w-full h-8 border border-[#EBEBEB] rounded-md px-4 outline-none appearance-none text-[11px] text-[#9BA2AD] bg-[#FFFFFF] cursor-pointer">
                 <option value="">Select Project Type</option>
                 <option value="web">Web Development</option>
                 <option value="saas">SaaS Platform</option>
@@ -138,20 +139,20 @@ const CreateForm: React.FC<FloatingFormProps> = ({ onClose }) => {
           {/* Description */}
           <div className="space-y-2">
             <Label>Descriptio</Label>
-            <textarea
-              rows={4}
-              placeholder="Provide description of project"
-              className="w-full border border-[#EBEBEB] rounded-lg p-3 text-[0.875rem] outline-none placeholder:text-[#C1C1C1] focus:ring-1 ring-[#4157FE]/20 resize-none min-h-[100px]"
+            <Textarea
+              id="textarea-message"
+              placeholder="Type your message here."
+              className=""
             />
           </div>
 
           {/* Privacy Toggle */}
           <div className="flex justify-between items-center py-2">
             <div>
-              <p className="font-semibold text-[#191F38] text-[0.875rem]">
+              <h2 className="text-sm font-semibold text-[#191F38] leading-5 tracking-tighter">
                 Make this project Private
-              </p>
-              <p className="text-[#6F6F6F] text-[0.75rem]">
+              </h2>
+              <p className="text-[#697588] text-[11px] mt-1.5 font-medium leading-5 tracking-tighter">
                 Only you and invited members will have access
               </p>
             </div>
