@@ -60,13 +60,13 @@ export const TasksByAssignee = () => {
         <>
             <Card className="p-6 flex flex-col shadow-sm h-[480px] bg-white relative">
                 {/* Header */}
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex flex-wrap gap-2 justify-between items-center mb-6">
                     <h3 className="text-[17px] font-bold text-slate-800 tracking-tight">Tasks By Assignee</h3>
-                    <div className="flex items-center gap-2">
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                    <div className="flex items-center gap-1 sm:gap-2">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <RefreshCcw size={18} />
                         </button>
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <Maximize2 size={18} />
                         </button>
                         <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
@@ -110,11 +110,11 @@ export const TasksByAssignee = () => {
                 </div>
 
                 {/* Legend */}
-                <div className="flex justify-center items-center gap-6 mt-4">
+                <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 mt-4">
                     {data.map((item, index) => (
                         <div key={index} className="flex items-center gap-2">
                             <div className="w-3.5 h-3.5 rounded-full" style={{ backgroundColor: item.color }} />
-                            <span className="text-[11px] font-bold text-slate-500 tracking-tight">{item.name}</span>
+                            <span className="text-[11px] font-bold text-slate-500 tracking-tight whitespace-nowrap">{item.name}</span>
                         </div>
                     ))}
                 </div>

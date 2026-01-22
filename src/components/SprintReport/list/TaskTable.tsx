@@ -82,7 +82,7 @@ const TaskRow = ({
         </div>
 
         {/* Task Name */}
-        <div className="w-[650px] shrink-0 flex items-center gap-1 px-2">
+        <div className="w-[300px] sm:w-[500px] lg:w-[650px] shrink-0 flex items-center gap-1 px-2 transition-all duration-300">
             <ChevronRight size={14} className="text-gray-400" />
             <span
                 className={cn(
@@ -231,7 +231,7 @@ export const TaskTable = () => {
                     <Checkbox className="h-4 w-4" />
                 </div>
 
-                <div className="w-[650px] shrink-0">
+                <div className="w-[300px] sm:w-[500px] lg:w-[650px] shrink-0 transition-all duration-300">
                     <ColumnHeader label="Task Name" />
                 </div>
                 <div className="w-[140px] shrink-0">

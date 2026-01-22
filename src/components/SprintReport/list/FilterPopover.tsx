@@ -137,7 +137,7 @@ export const FilterPopover = () => {
     const [showNestedFilter, setShowNestedFilter] = React.useState(false)
 
     return (
-        <div className="w-[700px] bg-white rounded-2xl border border-gray-100 shadow-2xl p-5 select-none">
+        <div className="w-[90vw] sm:w-[700px] max-w-[700px] bg-white rounded-2xl border border-gray-100 shadow-2xl p-5 select-none">
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-[16px] font-bold text-[#1e293b]">Filters</h3>
                 <button className="text-[13px] font-semibold text-[#64748b] hover:text-blue-600 transition-colors">
