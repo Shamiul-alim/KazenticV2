@@ -6,7 +6,7 @@
  * - Charts for priority, assignee, time, and burn down
  * - Detailed sprint task reports
  */
-
+"use client"
 import React from 'react';
 
 // --- Components ---

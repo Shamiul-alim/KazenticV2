@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Card } from '@/components/SprintReport/ui/card';
+import { Card } from '@/components/sprint-report/ui/card';
 
 interface SummaryCardProps {
     title: string;

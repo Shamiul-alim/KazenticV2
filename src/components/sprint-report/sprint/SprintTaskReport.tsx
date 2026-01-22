@@ -183,13 +183,13 @@ export const SprintTaskReport = () => {
         <>
             <Card className="p-6 shadow-sm bg-white w-full max-w-[1240px] mx-auto overflow-visible">
                 {/* Header */}
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex flex-wrap gap-4 justify-between items-center mb-6">
                     <h3 className="text-[17px] font-extrabold text-slate-800 tracking-tight">Sprint Task Report</h3>
                     <div className="flex items-center gap-2">
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <RefreshCcw size={18} />
                         </button>
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <Maximize2 size={18} />
                         </button>
 
@@ -197,7 +197,7 @@ export const SprintTaskReport = () => {
                             <PopoverTrigger asChild>
                                 <Button variant="ghost" size="sm" className="h-8 text-[12px] font-bold text-gray-600 gap-1.5 px-3 border border-gray-100 bg-white hover:bg-gray-50 shadow-sm rounded-lg transition-all active:scale-95">
                                     <Filter size={14} className="text-slate-400" />
-                                    Filter
+                                    <span className="hidden sm:inline">Filter</span>
                                 </Button>
                             </PopoverTrigger>
                             <PopoverContent className="p-0 border-none bg-transparent shadow-none w-auto z-[999]" align="end" sideOffset={8}>
@@ -212,7 +212,7 @@ export const SprintTaskReport = () => {
                             className="h-8 text-[12px] font-bold text-gray-600 gap-1.5 px-3 border border-gray-100 bg-white hover:bg-gray-50 shadow-sm rounded-lg transition-all active:scale-95"
                         >
                             <Settings2 size={14} className="text-slate-400" />
-                            Customize view
+                            <span className="hidden sm:inline">Customize view</span>
                         </Button>
 
                         <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
@@ -225,19 +225,19 @@ export const SprintTaskReport = () => {
                 </div>
 
                 {/* Sub Header */}
-                <div className="flex items-center gap-3 mb-8">
+                <div className="flex flex-wrap items-center gap-3 mb-8">
                     <div className="flex items-center gap-2 text-slate-500 font-bold text-[11px] bg-slate-50/50 px-2.5 py-1 rounded-md">
                         <LayoutGrid size={13} className="text-slate-400" />
                         Sprint Category
                     </div>
-                    <div className="h-3 w-[1px] bg-slate-200 mx-1" />
+                    <div className="h-3 w-[1px] bg-slate-200 mx-1 hidden sm:block" />
                     <div className="flex items-center gap-2 text-slate-900 font-bold text-[11px] bg-slate-50/50 px-2.5 py-1 rounded-md">
                         <div className="w-4 h-4 rounded-full border-2 border-dashed border-blue-600 flex items-center justify-center p-0.5">
                             <div className="w-2.5 h-2.5 bg-blue-600 rounded-full" />
                         </div>
                         Sprint 2 (7/12 - 8/12)
                     </div>
-                    <div className="h-3 w-[1px] bg-slate-200 mx-1" />
+                    <div className="h-3 w-[1px] bg-slate-200 mx-1 hidden sm:block" />
                     <div className="text-slate-400 font-bold text-[11px]">
                         Confirmed : <span className="text-slate-500">Dec 6 at 6:00 pm</span>
                     </div>

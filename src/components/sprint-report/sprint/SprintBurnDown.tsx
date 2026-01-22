@@ -51,13 +51,13 @@ export const SprintBurnDown = () => {
         <>
             <Card className="p-6 flex flex-col shadow-sm h-[480px] bg-white">
                 {/* Header */}
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex flex-wrap gap-2 justify-between items-center mb-6">
                     <h3 className="text-[17px] font-bold text-slate-800 tracking-tight">Sprint Burn Down</h3>
-                    <div className="flex items-center gap-2">
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                    <div className="flex items-center gap-1 sm:gap-2">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <RefreshCcw size={18} />
                         </button>
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <Maximize2 size={18} />
                         </button>
                         <button
@@ -73,12 +73,12 @@ export const SprintBurnDown = () => {
                 </div>
 
                 {/* Sub Header */}
-                <div className="flex items-center gap-3 mb-8">
+                <div className="flex flex-wrap items-center gap-3 mb-8">
                     <div className="flex items-center gap-2 text-slate-500 font-bold text-[11px] bg-slate-50/50 px-2.5 py-1 rounded-md">
                         <LayoutGrid size={14} className="text-slate-400" />
                         Sprint Category
                     </div>
-                    <div className="h-3 w-[1px] bg-slate-200 mx-1" />
+                    <div className="h-3 w-[1px] bg-slate-200 mx-1 hidden sm:block" />
                     <div className="flex items-center gap-2 text-slate-900 font-bold text-[11px] bg-slate-50/50 px-2.5 py-1 rounded-md">
                         <div className="w-4 h-4 rounded-full border-2 border-dashed border-blue-600 flex items-center justify-center p-0.5">
                             <div className="w-2.5 h-2.5 bg-blue-600 rounded-full" />
@@ -88,7 +88,7 @@ export const SprintBurnDown = () => {
                 </div>
 
                 {/* Metrics Row */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 md:mb-10">
                     <MetricCard label="Total Effort" value="9 pts" subValue="+29%" />
                     <MetricCard label="Guideline" value="3.9 pts" subValue="50%" />
                     <MetricCard label="Completed" value="0 pts" subValue="0%" />

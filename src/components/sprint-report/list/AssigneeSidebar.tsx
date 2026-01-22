@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Search, X, Check, Users } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/SprintReport/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar"
 import { cn } from "@/lib/utils"
 
 interface AssigneeItemProps {
@@ -100,7 +100,7 @@ export const AssigneeSidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose:
 
             {/* Sidebar */}
             <div className={cn(
-                "fixed top-0 right-0 h-full w-[340px] bg-white shadow-[-8px_0_24px_rgba(0,0,0,0.05)] z-[101] transition-transform duration-300 ease-out flex flex-col",
+                "fixed top-0 right-0 h-full w-full sm:w-[340px] bg-white shadow-[-8px_0_24px_rgba(0,0,0,0.05)] z-[101] transition-transform duration-300 ease-out flex flex-col",
                 isOpen ? "translate-x-0" : "translate-x-full"
             )}>
                 {/* Header */}

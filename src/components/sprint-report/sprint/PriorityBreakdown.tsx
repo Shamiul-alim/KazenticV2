@@ -46,13 +46,13 @@ export const PriorityBreakdown = () => {
         <>
             <Card className="p-6 flex flex-col shadow-sm h-[480px] bg-white border border-gray-100">
                 {/* Header */}
-                <div className="flex justify-between items-center mb-10">
+                <div className="flex flex-wrap gap-2 justify-between items-center mb-8 md:mb-10">
                     <h3 className="text-[17px] font-bold text-slate-800 tracking-tight">Priority Breakdown</h3>
-                    <div className="flex items-center gap-2">
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                    <div className="flex items-center gap-1 sm:gap-2">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <RefreshCcw size={18} />
                         </button>
-                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
+                        <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all hidden sm:block">
                             <Maximize2 size={18} />
                         </button>
                         <button className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 transition-all">
@@ -164,14 +164,14 @@ export const PriorityBreakdown = () => {
                 </div>
 
                 {/* Legend */}
-                <div className="flex justify-center items-center gap-6 mt-6">
+                <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 mt-6">
                     <div className="flex items-center gap-2">
                         <div className="w-4 h-4 rounded-md bg-[#5b6cf9]" />
-                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight">IN REVIEW</span>
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight whitespace-nowrap">IN REVIEW</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-4 h-4 rounded-md bg-[#e0d7ff]" />
-                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight">IN PROGRESS</span>
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight whitespace-nowrap">IN PROGRESS</span>
                     </div>
                 </div>
             </Card>

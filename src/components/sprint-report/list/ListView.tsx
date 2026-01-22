@@ -33,24 +33,24 @@ import {
 } from "lucide-react"
 
 // --- UI Components ---
-import { Button } from "@/components/SprintReport/ui/button"
-import { Badge } from "@/components/SprintReport/ui/badge"
-import { Checkbox } from "@/components/SprintReport/ui/checkbox"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/SprintReport/ui/avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/SprintReport/ui/popover"
+import { Button } from "@/components/sprint-report/ui/button"
+import { Badge } from "@/components/sprint-report/ui/badge"
+import { Checkbox } from "@/components/sprint-report/ui/checkbox"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover"
 
 // --- Local Components ---
-import { StatusPicker } from "@/components/SprintReport/ui/status-picker"
-import { AssigneePicker } from "@/components/SprintReport/ui/assignee-picker"
-import { CustomDatePicker } from "@/components/SprintReport/ui/date-picker-custom"
-import { StatusActionMenu } from "@/components/SprintReport/ui/status-action-menu"
-import { TaskTable } from "@/components/SprintReport/list/TaskTable"
-import { FilterPopover } from "@/components/SprintReport/list/FilterPopover"
-import { AssigneeSidebar } from "@/components/SprintReport/list/AssigneeSidebar"
-import { CustomizeViewSidebar } from "@/components/SprintReport/list/CustomizeViewSidebar"
-import { SubtaskPopover } from "@/components/SprintReport/SubtaskPopover"
-import { AddTaskModal } from "@/components/SprintReport/list/AddTaskModal"
-import { FilterOptionsPicker, filterOptions } from "@/components/SprintReport/ui/filter-options-picker"
+import { StatusPicker } from "@/components/sprint-report/ui/status-picker"
+import { AssigneePicker } from "@/components/sprint-report/ui/assignee-picker"
+import { CustomDatePicker } from "@/components/sprint-report/ui/date-picker-custom"
+import { StatusActionMenu } from "@/components/sprint-report/ui/status-action-menu"
+import { TaskTable } from "@/components/sprint-report/list/TaskTable"
+import { FilterPopover } from "@/components/sprint-report/list/FilterPopover"
+import { AssigneeSidebar } from "@/components/sprint-report/list/AssigneeSidebar"
+import { CustomizeViewSidebar } from "@/components/sprint-report/list/CustomizeViewSidebar"
+import { SubtaskPopover } from "@/components/sprint-report/SubtaskPopover"
+import { AddTaskModal } from "@/components/sprint-report/list/AddTaskModal"
+import { FilterOptionsPicker, filterOptions } from "@/components/sprint-report/ui/filter-options-picker"
 
 // --- Utilities ---
 import { cn } from "@/lib/utils"
@@ -92,13 +92,13 @@ export const ListView = () => {
     return (
         <div className="flex flex-col h-full bg-[#f8faff] overflow-hidden">
             {/* List View Toolbar */}
-            <div className="px-6 py-2 bg-white border-b border-gray-100 flex items-center justify-between shrink-0">
+            <div className="px-4 md:px-6 py-2 bg-white border-b border-gray-100 flex flex-wrap gap-2 items-center justify-between shrink-0">
                 <div className="flex items-center gap-2">
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button variant="outline" size="sm" className="h-8 text-[12px] font-bold bg-white text-black gap-1.5 px-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:text-black shadow-sm transition-all">
                                 <GitBranch size={14} className="rotate-90 text-gray-500" />
-                                Subtasks
+                                <span className="hidden sm:inline">Subtasks</span>
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 border-none bg-transparent shadow-none w-auto" align="start" sideOffset={8}>
@@ -109,7 +109,7 @@ export const ListView = () => {
                         <PopoverTrigger asChild>
                             <Button variant="outline" size="sm" className="h-8 text-[12px] font-bold bg-white text-gray-900 gap-1.5 px-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:text-black shadow-sm transition-all active:scale-95">
                                 <LayoutGrid size={14} className="text-gray-500" />
-                                Group by : {groupBy}
+                                <span className="hidden sm:inline">Group by : </span>{groupBy}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 border-none bg-transparent shadow-none w-auto" align="start" sideOffset={8}>
@@ -162,7 +162,7 @@ export const ListView = () => {
                         <PopoverTrigger asChild>
                             <Button variant="ghost" size="sm" className="h-8 text-[12px] font-bold text-gray-600 gap-1.5 px-3 border border-gray-100 bg-white hover:bg-gray-50">
                                 <Filter size={14} />
-                                Filter
+                                <span className="hidden sm:inline">Filter</span>
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 border-none bg-transparent shadow-none w-auto" align="end" sideOffset={8}>
@@ -176,7 +176,7 @@ export const ListView = () => {
                         <Avatar className="h-5 w-5">
                             <AvatarFallback className="bg-blue-600 text-white text-[8px] font-bold">AH</AvatarFallback>
                         </Avatar>
-                        <span className="text-[12px] font-bold text-gray-700">Alif Hassan</span>
+                        <span className="text-[12px] font-bold text-gray-700 hidden sm:inline">Alif Hassan</span>
                     </div>
                     <Button
                         variant="ghost"
@@ -185,7 +185,7 @@ export const ListView = () => {
                         className="h-8 text-[12px] font-bold text-gray-600 gap-1.5 px-3 border border-gray-100 bg-white hover:bg-gray-50 active:scale-95 transition-all"
                     >
                         <Settings2 size={14} />
-                        Customize view
+                        <span className="hidden sm:inline">Customize view</span>
                     </Button>
                     <Button
                         variant="default"
@@ -194,14 +194,14 @@ export const ListView = () => {
                         className="h-8 text-[12px] font-bold bg-blue-600 hover:bg-blue-700 text-white gap-1.5 px-3 border-0 active:scale-95 transition-all"
                     >
                         <Plus size={14} />
-                        Add Task to Sprint
+                        <span className="hidden sm:inline">Add Task to Sprint</span>
                     </Button>
                 </div>
             </div>
 
             <div className="flex-1 overflow-y-auto p-6 space-y-6 no-scrollbar">
                 {/* Summary Cards */}
-                <div className="flex gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <SummaryCard
                         icon={LayoutGrid}
                         title="Backlog"
