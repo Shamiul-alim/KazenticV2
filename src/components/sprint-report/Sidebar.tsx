@@ -50,12 +50,12 @@ import {
     File
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ScrollArea } from "@/components/SprintReport/ui/scroll-area"
+import { ScrollArea } from "@/components/sprint-report/ui/scroll-area"
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from "@/components/SprintReport/ui/collapsible"
+} from "@/components/sprint-report/ui/collapsible"
 
 const NavItem = ({
     icon: Icon,

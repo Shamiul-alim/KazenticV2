@@ -26,12 +26,12 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from "@/components/SprintReport/ui/dialog"
-import { Badge } from "@/components/SprintReport/ui/badge"
-import { Button } from "@/components/SprintReport/ui/button"
+} from "@/components/sprint-report/ui/dialog"
+import { Badge } from "@/components/sprint-report/ui/badge"
+import { Button } from "@/components/sprint-report/ui/button"
 
 // --- Local Components ---
-import { TaskTable } from "@/components/SprintReport/list/TaskTable"
+import { TaskTable } from "@/components/sprint-report/list/TaskTable"
 
 // --- Utilities ---
 import { cn } from "@/lib/utils"

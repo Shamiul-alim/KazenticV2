@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { X, User, Hourglass, Circle, Flag, Clock } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/SprintReport/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar";
 
 interface QuickAddPopoverProps {
     top: number;

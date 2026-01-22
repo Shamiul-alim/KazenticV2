@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { ChevronDown, LayoutGrid, Calendar, Star, RefreshCw, Filter, Settings2, Plus, List } from "lucide-react"
-import { Button } from "@/components/SprintReport/ui/button"
-import { Badge } from "@/components/SprintReport/ui/badge"
+import { Button } from "@/components/sprint-report/ui/button"
+import { Badge } from "@/components/sprint-report/ui/badge"
 import { cn } from "@/lib/utils"
 
 interface HeaderProps {
