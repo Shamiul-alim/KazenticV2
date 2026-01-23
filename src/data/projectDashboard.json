@@ -1,0 +1,66 @@
+{
+    "totalTaskCount": 26,
+    "workload": [
+        {
+            "name": "ACTIVE",
+            "value": 4,
+            "color": "#ACFDE1"
+        },
+        {
+            "name": "IN PROGRESS",
+            "value": 3,
+            "color": "#D2C9FF"
+        },
+        {
+            "name": "IN REVIEW",
+            "value": 6,
+            "color": "#B4A9FF"
+        }
+    ],
+    "assignees": [
+        {
+            "name": "Ababa",
+            "value": 11,
+            "color": "#FFD9A2"
+        },
+        {
+            "name": "Tonmoy Asif",
+            "value": 20,
+            "color": "#D9B8FF"
+        },
+        {
+            "name": "Alif Hassan",
+            "value": 45,
+            "color": "#B4A9FF"
+        },
+        {
+            "name": "John Doe",
+            "value": 12.5,
+            "color": "#B2E7FF"
+        }
+    ],
+    "activeTasks": [
+        {
+            "id": "kzt-1",
+            "name": "Auth, Profile, Dashboard...",
+            "subtasks": 1
+        },
+        {
+            "id": "kzt-1",
+            "name": "Auth, Profile, Dashboard...",
+            "subtasks": 1,
+            "hasChildren": true
+        },
+        {
+            "id": "kzt-1",
+            "name": "Auth, Profile, Dashboard...",
+            "subtasks": 1,
+            "isChild": true
+        },
+        {
+            "id": "kzt-1",
+            "name": "Auth, Profile, Dashboard...",
+            "subtasks": 1
+        }
+    ]
+}

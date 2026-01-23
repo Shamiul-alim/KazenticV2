@@ -11,6 +11,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
+import Card from "@/components/ui/card";
+import ProgressBar from "@/components/ui/progressbar";
 
 interface ProjectData {
   id: number;
@@ -25,72 +27,6 @@ interface ProjectData {
   members: { name: string; role: string; avatar: string }[];
   attachments: { name: string; size: string; extension: string }[];
 }
-
-const Card = ({
-  children,
-  title,
-  extra,
-  className = "",
-}: {
-  children: React.ReactNode;
-  title?: string;
-  extra?: React.ReactNode;
-  className?: string;
-}) => (
-  <div
-    className={`bg-[#FDFDFD] border border-[#EBEBEB] rounded-3xl p-4  ${className}`}
-  >
-    {(title || extra) && (
-      <div className="flex justify-between items-center mb-3">
-        <h2 className="text-[14px] font-semibold text-[#191F38] leading-6 tracking-tighter">
-          {title}
-        </h2>
-        {extra}
-      </div>
-    )}
-    {children}
-  </div>
-);
-
-const ProgressBar = ({ percentage, colorClass, label, subLabel }: any) => {
-  const textColorClass = colorClass.replace("bg-", "text-");
-
-  return (
-    <div className="flex-1 p-4 border border-[#EBEBEB] rounded-3xl">
-      <div className="flex flex-col gap-5">
-        <span className="font-semibold text-[#191F38] tracking-tighter leading-4 text-xs">
-          {label}
-        </span>
-        <span className="text-[#697588] text-[11px] font-semibold leading-6">
-          {subLabel}
-        </span>
-      </div>
-      <div className="flex flex-row gap-1 w-full">
-        {/* Segmented Progress Bar */}
-        <div className="flex items-center gap-0.75 h-4.5 w-full">
-          {Array.from({ length: 30 }).map((_, i) => {
-            const isActive = i < (percentage / 100) * 30;
-
-            return (
-              <div
-                key={i}
-                className={`h-full w-0.75 flex-1 rounded-full transition-colors duration-300 ${
-                  isActive ? colorClass : "bg-[#6975882B]"
-                }`}
-              />
-            );
-          })}
-        </div>
-        <div
-          className={`flex items-center font-semibold text-[12px] leading-3  ${textColorClass}`}
-        >
-          <span className={`text-${colorClass}`}>{percentage}%</span>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function ProjectDetails() {
   const [visibility, setVisibility] = useState("private");
   const data: ProjectData = projectsData[0];
@@ -301,7 +237,7 @@ export default function ProjectDetails() {
           <Card
             title="Members"
             extra={
-              <Button variant="trasparent">
+              <Button variant="transparent">
                 <Image
                   src="/assets/plus-blue.svg"
                   alt="group"
@@ -495,7 +431,7 @@ export default function ProjectDetails() {
           <Card
             title="Attachments"
             extra={
-              <Button variant="trasparent">
+              <Button variant="transparent">
                 <Image
                   src="/assets/plus-blue.svg"
                   alt="group"
