@@ -88,11 +88,10 @@ export default function ProjectDetails() {
                   {/* Private Option */}
                   <button
                     onClick={() => setVisibility("private")}
-                    className={`flex items-center justify-between w-full p-3 transition-colors ${
-                      visibility === "private"
+                    className={`flex items-center justify-between w-full p-3 transition-colors ${visibility === "private"
                         ? "bg-[#F2F9FE]"
                         : "hover:bg-gray-50"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -120,11 +119,10 @@ export default function ProjectDetails() {
                   {/* Public Option */}
                   <button
                     onClick={() => setVisibility("public")}
-                    className={`flex items-center justify-between w-full p-3 transition-colors ${
-                      visibility === "public"
+                    className={`flex items-center justify-between w-full p-3 transition-colors ${visibility === "public"
                         ? "bg-[#F2F9FE]"
                         : "hover:bg-gray-50"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
