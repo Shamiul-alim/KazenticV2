@@ -1,6 +1,6 @@
-import { Card } from "@/components/ui/card"
 import { Video } from "lucide-react"
 import Image from "next/image"
+import { Card } from "../../ui/card"
 
 export function CalendarEvent() {
     return (

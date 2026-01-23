@@ -1,9 +1,7 @@
-import Image from "next/image"
 import { Badge } from "../sprint-report/ui/badge"
 import { Check } from "lucide-react"
-import { ProgressRing } from "./progress-ring"
-import { Card } from "../ui/card"
 import { Progress } from "../ui/progress"
+import { Card } from "./ui/card"
 
 export function TopTaskItem() {
     return (

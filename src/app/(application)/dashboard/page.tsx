@@ -9,9 +9,9 @@ import { TaskItem } from "@/components/dashboard/recent-items/task-item";
 import { StatsCard } from "@/components/dashboard/stats-card";
 import { SummaryCard } from "@/components/dashboard/summary-card";
 import { TopTaskItem } from "@/components/dashboard/top-task-item";
+import { Card } from "@/components/dashboard/ui/card";
 import { Underline } from "@/components/dashboard/underline";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowDown01, ArrowDownLeft, ArrowDownNarrowWide, Ban, CalendarDays, CalendarFold, CalendarX2, CheckCircle, CheckCircle2, ChevronDown, ClipboardList, Clock, CloudLightning, Ellipsis, Eye, Hourglass, Mail, Pause, PencilLine, RefreshCcw, Sun, XCircle } from "lucide-react";
 
@@ -40,7 +40,7 @@ export default function Dashboard() {
                     </p>
                 </div>
 
-                <Button variant="default" size="sm" className="px-2 py-1.5 text-sm rounded-md">Task Summary</Button>
+                <Button variant="default" size="sm" className="px-2 py-1.5 text-sm rounded-md bg-primary-dashboard text-primary-dashboard-foreground">Task Summary</Button>
             </div>
             <div className="p-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4 border-b border-b-border">
                 <StatsCard
