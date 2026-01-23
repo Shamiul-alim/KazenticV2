@@ -2,33 +2,53 @@
 
 import React from 'react';
 import { cn } from "@/lib/utils";
-import { events } from "@/lib/calendar-data";
+import { events } from "@/data/calendar-data";
+import moment from 'moment';
 
 interface MonthlyViewProps {
     onEventClick: (event: any) => void;
+    currentDate: moment.Moment;
 }
 
 const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export default function MonthlyView({ onEventClick }: MonthlyViewProps) {
-    // Mocking August 2026
-    // August 1st 2026 is a Saturday
-    const daysInMonth = 31;
-    const startDay = 6; // 0 = Sun, 1 = Mon, ..., 6 = Sat
+export default function MonthlyView({ onEventClick, currentDate }: MonthlyViewProps) {
+    const startOfMonth = moment(currentDate).startOf('month');
+    const endOfMonth = moment(currentDate).endOf('month');
+    const daysInMonth = startOfMonth.daysInMonth();
+    const startDay = startOfMonth.day(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
 
     const days = [];
+
     // Previous month padding
-    for (let i = 0; i < startDay; i++) {
-        days.push({ day: 26 + i, currentMonth: false });
+    const prevMonth = moment(startOfMonth).subtract(1, 'month');
+    const prevMonthDays = prevMonth.daysInMonth();
+    for (let i = startDay - 1; i >= 0; i--) {
+        days.push({
+            day: prevMonthDays - i,
+            currentMonth: false,
+            date: moment(prevMonth).date(prevMonthDays - i)
+        });
     }
+
     // Current month
     for (let i = 1; i <= daysInMonth; i++) {
-        days.push({ day: i, currentMonth: true });
+        days.push({
+            day: i,
+            currentMonth: true,
+            date: moment(startOfMonth).date(i)
+        });
     }
+
     // Next month padding
     const remaining = 42 - days.length;
+    const nextMonth = moment(startOfMonth).add(1, 'month');
     for (let i = 1; i <= remaining; i++) {
-        days.push({ day: i, currentMonth: false });
+        days.push({
+            day: i,
+            currentMonth: false,
+            date: moment(nextMonth).date(i)
+        });
     }
 
     return (
@@ -45,11 +65,10 @@ export default function MonthlyView({ onEventClick }: MonthlyViewProps) {
             {/* Calendar Grid */}
             <div className="flex-1 grid grid-cols-7 grid-rows-6">
                 {days.map((item, i) => {
-                    const isToday = item.day === 1 && item.currentMonth;
-                    // Find some mock events for specific days
-                    const dayEvents = item.currentMonth && (item.day === 13 || item.day === 25)
-                        ? events.slice(0, 2)
-                        : [];
+                    const isToday = item.date.isSame(moment(), 'day');
+                    const dayString = item.date.format('YYYY-MM-DD');
+                    // Filter events for this specific day
+                    const dayEvents = events.filter(e => e.date === dayString);
 
                     return (
                         <div

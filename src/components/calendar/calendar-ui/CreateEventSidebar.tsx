@@ -46,6 +46,7 @@ export const CreateEventSidebar = ({ isOpen, onClose }: CreateEventSidebarProps)
                         <input
                             type="text"
                             placeholder="Add title.."
+                            suppressHydrationWarning
                             className="w-full h-11 px-4 bg-white border border-slate-200 rounded-lg text-[14px] font-medium outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all placeholder:text-slate-400"
                         />
                     </div>
@@ -112,6 +113,7 @@ export const CreateEventSidebar = ({ isOpen, onClose }: CreateEventSidebarProps)
                             <input
                                 type="text"
                                 placeholder="Type email"
+                                suppressHydrationWarning
                                 className="w-full h-11 px-4 bg-white border border-slate-200 rounded-lg text-[14px] font-medium outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all"
                             />
                         </div>

@@ -1,14 +1,19 @@
 import React from 'react';
 import EventItem from './EventItem';
-import { events } from "@/lib/calendar-data";
+import { events } from "@/data/calendar-data";
+
+import moment from 'moment';
 
 interface AllDaySectionProps {
     onEventClick: (event: any) => void;
+    currentDate: moment.Moment;
 }
 
-export default function AllDaySection({ onEventClick }: AllDaySectionProps) {
-    // Filter events that are marked as allDay
-    const allDayEvents = events.filter(event => event.allDay);
+export default function AllDaySection({ onEventClick, currentDate }: AllDaySectionProps) {
+    // Filter events that are marked as allDay and match the current date
+    const allDayEvents = events.filter(event =>
+        event.allDay && event.date === currentDate.format('YYYY-MM-DD')
+    );
 
     return (
         <div className="flex border-b border-gray-200">
@@ -23,17 +28,13 @@ export default function AllDaySection({ onEventClick }: AllDaySectionProps) {
                     // @ts-ignore
                     <EventItem
                         key={evt.id}
-                        // @ts-ignore
                         event={{
-                            title: evt.title,
-                            typeLabel: evt.badge,
-                            color: evt.color as any,
-                            duration: evt.duration,
-                            priority: evt.priority,
-                            startTime: evt.timeRange?.split('-')[0],
-                            endTime: evt.timeRange?.split('-')[1],
+                            ...evt,
+                            typeLabel: evt.badge || evt.type,
+                            startTime: evt.allDay ? 'All Day' : (evt.start || evt.timeRange?.split('-')[0]),
+                            endTime: evt.allDay ? '' : (evt.end || evt.timeRange?.split('-')[1]),
                             assignees: evt.assignee ? ['https://github.com/shadcn.png'] : undefined
-                        }}
+                        } as any}
                         variant="row"
                         onClick={() => onEventClick(evt)}
                     />

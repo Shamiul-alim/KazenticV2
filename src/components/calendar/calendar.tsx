@@ -2,27 +2,66 @@
 
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Filter, Settings, Plus, User } from 'lucide-react';
-import AllDaySection from './calender-ui/AllDaySection';
-import TimeColumn from './calender-ui/TimeColumn';
-import CalendarDay from './calender-ui/CalendarDay';
-import WeeklyView from './calender-ui/WeeklyView';
-import MonthlyView from './calender-ui/MonthlyView';
-import YearlyView from './calender-ui/YearlyView';
-import ScheduleView from './calender-ui/ScheduleView';
+import moment from 'moment';
+import WeeklyView from './calendar-ui/WeeklyView';
+import MonthlyView from './calendar-ui/MonthlyView';
+import YearlyView from './calendar-ui/YearlyView';
+import ScheduleView from './calendar-ui/ScheduleView';
+import DayView from './calendar-ui/DayView';
+import FourDayView from './calendar-ui/FourDayView';
 import { AssigneeSidebar } from '../sprint-report/list/AssigneeSidebar';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover";
-import { EventDetailsModal } from './calender-ui/EventDetailsModal';
+import { EventDetailsModal } from './calendar-ui/EventDetailsModal';
 import { EventSettings } from './settings/EventSettings';
-import { CreateEventSidebar } from './calender-ui/CreateEventSidebar';
-import { ScheduleMeetingModal } from './calender-ui/ScheduleMeetingModal';
+import { CreateEventSidebar } from './calendar-ui/CreateEventSidebar';
+import { ScheduleMeetingModal } from './calendar-ui/ScheduleMeetingModal';
 
 export default function Calendar() {
     const [isAssigneeOpen, setIsAssigneeOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState<any>(null);
     const [view, setView] = useState("Day");
+    const [currentDate, setCurrentDate] = useState(moment());
     const [showSettings, setShowSettings] = useState(false);
     const [isCreateEventOpen, setIsCreateEventOpen] = useState(false);
     const [isScheduleMeetingOpen, setIsScheduleMeetingOpen] = useState(false);
+
+    const handlePrev = () => {
+        if (view === "Day") setCurrentDate(prev => moment(prev).subtract(1, 'days'));
+        else if (view === "Week") setCurrentDate(prev => moment(prev).subtract(1, 'weeks'));
+        else if (view === "Month") setCurrentDate(prev => moment(prev).subtract(1, 'months'));
+        else if (view === "Schedule") setCurrentDate(prev => moment(prev).subtract(2, 'months'));
+        else if (view === "Year") setCurrentDate(prev => moment(prev).subtract(1, 'years'));
+        else if (view === "4 Days") setCurrentDate(prev => moment(prev).subtract(4, 'days'));
+    };
+
+    const handleNext = () => {
+        if (view === "Day") setCurrentDate(prev => moment(prev).add(1, 'days'));
+        else if (view === "Week") setCurrentDate(prev => moment(prev).add(1, 'weeks'));
+        else if (view === "Month") setCurrentDate(prev => moment(prev).add(1, 'months'));
+        else if (view === "Schedule") setCurrentDate(prev => moment(prev).add(2, 'months'));
+        else if (view === "Year") setCurrentDate(prev => moment(prev).add(1, 'years'));
+        else if (view === "4 Days") setCurrentDate(prev => moment(prev).add(4, 'days'));
+    };
+
+    const getHeaderText = () => {
+        if (view === "Day") return currentDate.format("ddd, MMM D");
+        if (view === "Week") {
+            const start = moment(currentDate).startOf('week');
+            const end = moment(currentDate).endOf('week');
+            return `${start.format("MMM D")} - ${end.format("MMM D")}`;
+        }
+        if (view === "Month") return currentDate.format("MMMM YYYY");
+        if (view === "Year") return currentDate.format("YYYY");
+        if (view === "Schedule") {
+            const endMonth = moment(currentDate).add(1, 'months');
+            return `${currentDate.format("MMM")} - ${endMonth.format("MMM YYYY")}`;
+        }
+        if (view === "4 Days") {
+            const end = moment(currentDate).add(3, 'days');
+            return `${currentDate.format("MMM D")} - ${end.format("MMM D")}`;
+        }
+        return currentDate.format("YYYY");
+    };
 
     const viewOptions = [
         "Day", "Week", "Month", "Year", "4 Days", "Schedule", "Custom"
@@ -41,7 +80,10 @@ export default function Calendar() {
                         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-start">
 
                             {/* Today Button */}
-                            <button className="px-4 py-1.5 text-xs font-bold text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 bg-white shadow-sm transition-all">
+                            <button
+                                onClick={() => setCurrentDate(moment())}
+                                className="px-4 py-1.5 text-xs font-bold text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 bg-white shadow-sm transition-all"
+                            >
                                 Today
                             </button>
 
@@ -73,13 +115,19 @@ export default function Calendar() {
 
                             {/* Date Navigation Group */}
                             <div className="flex items-center border border-gray-200 rounded-lg bg-white shadow-sm p-0.5">
-                                <button className="p-1 hover:bg-gray-50 rounded-md text-gray-400 hover:text-gray-600 transition-colors">
+                                <button
+                                    onClick={handlePrev}
+                                    className="p-1 hover:bg-gray-50 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+                                >
                                     <ChevronLeft size={18} />
                                 </button>
                                 <span className="px-3 text-sm font-bold text-gray-600 whitespace-nowrap min-w-[90px] text-center">
-                                    {view === "Day" ? "Mon, Aug 1" : view === "Week" ? "Aug 25 - Aug 31" : view === "Month" ? "August 2026" : "2026"}
+                                    {getHeaderText()}
                                 </span>
-                                <button className="p-1 hover:bg-gray-50 rounded-md text-gray-400 hover:text-gray-600 transition-colors">
+                                <button
+                                    onClick={handleNext}
+                                    className="p-1 hover:bg-gray-50 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+                                >
                                     <ChevronRight size={18} />
                                 </button>
                             </div>
@@ -157,37 +205,32 @@ export default function Calendar() {
                     {/* 2. SCROLLABLE CONTENT */}
                     <div className="flex-1 overflow-hidden relative">
                         {view === "Day" ? (
-                            <div className="h-full overflow-y-auto no-scrollbar">
-                                {/* All Day Section */}
-                                <AllDaySection onEventClick={setSelectedEvent} />
-
-                                {/* Main Grid Area */}
-                                <div className="flex w-full">
-                                    {/* Time Column Sidebar */}
-                                    <TimeColumn />
-
-                                    {/* The Calendar Grid */}
-                                    <CalendarDay onEventClick={setSelectedEvent} />
-                                </div>
-                            </div>
+                            <DayView onEventClick={setSelectedEvent} currentDate={currentDate} />
                         ) : view === "Week" ? (
                             <div className="h-full">
-                                <WeeklyView onEventClick={setSelectedEvent} />
+                                <WeeklyView onEventClick={setSelectedEvent} currentDate={currentDate} />
                             </div>
                         ) : view === "Month" ? (
                             <div className="h-full">
-                                <MonthlyView onEventClick={setSelectedEvent} />
+                                <MonthlyView onEventClick={setSelectedEvent} currentDate={currentDate} />
                             </div>
                         ) : view === "Year" ? (
                             <div className="h-full">
-                                <YearlyView onMonthClick={(m) => {
-                                    // Optionally switch to Month view when a month is clicked
-                                    // setView("Month");
-                                }} />
+                                <YearlyView
+                                    currentDate={currentDate}
+                                    onMonthClick={(m) => {
+                                        // Optionally switch to Month view when a month is clicked
+                                        // setView("Month");
+                                    }} />
                             </div>
                         ) : view === "Schedule" ? (
                             <div className="h-full">
-                                <ScheduleView />
+                                <ScheduleView
+                                    onEventClick={setSelectedEvent} currentDate={currentDate} />
+                            </div>
+                        ) : view === "4 Days" ? (
+                            <div className="h-full">
+                                <FourDayView onEventClick={setSelectedEvent} currentDate={currentDate} />
                             </div>
                         ) : (
                             <div className="h-full flex items-center justify-center text-slate-400 font-medium">

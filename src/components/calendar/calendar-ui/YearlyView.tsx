@@ -3,8 +3,12 @@
 import React from 'react';
 import { cn } from "@/lib/utils";
 
+import moment from 'moment';
+import { events } from "@/data/calendar-data";
+
 interface YearlyViewProps {
     onMonthClick?: (month: number) => void;
+    currentDate: moment.Moment;
 }
 
 const months = [
@@ -22,8 +26,8 @@ const getFirstDayOfMonth = (year: number, month: number) => {
     return new Date(year, month, 1).getDay();
 };
 
-export default function YearlyView({ onMonthClick }: YearlyViewProps) {
-    const year = 2026;
+export default function YearlyView({ onMonthClick, currentDate }: YearlyViewProps) {
+    const year = currentDate.year();
 
     const renderMonth = (monthIndex: number) => {
         const monthName = months[monthIndex];
@@ -81,16 +85,22 @@ export default function YearlyView({ onMonthClick }: YearlyViewProps) {
                     <div className="grid grid-cols-7 text-center">
                         {calendarDays.map((item, idx) => {
                             const isWeekend = idx % 7 === 0 || idx % 7 === 6;
+                            const dateStr = item.current ? moment().year(year).month(monthIndex).date(item.day).format('YYYY-MM-DD') : '';
+                            const hasEvents = item.current && events.some(e => e.date === dateStr);
+
                             return (
                                 <div
                                     key={idx}
                                     className={cn(
-                                        "h-7 flex items-center justify-center text-[11px] font-bold transition-all cursor-pointer hover:bg-slate-50 rounded-md",
+                                        "h-7 flex flex-col items-center justify-center text-[11px] font-bold transition-all cursor-pointer hover:bg-slate-50 rounded-md relative",
                                         !item.current ? "text-slate-300 font-medium" : (isWeekend ? "text-blue-600" : "text-slate-700")
                                     )}
                                     onClick={() => onMonthClick?.(monthIndex)}
                                 >
                                     {item.day}
+                                    {hasEvents && (
+                                        <div className="absolute bottom-0.5 w-1 h-1 bg-blue-500 rounded-full" />
+                                    )}
                                 </div>
                             );
                         })}

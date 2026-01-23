@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import { X, MoreVertical, Calendar as CalendarIcon, Globe } from 'lucide-react';
+import { X, MoreVertical, Calendar as CalendarIcon, Globe, Clock } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import moment from 'moment';
 
 interface EventDetailsModalProps {
     isOpen: boolean;
@@ -42,37 +43,51 @@ export const EventDetailsModal = ({ isOpen, onClose, event }: EventDetailsModalP
 
                 {/* Event Title Row */}
                 <div className="flex items-start gap-4 mb-1">
-                    <div className="w-6 h-6 mt-1.5 rounded-[5px] bg-[#0fa968] rotate-45 shrink-0 shadow-sm" />
+                    <div className={cn(
+                        "w-6 h-6 mt-1.5 rounded-[5px] rotate-45 shrink-0 shadow-sm",
+                        event.color === 'green' ? "bg-emerald-500" :
+                            event.color === 'purple' ? "bg-purple-500" : "bg-blue-500"
+                    )} />
                     <div>
                         <h1 className="text-[22px] font-bold text-[#1e293b] leading-tight tracking-tight">
-                            {event.title || 'Holiday Name'}
+                            {event.title}
                         </h1>
-                        <p className="text-[15px] text-slate-500 mt-0.5 font-medium">Public Holiday</p>
+                        <p className="text-[15px] text-slate-500 mt-0.5 font-medium">{event.typeLabel || event.badge || 'Event'}</p>
                     </div>
                 </div>
 
                 {/* Badge & Date */}
-                <div className="flex items-center gap-3 ml-10 mb-7 mt-3">
+                <div className="flex flex-wrap items-center gap-3 ml-10 mb-7 mt-3">
                     <div className="px-3.5 py-1 rounded-lg bg-indigo-50/50 text-indigo-600 border border-indigo-100 text-[13px] font-bold">
-                        Type
+                        {event.priority || 'Low'} Priority
                     </div>
                     <span className="text-[15px] text-slate-400 font-medium">
-                        Wednesday, August 14 <span className="mx-1 text-slate-300">|</span> 12:30-1:30 PM
+                        {moment(event.date).format('dddd, MMMM D')}
+                        <span className="mx-1 text-slate-300">|</span>
+                        {event.allDay ? 'All Day' : `${event.start || event.startTime || ''} - ${event.end || event.endTime || ''}`}
                     </span>
                 </div>
 
                 {/* Details List */}
                 <div className="space-y-4 ml-10">
+                    {/* Duration Info */}
+                    {event.duration && (
+                        <div className="flex items-center gap-3.5 text-slate-500">
+                            <Clock size={20} className="text-slate-400" />
+                            <span className="text-[15px] font-semibold text-slate-600">Duration: {event.duration}</span>
+                        </div>
+                    )}
+
                     {/* Calendar Info */}
                     <div className="flex items-center gap-3.5 text-slate-500">
                         <CalendarIcon size={20} className="text-slate-400" />
-                        <span className="text-[15px] font-semibold text-slate-600">Holidays in Bangladesh</span>
+                        <span className="text-[15px] font-semibold text-slate-600">Assignee: {event.assignee || 'Unassigned'}</span>
                     </div>
 
                     {/* Visibility */}
                     <div className="flex items-center gap-3.5 text-slate-500">
                         <Globe size={20} className="text-slate-400" />
-                        <span className="text-[15px] font-semibold text-slate-600">Public</span>
+                        <span className="text-[15px] font-semibold text-slate-600">Sync with Google Calendar</span>
                     </div>
                 </div>
 
