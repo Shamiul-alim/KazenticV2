@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Card } from "@/components/ui/card"
 
 type EmailItemProps = {
     starred?: boolean
@@ -16,7 +17,7 @@ export function EmailItem({
     time,
 }: EmailItemProps) {
     return (
-        <div className="flex items-center justify-between gap-3 rounded-lg border border-border px-4 py-3">
+        <Card>
             <div className="flex items-start gap-3">
                 <div className="space-y-2">
                     <div className="flex items-center gap-2">
@@ -51,6 +52,6 @@ export function EmailItem({
             <p className="text-xs font-medium text-muted-foreground whitespace-nowrap">
                 {time}
             </p>
-        </div>
+        </Card>
     )
 }

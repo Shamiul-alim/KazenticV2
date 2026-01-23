@@ -2,16 +2,26 @@
 
 import { CalendarEvent } from "@/components/dashboard/recent-items/calendar/calendar-event";
 import { EmailItem } from "@/components/dashboard/recent-items/email-item";
+import { LeaveItem } from "@/components/dashboard/recent-items/leave-item";
+import { NoticeItem } from "@/components/dashboard/recent-items/notice-item";
+import { TaskItem } from "@/components/dashboard/recent-items/task-item";
 import { StatsCard } from "@/components/dashboard/stats-card";
+import { Underline } from "@/components/dashboard/underline";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Ban, CalendarDays, CalendarFold, ClipboardList, CloudLightning, Ellipsis, Mail, Sun } from "lucide-react";
+import { Ban, CalendarDays, CalendarFold, ClipboardList, Clock, CloudLightning, Ellipsis, Mail, Sun } from "lucide-react";
 
-enum TABS {
+enum WEEKLY_CALENDAR_TABS {
     EVENTS = "events",
     NOTICES = "notices",
     LEAVES = "leaves",
 }
+
+enum ASSIGNED_TASKS_TABS {
+    RECENT = "recent",
+    DUE = "due"
+}
+
 
 export default function Dashboard() {
     return (
@@ -135,67 +145,50 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                        {/* Tabs */}
-                        {/* <div className="border-b px-4">
-                            <div className="flex gap-6 text-sm font-medium">
-                                {[
-                                    { id: "events", label: "Events" },
-                                    { id: "notices", label: "Recent Notices" },
-                                    { id: "leaves", label: "Leaves" },
-                                ].map((tab) => {
-                                    const active = activeTab === tab.id
-
-                                    return (
-                                        <button
-                                            key={tab.id}
-                                            onClick={() => setActiveTab(tab.id as Tab)}
-                                            className={cn(
-                                                "relative pb-3 transition",
-                                                active ? "text-primary-dashboard" : "text-muted-foreground"
-                                            )}
-                                        >
-                                            {tab.label}
-                                            {active && (
-                                                <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard" />
-                                            )}
-                                        </button>
-                                    )
-                                })}
-                            </div>
-                        </div> */}
-
-                        <Tabs defaultValue={TABS.EVENTS}
-                            className="w-full p-4"
+                        <Tabs defaultValue={WEEKLY_CALENDAR_TABS.EVENTS}
+                            className="w-full py-4"
                         >
                             {/* Tabs header */}
                             <TabsList className="relative h-auto bg-transparent p-0" variant="line">
-                                <TabsTrigger value={TABS.EVENTS}>
+                                <TabsTrigger value={WEEKLY_CALENDAR_TABS.EVENTS}>
                                     <CalendarDays className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                                     Events
-                                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard opacity-0 data-[state=active]:opacity-100 group-data-[variant=default]:hidden" />
+                                    <Underline />
                                 </TabsTrigger>
 
-                                <TabsTrigger value={TABS.NOTICES}>
+                                <TabsTrigger value={WEEKLY_CALENDAR_TABS.NOTICES}>
                                     <CalendarFold className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                                     Recent Notices
-                                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard opacity-0 data-[state=active]:opacity-100 group-data-[variant=default]:hidden" />
+                                    <Underline />
                                 </TabsTrigger>
 
-                                <TabsTrigger value={TABS.LEAVES}>
+                                <TabsTrigger value={WEEKLY_CALENDAR_TABS.LEAVES}>
                                     <Ban className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                                     Leaves
-                                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard opacity-0 data-[state=active]:opacity-100 group-data-[variant=default]:hidden" />
+                                    <Underline />
                                 </TabsTrigger>
                             </TabsList>
-                            <TabsContent value={TABS.EVENTS}>
-                                <div className="space-y-3 p-4">
+                            <TabsContent value={WEEKLY_CALENDAR_TABS.EVENTS}>
+                                <div className="space-y-3 px-4">
                                     <CalendarEvent />
                                     <CalendarEvent />
                                     <CalendarEvent />
                                 </div>
                             </TabsContent>
-                            <TabsContent value={TABS.NOTICES}>Change your password here.</TabsContent>
-                            <TabsContent value={TABS.LEAVES}>Delete your account here.</TabsContent>
+                            <TabsContent value={WEEKLY_CALENDAR_TABS.NOTICES}>
+                                <div className="space-y-3 px-4">
+                                    <NoticeItem />
+                                    <NoticeItem />
+                                    <NoticeItem />
+                                </div>
+                            </TabsContent>
+                            <TabsContent value={WEEKLY_CALENDAR_TABS.LEAVES}>
+                                <div className="space-y-3 px-4">
+                                    <LeaveItem />
+                                    <LeaveItem />
+                                    <LeaveItem />
+                                </div>
+                            </TabsContent>
                         </Tabs>
                     </div>
 
@@ -203,54 +196,50 @@ export default function Dashboard() {
                     <div className="flex-1 rounded-xl border border-border bg-background overflow-hidden">
                         {/* Header */}
                         <div className="flex items-center justify-between bg-[#F2F9FE] px-4 py-3">
-                            <p className="text-sm font-semibold">Recent Emails</p>
+                            <p className="text-sm font-semibold">My Assigned Tasks</p>
                             <Ellipsis className="text-muted-foreground" />
                         </div>
+                        <Tabs defaultValue={ASSIGNED_TASKS_TABS.RECENT}
+                            className="w-full py-4"
+                        >
+                            {/* Tabs header */}
+                            <TabsList className="relative h-auto bg-transparent p-0" variant="line">
+                                <TabsTrigger value={ASSIGNED_TASKS_TABS.RECENT}>
+                                    <ClipboardList className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
+                                    Recent Tasks
+                                    <Underline />
+                                </TabsTrigger>
 
-                        {/* List */}
-                        <div className="space-y-3 p-4">
-                            <EmailItem
-                                starred
-                                title="Project Update Required"
-                                sender="Md. Al-Amin"
-                                time="2 Min Ago"
-                            />
-
-                            <EmailItem
-                                starred
-                                title="Project Update Required"
-                                sender="Md. Al-Amin"
-                                time="2 Min Ago"
-                            />
-
-                            <EmailItem
-                                title="Project Update Required"
-                                sender="Md. Al-Amin"
-                                time="2 Min Ago"
-                            />
-
-                            <EmailItem
-                                title="Project Update Required"
-                                sender="Md. Al-Amin"
-                                time="2 Min Ago"
-                            />
-
-                            <EmailItem
-                                title="Welcome Aboard"
-                                sender="Md. Al-Amin"
-                                time="2 Min Ago"
-                            />
-                        </div>
-
+                                <TabsTrigger value={ASSIGNED_TASKS_TABS.DUE}>
+                                    <Clock className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
+                                    Due Soon
+                                    <Underline />
+                                </TabsTrigger>
+                            </TabsList>
+                            <TabsContent value={ASSIGNED_TASKS_TABS.RECENT}>
+                                <div className="space-y-3 px-4">
+                                    <TaskItem />
+                                    <TaskItem />
+                                    <TaskItem />
+                                </div>
+                            </TabsContent>
+                            <TabsContent value={ASSIGNED_TASKS_TABS.DUE}>
+                                <div className="space-y-3 px-4">
+                                    <NoticeItem />
+                                    <NoticeItem />
+                                    <NoticeItem />
+                                </div>
+                            </TabsContent>
+                        </Tabs>
                     </div>
                 </div>
-                <div>
-                    <div className="flex-1 h-20 w-full rounded-xl border border-border bg-background overflow-hidden">
-                    </div>
+            </div>
+            <div>
+                <div className="flex-1 h-20 w-full rounded-xl border border-border bg-background overflow-hidden">
                 </div>
-                <div>
-                    <div className="flex-1 h-20 w-full rounded-xl border border-border bg-background overflow-hidden">
-                    </div>
+            </div>
+            <div>
+                <div className="flex-1 h-20 w-full rounded-xl border border-border bg-background overflow-hidden">
                 </div>
             </div>
         </section >

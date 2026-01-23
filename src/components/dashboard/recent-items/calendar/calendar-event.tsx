@@ -1,13 +1,11 @@
+import { Card } from "@/components/ui/card"
 import { Video } from "lucide-react"
 import Image from "next/image"
 
 export function CalendarEvent() {
     return (
-        <div className="flex items-center justify-between rounded-lg border px-4 py-3">
-            <div className="flex items-start gap-3">
-                {/* Left indicator */}
-                <span className="mt-1 h-10 w-1 rounded-full bg-primary-dashboard" />
-
+        <Card>
+            <div className="flex items-start gap-3 border-l-2 border-l-primary-dashboard pl-3">
                 <div className="space-y-2">
                     <p className="text-sm font-medium">Team Sprint Review</p>
 
@@ -25,6 +23,6 @@ export function CalendarEvent() {
             <button className="flex items-center gap-2 rounded-md bg-primary-dashboard/10 px-3 py-1 text-xs font-medium text-primary-dashboard">
                 <Video className="w-4 h-4" /> Join
             </button>
-        </div>
+        </Card>
     )
 }
