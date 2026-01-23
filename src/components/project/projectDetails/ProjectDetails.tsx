@@ -158,7 +158,7 @@ export default function ProjectDetails() {
             </span>
             <Switch id="airplane-mode" />
           </div>
-          <Button variant="sucess">
+          <Button variant="success">
             <Image
               src="/assets/plus.svg"
               alt="group"
@@ -345,7 +345,7 @@ export default function ProjectDetails() {
                   <Pie
                     data={data.workflow}
                     innerRadius={85}
-                    outerRadius={110}
+                    outerRadius={113}
                     paddingAngle={0}
                     startAngle={450}
                     endAngle={90}

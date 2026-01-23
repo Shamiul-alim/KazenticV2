@@ -9,7 +9,7 @@ interface ProgressBarProps {
   subLabel: string;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({
+const Progressbar: React.FC<ProgressBarProps> = ({
   percentage,
   colorClass,
   label,
@@ -53,4 +53,4 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   );
 };
 
-export default ProgressBar;
+export default Progressbar;
