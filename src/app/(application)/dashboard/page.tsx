@@ -8,6 +8,7 @@ import { NoticeItem } from "@/components/dashboard/recent-items/notice-item";
 import { TaskItem } from "@/components/dashboard/recent-items/task-item";
 import { StatsCard } from "@/components/dashboard/stats-card";
 import { SummaryCard } from "@/components/dashboard/summary-card";
+import { TopTaskItem } from "@/components/dashboard/top-task-item";
 import { Underline } from "@/components/dashboard/underline";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/card";
@@ -218,92 +219,107 @@ export default function Dashboard() {
                     </CardContainer>
                 </div>
             </div>
-            <div>
-                <div className="flex flex-row gap-4 p-4">
-                    <CardContainer className="flex-1" title={<>Leaves <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
-                        <div className="grid grid-cols-2 gap-4 p-4">
-                            <SummaryCard
-                                icon={<CalendarDays />}
-                                label="Annual Leaves"
-                                value={24}
-                                iconClassName="bg-primary-dashboard/10 text-primary-dashboard border-primary-dashboard/60"
-                            />
-                            <SummaryCard
-                                icon={<CheckCircle2 />}
-                                label="Approved"
-                                value={24}
-                                iconClassName="bg-success/10 text-success border-success/60"
-                            />
-                            <SummaryCard
-                                icon={<Ban />}
-                                label="Emergency"
-                                value={2}
-                                iconClassName="bg-destructive/10 text-destructive border-destructive/60"
-                            />
-                            <SummaryCard
-                                icon={<CalendarX2 />}
-                                label="Unpaid Leave"
-                                value={2}
-                                iconClassName="bg-cyan-500/10 text-cyan-500 border-cyan-500/60"
-                            />
+            <div className="flex flex-row gap-4 p-4 pt-0">
+                <CardContainer className="flex-1" title={<>Leaves <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
+                    <div className="grid grid-cols-2 gap-4 p-4">
+                        <SummaryCard
+                            icon={<CalendarDays />}
+                            label="Annual Leaves"
+                            value={24}
+                            iconClassName="bg-primary-dashboard/10 text-primary-dashboard border-primary-dashboard/60"
+                        />
+                        <SummaryCard
+                            icon={<CheckCircle2 />}
+                            label="Approved"
+                            value={24}
+                            iconClassName="bg-success/10 text-success border-success/60"
+                        />
+                        <SummaryCard
+                            icon={<Ban />}
+                            label="Emergency"
+                            value={2}
+                            iconClassName="bg-destructive/10 text-destructive border-destructive/60"
+                        />
+                        <SummaryCard
+                            icon={<CalendarX2 />}
+                            label="Unpaid Leave"
+                            value={2}
+                            iconClassName="bg-cyan-500/10 text-cyan-500 border-cyan-500/60"
+                        />
+                    </div>
+                </CardContainer>
+                <CardContainer className="flex-2" title={<span>Kaznetic Overview <ChevronDown className="w-4 h-4 inline-block text-primary-dashboard" /></span>}>
+                    <div className="grid grid-cols-4 gap-4 p-4">
+                        <SummaryCard
+                            icon={<PencilLine />}
+                            label="To Do"
+                            value={24}
+                            iconClassName="bg-primary-dashboard/10 text-primary-dashboard border-primary-dashboard/60"
+                        />
+                        <SummaryCard
+                            icon={<Hourglass />}
+                            label="In Progress"
+                            value={24}
+                            iconClassName="bg-purple-600/10 text-purple-600 border-purple-600/60"
+                        />
+                        <SummaryCard
+                            icon={<Pause />}
+                            label="On Hold"
+                            value={24}
+                            iconClassName="bg-orange-600/10 text-orange-600 border-orange-600/60"
+                        />
+                        <SummaryCard
+                            icon={<XCircle />}
+                            label="Cancelled"
+                            value={24}
+                            iconClassName="bg-red-600/10 text-red-600 border-red-600/60"
+                        />
+                        <SummaryCard
+                            icon={<ArrowDownLeft />}
+                            label="Backlog"
+                            value={24}
+                            iconClassName="bg-sky-600/10 text-sky-600 border-sky-600/60"
+                        />
+                        <SummaryCard
+                            icon={<Eye />}
+                            label="Code Review"
+                            value={24}
+                            iconClassName="bg-slate-600/10 text-slate-600 border-slate-600/60"
+                        />
+                        <SummaryCard
+                            icon={<CheckCircle2 />}
+                            label="Completed"
+                            value={24}
+                            iconClassName="bg-success/10 text-success border-success/60"
+                        />
+                        <SummaryCard
+                            icon={<RefreshCcw />}
+                            label="In Review"
+                            value={24}
+                            iconClassName="bg-amber-700/10 text-amber-700 border-amber-700/60"
+                        />
+                    </div>
+                </CardContainer>
+            </div>
+            <div className="flex flex-row gap-4 p-4 pt-0">
+                <div className="flex-3 flex flex-col gap-4">
+                    <CardContainer title="My Top Tasks">
+                        <div className="space-y-4 p-4">
+                            <TopTaskItem />
+                            <TopTaskItem />
+                            <TopTaskItem />
                         </div>
                     </CardContainer>
-                    <CardContainer className="flex-2" title={<span>Kaznetic Overview <ChevronDown className="w-4 h-4 inline-block text-primary-dashboard" /></span>}>
-                        <div className="grid grid-cols-4 gap-4 p-4">
-                            <SummaryCard
-                                icon={<PencilLine />}
-                                label="To Do"
-                                value={24}
-                                iconClassName="bg-primary-dashboard/10 text-primary-dashboard border-primary-dashboard/60"
-                            />
-                            <SummaryCard
-                                icon={<Hourglass />}
-                                label="In Progress"
-                                value={24}
-                                iconClassName="bg-purple-600/10 text-purple-600 border-purple-600/60"
-                            />
-                            <SummaryCard
-                                icon={<Pause />}
-                                label="On Hold"
-                                value={24}
-                                iconClassName="bg-orange-600/10 text-orange-600 border-orange-600/60"
-                            />
-                            <SummaryCard
-                                icon={<XCircle />}
-                                label="Cancelled"
-                                value={24}
-                                iconClassName="bg-red-600/10 text-red-600 border-red-600/60"
-                            />
-                            <SummaryCard
-                                icon={<ArrowDownLeft />}
-                                label="Backlog"
-                                value={24}
-                                iconClassName="bg-sky-600/10 text-sky-600 border-sky-600/60"
-                            />
-                            <SummaryCard
-                                icon={<Eye />}
-                                label="Code Review"
-                                value={24}
-                                iconClassName="bg-slate-600/10 text-slate-600 border-slate-600/60"
-                            />
-                            <SummaryCard
-                                icon={<CheckCircle2 />}
-                                label="Completed"
-                                value={24}
-                                iconClassName="bg-success/10 text-success border-success/60"
-                            />
-                            <SummaryCard
-                                icon={<RefreshCcw />}
-                                label="In Review"
-                                value={24}
-                                iconClassName="bg-amber-700/10 text-amber-700 border-amber-700/60"
-                            />
-                        </div>
+                    <CardContainer title={<>My Storage <span className="text-xs font-light text-muted-foreground">(Recent Uploaded Files &amp; Folders)</span></>}>
+                        <Card className="p-4">
+                            <TaskItem />
+                        </Card>
                     </CardContainer>
                 </div>
-            </div >
-            <div>
-                <div className="flex-1 h-20 w-full rounded-xl border border-border bg-background overflow-hidden">
+                <div className="flex-1">
+                    <CardContainer title="John Doe's Work Trend">
+                        <TaskItem />
+                    </CardContainer>
                 </div>
             </div>
         </section >
