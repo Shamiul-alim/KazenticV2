@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Card } from "@/components/ui/card"
+import { Card } from "../ui/card"
 
 type EmailItemProps = {
     starred?: boolean

@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card"
 import { Calendar } from "lucide-react"
+import { Card } from "../ui/card"
 
 export function LeaveItem() {
     return (

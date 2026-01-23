@@ -2,7 +2,7 @@ import { Badge } from "@/components/sprint-report/ui/badge"
 import { Check } from "lucide-react"
 import Image from "next/image"
 import { ProgressRing } from "../progress-ring"
-import { Card } from "@/components/ui/card"
+import { Card } from "../ui/card"
 
 export function TaskItem() {
     return (

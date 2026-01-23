@@ -1,6 +1,6 @@
 import { Badge } from "@/components/sprint-report/ui/badge";
-import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { Card } from "../ui/card";
 
 export function NoticeItem() {
     return (
