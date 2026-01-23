@@ -25,7 +25,6 @@
     "@radix-ui/react-switch": "1.2.6",
     "@radix-ui/react-tabs": "1.1.13",
     "add": "2.0.6",
-    "axios": "1.13.2",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "combobox": "1.0.1",
