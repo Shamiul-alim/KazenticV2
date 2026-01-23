@@ -13,7 +13,7 @@ import { Card } from "@/components/dashboard/ui/card";
 import { Underline } from "@/components/dashboard/underline";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowDown01, ArrowDownLeft, ArrowDownNarrowWide, Ban, CalendarDays, CalendarFold, CalendarX2, CheckCircle, CheckCircle2, ChevronDown, ClipboardList, Clock, CloudLightning, Ellipsis, Eye, Hourglass, Mail, Pause, PencilLine, RefreshCcw, Sun, XCircle } from "lucide-react";
+import { ArrowDownLeft, Ban, CalendarDays, CalendarFold, CalendarX2, CheckCircle2, ChevronDown, ClipboardList, Clock, CloudLightning, Eye, Hourglass, Mail, Pause, PencilLine, RefreshCcw, Sun, XCircle } from "lucide-react";
 
 enum WEEKLY_CALENDAR_TABS {
     EVENTS = "events",
