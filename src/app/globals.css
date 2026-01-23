@@ -38,6 +38,8 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primary-dashboard: var(--primary-dashboard);
+  --color-primary-dashboard-foreground: var(--primary-dashboard-foreground);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -60,6 +62,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.13 0.028 261.692);
   --primary: oklch(0.21 0.034 264.665);
+  --primary-dashboard: oklch(0.5516 0.2457 269.99);
+  --primary-dashboard-foreground: oklch(1 0 0);
   --primary-foreground: oklch(0.985 0.002 247.839);
   --secondary: oklch(0.967 0.003 264.542);
   --secondary-foreground: oklch(0.21 0.034 264.665);
@@ -85,8 +89,6 @@
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
-  --btn-primary: oklch(0.5516 0.2457 269.99);
-  --btn-primary-foreground: oklch(1 0 0);
 }
 
 .dark {
@@ -122,8 +124,6 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
-  --btn-primary: oklch(0.5516 0.2457 269.99);
-  --btn-primary-foreground: oklch(1 0 0);
 }
 
 .hide-scrollbar {

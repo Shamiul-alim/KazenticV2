@@ -5,26 +5,21 @@ import { EmailItem } from "@/components/dashboard/recent-items/email-item";
 import { StatsCard } from "@/components/dashboard/stats-card";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
-import { Ban, ClipboardList, CloudLightning, Ellipsis, Mail, Sun } from "lucide-react";
-import { useState } from "react";
+import { Ban, CalendarDays, CalendarFold, ClipboardList, CloudLightning, Ellipsis, Mail, Sun } from "lucide-react";
 
 enum TABS {
     EVENTS = "events",
     NOTICES = "notices",
     LEAVES = "leaves",
 }
-type Tab = (typeof TABS)[keyof typeof TABS]
 
 export default function Dashboard() {
-    const [activeTab, setActiveTab] = useState<Tab>(TABS.EVENTS)
     return (
-        <section className='flex flex-col bg-primary-foreground h-full overflow-scroll'>
+        <section className='flex flex-col bg-primary-dashboard-foreground h-full overflow-scroll'>
             <div className="p-4 flex items-center justify-between border-b border-b-border">
                 <div className="space-y-1">
                     <h1 className="text-sm font-semibold leading-6 tracking-[-0.05em] align-middle">
-                        {/* TODO: text-primary should be the color of text-btn-primary */}
-                        Good Morning, <span className="text-btn-primary">John Doe</span> <Sun className="inline-block w-4 h-4" color="#FD6A45" />
+                        Good Morning, <span className="text-primary-dashboard">John Doe</span> <Sun className="inline-block w-4 h-4" color="#FD6A45" />
                     </h1>
                     <p className="text-xs font-medium leading-6 tracking-[-0.05em] align-middle text-muted-foreground">
                         Welcome back! Here's an overview of your workspace.
@@ -129,7 +124,7 @@ export default function Dashboard() {
                                     <div key={day} className="flex justify-center">
                                         <span
                                             className={`flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium ${i === 0
-                                                ? "bg-primary text-primary-foreground"
+                                                ? "bg-primary-dashboard text-primary-dashboard-foreground"
                                                 : "text-foreground"
                                                 }`}
                                         >
@@ -156,12 +151,12 @@ export default function Dashboard() {
                                             onClick={() => setActiveTab(tab.id as Tab)}
                                             className={cn(
                                                 "relative pb-3 transition",
-                                                active ? "text-primary" : "text-muted-foreground"
+                                                active ? "text-primary-dashboard" : "text-muted-foreground"
                                             )}
                                         >
                                             {tab.label}
                                             {active && (
-                                                <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary" />
+                                                <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard" />
                                             )}
                                         </button>
                                     )
@@ -173,20 +168,23 @@ export default function Dashboard() {
                             className="w-full p-4"
                         >
                             {/* Tabs header */}
-                            <TabsList className="h-auto bg-transparent p-0" variant="line">
+                            <TabsList className="relative h-auto bg-transparent p-0" variant="line">
                                 <TabsTrigger value={TABS.EVENTS}>
+                                    <CalendarDays className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                                     Events
-                                    {/* <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary data-[state=inactive]:hidden" /> */}
+                                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard opacity-0 data-[state=active]:opacity-100 group-data-[variant=default]:hidden" />
                                 </TabsTrigger>
 
                                 <TabsTrigger value={TABS.NOTICES}>
+                                    <CalendarFold className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                                     Recent Notices
-                                    {/* <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary data-[state=inactive]:hidden" /> */}
+                                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard opacity-0 data-[state=active]:opacity-100 group-data-[variant=default]:hidden" />
                                 </TabsTrigger>
 
                                 <TabsTrigger value={TABS.LEAVES}>
+                                    <Ban className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                                     Leaves
-                                    {/* <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary data-[state=inactive]:hidden" /> */}
+                                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-primary-dashboard opacity-0 data-[state=active]:opacity-100 group-data-[variant=default]:hidden" />
                                 </TabsTrigger>
                             </TabsList>
                             <TabsContent value={TABS.EVENTS}>

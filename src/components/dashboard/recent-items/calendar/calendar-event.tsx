@@ -1,3 +1,4 @@
+import { Video } from "lucide-react"
 import Image from "next/image"
 
 export function CalendarEvent() {
@@ -5,7 +6,7 @@ export function CalendarEvent() {
         <div className="flex items-center justify-between rounded-lg border px-4 py-3">
             <div className="flex items-start gap-3">
                 {/* Left indicator */}
-                <span className="mt-1 h-10 w-1 rounded-full bg-primary" />
+                <span className="mt-1 h-10 w-1 rounded-full bg-primary-dashboard" />
 
                 <div className="space-y-2">
                     <p className="text-sm font-medium">Team Sprint Review</p>
@@ -21,8 +22,8 @@ export function CalendarEvent() {
                 </div>
             </div>
 
-            <button className="flex items-center gap-2 rounded-md bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                Join
+            <button className="flex items-center gap-2 rounded-md bg-primary-dashboard/10 px-3 py-1 text-xs font-medium text-primary-dashboard">
+                <Video className="w-4 h-4" /> Join
             </button>
         </div>
     )
