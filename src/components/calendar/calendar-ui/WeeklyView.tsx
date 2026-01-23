@@ -63,7 +63,7 @@ export default function WeeklyView({ onEventClick, currentDate }: WeeklyViewProp
             {/* Header Row */}
             <div className="flex bg-white z-40 shrink-0">
                 <div className="w-20 min-w-[5rem] flex items-center justify-center border-r border-gray-100 text-[11px] font-bold text-slate-400">
-                    GMT+5
+                    GMT+6
                 </div>
                 <div className="flex-1 grid grid-cols-7 border-b border-gray-100">
                     {weekDays.map((day, i) => (
@@ -109,7 +109,7 @@ export default function WeeklyView({ onEventClick, currentDate }: WeeklyViewProp
 
                 {/* Time Axis Grid Overlay */}
                 <div className="absolute inset-0 pointer-events-none flex flex-col z-0 pt-4">
-                    {hours.map((_, h) => (
+                    {hours.slice(0, hours.length - 1).map((_, h) => (
                         <div key={`grid-${h}`} className="h-[96px] border-b border-gray-100/60 w-full" />
                     ))}
                 </div>
@@ -117,7 +117,7 @@ export default function WeeklyView({ onEventClick, currentDate }: WeeklyViewProp
                 {/* Time Column Sidebar */}
                 <div className="w-20 min-w-[5rem] border-r border-gray-100 bg-white z-20 pt-4">
                     {hours.map((time, h) => (
-                        <div key={`time-${h}`} className="h-24 relative pointer-events-none">
+                        <div key={`time-${h}`} className={`${h === hours.length - 1 ? 'h-0' : 'h-24'} relative pointer-events-none`}>
                             <span className="absolute -top-3 right-3 text-[10px] text-slate-400 font-bold uppercase tracking-wider bg-white px-1">
                                 {time}
                             </span>
@@ -126,7 +126,7 @@ export default function WeeklyView({ onEventClick, currentDate }: WeeklyViewProp
                 </div>
 
                 {/* Grid Columns */}
-                <div className="flex-1 grid grid-cols-7 relative z-10 pt-4" style={{ minHeight: `${hours.length * 96 + 16}px` }}>
+                <div className="flex-1 grid grid-cols-7 relative z-10 pt-4" style={{ minHeight: `${(hours.length - 1) * 96 + 16}px` }}>
                     {weekDays.map((day, i) => (
                         <div key={i} className="border-r border-gray-100 last:border-r-0 relative bg-transparent overflow-visible">
                             {/* Events Layer */}
