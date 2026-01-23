@@ -1,0 +1,387 @@
+{
+    "totalTaskCount": 26,
+    "workload": [
+        {
+            "name": "ACTIVE",
+            "value": 4,
+            "color": "#B7FFE9"
+        },
+        {
+            "name": "IN REVIEW",
+            "value": 6,
+            "color": "#C1BCFF"
+        },
+        {
+            "name": "IN PROGRESS",
+            "value": 3,
+            "color": "#E0C8FF"
+        }
+    ],
+    "assignees": [
+        {
+            "name": "Alif Hassan",
+            "value": 45,
+            "color": "#C1BCFF"
+        },
+        {
+            "name": "John Doe",
+            "value": 12.5,
+            "color": "#BEE9FF"
+        },
+        {
+            "name": "Tonmoy Asif",
+            "value": 20,
+            "color": "#E0C0FF"
+        },
+        {
+            "name": "Ababa",
+            "value": 11,
+            "color": "#FFE3B4"
+        }
+    ],
+    "activeTasks": [
+        {
+            "id": "kzt-1",
+            "name": "Auth, Profile, Dashboard...",
+            "subtasks": 1,
+            "priority": "Urgent",
+            "assignee": "AH",
+            "startDate": "23/11/25",
+            "dueDate": "23/11/25",
+            "sprint": "Sprint 2 (7/12 - 8/12)",
+            "points": 2,
+            "checked": true
+        },
+        {
+            "id": "kzt-2",
+            "name": "Auth, Profile, Dashboard...",
+            "subtasks": 1,
+            "priority": "Urgent",
+            "assignee": "AH",
+            "startDate": "23/11/25",
+            "dueDate": "23/11/25",
+            "sprint": "Sprint 2 (7/12 - 8/12)",
+            "points": 2,
+            "checked": false
+        }
+    ],
+    "timeInStatus": [
+        {
+            "name": "Active",
+            "value": 90,
+            "display": "20h\u00A044m",
+            "color": "#B6FEE8"
+        },
+        {
+            "name": "In Progress",
+            "value": 180,
+            "display": "20h\u00A044m",
+            "color": "#E0C8FF"
+        },
+        {
+            "name": "To Do",
+            "value": 95,
+            "display": "20h\u00A044m",
+            "color": "#FDD2BA"
+        },
+        {
+            "name": "On Hold",
+            "value": 120,
+            "display": "20h\u00A044m",
+            "color": "#B19B8D"
+        },
+        {
+            "name": "In Review",
+            "value": 170,
+            "display": "20h\u00A044m",
+            "color": "#B4BBFF"
+        },
+        {
+            "name": "Pending",
+            "value": 115,
+            "display": "20h\u00A044m",
+            "color": "#FFE8A1"
+        }
+    ],
+    "priorityBreakdown": [
+        {
+            "name": "Normal",
+            "value": 4,
+            "color": "#C1BCFF"
+        },
+        {
+            "name": "High",
+            "value": 8,
+            "color": "#CDBEAB"
+        },
+        {
+            "name": "Urgent",
+            "value": 6,
+            "color": "#FFB2B2"
+        },
+        {
+            "name": "Low",
+            "value": 2,
+            "color": "#A0AEC0"
+        }
+    ],
+    "priorityOverview": [
+        {
+            "name": "High",
+            "value": 3,
+            "color": "#B19B8D"
+        },
+        {
+            "name": "Normal",
+            "value": 6,
+            "color": "#B4BBFF"
+        },
+        {
+            "name": "Urgent",
+            "value": 4,
+            "color": "#FEBABC"
+        },
+        {
+            "name": "Low",
+            "value": 4,
+            "color": "#A9B5BD"
+        }
+    ],
+    "prioritySegments": [
+        {
+            "data": [
+                {
+                    "name": "High",
+                    "val": 38,
+                    "col": "#B19B8D"
+                },
+                {
+                    "name": "Urgent",
+                    "val": 30,
+                    "col": "#FEBABC"
+                },
+                {
+                    "name": "Low",
+                    "val": 10,
+                    "col": "#7E889A"
+                },
+                {
+                    "name": "Low",
+                    "val": 5,
+                    "col": "#B6FEE8"
+                },
+                {
+                    "name": "Normal",
+                    "val": 17,
+                    "col": "#B4BBFE"
+                }
+            ]
+        },
+        {
+            "data": [
+                {
+                    "name": "High",
+                    "val": 27,
+                    "col": "#B19B8D"
+                },
+                {
+                    "name": "Urgent",
+                    "val": 16,
+                    "col": "#FEBABC"
+                },
+                {
+                    "name": "Low",
+                    "val": 19,
+                    "col": "#7E889A"
+                },
+                {
+                    "name": "Low",
+                    "val": 7,
+                    "col": "#B6FEE8"
+                },
+                {
+                    "name": "Normal",
+                    "val": 31,
+                    "col": "#B4BBFE"
+                }
+            ]
+        },
+        {
+            "data": [
+                {
+                    "name": "High",
+                    "val": 33,
+                    "col": "#B19B8D"
+                },
+                {
+                    "name": "Urgent",
+                    "val": 33,
+                    "col": "#FEBABC"
+                },
+                {
+                    "name": "Low",
+                    "val": 8,
+                    "col": "#7E889A"
+                },
+                {
+                    "name": "Low",
+                    "val": 8,
+                    "col": "#B6FEE8"
+                },
+                {
+                    "name": "Normal",
+                    "val": 18,
+                    "col": "#B4BBFE"
+                }
+            ]
+        }
+    ],
+    "trendData": [
+        {
+            "date": "1 Oct",
+            "inReview": 1800,
+            "inProgress": 200
+        },
+        {
+            "date": "3 Oct",
+            "inReview": 2700,
+            "inProgress": 1800
+        },
+        {
+            "date": "7 Oct",
+            "inReview": 2000,
+            "inProgress": 1500
+        },
+        {
+            "date": "10 Oct",
+            "inReview": 2800,
+            "inProgress": 800
+        },
+        {
+            "date": "14 Oct",
+            "inReview": 3800,
+            "inProgress": 3000
+        },
+        {
+            "date": "20 Oct",
+            "inReview": 1600,
+            "inProgress": 3700
+        },
+        {
+            "date": "23 Oct",
+            "inReview": 600,
+            "inProgress": 2900
+        },
+        {
+            "date": "27 Oct",
+            "inReview": 1800,
+            "inProgress": 3500
+        },
+        {
+            "date": "30 Oct",
+            "inReview": 3800,
+            "inProgress": 2100
+        }
+    ],
+    "timeReporting": [
+        {
+            "user": "Tonmoy Asif",
+            "avatar": "/assets/profile.svg",
+            "estimated": "0:00:00",
+            "tracked": "0:00:00"
+        },
+        {
+            "user": "Joh Doe",
+            "avatar": "/assets/profile.svg",
+            "estimated": "0:00:00",
+            "tracked": "0:00:00"
+        },
+        {
+            "user": "Tonmoy Asif",
+            "avatar": "/assets/profile.svg",
+            "estimated": "0:00:00",
+            "tracked": "0:00:00"
+        },
+        {
+            "user": "Tonmoy Asif",
+            "avatar": "/assets/profile.svg",
+            "estimated": "0:00:00",
+            "tracked": "0:00:00"
+        },
+        {
+            "user": "Tonmoy Asif",
+            "avatar": "/assets/profile.svg",
+            "estimated": "0:00:00",
+            "tracked": "0:00:00"
+        }
+    ],
+    "discussions": [
+        {
+            "user": "Tonmoy Asif",
+            "avatar": "/assets/profile.svg",
+            "time": "2:30 PM",
+            "message": "I'm using Chrome version 123.0.6312. The issue started after the maintenance window yesterday.",
+            "isMe": true
+        },
+        {
+            "user": "Alif Hassan",
+            "avatar": "/assets/profile.svg",
+            "time": "2:30 PM",
+            "message": "Thank you for the details. This seems to be related to a cache issue. Please try clearing your browser cache and cookies for our domain, then try logging in again.",
+            "isMe": false
+        }
+    ],
+    "activities": [
+        {
+            "id": 1,
+            "title": "V3 Reported Design Update",
+            "dateRange": "Nov 30, 2025 - Dec 2, 2025",
+            "hours": "4 Hrs",
+            "total": "5 Hrs",
+            "logs": [
+                {
+                    "user": "Tonmoy Asif",
+                    "avatar": "/assets/profile.svg",
+                    "action": "You changed the sharing settings from Public to Private",
+                    "time": "Yesterday at 9:45 PM"
+                },
+                {
+                    "user": "Tonmoy Asif",
+                    "avatar": "/assets/profile.svg",
+                    "action": "You changed the sharing settings from Private to Public",
+                    "time": "29 Jul, 2025"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "V3 Reported Design Update",
+            "dateRange": "Nov 30, 2025 - Dec 2, 2025",
+            "hours": "4 Hrs",
+            "total": "5 Hrs",
+            "logs": [
+                {
+                    "user": "Tonmoy Asif",
+                    "avatar": "/assets/profile.svg",
+                    "action": "You changed the sharing settings from Public to Private",
+                    "time": "Yesterday at 9:45 PM"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "V3 Reported Design Update",
+            "dateRange": "Nov 30, 2025 - Dec 2, 2025",
+            "hours": "4 Hrs",
+            "total": "5 Hrs",
+            "logs": [
+                {
+                    "user": "Tonmoy Asif",
+                    "avatar": "/assets/profile.svg",
+                    "action": "You changed the sharing settings from Public to Private",
+                    "time": "Yesterday at 9:45 PM"
+                }
+            ]
+        }
+    ]
+}

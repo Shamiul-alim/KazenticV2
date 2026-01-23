@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function ApplicationTopbar() {
   return (
-    <header className="flex h-[2.188rem] w-full items-center border-b border-[#EBEBEB] bg-[#FFFFFF] py-4 px-3">
+    <header className="flex h-[2.188rem] w-full items-center bg-[#FFFFFF] py-4 px-3">
       <div className="flex items-center gap-1">
         {/* Workspace Switcher */}
         <button className="group flex items-center gap-2 rounded-md p-1 transition-colors hover:bg-gray-50 cursor-pointer">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
 export const metadata: Metadata = {
   title: "Kazentic App",
   description: "Your app description",

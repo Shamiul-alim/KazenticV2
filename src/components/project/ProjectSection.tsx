@@ -78,7 +78,7 @@ const ProjectSection = () => {
             </button>
           </div>
           <Button
-            variant="sucess"
+            variant="success"
             onClick={(e) => {
               toggleForm();
             }}

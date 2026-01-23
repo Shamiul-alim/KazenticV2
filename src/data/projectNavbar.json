@@ -1,0 +1,70 @@
+{
+    "items": [
+        {
+            "id": "overview",
+            "label": "Overview",
+            "icon": "overview.svg",
+            "activeIcon": "overview-active.svg"
+        },
+        {
+            "id": "dashboard",
+            "label": "Dashboard",
+            "icon": "dashboard.svg",
+            "activeIcon": "dashboard-active.svg"
+        },
+        {
+            "id": "list",
+            "label": "List",
+            "icon": "list.svg",
+            "activeIcon": "list-blue.svg"
+        },
+        {
+            "id": "board",
+            "label": "Board",
+            "icon": "board.svg",
+            "activeIcon": "board-active.svg"
+        },
+        {
+            "id": "gantt",
+            "label": "Gantt",
+            "icon": "gantt.svg",
+            "activeIcon": "gantt-active.svg"
+        },
+        {
+            "id": "workload",
+            "label": "Work Load",
+            "icon": "workload.svg",
+            "activeIcon": "workload-active.svg"
+        },
+        {
+            "id": "timeline",
+            "label": "Timeline",
+            "icon": "timeline.svg",
+            "activeIcon": "timeline-active.svg"
+        },
+        {
+            "id": "table",
+            "label": "Table",
+            "icon": "table.svg",
+            "activeIcon": "table-active.svg"
+        },
+        {
+            "id": "calendar",
+            "label": "Calendar",
+            "icon": "calendar-normal.svg",
+            "activeIcon": "calendar-active.svg"
+        },
+        {
+            "id": "team",
+            "label": "Team",
+            "icon": "team.svg",
+            "activeIcon": "team-active.svg"
+        },
+        {
+            "id": "activity",
+            "label": "Activity",
+            "icon": "activity.svg",
+            "activeIcon": "activity-active.svg"
+        }
+    ]
+}
