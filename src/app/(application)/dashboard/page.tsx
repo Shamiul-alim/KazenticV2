@@ -29,7 +29,7 @@ enum ASSIGNED_TASKS_TABS {
 
 export default function Dashboard() {
     return (
-        <section className='flex flex-col bg-primary-dashboard-foreground h-full overflow-scroll'>
+        <section className='flex flex-col bg-primary-dashboard-foreground h-full'>
             <div className="p-4 flex items-center justify-between border-b border-b-border">
                 <div className="space-y-1">
                     <h1 className="text-sm font-semibold leading-6 tracking-[-0.05em] align-middle">
