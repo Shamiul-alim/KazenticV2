@@ -20,14 +20,17 @@ export function TaskCompletionChart() {
         <ChartContainer config={config} className="h-65 w-full">
             <BarChart data={TASK_COMPLETION_DATA} margin={{ top: 20 }}>
                 <CartesianGrid strokeDasharray="4 4" vertical={false} />
-                <XAxis dataKey="project" tickLine={false} axisLine={false} />
+                <XAxis dataKey="project" className="mt-4" tickLine={false} axisLine={false} />
                 <ChartTooltip
                     cursor={false}
                     content={<ChartTooltipContent />}
                 />
                 <Bar
                     dataKey="completed"
-                    fill="var(--color-completed)"
+                    // fill="var(--primary-dashboard)"
+                    // className="bg-primary-dashboard/20"
+                    activeBar
+                    fill="bg-primary-dashboard/20"
                     radius={[8, 8, 0, 0]}
                 />
             </BarChart>

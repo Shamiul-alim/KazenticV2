@@ -3,7 +3,9 @@
 import { BillingProgress } from "@/components/dashboard/admin/billing-progress";
 import { EmployeeRow } from "@/components/dashboard/admin/employee-row";
 import { ProjectCard } from "@/components/dashboard/admin/project-card";
+import { StatItem } from "@/components/dashboard/admin/stat-item";
 import { TaskCompletionChart } from "@/components/dashboard/admin/task-completion-chart";
+import { TicketCard } from "@/components/dashboard/admin/ticket-card";
 import CardContainer from "@/components/dashboard/card-container";
 import { CalendarEvent } from "@/components/dashboard/recent-items/calendar/calendar-event";
 import { EmailItem } from "@/components/dashboard/recent-items/email-item";
@@ -19,7 +21,7 @@ import { WorkTrendChart } from "@/components/dashboard/work-trend/work-trend-cha
 import { Badge } from "@/components/sprint-report/ui/badge";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { EMPLOYEE_PERFORMANCE_DATA } from "@/data/dashboard-data";
+import { EMPLOYEE_PERFORMANCE_DATA, ISSUE_TICKETS } from "@/data/dashboard-data";
 import { ArrowDownLeft, Ban, BriefcaseBusiness, CalendarDays, CalendarFold, CalendarX2, Check, CheckCircle2, ChevronDown, CircleDollarSign, ClipboardList, CloudLightning, Coins, CreditCard, Eye, File, FilePlay, Folder, FolderOpen, Hourglass, Image, LifeBuoy, Mail, Pause, PencilLine, RefreshCcw, Sun, TrendingUp, Users, XCircle } from "lucide-react";
 
 enum WEEKLY_CALENDAR_TABS {
@@ -274,7 +276,7 @@ export default function Dashboard() {
             </div>
 
             <div className="grid grid-cols-3 gap-4 p-4 pt-0">
-                <div className="col-span-2 gap-4 items-start">
+                <div className="col-span-2 gap-4 space-y-4 items-start">
                     {/* Kaznetic Overview */}
                     <CardContainer title={<span>Kaznetic Overview <ChevronDown className="w-4 h-4 inline-block text-primary-dashboard" /></span>}>
                         <div className="grid grid-cols-4 gap-4 p-4">
@@ -329,7 +331,7 @@ export default function Dashboard() {
                         </div>
                     </CardContainer>
 
-                    <div className="grid grid-cols-2 gap-4 items-start mt-4">
+                    <div className="grid grid-cols-2 gap-4 items-start">
                         {/* Jobs Preview */}
                         <CardContainer className="col-span-1" title={<>Jobs Preview <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
                             <div className="grid grid-cols-2 gap-4 p-4">
@@ -496,7 +498,7 @@ export default function Dashboard() {
                     </CardContainer>
 
                 </div>
-                <div className="col-span-1 grid grid-cols-1 gap-4">
+                <div className="col-span-1 space-y-4 gap-4">
                     {/* Work Trend */}
                     <CardContainer title="John Doe's Work Trend">
                         <Card className="space-y-3 rounded-none flex flex-col border-0 text-xs mt-4 border-t border-t-muted-foreground/10">
@@ -533,71 +535,65 @@ export default function Dashboard() {
                     </CardContainer>
 
                     {/* Recent Tickets */}
-                    <CardContainer title="My Top Tasks">
-                        <div className="space-y-4 p-4">
-                            <TopTaskItem />
-                            <TopTaskItem />
-                            <TopTaskItem />
+                    <CardContainer title="Recent Tickets">
+                        <div className="space-y-4 p-4 overflow-y-scroll max-h-180">
+                            {
+                                ISSUE_TICKETS.map((ticket, index) => (
+                                    <TicketCard
+                                        key={index}
+                                        title={ticket.title}
+                                        category={ticket.category}
+                                        date={ticket.date}
+                                        time={ticket.time}
+                                        assignee={ticket.assignee}
+                                        ticketId={ticket.ticketId}
+                                        status={ticket.status}
+                                        priority={ticket.priority}
+                                    />
+                                ))
+                            }
                         </div>
                     </CardContainer>
 
                     {/* Deals Overview */}
-                    <CardContainer title={<>Leaves <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
-                        <div className="grid grid-cols-2 gap-4 p-4">
-                            <SummaryCard
-                                icon={<CalendarDays />}
-                                label="Annual Leaves"
-                                value={24}
-                                iconClassName="bg-primary-dashboard/10 text-primary-dashboard border-primary-dashboard/60"
-                            />
-                            <SummaryCard
-                                icon={<CheckCircle2 />}
-                                label="Approved"
-                                value={24}
-                                iconClassName="bg-success/10 text-success border-success/60"
-                            />
-                            <SummaryCard
-                                icon={<Ban />}
-                                label="Emergency"
-                                value={2}
-                                iconClassName="bg-destructive/10 text-destructive border-destructive/60"
-                            />
-                            <SummaryCard
-                                icon={<CalendarX2 />}
-                                label="Unpaid Leave"
-                                value={2}
-                                iconClassName="bg-cyan-500/10 text-cyan-500 border-cyan-500/60"
-                            />
+                    <CardContainer title="Deals Overview">
+                        <div className="grid grid-cols-2 m-4">
+                            <div className="border-r-2 border-muted pb-6">
+                                <StatItem value={126} label="Qualify To Buy" color="green" />
+                            </div>
+
+                            <div className="pl-6">
+                                <StatItem value={25} label="Presentation" color="orange" />
+                            </div>
+
+                            <div className="border-r-2 border-muted pr-6 pt-6 border-t-2">
+                                <StatItem value={12} label="Contact" color="blue" />
+                            </div>
+
+                            <div className="pl-6 pt-6 border-t-2 border-muted">
+                                <StatItem value={26} label="Proposal" color="red" />
+                            </div>
                         </div>
                     </CardContainer>
 
                     {/* Leads Overview */}
-                    <CardContainer title={<>Leaves <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
-                        <div className="grid grid-cols-2 gap-4 p-4">
-                            <SummaryCard
-                                icon={<CalendarDays />}
-                                label="Annual Leaves"
-                                value={24}
-                                iconClassName="bg-primary-dashboard/10 text-primary-dashboard border-primary-dashboard/60"
-                            />
-                            <SummaryCard
-                                icon={<CheckCircle2 />}
-                                label="Approved"
-                                value={24}
-                                iconClassName="bg-success/10 text-success border-success/60"
-                            />
-                            <SummaryCard
-                                icon={<Ban />}
-                                label="Emergency"
-                                value={2}
-                                iconClassName="bg-destructive/10 text-destructive border-destructive/60"
-                            />
-                            <SummaryCard
-                                icon={<CalendarX2 />}
-                                label="Unpaid Leave"
-                                value={2}
-                                iconClassName="bg-cyan-500/10 text-cyan-500 border-cyan-500/60"
-                            />
+                    <CardContainer title="Leads Overview">
+                        <div className="grid grid-cols-2 m-4">
+                            <div className="border-r-2 border-muted pb-6">
+                                <StatItem value={126} label="Not Contacted" color="orange" />
+                            </div>
+
+                            <div className="pl-6">
+                                <StatItem value={25} label="Contacted" color="green" />
+                            </div>
+
+                            <div className="border-r-2 border-muted pr-6 pt-6 border-t-2">
+                                <StatItem value={12} label="Closed" color="purple" />
+                            </div>
+
+                            <div className="pl-6 pt-6 border-t-2 border-muted">
+                                <StatItem value={26} label="Lost" color="red" />
+                            </div>
                         </div>
                     </CardContainer>
                 </div>

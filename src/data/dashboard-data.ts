@@ -163,3 +163,78 @@ export const EMPLOYEE_PERFORMANCE_DATA: EmployeePerformance[] = [
         productivity: 75,
     },
 ]
+
+
+export type Issue = {
+    title: string
+    category: string
+    date: string
+    time: string
+    assignee: string
+    ticketId: string
+    status: "Open" | "Closed" | "In Progress"
+    priority: "Low" | "Medium" | "High"
+}
+
+export const ISSUE_TICKETS: Issue[] = [
+    {
+        title: "Login Issues with Dashboard Access",
+        category: "Frontend • Authentication",
+        date: "Aug 12, 2025",
+        time: "2h Ago",
+        assignee: "Pat Cummins",
+        ticketId: "001",
+        status: "Open",
+        priority: "High",
+    },
+    {
+        title: "API Timeout on Payment Gateway",
+        category: "Backend • Payments",
+        date: "Aug 11, 2025",
+        time: "5h Ago",
+        assignee: "Jane Smith",
+        ticketId: "002",
+        status: "In Progress",
+        priority: "High",
+    },
+    {
+        title: "Profile Image Not Updating",
+        category: "Frontend • User Settings",
+        date: "Aug 10, 2025",
+        time: "1d Ago",
+        assignee: "John Doe",
+        ticketId: "003",
+        status: "Open",
+        priority: "Medium",
+    },
+    {
+        title: "Email Notifications Delayed",
+        category: "Backend • Notifications",
+        date: "Aug 09, 2025",
+        time: "2d Ago",
+        assignee: "Sarah Lee",
+        ticketId: "004",
+        status: "In Progress",
+        priority: "Medium",
+    },
+    {
+        title: "Broken Link in Footer",
+        category: "Frontend • UI",
+        date: "Aug 08, 2025",
+        time: "3d Ago",
+        assignee: "Michael Brown",
+        ticketId: "005",
+        status: "Closed",
+        priority: "Low",
+    },
+    {
+        title: "Database Backup Failed",
+        category: "DevOps • Infrastructure",
+        date: "Aug 07, 2025",
+        time: "4d Ago",
+        assignee: "Emily Davis",
+        ticketId: "006",
+        status: "Open",
+        priority: "High",
+    },
+]
