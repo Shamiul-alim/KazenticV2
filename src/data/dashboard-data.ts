@@ -110,13 +110,13 @@ export const WORK_TREND = [
 
 // admin
 export const TASK_COMPLETION_DATA = [
-    { project: "Kaznetic", completed: 40 },
-    { project: "Swisscheese", completed: 8 },
-    { project: "Carbo Stream", completed: 18 },
-    { project: "Krown Blockchain", completed: 10 },
-    { project: "Multigent", completed: 32 },
-    { project: "Finance App", completed: 9 },
-    { project: "Trading Bot", completed: 22 },
+    { project: "Kaznetic", completed: 40, total: 50 },
+    { project: "Swisscheese", completed: 8, total: 10 },
+    { project: "Carbo Stream", completed: 18, total: 20 },
+    { project: "Krown Blockchain", completed: 10, total: 15 },
+    { project: "Multigent", completed: 32, total: 40 },
+    { project: "Finance App", completed: 9, total: 12 },
+    { project: "Trading Bot", completed: 22, total: 25 },
 ]
 
 
