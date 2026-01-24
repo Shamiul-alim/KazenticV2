@@ -1,7 +1,7 @@
 type Props = {
     value: number
     label: string
-    color?: "blue" | "green" | "orange" | "red"
+    color?: "blue" | "green" | "orange" | "red" | "purple"
 }
 
 const colorStyles = {
