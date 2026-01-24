@@ -29,10 +29,10 @@ export function SummaryCard({
 
             {/* Content */}
             <div className="space-y-0.5">
-                <p className="text-sm font-medium text-foreground">
+                <p className="text-xs font-medium text-foreground">
                     {label}
                 </p>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-xs font-medium text-muted-foreground">
                     {value}
                 </p>
             </div>

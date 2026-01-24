@@ -22,6 +22,17 @@ export type FileItem = {
     sharedUsers: SharedUser[];
 };
 
+// admin types
+
+export type EmployeePerformance = {
+    rank: number
+    name: string
+    role: string
+    tasks: number
+    hours: number
+    productivity: number
+}
+
 export const SHARED_USERS: SharedUser[] = [
     { id: 1, name: "Hasib", avatar: "/assets/dashboard/avatar-1.jpg" },
     { id: 2, name: "Aisha", avatar: "/assets/dashboard/avatar-2.jpg" },
@@ -96,3 +107,59 @@ export const WORK_TREND = [
     { time: "2 PM", value: 6 },
     { time: "3 PM", value: 4 },
 ];
+
+// admin
+export const TASK_COMPLETION_DATA = [
+    { project: "Kaznetic", completed: 40 },
+    { project: "Swisscheese", completed: 8 },
+    { project: "Carbo Stream", completed: 18 },
+    { project: "Krown Blockchain", completed: 10 },
+    { project: "Multigent", completed: 32 },
+    { project: "Finance App", completed: 9 },
+    { project: "Trading Bot", completed: 22 },
+]
+
+
+
+export const EMPLOYEE_PERFORMANCE_DATA: EmployeePerformance[] = [
+    {
+        rank: 1,
+        name: "John Doe",
+        role: "Frontend Developer",
+        tasks: 10,
+        hours: 40,
+        productivity: 75,
+    },
+    {
+        rank: 2,
+        name: "Jane Smith",
+        role: "Backend Developer",
+        tasks: 8,
+        hours: 38,
+        productivity: 80,
+    },
+    {
+        rank: 3,
+        name: "John Doe",
+        role: "Frontend Developer",
+        tasks: 10,
+        hours: 40,
+        productivity: 75,
+    },
+    {
+        rank: 4,
+        name: "John Doe",
+        role: "Frontend Developer",
+        tasks: 10,
+        hours: 40,
+        productivity: 75,
+    },
+    {
+        rank: 5,
+        name: "John Doe",
+        role: "Frontend Developer",
+        tasks: 10,
+        hours: 40,
+        productivity: 75,
+    },
+]

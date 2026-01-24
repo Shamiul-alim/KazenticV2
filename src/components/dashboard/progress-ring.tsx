@@ -1,4 +1,4 @@
-export function ProgressRing({ value }: { value: number }) {
+export function ProgressRing({ value, className, color }: { value: number, className?: string, color?: string }) {
     const radius = 14
     const stroke = 3
     const normalizedRadius = radius - stroke * 2
@@ -7,7 +7,7 @@ export function ProgressRing({ value }: { value: number }) {
         circumference - (value / 100) * circumference
 
     return (
-        <svg height={32} width={32}>
+        <svg height={32} width={32} className={className}>
             <circle
                 stroke="currentColor"
                 fill="transparent"
