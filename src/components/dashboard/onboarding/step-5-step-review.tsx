@@ -17,19 +17,19 @@ type Props = {
     create: () => void
 }
 
-export default function Step5({ next, formData, setFormData, back, create }: Props) {
+export default function Step5({ next, formData, back }: Props) {
     return (
-        <div className="w-full max-w-2xl mx-auto space-y-10">
+        <div className="w-full max-w-lg mx-auto space-y-10 text-xs">
 
             {/* Summary Card */}
-            <div className="rounded-xl border bg-white p-8 shadow-sm space-y-6">
+            <div className="rounded-xl border bg-white p-8 shadow-sm space-y-6 flex flex-col items-center">
 
                 {/* Workspace */}
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
+                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-medium">
                         {formData.workspaceName?.charAt(0).toUpperCase()}
                     </div>
-                    <span className="text-lg font-semibold">{formData.workspaceName}</span>
+                    <span className="text-sm font-medium">{formData.workspaceName}</span>
                 </div>
 
                 {/* Industry */}
@@ -56,11 +56,11 @@ export default function Step5({ next, formData, setFormData, back, create }: Pro
 
             {/* Actions */}
             <div className="flex justify-center gap-4">
-                <Button variant="outline" onClick={back}>
+                <Button variant="outline" onClick={back} className="gap-2 px-8">
                     Go Back
                 </Button>
 
-                <Button onClick={create} className="gap-2 px-8">
+                <Button onClick={next} className="gap-2 px-4 py-2.5 flex items-center bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition">
                     Create Workspace <ArrowRight size={18} />
                 </Button>
             </div>

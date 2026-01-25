@@ -26,10 +26,10 @@ export default function Step4({ next, setFormData }: { next: () => void, setForm
     }
 
     return (
-        <div className="w-full max-w-3xl mx-auto space-y-8">
+        <div className="w-full max-w-103.5 mx-auto space-y-4">
 
             {/* Workspace Name */}
-            <div className="space-y-2">
+            <div className="space-y-2 flex flex-col items-start">
                 <label className="text-sm font-medium">
                     Workspace Name <span className="text-red-500">*</span>
                 </label>
@@ -44,17 +44,17 @@ export default function Step4({ next, setFormData }: { next: () => void, setForm
             </div>
 
             {/* Upload Logo */}
-            <div className="space-y-2">
+            <div className="space-y-2 flex flex-col items-start">
                 <label className="text-sm font-medium">Upload Logo (Optional)</label>
 
-                <label className="border-2 border-dashed rounded-xl p-10 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-muted/40 transition">
-                    <Upload className="w-8 h-8 text-blue-600 mb-4" />
+                <label className="w-full border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-muted/40 transition">
+                    <Upload className="w-4 h-4 text-blue-600 mb-4" />
 
-                    <p className="font-medium">
+                    <p className="font-medium text-xs">
                         {fileName ? fileName : "Drag And Drop File Here"}
                     </p>
-                    <p className="text-sm text-muted-foreground">
-                        Or Click To Browse (4mb Max)
+                    <p className="text-xs text-muted-foreground">
+                        Or Click To Browse (4MB Max)
                     </p>
 
                     <input
@@ -102,12 +102,8 @@ export default function Step4({ next, setFormData }: { next: () => void, setForm
             </div>
 
             {/* Next */}
-            <div className="flex justify-center pt-4">
-                <Button
-                    onClick={next}
-                    disabled={!workspaceName.trim()}
-                    className="gap-2 px-8 py-6 text-base"
-                >
+            <div className="flex justify-center py-4">
+                <Button onClick={next} className="flex items-center mx-auto gap-2 bg-blue-600 text-white px-8 py-3 rounded-xl font-medium text-xs shadow-md hover:bg-blue-700 active:scale-95 transition">
                     Next <ArrowRight size={18} />
                 </Button>
             </div>
