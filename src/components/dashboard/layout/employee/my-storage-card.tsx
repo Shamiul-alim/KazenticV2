@@ -18,7 +18,7 @@ export default function MyStorageCard() {
                 {/* Folder items */}
                 {
                     FOLDERS.map((folder) => (
-                        <Card className="flex flex-col items-stretch justify-baseline w-40" key={folder.id}>
+                        <Card className="flex flex-col items-stretch justify-baseline w-full min-[400px]:w-40" key={folder.id}>
                             <div className="flex flex-row items-start justify-between">
                                 <div
                                     className={cn(
@@ -54,7 +54,7 @@ export default function MyStorageCard() {
                 }
             </div>
             <span className="mt-4 block text-muted-foreground">Files</span>
-            <div className="grid grid-cols-3 gap-3 mt-2">
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 gap-3 mt-2">
                 {/* File items */}
                 {
                     FILES.map((file) => (
@@ -84,7 +84,7 @@ export default function MyStorageCard() {
                             <span className="border-b border-border"></span>
 
                             {/* Shared Users */}
-                            <div className="flex flex-row justify-between text-xs mt-2">
+                            <div className="flex flex-col sm:flex-row justify-between text-xs mt-2 gap-2 sm:gap-0">
                                 <div className="flex flex-col gap-2">
                                     <span className="text-muted-foreground">Shared Users</span>
                                     <div className="flex items-center space-x-1.5">
@@ -103,7 +103,7 @@ export default function MyStorageCard() {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-2 items-stretch">
+                                <div className="flex flex-col gap-2 items-stretch sm:items-end">
                                     <span className="text-muted-foreground">File Size</span>
                                     <Badge className="text-xs bg-primary-dashboard/10 text-primary-dashboard">{file.size}</Badge>
                                 </div>

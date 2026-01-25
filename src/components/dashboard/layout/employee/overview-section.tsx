@@ -10,7 +10,7 @@ import MyTopTasksCard from "./my-top-tasks-card";
 export default function OverviewSection() {
     return (
         <div className='p-4 flex flex-col gap-4'>
-            <div className="flex flex-row gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* Recent Emails */}
                 <RecentEmailsCard />
 
@@ -21,16 +21,16 @@ export default function OverviewSection() {
                 <MyAssignedTasksCard />
             </div>
 
-            <div className="flex flex-row gap-4">
+            <div className="grid lg:grid-cols-3 gap-4">
                 {/* Leaves */}
                 <LeavesCard />
 
                 {/* Kazentic Overview */}
-                <KazenticOverview />
+                <KazenticOverview className="lg:col-span-2" />
             </div>
 
-            <div className="flex flex-row gap-4 pt-0">
-                <div className="flex-2 flex flex-col gap-4">
+            <div className="grid lg:grid-cols-3 gap-4 pt-0">
+                <div className="lg:col-span-2 flex flex-col gap-4">
                     {/* My Top Tasks */}
                     <MyTopTasksCard />
 

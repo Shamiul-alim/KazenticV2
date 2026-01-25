@@ -20,15 +20,14 @@ type TopTaskItemProps = {
 export function TopTaskItem(props: TopTaskItemProps) {
     return (
         <Card>
-            <div className="flex flex-1 items-center justify-between gap-6 border-l-4 border-l-primary-dashboard p-4 rounded-none">
-                <div className="space-y-2">
+            <div className="flex flex-col lg:flex-row flex-1 items-start lg:items-center justify-between gap-4 lg:gap-6 border-l-4 border-l-primary-dashboard p-4 rounded-none">
+                <div className="space-y-2 flex-1 min-w-0">
                     <p className="text-sm font-medium">
                         {props.title}
                     </p>
 
-                    <div className="flex flex-row items-center justify-center gap-2 text-xs text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                         <Badge
-                            // className="border-success bg-success/10 text-success rounded-sm"
                             className={cn("rounded-sm", {
                                 'bg-green-800/10 text-green-800 border-green-800/60': props.status === 'COMPLETED',
                                 'bg-yellow-800/10 text-yellow-800 border-yellow-800/60': props.status === 'PENDING',
@@ -46,19 +45,12 @@ export function TopTaskItem(props: TopTaskItemProps) {
                         </Badge>
 
                         <div className="flex items-center gap-2">
-                            {/* <Image
-                                src="/avatar.png"
-                                alt="Pat Cummins"
-                                width={20}
-                                height={20}
-                                className="rounded-full"
-                            /> */}
                             <div className="flex justify-center items-center h-5 w-5 rounded-full bg-primary-dashboard text-primary-foreground">{props.assigneeName.charAt(0)}</div>
                             <span className="text-xs font-medium text-foreground">
                                 {props.assigneeName}
                             </span>
                         </div>
-                        <span className="min-w-3 min-h-5 border-x border-x-border"></span>
+                        <span className="min-w-3 min-h-5 border-x border-x-border hidden sm:block"></span>
 
                         <span className="text-xs">
                             <span className="font-semibold text-black">Estimated:</span> {props.estimatedHours} H
@@ -71,7 +63,7 @@ export function TopTaskItem(props: TopTaskItemProps) {
                 </div>
 
                 {/* Right progress */}
-                <div className="flex min-w-45 flex-col gap-5 border-l border-l-border pl-4">
+                <div className="flex w-full lg:min-w-45 lg:w-auto flex-col gap-5 border-t lg:border-t-0 lg:border-l border-border pt-4 lg:pt-0 lg:pl-4">
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span>Progress</span>
                         <span className="font-medium text-foreground">{props.progressPercentage}%</span>

@@ -18,13 +18,13 @@ export default function MyAssignedTasksCard() {
             >
                 {/* Tabs header */}
                 <TabsList className="relative h-auto bg-transparent p-0" variant="line">
-                    <TabsTrigger value={ASSIGNED_TASKS_TABS.RECENT}>
+                    <TabsTrigger className='text-xs' value={ASSIGNED_TASKS_TABS.RECENT}>
                         <ClipboardList className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                         Recent Tasks
                         <Underline />
                     </TabsTrigger>
 
-                    <TabsTrigger value={ASSIGNED_TASKS_TABS.DUE}>
+                    <TabsTrigger className='text-xs' value={ASSIGNED_TASKS_TABS.DUE}>
                         <Clock className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                         Due Soon
                         <Underline />

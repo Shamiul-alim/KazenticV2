@@ -1,11 +1,12 @@
 import CardContainer from '../card-container'
 import { ArrowDownLeft, CheckCircle2, ChevronDown, Eye, Hourglass, Pause, PencilLine, RefreshCcw, XCircle } from 'lucide-react'
 import { SummaryCard } from '../summary-card'
+import { cn } from '@/lib/utils'
 
-export default function KazenticOverview() {
+export default function KazenticOverview({ className }: { className?: string }) {
     return (
         <CardContainer
-            className="flex-2"
+            className={cn(className, "text-xs")}
             childrenClassName="grid min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
             title={<span>Kaznetic Overview <ChevronDown className="w-4 h-4 inline-block text-primary-dashboard" /></span>}
         >

@@ -21,20 +21,20 @@ export function TaskItem(props: TaskItemProps) {
     return (
         <Card>
             <div className="space-y-2 w-full border-l-2 border-l-primary-dashboard pl-3">
-                <div className="flex justify-between items-start">
-                    <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-0">
+                    <div className="space-y-1 flex-1 min-w-0">
                         <p className="text-sm font-medium">{props.title}</p>
                         <p className="text-xs text-muted-foreground">
                             <span className="font-semibold text-black">Estimated:</span> {props.estimatedHours}:00 H · <span className="font-semibold text-black">Worked:</span> {props.workedHours}:00 H
                         </p>
                     </div>
-                    <div className="flex items-center text-primary-dashboard">
+                    <div className="flex items-center text-primary-dashboard whitespace-nowrap">
                         <ProgressRing value={props.progressPercentage} />
                         <span className="text-sm font-medium">{props.progressPercentage}%</span>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                     <Image
                         src={props.assigneeAvatarUrl}
                         alt="avatar"
@@ -44,7 +44,6 @@ export function TaskItem(props: TaskItemProps) {
                     />
 
                     <Badge
-                        // className="bg-success/10 text-success border-success/60 rounded-sm"
                         className={cn("rounded-sm", {
                             'bg-green-800/10 text-green-800 border-green-800/60': props.status === 'COMPLETED',
                             'bg-yellow-800/10 text-yellow-800 border-yellow-800/60': props.status === 'PENDING',
