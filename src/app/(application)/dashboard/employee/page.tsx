@@ -1,6 +1,6 @@
 import DashboardHeader from "@/components/dashboard/layout/header";
-import OverviewSection from "@/components/dashboard/layout/overview-section";
-import DashboardStatSection from "@/components/dashboard/layout/stat-section";
+import DashboardStatSection from "@/components/dashboard/layout/employee/stat-section";
+import OverviewSection from "@/components/dashboard/layout/employee/overview-section";
 
 
 export default function Dashboard() {

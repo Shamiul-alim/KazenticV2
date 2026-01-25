@@ -1,7 +1,21 @@
-import { StatsCard } from '../stats-card'
+import { StatsCard } from '../../stats-card'
 import { Ban, ClipboardList, CloudLightning, Mail } from 'lucide-react'
 
-export default function DashboardStatSection() {
+// type StatItem = {
+//     id: string;
+//     label: string;
+//     value: string | number;
+//     color?: string;
+//     direction?: 'left' | 'right';
+// }
+
+// type DashboardStatSectionProps = {
+//     title: string;
+//     stats: StatItem[];
+//     icon?: React.ReactNode;
+// }
+
+export default function DashboardStatSection({ isAdmin = false }: { isAdmin?: boolean }) {
     return (
         <div className="p-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4 border-b border-b-border">
             <StatsCard

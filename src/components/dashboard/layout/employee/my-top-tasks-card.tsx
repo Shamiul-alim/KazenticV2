@@ -1,6 +1,6 @@
 import { TOP_TASKS } from '@/data/dashboard-data'
-import CardContainer from '../card-container'
-import { TopTaskItem } from '../top-task-item'
+import CardContainer from '../../card-container'
+import { TopTaskItem } from '../../top-task-item'
 
 export default function MyTopTasksCard() {
     return (

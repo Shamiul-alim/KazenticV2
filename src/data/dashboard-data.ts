@@ -39,6 +39,49 @@ export type EmployeePerformance = {
     productivity: number
 }
 
+type StatItem = {
+    id: string;
+    label: string;
+    value: string | number;
+    color?: string;
+    direction?: 'left' | 'right';
+}
+
+type DashboardStatSectionProps = {
+    title: string;
+    stats: StatItem[];
+}
+
+export const STAT_SECTION_DATA: DashboardStatSectionProps[] = [
+    {
+        title: "Emails",
+        stats: [
+            { id: "1", label: "Unread", value: 12, color: "text-blue-600", direction: "left" },
+            { id: "2", label: "Received Today", value: 100, color: "text-green-600", direction: "right" },
+        ],
+    },
+    {
+        title: "Tasks",
+        stats: [
+            { id: "1", label: "Completed", value: 12, color: "text-green-600", direction: "left" },
+            { id: "2", label: "Pending", value: 2, color: "text-orange-500", direction: "right" },
+        ],
+    },
+    {
+        title: "Storage",
+        stats: [
+            { id: "1", label: "Overall Storage Used", value: "80 GB", color: "text-blue-600", direction: "left" },
+        ],
+    },
+    {
+        title: "Leaves",
+        stats: [
+            { id: "1", label: "Pending", value: 12, color: "text-orange-500", direction: "left" },
+            { id: "2", label: "Approved", value: 2, color: "text-green-600", direction: "right" },
+        ],
+    },
+];
+
 export const RECENT_EMAILS: RecentEmail[] = [
     {
         id: 1,

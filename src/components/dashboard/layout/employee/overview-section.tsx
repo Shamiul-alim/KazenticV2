@@ -1,12 +1,11 @@
-import RecentEmailsCard from './recent-emails-card'
-import WeeklyCalendarCard from './weekly-calendar-card'
-import MyAssignedTasksCard from './my-assigned-tasks-card'
-import LeavesCard from './leaves-card'
-import KazenticOverview from './kazentic-overview'
-import MyStorageCard from './my-storage-card'
-import MyTopTasksCard from './my-top-tasks-card'
-import WorkTrendCard from './work-trend-card'
-
+import KazenticOverview from "../kazentic-overview";
+import LeavesCard from "../leaves-card";
+import RecentEmailsCard from "../recent-emails-card";
+import WeeklyCalendarCard from "../weekly-calendar-card";
+import WorkTrendCard from "../work-trend-card";
+import MyAssignedTasksCard from "./my-assigned-tasks-card";
+import MyStorageCard from "./my-storage-card";
+import MyTopTasksCard from "./my-top-tasks-card";
 
 export default function OverviewSection() {
     return (

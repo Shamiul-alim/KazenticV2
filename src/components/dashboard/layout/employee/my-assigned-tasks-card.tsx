@@ -1,8 +1,8 @@
-import CardContainer from '../card-container'
+import CardContainer from '../../card-container'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ClipboardList, Clock } from 'lucide-react'
-import { Underline } from '../underline'
-import { TaskItem } from '../recent-items/task-item'
+import { Underline } from '../../underline'
+import { TaskItem } from '../../recent-items/task-item'
 import { TASKS } from '@/data/dashboard-data'
 
 enum ASSIGNED_TASKS_TABS {
