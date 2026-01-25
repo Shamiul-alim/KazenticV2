@@ -3,12 +3,12 @@ import { FILES, FOLDERS } from '@/data/dashboard-data'
 import { Card } from '../../ui/card'
 import { cn } from '@/lib/utils'
 import { FolderOpen, MoreHorizontal } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
 import ImageIcon from '../../icons/image-icon'
 import DocIcon from '../../icons/doc-icon'
 import PDFIcon from '../../icons/pdf-icon'
 import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from '../../ui/avatar'
 import { Badge } from '@/components/sprint-report/ui/badge'
+import { Button } from '@/components/ui/Button'
 
 export default function MyStorageCard() {
     return (

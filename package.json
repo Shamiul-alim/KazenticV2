@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "dev": "bun run --bun next dev",
+    "build": "bun run --bun next build",
+    "start": "bun run --bun next start",
+    "lint": "bun x next lint",
+    "typecheck": "bun x tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "1.1.11",
@@ -24,6 +24,7 @@
     "@radix-ui/react-slot": "1.2.4",
     "@radix-ui/react-switch": "1.2.6",
     "@radix-ui/react-tabs": "1.1.13",
+    "@radix-ui/react-tooltip": "1.2.8",
     "add": "2.0.6",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
