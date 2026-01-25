@@ -7,7 +7,7 @@ export default function StorageAnalyticsCard() {
     return (
         <CardContainer className="col-span-1" title="Storage Analytics">
             {/* Header */}
-            <div className="flex flex-col gap-4 justify-center items-center p-4 w-full">
+            <div className="flex flex-col gap-4 justify-center items-center w-full">
                 <h4 className="text-lg font-semibold">40.2 GB</h4>
                 <p className="text-xs text-muted-foreground">of 100 GB has been utilized</p>
 
@@ -16,7 +16,7 @@ export default function StorageAnalyticsCard() {
             </div>
 
 
-            <div className="grid grid-cols-2 gap-4 p-4">
+            <div className="grid grid-cols-2 gap-4">
                 <SummaryCard
                     icon={<File />}
                     label="Documents"
