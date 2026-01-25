@@ -5,7 +5,7 @@ import { SummaryCard } from "../../summary-card";
 export default function PayrollCard() {
     return (
         <CardContainer className="col-span-1" title={<>Payroll <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
-            <div className="grid grid-cols-2 gap-4 p-4">
+            <div className="grid min-[400px]:grid-cols-2 gap-4 p-4">
                 <SummaryCard
                     icon={<CircleDollarSign />}
                     label="Total Payment"

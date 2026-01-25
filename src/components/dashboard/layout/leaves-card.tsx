@@ -4,7 +4,7 @@ import { Ban, CalendarDays, CalendarX2, CheckCircle2 } from 'lucide-react'
 
 export default function LeavesCard() {
     return (
-        <CardContainer className="flex-1" childrenClassName="grid grid-cols-2 gap-4" title={<>Leaves <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
+        <CardContainer className="flex-1" childrenClassName="grid min-[400px]:grid-cols-2 gap-4" title={<>Leaves <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
             <SummaryCard
                 icon={<CalendarDays />}
                 label="Annual Leaves"

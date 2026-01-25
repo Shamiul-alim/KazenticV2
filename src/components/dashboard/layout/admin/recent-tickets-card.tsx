@@ -4,7 +4,7 @@ import { TicketCard } from '../../admin/ticket-card'
 
 export default function RecentTicketsCard() {
     return (
-        <CardContainer childrenClassName='space-y-4 overflow-y-scroll max-h-180' title="Recent Tickets">
+        <CardContainer childrenClassName='space-y-4 overflow-y-scroll max-h-100 md:max-h-180' title="Recent Tickets">
             {
                 ISSUE_TICKETS.map((ticket, index) => (
                     <TicketCard

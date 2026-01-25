@@ -37,7 +37,7 @@ export function EmployeeRow({
     }
 
     return (
-        <Card className="p-4 rounded-2xl flex items-center justify-between">
+        <Card className="p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
             {/* Left */}
             <div className="flex items-center gap-4">
                 {getRankBadge({ rank })}
@@ -54,20 +54,20 @@ export function EmployeeRow({
 
 
             {/* Right Stats */}
-            <div className="flex items-center">
-                <Separator orientation="vertical" className="h-10 w-0.5 mr-6" />
-                <div className="flex items-start gap-10">
-                    <div className="text-sm space-y-2">
+            <div className="flex items-center w-full sm:w-auto">
+                <Separator orientation="vertical" className="h-10 w-0.5 mr-6 hidden sm:block" />
+                <div className="flex flex-wrap items-start gap-6 sm:gap-10 w-full sm:w-auto justify-between sm:justify-start text-xs">
+                    <div className="space-y-2">
                         <p className="text-muted-foreground">Tasks</p>
                         <p className="font-semibold">{tasks}</p>
                     </div>
 
-                    <div className="text-sm space-y-2">
+                    <div className="space-y-2">
                         <p className="text-muted-foreground">Hours</p>
                         <p className="font-semibold">{hours}</p>
                     </div>
 
-                    <div className="text-sm space-y-2 flex flex-col items-center">
+                    <div className="space-y-2 flex flex-col items-center">
                         <p className="text-muted-foreground">Productivity</p>
                         <div className="flex gap-1 items-center">
                             <ProgressRing value={productivity} className="text-success" />

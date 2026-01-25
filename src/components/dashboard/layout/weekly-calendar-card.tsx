@@ -18,7 +18,7 @@ export default function WeeklyCalendarCard() {
         <CardContainer childrenClassName='p-0' title="Weekly Calendar">
             {/* Calendar dates */}
             <div className="px-4 pt-4">
-                <div className="grid grid-cols-7 text-center text-xs font-medium text-muted-foreground">
+                <div className="grid grid-cols-7 text-center text-[10px] sm:text-xs font-medium text-muted-foreground">
                     {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
                         <span key={d}>{d}</span>
                     ))}
@@ -28,7 +28,7 @@ export default function WeeklyCalendarCard() {
                     {[14, 15, 16, 17, 18, 19, 20].map((day, i) => (
                         <div key={day} className="flex justify-center">
                             <span
-                                className={`flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium ${i === 0
+                                className={`flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-md text-xs sm:text-sm font-medium ${i === 0
                                     ? "bg-primary-dashboard text-primary-dashboard-foreground"
                                     : "text-foreground"
                                     }`}
@@ -44,20 +44,20 @@ export default function WeeklyCalendarCard() {
                 className="w-full py-4"
             >
                 {/* Tabs header */}
-                <TabsList className="relative bg-transparent p-0" variant="line">
-                    <TabsTrigger value={WEEKLY_CALENDAR_TABS.EVENTS}>
+                <TabsList className="relative bg-transparent p-0 flex-col sm:flex-row h-auto sm:h-10" variant="line">
+                    <TabsTrigger value={WEEKLY_CALENDAR_TABS.EVENTS} className="w-full sm:w-auto justify-start sm:justify-center text-xs">
                         <CalendarDays className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                         Events
                         <Underline />
                     </TabsTrigger>
 
-                    <TabsTrigger value={WEEKLY_CALENDAR_TABS.NOTICES}>
+                    <TabsTrigger value={WEEKLY_CALENDAR_TABS.NOTICES} className="w-full sm:w-auto justify-start sm:justify-center text-xs">
                         <CalendarFold className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                         Recent Notices
                         <Underline />
                     </TabsTrigger>
 
-                    <TabsTrigger value={WEEKLY_CALENDAR_TABS.LEAVES}>
+                    <TabsTrigger value={WEEKLY_CALENDAR_TABS.LEAVES} className="w-full sm:w-auto justify-start sm:justify-center text-xs">
                         <Ban className="inline-block w-4 h-4 mr-2 mb-0.5 data-[state=active]:text-primary-dashboard" />
                         Leaves
                         <Underline />

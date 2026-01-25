@@ -6,7 +6,7 @@ import { BriefcaseBusiness, CheckCircle2, FolderOpen } from 'lucide-react'
 export default function JobsPreviewCard() {
     return (
         <CardContainer className="col-span-1" title={<>Jobs Preview <span className="text-xs font-light text-muted-foreground">(Monthly)</span></>}>
-            <div className="grid grid-cols-2 gap-4 p-4">
+            <div className="grid min-[400px]:grid-cols-2 gap-4 p-4">
                 <SummaryCard
                     icon={<BriefcaseBusiness />}
                     label="Total Jobs"

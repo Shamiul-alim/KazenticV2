@@ -24,11 +24,11 @@ type CalendarEventProps = {
 export function CalendarEvent(props: CalendarEventProps) {
     return (
         <Card>
-            <div className="flex items-start gap-3 border-l-2 border-l-primary-dashboard pl-3">
-                <div className="space-y-2">
+            <div className="w-full flex flex-col sm:flex-row items-start sm:items-start sm:justify-between gap-3 border-l-2 border-l-primary-dashboard pl-3">
+                <div className="space-y-2 flex-1 min-w-0">
                     <p className="text-sm font-medium">{props.title}</p>
 
-                    <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-xs font-medium text-muted-foreground">
                         <div className="flex -space-x-1">
                             <AvatarGroup className="grayscale">
                                 {
@@ -45,11 +45,11 @@ export function CalendarEvent(props: CalendarEventProps) {
                         <span>{props.date} @ {props.time}</span>
                     </div>
                 </div>
-            </div>
 
-            <Button onClick={() => window.open(props.meetingLink, "_blank")} className="flex items-center gap-2 rounded-md bg-primary-dashboard/10 hover:bg-primary-dashboard/20 px-3 py-1 text-xs font-medium text-primary-dashboard">
-                <Video className="w-4 h-4" /> Join
-            </Button>
+                <Button onClick={() => window.open(props.meetingLink, "_blank")} className="flex items-center gap-2 rounded-md bg-primary-dashboard/10 hover:bg-primary-dashboard/20 px-3 py-1 text-xs font-medium text-primary-dashboard whitespace-nowrap w-full sm:w-auto justify-center">
+                    <Video className="w-4 h-4" /> Join
+                </Button>
+            </div>
         </Card>
     )
 }

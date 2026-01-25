@@ -16,7 +16,7 @@ import LeadsOverviewCard from "./leads-overview-card";
 export default function AdminOverviewSection() {
     return (
         <>
-            <div className="p-4 grid grid-cols-3 gap-4">
+            <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <RecentEmailsCard />
 
                 {/* Weekly Calendar */}
@@ -26,12 +26,12 @@ export default function AdminOverviewSection() {
                 <SubscriptionCard />
             </div>
 
-            <div className="grid grid-cols-3 gap-4 p-4 pt-0 text-xs">
-                <div className="col-span-2 gap-4 space-y-4 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 pt-0 text-xs">
+                <div className="lg:col-span-2 gap-4 space-y-4 items-start">
                     {/* Kaznetic Overview */}
                     <KazenticOverview />
 
-                    <div className="grid grid-cols-2 gap-4 items-start">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
                         {/* Jobs Preview */}
                         <JobsPreviewCard />
 
@@ -52,7 +52,7 @@ export default function AdminOverviewSection() {
                     <EmployeesPerformanceCard />
                 </div>
 
-                <div className="col-span-1 space-y-4 gap-4">
+                <div className="lg:col-span-1 space-y-4 gap-4">
                     {/* Work Trend */}
                     <WorkTrendCard />
 

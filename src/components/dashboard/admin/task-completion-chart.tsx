@@ -22,16 +22,19 @@ const config = {
 export function TaskCompletionChart() {
     return (
         <ChartContainer config={config} className="h-65 w-full">
-            <BarChart data={TASK_COMPLETION_DATA} margin={{ top: 20 }}>
+            <BarChart data={TASK_COMPLETION_DATA} margin={{ top: 20, left: -20, right: 10 }}>
                 <CartesianGrid strokeDasharray="4 4" vertical={false} />
                 <XAxis
                     dataKey="project"
                     className="mt-4"
                     tickLine={false}
                     axisLine={true}
-                    tick={{ fill: "hsl(var(--muted-foreground))" }}
+                    tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
                 />
-                <YAxis className="mt-4" tickLine={false} axisLine={false} />
+                <YAxis className="mt-4" tickLine={false} axisLine={false} tick={{ fontSize: 12 }} />
                 <ChartTooltip
                     cursor={false}
                     content={<CustomChartTooltip />}

@@ -9,9 +9,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="flex flex-col h-screen">
       <Topbar />
       <div className="flex grow">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="bg-[#111953] relative">
-          <SideMenu />
+          {/* <SideMenu /> */}
         </div>
         <div className="w-full bg-[#111953] flex flex-col">
           <ApplicationTopbar />

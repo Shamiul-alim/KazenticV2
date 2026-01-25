@@ -12,7 +12,7 @@ export default function SubscriptionCard() {
             <Card className="flex flex-col gap-6 text-sm">
                 {/* Top Section */}
                 <div className="flex flex-col justify-between items-start">
-                    <div className="flex flex-row justify-between items-center w-full">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-2 sm:gap-0">
                         <div>
                             <h2 className="font-semibold text-primary-dashboard">$99</h2>
                             <p className="text-xs font-medium mt-1">Pro Plan / Month</p>
@@ -31,7 +31,7 @@ export default function SubscriptionCard() {
 
                 {/* Billing Cycle */}
                 <div className="space-y-3 w-full text-xs">
-                    <div className="flex justify-between font-medium">
+                    <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-0 font-medium">
                         <span>Billing Cycle</span>
                         <span className="text-muted-foreground">20% remaining</span>
                     </div>
@@ -44,9 +44,10 @@ export default function SubscriptionCard() {
                     </div>
                 </div>
             </Card>
+
             <Card className="flex flex-col gap-6 text-xs">
                 {/* Stats */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <SummaryCard
                         label="Members"
                         value="24"
@@ -62,7 +63,7 @@ export default function SubscriptionCard() {
                 </div>
 
                 {/* Button */}
-                <Button className="bg-primary-dashboard w-full rounded-xl text-base py-2">
+                <Button className="bg-primary-dashboard w-full rounded-xl sm:text-xs py-2">
                     Manage Subscriptions
                 </Button>
             </Card>

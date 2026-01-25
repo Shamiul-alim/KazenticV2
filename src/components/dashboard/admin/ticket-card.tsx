@@ -34,12 +34,12 @@ export function TicketCard({
                 </div>
 
                 {/* Date + Time */}
-                <div className="flex items-center gap-4 text-[11px] text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[11px] text-muted-foreground">
                     <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         {date}
                     </div>
-                    <span className="w-0.5 h-0.5 rounded-full bg-muted-foreground"></span>
+                    <span className="w-0.5 h-0.5 rounded-full bg-muted-foreground hidden sm:block"></span>
                     <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
                         {time}
@@ -50,7 +50,7 @@ export function TicketCard({
             <Separator />
 
             {/* Footer */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 w-full">
                 {/* Assignee */}
                 <div className="flex items-center gap-2">
                     <div className="min-w-5 min-h-5 rounded-full bg-primary text-white flex items-center justify-center text-[11px] font-semibold">
@@ -60,7 +60,7 @@ export function TicketCard({
                 </div>
 
                 {/* Tags */}
-                <div className="flex flex-row items-center gap-2 pl-2">
+                <div className="flex flex-row flex-wrap items-center gap-2">
                     <Badge variant="outline" className="bg-muted text-muted-foreground border border-muted-foreground rounded-md">#{ticketId}</Badge>
 
                     <Badge className="bg-success/30 border border-success/60 text-success rounded-md">

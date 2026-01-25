@@ -6,7 +6,7 @@ export default function KazenticOverview() {
     return (
         <CardContainer
             className="flex-2"
-            childrenClassName="grid grid-cols-4 gap-4"
+            childrenClassName="grid min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
             title={<span>Kaznetic Overview <ChevronDown className="w-4 h-4 inline-block text-primary-dashboard" /></span>}
         >
             <SummaryCard
