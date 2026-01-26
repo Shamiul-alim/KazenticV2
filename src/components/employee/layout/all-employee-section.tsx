@@ -9,10 +9,17 @@ import { useState } from "react";
 import EmployeeGrid from "./employee-grid";
 import { useRouter } from "next/navigation";
 import FilterViewToolkit from "./filter-view-toolkit";
+import SettingsIcon from "../icons/settings";
 
 export const toolbarButton =
-    "rounded-md h-10"
+    "rounded-sm h-6 text-xs leading-5";
 
+const colors = {
+    exportBtn: {
+        border: "#EBEBEB",
+        text: "#191F38",
+    }
+}
 
 export default function AllEmployeeSection() {
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -32,9 +39,9 @@ export default function AllEmployeeSection() {
                             {/* Export */}
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className={toolbarButton}>
+                                    <Button variant="outline" className={toolbarButton} style={{ borderColor: colors.exportBtn.border, color: colors.exportBtn.text }}>
                                         Export
-                                        <ChevronDown className="ml-2 h-4 w-4" />
+                                        <ChevronDown className="ml-2 h-3.5 w-3.5" />
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="start">
@@ -48,9 +55,10 @@ export default function AllEmployeeSection() {
                         </div>
 
                         {/* Right action */}
-                        <Button onClick={handleManageEmployee} className={cn(toolbarButton, "px-3")}>
+                        <Button onClick={handleManageEmployee} className={cn(toolbarButton, "px-3 flex items-center gap-2")}>
                             Manage Employee
-                            <Settings size={10} />
+                            {/* <Settings size={3.5} /> */}
+                            <SettingsIcon className="size-3.5" />
                         </Button>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 import FilterViewToolkit from "@/components/employee/layout/filter-view-toolkit";
 import EmployeeActionGrid from "@/components/employee/manage/employee-action-grid";
 import { EmployeeActionTable } from "@/components/employee/manage/employee-action-table";
+import { InviteEmployeeDialog } from "@/components/employee/manage/invite-employee-dialog";
 import InviteMembersGrid from "@/components/employee/manage/invite-members-grid";
 import { InviteMembersTable } from "@/components/employee/manage/invite-members-table";
 import { Button } from "@/components/employee/ui/button";
@@ -13,6 +14,7 @@ import { useState } from "react";
 export default function ManageEmployee() {
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
     const [tabValue, setTabValue] = useState<"join-request" | "invited">("join-request");
+    const [openInviteDialog, setOpenInviteDialog] = useState(false);
 
     return (
         <main className="bg-background container mx-auto w-full h-full text-xs">
@@ -26,7 +28,7 @@ export default function ManageEmployee() {
 
                     {
                         tabValue === "invited" && (
-                            <Button className="rounded-md h-10 px-3 ml-3">
+                            <Button onClick={() => setOpenInviteDialog(true)} className="rounded-md h-10 px-3 ml-3">
                                 Invite Members
                             </Button>
                         )
@@ -47,6 +49,12 @@ export default function ManageEmployee() {
                     </div>
                 </TabsContent>
             </Tabs>
+            {openInviteDialog && (
+                <InviteEmployeeDialog
+                    open={openInviteDialog}
+                    onOpenChange={setOpenInviteDialog}
+                />
+            )}
         </main>
     )
 }
