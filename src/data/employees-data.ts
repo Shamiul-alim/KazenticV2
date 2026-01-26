@@ -99,3 +99,17 @@ export const ATTENDANCE_DATA: Attendance[] = Array.from({ length: 5 }).map(
         break: "03H : 00M",
     })
 )
+
+export type Invite = {
+    id: number
+    name: string
+    email: string
+    status: "INVITED" | "NOT_INVITED"
+}
+
+export const INVITE_MEMBERS: Invite[] = Array.from({ length: 22 }).map((_, i) => ({
+    id: i + 1,
+    name: "Pat Cummins",
+    email: "email@gmail.com",
+    status: i < 11 ? "INVITED" : "NOT_INVITED",
+}))
