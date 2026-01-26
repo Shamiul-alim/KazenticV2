@@ -10,7 +10,7 @@ export type Employee = {
     status: "ACTIVE" | "INACTIVE"
 }
 
-export const employees: Employee[] = [
+export const EMPLOYEE_DATA: Employee[] = [
     {
         id: 1,
         name: "Pat Cummins",
@@ -72,3 +72,30 @@ export const employees: Employee[] = [
         status: (i % 2 === 0 ? "INACTIVE" : "ACTIVE") as "ACTIVE" | "INACTIVE",
     })),
 ]
+
+export const ASSIGNED_WORK = Array.from({ length: 5 }).map((_, i) => ({
+    id: i,
+    title: "V3 Reported Design Update",
+    project: "Kazentic",
+    taskId: "kzt-123",
+    billable: true,
+    spent: "4h 20m",
+    total: "5h",
+    running: i === 4,
+}))
+
+export type Attendance = {
+    signIn: string
+    signOut: string
+    duration: string
+    break: string
+}
+
+export const ATTENDANCE_DATA: Attendance[] = Array.from({ length: 5 }).map(
+    () => ({
+        signIn: "11:59 AM",
+        signOut: "02:59 PM",
+        duration: "05H : 00M",
+        break: "03H : 00M",
+    })
+)

@@ -6,29 +6,22 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table"
-import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import {
-    ArrowDown,
-    ArrowDown01,
-    Check,
-    ChevronDown,
     ChevronsUpDown,
     Copy,
-    Info,
 } from "lucide-react"
 
-import { employees } from "@/data/employees-data"
+import { EMPLOYEE_DATA } from "@/data/employees-data"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select"
-import { cn } from "@/lib/utils"
 import StatusSelect from "../custom/status-select"
 
 export function EmployeeTable() {
     return (
         <div className="rounded-lg border w-full overflow-hidden">
             <Table>
-                {/* <colgroup>
+                <colgroup>
                     <col style={{ width: "20%" }} />
                     <col style={{ width: "20%" }} />
                     <col style={{ width: "18%" }} />
@@ -36,7 +29,7 @@ export function EmployeeTable() {
                     <col style={{ width: "14%" }} />
                     <col style={{ width: "20%" }} />
                     <col style={{ width: "20%" }} />
-                </colgroup> */}
+                </colgroup>
                 <TableHeader className="bg-primary-dashboard/10">
                     <TableRow>
                         {[
@@ -59,7 +52,7 @@ export function EmployeeTable() {
                 </TableHeader>
 
                 <TableBody>
-                    {employees.map((emp) => (
+                    {EMPLOYEE_DATA.map((emp) => (
                         <TableRow key={emp.id} className="text-xs">
                             {/* Name */}
                             <TableCell>

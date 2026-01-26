@@ -1,15 +1,21 @@
+'use client';
+
 import { ChevronDown, Filter, LayoutGrid, List, Settings } from "lucide-react";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { cn } from "@/lib/utils";
 import { EmployeeTable } from "./employee-table";
+import { useState } from "react";
+import EmployeeGrid from "./employee-grid";
 
 export const toolbarButton =
     "rounded-md h-10"
 
 
 export default function AllEmployeeSection() {
+    const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
     return (
         <main className="w-full flex flex-col gap-4">
             <div className="flex flex-row items-center justify-between">
@@ -40,7 +46,7 @@ export default function AllEmployeeSection() {
                             </Button>
 
                             {/* View toggle */}
-                            <ToggleGroup variant="outline" type="single" defaultValue="list" className="gap-0">
+                            <ToggleGroup variant="outline" type="single" value={viewMode} onValueChange={(status) => setViewMode(status as "grid" | "list")} className="gap-0">
                                 <ToggleGroupItem value="grid" className="rounded-r-none border-r-0 data-[state=on]:bg-primary-dashboard/10 data-[state=on]:text-primary-dashboard">
                                     <LayoutGrid size={10} />
                                 </ToggleGroupItem>
@@ -59,7 +65,7 @@ export default function AllEmployeeSection() {
                 </div>
             </div>
             <div>
-                <EmployeeTable />
+                {viewMode === "list" ? <EmployeeTable /> : <EmployeeGrid />}
             </div>
         </main>
     )

@@ -8,13 +8,19 @@ import { Check, Info } from 'lucide-react'
 type StatusSelectProps = {
     status: "ACTIVE" | "INACTIVE";
     className?: string;
+    onChange?: (value: "ACTIVE" | "INACTIVE") => void;
 }
 
-export default function StatusSelect({ status, className }: StatusSelectProps) {
+export default function StatusSelect({ status, className, onChange }: StatusSelectProps) {
     const [currentStatus, setCurrentStatus] = React.useState<"ACTIVE" | "INACTIVE">(status);
 
     return (
-        <Select defaultValue={status} onValueChange={(value) => setCurrentStatus(value as "ACTIVE" | "INACTIVE")}>
+        <Select defaultValue={status} onValueChange={(value) => {
+            setCurrentStatus(value as "ACTIVE" | "INACTIVE");
+            if (onChange) {
+                onChange(value as "ACTIVE" | "INACTIVE");
+            }
+        }}>
             <SelectTrigger className={cn(
                 currentStatus === "ACTIVE"
                     ? "border-green-500 bg-green-50 text-green-600"
