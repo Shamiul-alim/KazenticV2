@@ -309,9 +309,6 @@ export default function TimeTracker () {
                             </div>
                             </TableCell>
                         </TableRow>
-
-
-
                         </TableBody>
                     </Table>
                 </div>

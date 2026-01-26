@@ -1,15 +1,16 @@
 'use client'
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink } from '@/components/time-tracker/ui/navigation-menu'
-import { Bolt, ChevronDown, CircleCheck, CirclePause, Clock4, Hourglass, ListChecks, MoveUpRight, Timer } from 'lucide-react'
+import { ArrowRight, Bolt, ChevronDown, CircleCheck, CirclePause, Clock4, Hourglass, ListChecks, MoveUpRight, Timer } from 'lucide-react'
 import React, { useState } from 'react' // Import useState
 import MyTimeLogs from './MyTimeLogs'
 import TimeTracker from './TimeTracker';
 import AllTimeLogs from './AllTimeLogs'
-import RequestReview from './RequestReview';
-
+import { ReviewRequest } from './RequestReview'
+import ReviewDetail from './ReviewDetail'
 
 export default function Navbar2() {
 const [activeTab, setActiveTab] = useState('tracker');
+const [selectedReview, setSelectedReview] = useState<any>(null);
   return (
     <div className="w-full bg-white
         flex flex-col items-center flex-1">
@@ -127,7 +128,19 @@ const [activeTab, setActiveTab] = useState('tracker');
         {activeTab === 'logs' && <MyTimeLogs />}
         
         {activeTab == 'allLogs' && <AllTimeLogs/>}
-        {activeTab == 'review' && <RequestReview/>}
+        {activeTab === 'review' && (
+          <div className="w-full">
+            {!selectedReview ? (
+              <ReviewRequest onReviewClick={(row) => setSelectedReview(row)} />
+            ) : (
+              /* Now it's just one clean line! */
+              <ReviewDetail 
+                data={selectedReview} 
+                onBack={() => setSelectedReview(null)} 
+              />
+            )}
+            </div>
+          )}
       </div>
     </div>
   )

@@ -41,7 +41,7 @@ export default function ReviewLogsSidebar({ isOpen, onClose }: SidebarProps) {
         {/* Scrollable Content */}
         <div className="p-3 flex flex-col gap-4 overflow-y-auto h-[calc(100vh-60px)] bg-slate-50/30">
           {[...Array(6)].map((_, i) => (
-            <div className='flex flex-col border border-[#ebebeb] rounded-[10px] p-2'>
+            <div key={i} className='flex flex-col border border-[#ebebeb] rounded-[10px] p-2'>
                 <div className='flex flex-col border-l-2 border-[#4056fe] px-2 pb-2 gap-1.5'>
                     <div className='flex flex-col border-b py-1 border-[#ebebeb]'>
                         <div className='flex flex-row justify-between'>

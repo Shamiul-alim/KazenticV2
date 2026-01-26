@@ -2,22 +2,21 @@ import { CalendarDays, CheckCircle2, ChevronDown, ChevronLeftIcon, ChevronRight,
 import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/time-tracker/ui/table'
 export default function TimeSheets() {
-    const [openRows, setOpenRows] = useState<Record<number, boolean>>({ 5: true });
+
+  const [openRows, setOpenRows] = useState<Record<number, boolean>>({ 5: true });
+  const toggleRow = (id: number) => {
+    setOpenRows((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
     
-      const toggleRow = (id: number) => {
-        setOpenRows((prev) => ({
-          ...prev,
-          [id]: !prev[id],
-        }));
-      };
-    
-      // Generate 7 rows
-      const rows = Array.from({ length: 7 }, (_, i) => ({
-        id: i,
-        taskCode: "[kzt-242]",
-        taskName: "Create Pages using new design system.",
-        isCompleted: i > 5 // Example: last row shows as completed
-      }));
+  const rows = Array.from({ length: 7 }, (_, i) => ({
+    id: i,
+    taskCode: "[kzt-242]",
+    taskName: "Create Pages using new design system.",
+    isCompleted: i > 5 
+  }));
   return (
     <div className="border border-[#ebebeb] rounded-lg bg-white overflow-hidden h-auto mx-4 my-4">
       <Table className="border-collapse">
@@ -41,13 +40,13 @@ export default function TimeSheets() {
               <React.Fragment key={row.id}>
                 {/* Main Task Row */}
                 <TableRow className={`${isOpen ? 'bg-[#f3f9ff]/20' : 'bg-white'} border-b border-[#ebebeb] transition-colors hover:bg-slate-50/50`}>
-                  <TableCell className="border-r border-[#ebebeb] py-2 px-3">
+                  <TableCell className="border-r border-[#ebebeb] py-1 px-3">
                     <div className="flex items-center gap-2">
                       <button onClick={() => toggleRow(row.id)} className="text-slate-400 hover:text-slate-600 transition-transform">
                         {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                       </button>
-                      <p className="text-[12px] truncate">
-                        <span className="text-slate-500 font-medium mr-1">{row.taskCode}</span> 
+                      <p className="text-[12px] tracking-tighter">
+                        <span className="text-black font-medium mr-1">{row.taskCode}</span> 
                         {row.taskName}
                       </p>
                     </div>
@@ -85,10 +84,10 @@ export default function TimeSheets() {
                 {isOpen && (
                   <>
                     <TableRow className="bg-[#f8fbff] border-b border-[#ebebeb]/50 border-dotted">
-                      <TableCell className="pl-10 py-2 border-r border-[#ebebeb]">
+                      <TableCell className="pl-10 py-1 border-r border-[#ebebeb]">
                         <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1.5 px-2 py-0.5 bg-[#dbe9ff] text-[#4056fe] rounded-[4px] border border-[#bfdbfe] text-[11px]">
-                            <Clock size={12} /> 11:59 AM - 2:00 PM
+                          <div className="flex items-center gap-1.5 px-2 py-0.5 bg-[#dbe9ff] text-black rounded-[5px] border border-[#bfdbfe] text-[11px]">
+                            <Clock className='text-[#4b60ff]' size={12} /> 11:59 AM - 2:00 PM
                           </div>
                           <div className="p-1 bg-white border border-[#ebebeb] rounded shadow-sm">
                             <DollarSign size={12} className="text-emerald-500" />
@@ -98,10 +97,10 @@ export default function TimeSheets() {
                       <TableCell colSpan={9} className="bg-white/50 border-r border-[#ebebeb]"></TableCell>
                     </TableRow>
                     <TableRow className="bg-[#f8fbff] border-b border-[#ebebeb]">
-                      <TableCell className="pl-10 py-2 border-r border-[#ebebeb]">
+                      <TableCell className="pl-10 py-1 border-r border-[#ebebeb]">
                         <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1.5 px-2 py-0.5 bg-[#dbe9ff] text-[#4056fe] rounded-[4px] border border-[#bfdbfe] text-[11px]">
-                            <Clock size={12} /> 2:30 PM - 4:00 PM
+                          <div className="flex items-center gap-1.5 px-2 py-0.5 bg-[#dbe9ff] text-black rounded-[5px] border border-[#bfdbfe] text-[11px]">
+                            <Clock className='text-[#4b60ff]' size={12} /> 2:30 PM - 4:00 PM
                           </div>
                           <div className="p-1 bg-white border border-[#ebebeb] rounded shadow-sm">
                             <Link2Off size={12} className="text-slate-400" />
