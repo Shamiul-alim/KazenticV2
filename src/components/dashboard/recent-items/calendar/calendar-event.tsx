@@ -1,28 +1,55 @@
+'use client';
+
 import { Video } from "lucide-react"
 import Image from "next/image"
 import { Card } from "../../ui/card"
+import { Button } from "@/components/ui/Button";
+import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from "../../ui/avatar";
 
-export function CalendarEvent() {
+type AvatarType = {
+    id: number;
+    name: string;
+    avatar: string;
+}
+
+type CalendarEventProps = {
+    id: number;
+    title: string;
+    date: string;
+    time: string;
+    attendees: AvatarType[];
+    meetingLink: string;
+}
+
+export function CalendarEvent(props: CalendarEventProps) {
     return (
         <Card>
-            <div className="flex items-start gap-3 border-l-2 border-l-primary-dashboard pl-3">
-                <div className="space-y-2">
-                    <p className="text-sm font-medium">Team Sprint Review</p>
+            <div className="w-full flex flex-col sm:flex-row items-start sm:items-start sm:justify-between gap-3 border-l-2 border-l-primary-dashboard pl-3">
+                <div className="space-y-2 flex-1 min-w-0">
+                    <p className="text-sm font-medium">{props.title}</p>
 
-                    <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-xs font-medium text-muted-foreground">
                         <div className="flex -space-x-1">
-                            <Image src="/assets/dashboard/avatar-1.jpg" alt="" width={20} height={20} className="rounded-full" />
-                            <Image src="/assets/dashboard/avatar-2.jpg" alt="" width={20} height={20} className="rounded-full" />
-                            <Image src="/assets/dashboard/avatar-3.jpg" alt="" width={20} height={20} className="rounded-full" />
+                            <AvatarGroup className="grayscale">
+                                {
+                                    props.attendees.map((attendee) => (
+                                        <Avatar key={attendee.id} size="sm">
+                                            <AvatarImage src={attendee.avatar} alt={attendee.name} />
+                                            <AvatarFallback>{attendee.name.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                    ))
+                                }
+                                <AvatarGroupCount>+3</AvatarGroupCount>
+                            </AvatarGroup>
                         </div>
-                        <span>14 Jul, Mon @ 10:00 PM</span>
+                        <span>{props.date} @ {props.time}</span>
                     </div>
                 </div>
-            </div>
 
-            <button className="flex items-center gap-2 rounded-md bg-primary-dashboard/10 px-3 py-1 text-xs font-medium text-primary-dashboard">
-                <Video className="w-4 h-4" /> Join
-            </button>
+                <Button onClick={() => window.open(props.meetingLink, "_blank")} className="flex items-center gap-2 rounded-md bg-primary-dashboard/10 hover:bg-primary-dashboard/20 px-3 py-1 text-xs font-medium text-primary-dashboard whitespace-nowrap w-full sm:w-auto justify-center">
+                    <Video className="w-4 h-4" /> Join
+                </Button>
+            </div>
         </Card>
     )
 }
