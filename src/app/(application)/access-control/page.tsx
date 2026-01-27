@@ -15,16 +15,16 @@ export default function AccessControl() {
         <main className="flex flex-col gap-4 h-full w-full bg-white text-xs">
             {/* Header Tabs */}
             <Tabs defaultValue="roles" className="w-full border-t border-[#EBEBEB] flex flex-col h-full">
-                <TabsList className="h-10 w-full inline-flex justify-start items-end border-b bg-transparent p-0 text-xs text-[#697588] rounded-none">
+                <TabsList className="h-10 w-full inline-flex justify-start items-end border-b bg-transparent p-0 text-[#697588] rounded-none">
                     <TabsTrigger
                         value="roles"
-                        className="w-25 h-full rounded-none border-b-2 border-transparent data-[state=active]:border-[#4157FE] font-medium"
+                        className="w-25 h-full rounded-none border-b-2 border-transparent data-[state=active]:border-[#4157FE] font-medium text-xs"
                     >
                         Roles
                     </TabsTrigger>
                     <TabsTrigger
                         value="permissions"
-                        className="w-25 h-full rounded-none border-b-2 border-transparent data-[state=active]:border-[#4157FE] font-medium"
+                        className="w-25 h-full rounded-none border-b-2 border-transparent data-[state=active]:border-[#4157FE] font-medium text-xs"
                     >
                         Permissions
                     </TabsTrigger>

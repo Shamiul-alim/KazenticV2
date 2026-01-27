@@ -22,32 +22,46 @@ export default function ManageEmployee() {
     const [openInviteDialog, setOpenInviteDialog] = useState(false);
 
     return (
-        <main className="bg-background container mx-auto w-full h-full text-xs">
+        <main className="bg-background mx-auto w-full h-full text-xs">
             <Tabs defaultValue="join-request" className="w-full" onValueChange={(value) => setTabValue(value as "join-request" | "invited")}>
-                <div className="flex items-center justify-between border-y border-border py-3 px-4">
-                    <TabsList className="w-full flex flex-row justify-start bg-transparent border-0 p-0 m-0 self-items-end">
-                        <TabsTrigger value="join-request" className="text-xs">Join Requests</TabsTrigger>
-                        <TabsTrigger value="invited" className="text-xs">Invited</TabsTrigger>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between border-t sm:border-y border-border pr-2 sm:pr-4 gap-2 sm:gap-0">
+                    <TabsList className="h-12 w-full inline-flex justify-start items-end border-b sm:border-b-0 bg-transparent p-0 text-[#697588] rounded-none overflow-x-auto">
+                        <TabsTrigger
+                            value="join-request"
+                            className="w-25 h-full rounded-none border-b-2 border-transparent data-[state=active]:border-[#4157FE] font-medium text-[10px] sm:text-xs whitespace-nowrap shrink-0"
+                        >
+                            Join Requests
+                        </TabsTrigger>
+                        <TabsTrigger
+                            value="invited"
+                            className="w-25 h-full rounded-none border-b-2 border-transparent data-[state=active]:border-[#4157FE] font-medium text-[10px] sm:text-xs whitespace-nowrap shrink-0"
+                        >
+                            Invited
+                        </TabsTrigger>
                     </TabsList>
-                    <FilterViewToolkit viewMode={viewMode} setViewMode={setViewMode} />
+                    <div className="flex items-center gap-2 px-2 sm:px-0 pb-2 sm:pb-0">
+                        <FilterViewToolkit viewMode={viewMode} setViewMode={setViewMode} />
 
-                    {
-                        tabValue === "invited" && (
-                            <Button onClick={() => setOpenInviteDialog(true)} className="rounded-md h-8 px-3 ml-3">
-                                Invite Members <Plus size={4} />
-                            </Button>
-                        )
-                    }
+                        {
+                            tabValue === "invited" && (
+                                <Button onClick={() => setOpenInviteDialog(true)} className="rounded-md h-7 sm:h-8 px-2 sm:px-3 text-[10px] sm:text-xs whitespace-nowrap">
+                                    <span className="hidden sm:inline">Invite Members</span>
+                                    <span className="sm:hidden">Invite</span>
+                                    <Plus size={14} className="stroke-3 ml-1" />
+                                </Button>
+                            )
+                        }
+                    </div>
                 </div>
                 <TabsContent value="join-request">
-                    <div className="text-[colors.text] text-sm container p-4">
+                    <div className="text-[colors.text] text-sm p-2 sm:p-4">
                         {
                             viewMode === "list" ? <EmployeeActionTable /> : <EmployeeActionGrid />
                         }
                     </div>
                 </TabsContent>
                 <TabsContent value="invited">
-                    <div className="text-[colors.text] text-sm container p-4">
+                    <div className="text-[colors.text] text-sm p-2 sm:p-4">
                         {
                             viewMode === "list" ? <InviteMembersTable /> : <InviteMembersGrid />
                         }

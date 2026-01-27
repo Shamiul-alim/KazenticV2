@@ -34,23 +34,23 @@ export function EmployeeProfileCard({
     }
 
     return (
-        <Card className="max-w-64 w-64">
-            <CardContent className="p-4 pb-0 space-y-2 text-[11px]">
+        <Card className="w-full">
+            <CardContent className="p-3 sm:p-4 pb-0 space-y-2 text-[10px] sm:text-[11px]">
                 {/* Header */}
-                <div className="flex items-center gap-3">
-                    <Avatar className="h-9 w-9">
-                        <AvatarImage src="https://i.pravatar.cc/100" />
+                <div className="flex items-center gap-2 sm:gap-3">
+                    <Avatar className="h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0">
+                        {/* <AvatarImage src="https://i.pravatar.cc/100" /> */}
                         <AvatarFallback>{name[0]}</AvatarFallback>
                     </Avatar>
 
-                    <div className="flex-1 flex flex-col gap-2 justify-center">
-                        <p className="font-semibold leading-none" onClick={handleDialog}>{name}</p>
+                    <div className="flex-1 flex flex-col gap-2 justify-center min-w-0">
+                        <p className="font-semibold leading-none truncate cursor-pointer" onClick={handleDialog}>{name}</p>
                         <Select defaultValue={designation}>
-                            <SelectTrigger className="h-4 p-0 m-0 max-w-60 border-none text-muted-foreground shadow-none text-[11px] focus:ring-0 focus:ring-offset-0">
+                            <SelectTrigger className="justify-start h-4 p-0 m-0 border-none text-muted-foreground shadow-none text-[10px] sm:text-[11px] focus:ring-0 focus:ring-offset-0">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectGroup className="text-[11px]">
+                                <SelectGroup className="text-[10px] sm:text-[11px]">
                                     <SelectItem value="Backend Developer">Backend Developer</SelectItem>
                                     <SelectItem value="Frontend Developer">Frontend Developer</SelectItem>
                                     <SelectItem value="Developer">Developer</SelectItem>
@@ -66,27 +66,27 @@ export function EmployeeProfileCard({
 
                 {/* Contact */}
                 <div className="space-y-2 text-muted-foreground">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <div className="h-8 w-8 rounded-full border flex items-center justify-center">
-                                <Phone className="h-4 w-4" />
+                    <div className="flex items-center justify-between gap-1">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                            <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border flex items-center justify-center flex-shrink-0">
+                                <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
                             </div>
-                            {phone}
+                            <span className="truncate">{phone}</span>
                         </div>
-                        <Button size="icon" variant="ghost" className="h-8 w-8">
-                            <Copy className="h-4 w-4" />
+                        <Button size="icon" variant="ghost" className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0">
+                            <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
                     </div>
 
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <div className="h-8 w-8 rounded-full border flex items-center justify-center">
-                                <Mail className="h-4 w-4" />
+                    <div className="flex items-center justify-between gap-1">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                            <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border flex items-center justify-center flex-shrink-0">
+                                <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
                             </div>
-                            {email}
+                            <span className="truncate">{email}</span>
                         </div>
-                        <Button size="icon" variant="ghost" className="h-8 w-8">
-                            <Copy className="h-4 w-4" />
+                        <Button size="icon" variant="ghost" className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0">
+                            <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ export function EmployeeProfileCard({
             </CardContent>
 
             {/* Status */}
-            <CardFooter className="p-3">
+            <CardFooter className="p-2 sm:p-3">
                 <StatusSelect status={currentStatus} onChange={(v) => setCurrentStatus(v)} />
             </CardFooter>
         </Card>

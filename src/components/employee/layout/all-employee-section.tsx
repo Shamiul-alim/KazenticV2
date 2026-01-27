@@ -30,16 +30,16 @@ export default function AllEmployeeSection() {
 
     return (
         <main className="w-full flex flex-col gap-4">
-            <div className="flex flex-row items-center justify-between">
-                <span className="text-base font-semibold">All Employees</span>
-                <div>
-                    <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <span className="text-sm font-semibold">All Employees</span>
+                <div className="w-full sm:w-auto">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
                         {/* Left actions */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                             {/* Export */}
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className={toolbarButton} style={{ borderColor: colors.exportBtn.border, color: colors.exportBtn.text }}>
+                                    <Button variant="outline" className={cn(toolbarButton, "flex-1 sm:flex-initial")} style={{ borderColor: colors.exportBtn.border, color: colors.exportBtn.text }}>
                                         Export
                                         <ChevronDown className="ml-2 h-3.5 w-3.5" />
                                     </Button>
@@ -55,15 +55,15 @@ export default function AllEmployeeSection() {
                         </div>
 
                         {/* Right action */}
-                        <Button onClick={handleManageEmployee} className={cn(toolbarButton, "px-3 flex items-center gap-2 font-medium")}>
-                            Manage Employee
+                        <Button onClick={handleManageEmployee} className={cn(toolbarButton, "px-3 flex items-center justify-center gap-2 font-medium w-full sm:w-auto")}>
+                            <span className="truncate">Manage Employee</span>
                             {/* <Settings size={3.5} /> */}
-                            <SettingsIcon className="size-3.5" />
+                            <SettingsIcon className="size-3.5 shrink-0" />
                         </Button>
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="w-full">
                 {viewMode === "list" ? <EmployeeTable /> : <EmployeeGrid />}
             </div>
         </main>

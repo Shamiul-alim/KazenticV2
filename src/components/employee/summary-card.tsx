@@ -2,7 +2,7 @@ type SummaryCardProps = {
     icon: React.ReactNode
     label: string
     value: number | string
-    className?: string,
+    className?: string
     iconClassName?: string
 }
 
@@ -16,11 +16,11 @@ export function SummaryCard({
     iconClassName
 }: SummaryCardProps) {
     return (
-        <div className={cn("flex items-center gap-4 rounded-xl border border-border bg-background px-4 py-3", className)}>
+        <div className={cn("flex items-center gap-3 sm:gap-4 rounded-xl border border-border bg-background px-3 sm:px-4 py-2.5 sm:py-3", className)}>
             {/* Icon */}
             <div
                 className={cn(
-                    "flex p-3 items-center justify-center rounded-lg border",
+                    "flex p-2 sm:p-3 items-center justify-center rounded-lg border shrink-0",
                     iconClassName
                 )}
             >
@@ -28,11 +28,11 @@ export function SummaryCard({
             </div>
 
             {/* Content */}
-            <div className="space-y-0.5">
-                <p className="font-medium text-foreground">
+            <div className="space-y-0.5 min-w-0 flex-1">
+                <p className="font-medium text-foreground text-xs truncate">
                     {label}
                 </p>
-                <p className="font-medium text-muted-foreground">
+                <p className="font-medium text-muted-foreground text-xs truncate">
                     {value}
                 </p>
             </div>
