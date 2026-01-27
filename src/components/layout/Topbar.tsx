@@ -1,7 +1,10 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Topbar() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
     <div className="relative flex w-full justify-between items-center h-9.5 bg-linear-to-r from-[#111953]  to-[#4157FE] text-[#FFFFFF] pr-3">
       <div className="flex items-center z-10">
@@ -74,8 +77,10 @@ export default function Topbar() {
             alt="icon"
             width={20}
             height={20}
-            className="cursor-pointer"
+            className={`cursor-pointer transition-transform ${isDropdownOpen ? "rotate-180 z-100" : ""}`}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           />
+          {isDropdownOpen && <ProfileDropdown />}
         </div>
       </div>
     </div>

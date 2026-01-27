@@ -7,7 +7,8 @@ import { cn } from "@/lib/utils";
 const buttonVariants = cva("", {
   variants: {
     variant: {
-      default: "bg-primary text-primary-foreground shadow-sm  hover:bg-primary/90 rounded-md",
+      default:
+        "bg-primary text-primary-foreground shadow-sm  hover:bg-primary/90 rounded-md",
       destructive:
         "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
       outline:
@@ -35,8 +36,8 @@ const buttonVariants = cva("", {
     size: {
       default: "px-1.5 py-1",
       sm: "px-1.5 py-0.5",
-      md: "h-6 px-1.5",
-      lg: "h-10 rounded-md px-8",
+      md: "h-6 px-2",
+      lg: "h-8 rounded-md px-6",
       icon: "h-9 w-9",
     },
   },
@@ -48,8 +49,8 @@ const buttonVariants = cva("", {
 
 export interface ButtonProps
   extends
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
