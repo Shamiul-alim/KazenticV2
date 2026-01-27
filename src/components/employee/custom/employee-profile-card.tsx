@@ -34,7 +34,7 @@ export function EmployeeProfileCard({
     }
 
     return (
-        <Card>
+        <Card className="max-w-64 w-64">
             <CardContent className="p-4 pb-0 space-y-2 text-[11px]">
                 {/* Header */}
                 <div className="flex items-center gap-3">
@@ -43,15 +43,14 @@ export function EmployeeProfileCard({
                         <AvatarFallback>{name[0]}</AvatarFallback>
                     </Avatar>
 
-                    <div className="flex-1 flex flex-col justify-center">
+                    <div className="flex-1 flex flex-col gap-2 justify-center">
                         <p className="font-semibold leading-none" onClick={handleDialog}>{name}</p>
                         <Select defaultValue={designation}>
-                            <SelectTrigger className="p-0 m-0 max-w-60 border-none text-muted-foreground shadow-none text-[11px] focus:ring-0 focus:ring-offset-0">
+                            <SelectTrigger className="h-4 p-0 m-0 max-w-60 border-none text-muted-foreground shadow-none text-[11px] focus:ring-0 focus:ring-offset-0">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Designations</SelectLabel>
+                                <SelectGroup className="text-[11px]">
                                     <SelectItem value="Backend Developer">Backend Developer</SelectItem>
                                     <SelectItem value="Frontend Developer">Frontend Developer</SelectItem>
                                     <SelectItem value="Developer">Developer</SelectItem>

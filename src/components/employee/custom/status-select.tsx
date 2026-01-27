@@ -11,6 +11,21 @@ type StatusSelectProps = {
     onChange?: (value: "ACTIVE" | "INACTIVE") => void;
 }
 
+const colors = {
+    status: {
+        ACTIVE: {
+            border: "#05966980",
+            background: "#C4FFE2",
+            text: "#059669",
+        },
+        INACTIVE: {
+            border: "#69758880",
+            background: "#EBEBEB",
+            text: "#697588",
+        },
+    }
+}
+
 export default function StatusSelect({ status, className, onChange }: StatusSelectProps) {
     const [currentStatus, setCurrentStatus] = React.useState<"ACTIVE" | "INACTIVE">(status);
 
@@ -23,25 +38,24 @@ export default function StatusSelect({ status, className, onChange }: StatusSele
         }}>
             <SelectTrigger className={cn(
                 currentStatus === "ACTIVE"
-                    ? "border-green-500 bg-green-50 text-green-600"
-                    : "border-muted-foreground bg-muted text-muted-foreground",
-                "border outline-none w-fit px-2 py-0 rounded-md flex items-center gap-2 text-xs",
+                    ? "border-[#05966980] bg-[#C4FFE2] text-[#059669]"
+                    : "border-[#69758880] bg-[#EBEBEB] text-[#697588]",
+                "h-5 border outline-none w-fit px-1 py-0 rounded-sm flex items-center gap-1 text-[11px] font-medium",
                 className
             )}>
                 {
                     currentStatus === "ACTIVE" ? (
-                        <Check className="h-4 w-4" />
+                        <Check className="h-3.5 w-3.5" />
                     ) : (
-                        <Info className="h-4 w-4" />
+                        <Info className="h-3.5 w-3.5" />
                     )
                 }
                 <SelectValue />
             </SelectTrigger>
             <SelectContent>
-                <SelectGroup>
-                    <SelectLabel>Status</SelectLabel>
-                    <SelectItem value="ACTIVE">ACTIVE</SelectItem>
-                    <SelectItem value="INACTIVE">INACTIVE</SelectItem>
+                <SelectGroup >
+                    <SelectItem value="ACTIVE" className='text-xs'>ACTIVE</SelectItem>
+                    <SelectItem value="INACTIVE" className='text-xs'>INACTIVE</SelectItem>
                 </SelectGroup>
             </SelectContent>
 
