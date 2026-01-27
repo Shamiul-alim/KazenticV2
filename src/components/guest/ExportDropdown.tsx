@@ -17,7 +17,7 @@ const ExportDropdown = () => {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <Button variant="outline" size="sm" className="h-9 gap-2 text-[#101828] font-semibold border-gray-200 hover:bg-gray-50 transition-all rounded-xl px-4">
+                <Button variant="outline" size="sm" className="h-9 gap-2 text-[#101828] font-semibold border-gray-200 hover:bg-gray-50 transition-all rounded-xl px-4 flex-1 sm:flex-none">
                     Export
                     <ChevronDown className="size-4 text-gray-500" />
                 </Button>

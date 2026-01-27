@@ -30,8 +30,8 @@ const Invited = ({ viewMode = 'list' }: { viewMode?: 'list' | 'grid' }) => {
     }
 
     return (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-            <Table>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+            <Table className="min-w-[1000px] md:min-w-full">
                 <TableHeader className="bg-gray-50/50 text-[#101828]">
                     <TableRow className="hover:bg-transparent">
                         <TableHead className="w-[80px] font-semibold text-gray-600">Sl. No.</TableHead>

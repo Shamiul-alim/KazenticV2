@@ -15,10 +15,10 @@ const Main = () => {
     const [isInviteModalOpen, setIsInviteModalOpen] = useState(false)
 
     return (
-        <div className="p-6 space-y-6 bg-[#F9FAFB] min-h-screen">
+        <div className="p-4 sm:p-6 space-y-6 bg-[#F9FAFB] min-h-screen">
             <Tabs defaultValue="joined" onValueChange={setActiveTab} className="w-full">
-                <div className="flex items-center justify-between mb-4 border-b border-gray-200 pb-0.5">
-                    <TabsList className="bg-transparent h-auto p-0 gap-8">
+                <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between mb-4 border-b border-gray-200 pb-0.5 gap-4">
+                    <TabsList className="bg-transparent h-auto p-0 gap-6 sm:gap-8 justify-start">
                         <TabsTrigger
                             value="joined"
                             className="relative px-0 py-2 !bg-transparent rounded-none text-gray-400 font-semibold cursor-pointer transition-colors duration-300 data-[state=active]:text-blue-600 hover:text-blue-500 !shadow-none outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 focus-visible:ring-0 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-blue-600 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 data-[state=active]:after:scale-x-100"
@@ -34,12 +34,12 @@ const Main = () => {
                         </TabsTrigger>
                     </TabsList>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 pb-2 md:pb-0">
                         {activeTab === 'invited' && (
                             <ExportDropdown />
                         )}
 
-                        <Button variant="outline" size="sm" className="h-9 gap-2 text-gray-600 border-gray-200">
+                        <Button variant="outline" size="sm" className="h-9 gap-2 text-gray-600 border-gray-200 flex-1 sm:flex-none">
                             <Filter className="size-3" />
                             Filter
                         </Button>
@@ -76,7 +76,7 @@ const Main = () => {
                         {activeTab === 'invited' && (
                             <Button
                                 onClick={() => setIsInviteModalOpen(true)}
-                                className="h-9 gap-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white shadow-sm font-semibold px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                                className="h-9 gap-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white shadow-sm font-semibold px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto mt-2 sm:mt-0 order-first sm:order-none"
                             >
                                 Invite Guest
                                 <Plus className="size-4" />

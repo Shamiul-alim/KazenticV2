@@ -21,7 +21,7 @@ interface InviteGuestModalProps {
 const InviteGuestModal = ({ isOpen, onClose }: InviteGuestModalProps) => {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-[480px] p-8 gap-6 rounded-3xl border-0">
+            <DialogContent className="max-w-[480px] w-[95%] sm:w-full p-5 sm:p-8 gap-6 rounded-2xl sm:rounded-3xl border-0 overflow-hidden">
                 <DialogHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <DialogTitle className="text-[#101828] text-xl font-bold tracking-tight">
                         Invite Guest to the Workspace
