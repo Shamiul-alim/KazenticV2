@@ -33,7 +33,7 @@ export function RolesTable() {
 
     return (
         <div className="rounded-xl border bg-card p-4">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
                 <h2 className="text-sm font-semibold">Roles</h2>
                 <Button onClick={() => setOpen(true)} size="xs" className="font-light h-8 px-4 flex items-center">
                     <Plus className="h-5 w-5 text-lg text-white stroke-4" />

@@ -13,7 +13,7 @@ export function AssignRoleCard() {
     return (
         <Card className="p-6 flex flex-col justify-between h-full">
             <CardContent className="space-y-4">
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                     <h2 className="text-sm font-semibold mb-4">Assign Role to User</h2>
                     <Select defaultValue="1">
                         <SelectTrigger className="w-full max-w-50 shadow-none">

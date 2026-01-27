@@ -45,11 +45,11 @@ export function AssignPermissionsCard() {
                     </AlertDescription>
                 </Alert>
 
-                <div className="flex gap-10">
+                <div className="flex flex-col sm:flex-row gap-10">
                     <div className="flex flex-col gap-3">
-                        <label className="text-sm font-medium">Select Module</label>
+                        <label className="text-xs font-medium">Select Module</label>
                         <Select defaultValue="teams">
-                            <SelectTrigger className="w-52 shadow-none">
+                            <SelectTrigger className="sm:w-52 shadow-none">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -60,9 +60,9 @@ export function AssignPermissionsCard() {
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <label className="text-sm font-medium">Select Roles</label>
+                        <label className="text-xs font-medium">Select Roles</label>
                         <Select defaultValue="developer">
-                            <SelectTrigger className="w-52 shadow-none">
+                            <SelectTrigger className="sm:w-52 shadow-none">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
