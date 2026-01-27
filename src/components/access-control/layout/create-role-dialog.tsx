@@ -17,23 +17,20 @@ export function CreateRoleDialog({ open, onOpenChange }: Props) {
             <DialogContent className="max-w-md rounded-xl">
                 {/* Header */}
                 <DialogHeader className="flex flex-row items-center justify-between">
-                    <DialogTitle className="text-xl font-semibold">
+                    <DialogTitle className="text-sm font-semibold">
                         Create New Role
                     </DialogTitle>
-
-                    <DialogClose className="rounded-full p-1 hover:bg-muted">
-                    </DialogClose>
                 </DialogHeader>
 
                 {/* Body */}
                 <div className="space-y-5 mt-4">
                     <div className="flex flex-col gap-1.5">
-                        <label className="text-sm font-medium">Role Name</label>
-                        <Input placeholder="Type Here" />
+                        <label className="text-xs font-medium">Role Name</label>
+                        <Input className="text-xs" placeholder="Type Here" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                        <label className="text-sm font-medium">Status</label>
+                        <label className="text-xs font-medium">Status</label>
                         <Select>
                             <SelectTrigger className="shadow-none">
                                 <SelectValue placeholder="Select" />
@@ -48,10 +45,10 @@ export function CreateRoleDialog({ open, onOpenChange }: Props) {
 
                 {/* Footer */}
                 <div className="flex justify-end gap-3 mt-6">
-                    <Button variant="outline" onClick={() => onOpenChange(false)} className="text-[#4157FE]">
+                    <Button variant="outline" onClick={() => onOpenChange(false)} className="text-[#4157FE] px-5">
                         Cancel
                     </Button>
-                    <Button>Create</Button>
+                    <Button className="px-5">Create</Button>
                 </div>
             </DialogContent>
         </Dialog>
