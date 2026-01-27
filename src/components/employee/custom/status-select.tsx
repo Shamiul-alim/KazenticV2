@@ -53,10 +53,9 @@ export default function StatusSelect({ status, className, onChange }: StatusSele
                 <SelectValue />
             </SelectTrigger>
             <SelectContent>
-                <SelectGroup>
-                    <SelectLabel>Status</SelectLabel>
-                    <SelectItem value="ACTIVE">ACTIVE</SelectItem>
-                    <SelectItem value="INACTIVE">INACTIVE</SelectItem>
+                <SelectGroup >
+                    <SelectItem value="ACTIVE" className='text-xs'>ACTIVE</SelectItem>
+                    <SelectItem value="INACTIVE" className='text-xs'>INACTIVE</SelectItem>
                 </SelectGroup>
             </SelectContent>
 

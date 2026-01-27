@@ -12,7 +12,7 @@ import FilterViewToolkit from "./filter-view-toolkit";
 import SettingsIcon from "../icons/settings";
 
 export const toolbarButton =
-    "rounded-sm h-6 text-xs leading-5";
+    "rounded-sm text-xs leading-5";
 
 const colors = {
     exportBtn: {
@@ -55,7 +55,7 @@ export default function AllEmployeeSection() {
                         </div>
 
                         {/* Right action */}
-                        <Button onClick={handleManageEmployee} className={cn(toolbarButton, "px-3 flex items-center gap-2")}>
+                        <Button onClick={handleManageEmployee} className={cn(toolbarButton, "px-3 flex items-center gap-2 font-medium")}>
                             Manage Employee
                             {/* <Settings size={3.5} /> */}
                             <SettingsIcon className="size-3.5" />

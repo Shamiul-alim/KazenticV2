@@ -10,7 +10,7 @@ type FilterViewToolkitProps = {
 }
 
 const toolbarButton =
-    "rounded-sm h-6 text-xs"
+    "rounded-sm text-xs"
 
 export default function FilterViewToolkit({ viewMode, setViewMode }: FilterViewToolkitProps) {
     return (
@@ -23,11 +23,11 @@ export default function FilterViewToolkit({ viewMode, setViewMode }: FilterViewT
 
             {/* View toggle */}
             <ToggleGroup variant="outline" type="single" value={viewMode} onValueChange={(status) => setViewMode(status as "grid" | "list")} className="gap-0">
-                <ToggleGroupItem value="grid" className="rounded-r-none border-r-0 data-[state=on]:bg-primary-dashboard/10 data-[state=on]:text-primary-dashboard p-0 h-6">
+                <ToggleGroupItem value="grid" className="rounded-r-none border-r-0 data-[state=on]:bg-primary-dashboard/10 data-[state=on]:text-primary-dashboard p-0 h-8">
                     {/* <LayoutGrid size={6} /> */}
                     <GridIcon className='size-4' />
                 </ToggleGroupItem>
-                <ToggleGroupItem value="list" className="rounded-l-none data-[state=on]:bg-primary-dashboard/10 data-[state=on]:text-primary-dashboard p-0 h-6">
+                <ToggleGroupItem value="list" className="rounded-l-none data-[state=on]:bg-primary-dashboard/10 data-[state=on]:text-primary-dashboard p-0 h-8">
                     <List size={4} />
                 </ToggleGroupItem>
             </ToggleGroup>

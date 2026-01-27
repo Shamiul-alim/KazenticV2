@@ -19,36 +19,36 @@ export function InviteEmployeeDialog({
 }) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-lg rounded-2xl p-6">
+            <DialogContent className="max-w-lg rounded-2xl p-6 text-[#191F38] text-sm">
                 {/* Header */}
                 <DialogHeader className="flex flex-row items-center justify-between">
-                    <DialogTitle className="text-xl font-semibold">
+                    <DialogTitle className="font-semibold">
                         Invite Employee to the Workspace
                     </DialogTitle>
                 </DialogHeader>
 
                 {/* Form */}
-                <div className="mt-6 space-y-6">
+                <div className="mt-6 space-y-6 text-sm">
                     {/* Employee Name */}
-                    <div className="space-y-2">
-                        <Label className="text-base font-medium">
+                    <div className="flex flex-col gap-2">
+                        <Label className="font-medium text-sm">
                             Employee Name
                         </Label>
                         <Input
                             placeholder="e.g. Jain Smith"
-                            className="h-12 rounded-xl"
+                            className="rounded-md"
                         />
                     </div>
 
                     {/* Email */}
-                    <div className="space-y-2">
-                        <Label className="text-base font-medium">
+                    <div className="flex flex-col gap-2">
+                        <Label className="font-medium text-sm">
                             Email Address
                         </Label>
                         <Input
                             type="email"
                             placeholder="e.g. jainsmith@kazentic.com"
-                            className="h-12 rounded-xl"
+                            className="rounded-md"
                         />
                     </div>
                 </div>
@@ -57,13 +57,13 @@ export function InviteEmployeeDialog({
                 <div className="mt-10 flex justify-end gap-4">
                     <Button
                         variant="outline"
-                        className="h-12 rounded-xl px-8"
+                        className="h-8 rounded-md px-8 text-[#4157FE] text-xs font-medium"
                         onClick={() => onOpenChange(false)}
                     >
                         Cancel
                     </Button>
 
-                    <Button className="h-12 rounded-xl px-8">
+                    <Button className="h-8 rounded-md px-8 bg-[#4157FE] text-white text-xs font-medium">
                         Invite
                     </Button>
                 </div>

@@ -21,6 +21,11 @@ import {
 import { INVITE_MEMBERS } from "@/data/employees-data"
 import { InviteStatusPill } from "./invite-status-pill"
 
+const colors = {
+    bg: "#F2F9FE",
+    text: "#191F38",
+}
+
 export function InviteMembersTable() {
     return (
         <div className="rounded-lg border overflow-hidden">
@@ -34,15 +39,15 @@ export function InviteMembersTable() {
                     <col className="w-50" />
                 </colgroup>
 
-                <TableHeader className="bg-muted/40">
+                <TableHeader className="bg-[#F2F9FE] text-[#191F38]">
                     <TableRow>
                         {["Sl. No.", "Name", "Email", "Status", "Action"].map((h) => (
-                            <TableHead key={h}>
+                            <TableHead key={h} className="text-[11px]">
                                 <div className="flex items-center gap-1">
                                     {h}
                                     {
                                         h !== "Sl. No." && (
-                                            <ChevronsUpDown className="h-4 w-4 text-muted-foreground" />
+                                            <ChevronsUpDown className="h-4 w-4 text-[#191F38]" />
                                         )
                                     }
                                 </div>
@@ -53,7 +58,7 @@ export function InviteMembersTable() {
 
                 <TableBody>
                     {INVITE_MEMBERS.map((row, index) => (
-                        <TableRow key={row.id}>
+                        <TableRow key={row.id} className="text-xs text-[#191F38]">
                             {/* Sl no */}
                             <TableCell>{index + 1}.</TableCell>
 
@@ -69,7 +74,7 @@ export function InviteMembersTable() {
                             <TableCell>
                                 <div className="flex items-center gap-2">
                                     {row.email}
-                                    <Copy className="h-4 w-4 cursor-pointer text-muted-foreground" />
+                                    <Copy className="h-4 w-4 cursor-pointer text-[#191F38]" />
                                 </div>
                             </TableCell>
 
@@ -82,19 +87,19 @@ export function InviteMembersTable() {
                             <TableCell>
                                 <div className="flex gap-2">
                                     <Button size="icon" variant="outline" className="h-8 w-8">
-                                        <Send className="h-4 w-4" />
+                                        <Send className="h-4 w-4 text-[#191F38]" />
                                     </Button>
 
                                     <Button size="icon" variant="outline" className="h-8 w-8">
-                                        <Copy className="h-4 w-4" />
+                                        <Copy className="h-4 w-4 text-[#191F38]" />
                                     </Button>
 
                                     <Button
                                         size="icon"
                                         variant="outline"
-                                        className="h-8 w-8 text-red-600 border-red-500"
+                                        className="h-8 w-8 text-red-600 border-[#EBEBEB]"
                                     >
-                                        <Trash className="h-4 w-4" />
+                                        <Trash className="h-4 w-4 text-red-600" />
                                     </Button>
                                 </div>
                             </TableCell>
