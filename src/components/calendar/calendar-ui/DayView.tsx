@@ -67,6 +67,9 @@ export default function DayView({ onEventClick, currentDate }: DayViewProps) {
             {/* All Day Section */}
             <AllDaySection onEventClick={onEventClick} currentDate={currentDate} />
 
+            {/* Small gap where start 7 AM */}
+            <div className="h-4 w-full bg-white border-b border-gray-100" />
+
             {/* Main Grid Area */}
             <div className="flex w-full">
                 {/* Time Column Sidebar */}
@@ -74,11 +77,11 @@ export default function DayView({ onEventClick, currentDate }: DayViewProps) {
 
                 <div
                     className="flex-1 relative bg-white cursor-crosshair"
-                    style={{ minHeight: `${hours.length * 96}px` }}
+                    style={{ minHeight: `${(hours.length - 1) * 96}px` }}
                     onClick={handleGridClick}
                 >
                     {/* Grid Lines (Background) */}
-                    {hours.map((_, i) => (
+                    {hours.slice(0, hours.length - 1).map((_, i) => (
                         <div key={i} className="h-24 border-b border-gray-100 w-full box-border" />
                     ))}
 
