@@ -1,0 +1,115 @@
+// data/employees.ts
+export type Employee = {
+    id: number
+    name: string
+    email: string
+    phone: string
+    designation: string
+    position: "Full-Time" | "Part-Time" | "Contract"
+    joiningDate: string
+    status: "ACTIVE" | "INACTIVE"
+}
+
+export const EMPLOYEE_DATA: Employee[] = [
+    {
+        id: 1,
+        name: "Pat Cummins",
+        email: "email@gmail.com",
+        phone: "+8802634585696",
+        designation: "Backend Developer",
+        position: "Full-Time",
+        joiningDate: "11/11/2025",
+        status: "ACTIVE",
+    },
+    {
+        id: 2,
+        name: "Pat Cummins",
+        email: "email@gmail.com",
+        phone: "+8802634585696",
+        designation: "Designer",
+        position: "Full-Time",
+        joiningDate: "11/11/2025",
+        status: "ACTIVE",
+    },
+    {
+        id: 3,
+        name: "Pat Cummins",
+        email: "email@gmail.com",
+        phone: "+8802634585696",
+        designation: "Project Manager",
+        position: "Full-Time",
+        joiningDate: "11/11/2025",
+        status: "ACTIVE",
+    },
+    {
+        id: 4,
+        name: "Pat Cummins",
+        email: "email@gmail.com",
+        phone: "+8802634585696",
+        designation: "Frontend Developer",
+        position: "Full-Time",
+        joiningDate: "11/11/2025",
+        status: "ACTIVE",
+    },
+    {
+        id: 5,
+        name: "Pat Cummins",
+        email: "email@gmail.com",
+        phone: "+8802634585696",
+        designation: "DevOps Engineer",
+        position: "Full-Time",
+        joiningDate: "11/11/2025",
+        status: "ACTIVE",
+    },
+    ...Array.from({ length: 15 }).map((_, i) => ({
+        id: i + 6,
+        name: "Pat Cummins",
+        email: "email@gmail.com",
+        phone: "+8802634585696",
+        designation: "Developer",
+        position: "Full-Time" as const,
+        joiningDate: "11/11/2025",
+        status: (i % 2 === 0 ? "INACTIVE" : "ACTIVE") as "ACTIVE" | "INACTIVE",
+    })),
+]
+
+export const ASSIGNED_WORK = Array.from({ length: 5 }).map((_, i) => ({
+    id: i,
+    title: "V3 Reported Design Update",
+    project: "Kazentic",
+    taskId: "kzt-123",
+    billable: true,
+    spent: "4h 20m",
+    total: "5h",
+    running: i === 4,
+}))
+
+export type Attendance = {
+    signIn: string
+    signOut: string
+    duration: string
+    break: string
+}
+
+export const ATTENDANCE_DATA: Attendance[] = Array.from({ length: 5 }).map(
+    () => ({
+        signIn: "11:59 AM",
+        signOut: "02:59 PM",
+        duration: "05H : 00M",
+        break: "03H : 00M",
+    })
+)
+
+export type Invite = {
+    id: number
+    name: string
+    email: string
+    status: "INVITED" | "NOT_INVITED"
+}
+
+export const INVITE_MEMBERS: Invite[] = Array.from({ length: 22 }).map((_, i) => ({
+    id: i + 1,
+    name: "Pat Cummins",
+    email: "email@gmail.com",
+    status: i < 11 ? "INVITED" : "NOT_INVITED",
+}))
