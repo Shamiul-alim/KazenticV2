@@ -2,15 +2,19 @@ import { SPRINT_REPORTING_DATA } from '@/data/sprint-data'
 import React from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { LegendItem } from './chart-legend-item'
+import { ChartConfig, ChartContainer } from '../ui/chart'
 
 export default function PriorityBreakdownChart() {
     return (
         <div className="h-105 pt-6">
-            <ResponsiveContainer width="95%" height="90%">
-                <LineChart data={SPRINT_REPORTING_DATA} margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
+            <ResponsiveContainer width="100%" height="90%" aspect={1.618} maxHeight={500}>
+                <LineChart
+                    data={SPRINT_REPORTING_DATA}
+                    margin={{ top: 5, right: 10, left: 30, bottom: 5 }}
+                >
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="date" axisLine={false} tickLine={false} />
-                    <YAxis tickFormatter={(v) => `${v / 1000}k`} axisLine={false} tickLine={false} range={[0, 4000]} />
+                    <XAxis tickMargin={15} interval={0} dataKey="date" axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
+                    <YAxis width={20} tickMargin={15} tickFormatter={(v) => `${v / 1000}k`} tick={{ fontSize: 12 }} axisLine={false} tickLine={false} range={[0, 4000]} />
                     <Tooltip />
 
                     <Line
