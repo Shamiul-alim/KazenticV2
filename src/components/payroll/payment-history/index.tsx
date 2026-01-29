@@ -1,13 +1,13 @@
 "use client"
 
 import React from "react"
-import { Filter, ChevronDown, Plus, Calendar, ArrowLeft } from "lucide-react"
+import { Filter, ChevronDown, Plus, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { UserInfoCard } from "./user-info-card"
 import { BankInfoCard } from "./bank-info-card"
 import { PaymentSummary } from "./payment-summary"
 import { PaymentHistoryTable } from "./payment-history-table"
-import { CreatePayslip } from "./CreatePayslip"
+import { useRouter } from "next/navigation"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,30 +18,11 @@ import CSVIcon from "@/components/guest/CSVmodule"
 import PDFIcon from "@/components/guest/PDFmodule"
 import ZIPIcon from "@/components/guest/ZIPmodule"
 
-
 export default function PaymentHistory() {
-    const [view, setView] = React.useState<"list" | "create">("list")
-
-    if (view === "create") {
-        return (
-            <div className="flex flex-col gap-6 w-full">
-                <div>
-                    <Button
-                        variant="ghost"
-                        onClick={() => setView("list")}
-                        className="flex items-center gap-2 !text-[#4157FE]"
-                    >
-                        <ArrowLeft className="h-4 w-4" />
-                        Back to Pay Slip
-                    </Button>
-                </div>
-                <CreatePayslip onBack={() => setView("list")} />
-            </div>
-        )
-    }
+    const router = useRouter()
 
     return (
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-6 w-full bg-white p-4 sm:p-6 lg:p-8 min-h-screen">
             {/* Top Section: User and Bank Info */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <UserInfoCard />
@@ -81,7 +62,7 @@ export default function PaymentHistory() {
                             <Calendar className="h-4 w-4" /> <span className="hidden sm:inline">Select Date Range</span><span className="sm:hidden">Date</span> <ChevronDown className="h-4 w-4" />
                         </Button>
                         <Button
-                            onClick={() => setView("create")}
+                            onClick={() => router.push("/payroll/create-payroll")}
                             className="h-10 gap-2 bg-[#4157FE] text-white rounded-xl hover:bg-[#3249e0] text-sm px-4 font-semibold shadow-none flex items-center w-full sm:w-auto justify-center"
                         >
                             <Plus className="h-4 w-4" /> Create New
@@ -89,8 +70,12 @@ export default function PaymentHistory() {
                     </div>
                 </div>
 
-                <PaymentSummary />
-                <PaymentHistoryTable />
+                <div className="min-w-0">
+                    <PaymentSummary />
+                </div>
+                <div className="min-w-0">
+                    <PaymentHistoryTable />
+                </div>
             </div>
         </div>
     )
