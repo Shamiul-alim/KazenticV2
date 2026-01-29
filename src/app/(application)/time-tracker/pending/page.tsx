@@ -1,5 +1,5 @@
 "use client";
-import PendingDetailView from "@/components/time-tracker/Pending";
+import PendingDetailView from "@/components/time-tracker/pending/Pending";
 import { useState } from "react";
 
 export default function page() {

@@ -40,7 +40,7 @@ export default function AllTimeLogs() {
       <td
         className={`relative px-3 py-2 text-center border-l border-[#EBEBEB] ${hour === "-" ? "bg-[#F3F4F6]" : "bg-white"}`}
       >
-        <div className="absolute top-0 left-0 w-full h-[5px] bg-[#E4E4E4]">
+        <div className="absolute top-0 left-0 w-full h-1.5 bg-[#E4E4E4]">
           {numericHour !== null && numericHour > 0 && (
             <div
               className={`h-full ${barColor} transition-all duration-300`}
@@ -85,7 +85,7 @@ export default function AllTimeLogs() {
         <table className="w-full text-left border-collapse text-[11px]">
           <thead>
             <tr className="bg-[#F2F9FE] border-b text-[#191F38] font-semibold">
-              <th className="px-3 py-2 w-[500px]">People</th>
+              <th className="px-3 py-2 w-125">People</th>
               {days.map((day) => (
                 <th
                   key={day}
