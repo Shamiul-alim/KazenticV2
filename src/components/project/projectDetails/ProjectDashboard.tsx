@@ -15,28 +15,7 @@ import {
   LineChart,
   Line,
 } from "recharts";
-import {
-  ChevronDown,
-  ChevronRight,
-  MoreHorizontal,
-  Settings,
-  Maximize2,
-  RotateCcw,
-  Filter,
-  Plus,
-  Pencil,
-  Paperclip,
-  Send,
-  Clock,
-  Hourglass,
-  Calendar,
-  Lock,
-  PencilLine,
-  Layers,
-  ChevronsUpDown,
-  Flag,
-  Star,
-} from "lucide-react";
+import { ChevronDown, Plus, ChevronsUpDown, Flag } from "lucide-react";
 
 import dashboardData from "@/data/projectDashboard.json";
 import { Button } from "@/components/ui/Button";
