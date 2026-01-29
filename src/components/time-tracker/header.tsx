@@ -41,7 +41,7 @@ export default function Header() {
                   {tab.label}
 
                   {isActive && (
-                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#4F46E5]" />
+                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#4F46E5]" />
                   )}
                 </button>
               );

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import mockData from "@/data/tracker-details.json";
 import { Button } from "../ui/Button";
-import RequestForm from "./RequestForm";
+import RequestForm from "./floating-component/RequestForm";
 
 export default function MyTimeLogs() {
   const [viewMode, setViewMode] = useState<"entries" | "sheet">("sheet");
@@ -45,7 +45,7 @@ export default function MyTimeLogs() {
         className={`relative px-3 py-2 text-center border-l border-[#EBEBEB] ${hour === "-" ? "bg-[#F3F4F6]" : "bg-white"} ${isTotal ? "bg-[#F8FAFC] font-bold" : ""}`}
       >
         {/* TOP PROGRESS BAR */}
-        <div className="absolute top-0 left-0 w-full h-[5px] bg-[#E4E4E4]">
+        <div className="absolute top-0 left-0 w-full h-1.25 bg-[#E4E4E4]">
           {(numericHour !== null || isTotal) && (
             <div
               className={`h-full ${barColor} transition-all duration-300`}
@@ -291,7 +291,7 @@ export default function MyTimeLogs() {
           <table className="w-full text-left border-collapse text-[11px]">
             <thead>
               <tr className="bg-[#F2F9FE] border-b text-[#191F38] font-semibold">
-                <th className="px-3 py-2 w-[400px]">Task</th>
+                <th className="px-3 py-2 w-100">Task</th>
                 {days.map((day) => (
                   <th
                     key={day}
@@ -365,7 +365,7 @@ export default function MyTimeLogs() {
                         <tr key={idx} className="bg-[#F2F9FE] border-b ">
                           <td className="pl-8">
                             <div className="flex items-center  gap-2">
-                              <div className="flex items-center bg-[#DBE9FF] rounded-sm w-[139px] h-[26px] px-2 text-xs font-medium text-[#191F38]">
+                              <div className="flex items-center bg-[#DBE9FF] rounded-sm w-34.75 h-6.5 px-2 text-xs font-medium text-[#191F38]">
                                 <div className="flex items-center gap-1.5">
                                   <Image
                                     src="/assets/clock-blue.svg"

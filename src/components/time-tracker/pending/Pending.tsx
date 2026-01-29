@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Button } from "../ui/Button";
+import { Button } from "../../ui/Button";
 import { ChevronLeft, CheckCircle2, RotateCcw } from "lucide-react";
 import mockData from "@/data/tracker-details.json";
 import { useRouter } from "next/navigation";

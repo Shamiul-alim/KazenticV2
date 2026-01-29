@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Button } from "../ui/Button";
+import { Button } from "../../ui/Button";
 import { useRouter } from "next/navigation";
 
 interface RequestFormProps {
@@ -37,10 +37,10 @@ export default function RequestForm({ isOpen, onClose }: RequestFormProps) {
           {/* Time Entry Card */}
           <div
             onClick={() => router.push("/time-tracker/pending")}
-            className="group  border border-[#EBEBEB] rounded-[8px] mt-2 px-2 py-3.5 flex items-center gap-4 relative overflow-hidden hover:border-[#4157FE] hover:bg-[#F8FAFF] cursor-pointer"
+            className="group  border border-[#EBEBEB] rounded-xl mt-2 px-2 py-3.5 flex items-center gap-4 relative overflow-hidden hover:border-[#4157FE] hover:bg-[#F8FAFF] cursor-pointer"
           >
             {/* Blue Left Accent */}
-            <div className="absolute left-2 top-2 bottom-0 w-[2px] h-13 bg-[#4157FE]" />
+            <div className="absolute left-2 top-2 bottom-0 w-0.5 h-13 bg-[#4157FE]" />
 
             <div className="pl-3">
               <div className="text-[#191F38] text-[14px] font-medium leading-5 tracking-tight">
