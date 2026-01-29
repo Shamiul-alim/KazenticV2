@@ -15,8 +15,8 @@ export default function Payroll() {
 
     if (view === "history") {
         return (
-            <div className="min-h-screen w-full bg-[#f8f9fa] p-4 md:p-6 lg:p-8">
-                <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6">
+            <div className="min-h-screen bg-[#f8f9fa] p-4 sm:p-6 lg:p-8">
+                <div className="mx-auto flex max-w-[1200px] flex-col gap-4 sm:gap-6 lg:gap-8">
                     <div>
                         <Button
                             variant="ghost"
@@ -34,17 +34,22 @@ export default function Payroll() {
     }
 
     return (
-        <div className="min-h-screen w-full bg-[#f8f9fa] p-4 md:p-6 lg:p-8">
-            <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6">
+        <div className="min-h-screen bg-[#f8f9fa] p-4 sm:p-6 lg:p-8">
+            <div className="mx-auto flex max-w-[1200px] flex-col gap-4 sm:gap-6 lg:gap-8">
                 <PayrollAlert />
 
-                <PayrollStats />
+                <div className="min-w-0">
+                    <PayrollStats />
+                </div>
 
-                <PayrollChart />
+                <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8 min-w-0">
+                    <PayrollChart />
+                    <PayrollCharts />
+                </div>
 
-                <PayrollCharts />
-
-                <EmployeePayrollTable onRowClick={() => setView("history")} />
+                <div className="min-w-0">
+                    <EmployeePayrollTable onRowClick={() => setView("history")} />
+                </div>
             </div>
         </div>
     )

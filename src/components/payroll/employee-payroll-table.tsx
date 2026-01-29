@@ -8,6 +8,9 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/employee/ui/dropdown-menu"
+import CSVIcon from "@/components/guest/CSVmodule"
+import PDFIcon from "@/components/guest/PDFmodule"
+import ZIPIcon from "@/components/guest/ZIPmodule"
 
 const PositionBadge = ({ position }: { position: string }) => {
     let classes = ""
@@ -93,14 +96,32 @@ export function EmployeePayrollTable({ onRowClick }: { onRowClick?: () => void }
         <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Employee Payroll (4)</h2>
-                <div className="flex items-center gap-3">
-                    <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
-                        Export
-                        <ChevronDown className="h-4 w-4 text-gray-500" />
-                    </button>
-                    <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
+                <div className="flex items-center gap-2 sm:gap-3">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-2 py-2 sm:px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 outline-none">
+                                <span className="hidden sm:inline">Export</span>
+                                <ChevronDown className="h-4 w-4 text-gray-500" />
+                            </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-[160px] p-1.5 rounded-2xl border-gray-100 shadow-xl mt-1">
+                            <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl text-gray-500 hover:text-blue-600 hover:bg-blue-50/50 cursor-pointer group">
+                                <CSVIcon className="size-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                                <span className="text-sm font-semibold">CSV</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl text-gray-500 hover:text-red-600 hover:bg-red-50/50 cursor-pointer group">
+                                <PDFIcon className="size-5 text-gray-400 group-hover:text-red-600 transition-colors" />
+                                <span className="text-sm font-semibold">PDF</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl text-gray-500 hover:text-orange-600 hover:bg-orange-50/50 cursor-pointer group">
+                                <ZIPIcon className="size-5 text-gray-400 group-hover:text-orange-600 transition-colors" />
+                                <span className="text-sm font-semibold">ZIP</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-2 py-2 sm:px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
                         <Filter className="h-4 w-4 text-gray-500" />
-                        Filter
+                        <span className="hidden sm:inline">Filter</span>
                     </button>
                 </div>
             </div>

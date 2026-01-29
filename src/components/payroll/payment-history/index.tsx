@@ -8,6 +8,15 @@ import { BankInfoCard } from "./bank-info-card"
 import { PaymentSummary } from "./payment-summary"
 import { PaymentHistoryTable } from "./payment-history-table"
 import { CreatePayslip } from "./CreatePayslip"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/employee/ui/dropdown-menu"
+import CSVIcon from "@/components/guest/CSVmodule"
+import PDFIcon from "@/components/guest/PDFmodule"
+import ZIPIcon from "@/components/guest/ZIPmodule"
 
 
 export default function PaymentHistory() {
@@ -15,7 +24,7 @@ export default function PaymentHistory() {
 
     if (view === "create") {
         return (
-            <div className="flex flex-col gap-6 p-6 bg-[#FCFCFD] min-h-screen">
+            <div className="flex flex-col gap-6 w-full">
                 <div>
                     <Button
                         variant="ghost"
@@ -32,7 +41,7 @@ export default function PaymentHistory() {
     }
 
     return (
-        <div className="flex flex-col gap-6 p-6 bg-[#FCFCFD] min-h-screen">
+        <div className="flex flex-col gap-6 w-full">
             {/* Top Section: User and Bank Info */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <UserInfoCard />
@@ -44,9 +53,27 @@ export default function PaymentHistory() {
                 <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <h2 className="text-xl font-bold text-[#191F38]">Pay Slip</h2>
                     <div className="flex flex-wrap items-center gap-3">
-                        <Button variant="outline" className="h-10 gap-2 border border-[#EBEBEB] text-[#191F38] rounded-xl hover:bg-gray-50 text-sm px-4 flex items-center bg-white shadow-none">
-                            Export <ChevronDown className="h-4 w-4 text-[#717680]" />
-                        </Button>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" className="h-10 gap-2 border border-[#EBEBEB] text-[#191F38] rounded-xl hover:bg-gray-50 text-sm px-4 flex items-center bg-white shadow-none">
+                                    Export <ChevronDown className="h-4 w-4 text-[#717680]" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-[160px] p-1.5 rounded-2xl border-gray-100 shadow-xl mt-1">
+                                <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl text-gray-500 hover:text-blue-600 hover:bg-blue-50/50 cursor-pointer group">
+                                    <CSVIcon className="size-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                                    <span className="text-sm font-semibold">CSV</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl text-gray-500 hover:text-red-600 hover:bg-red-50/50 cursor-pointer group">
+                                    <PDFIcon className="size-5 text-gray-400 group-hover:text-red-600 transition-colors" />
+                                    <span className="text-sm font-semibold">PDF</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl text-gray-500 hover:text-orange-600 hover:bg-orange-50/50 cursor-pointer group">
+                                    <ZIPIcon className="size-5 text-gray-400 group-hover:text-orange-600 transition-colors" />
+                                    <span className="text-sm font-semibold">ZIP</span>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                         <Button variant="outline" className="h-10 gap-2 border border-[#EBEBEB] text-[#717680] rounded-xl hover:bg-gray-50 text-sm px-4 flex items-center bg-white shadow-none">
                             <Filter className="h-4 w-4" /> Filter
                         </Button>

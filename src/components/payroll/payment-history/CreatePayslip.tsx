@@ -69,24 +69,24 @@ export function CreatePayslip({ onBack }: CreatePayslipProps) {
     return (
         <div className="flex flex-col gap-8">
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {stats.map((stat, index) => (
                     <StatCard key={index} {...stat} />
                 ))}
             </div>
 
             {/* Pay Slip Form */}
-            <div className="rounded-3xl border border-[#EBEBEB] bg-white p-8 shadow-sm">
+            <div className="rounded-3xl border border-[#EBEBEB] bg-white p-4 sm:p-8 shadow-sm">
                 <h3 className="mb-8 text-xl font-bold text-[#191F38]">Pay Slip</h3>
 
-                <div className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="mb-8 flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-center lg:justify-between">
                     <div className="w-full max-w-md">
                         <Input
                             placeholder="Enter Pay Slip Title"
                             className="h-12 rounded-2xl border-[#EBEBEB] bg-[#FDFDFD] px-6 text-sm text-[#717680] shadow-none"
                         />
                     </div>
-                    <div className="w-full sm:w-[220px]">
+                    <div className="w-full lg:w-[220px]">
                         <Select>
                             <SelectTrigger className="h-12 rounded-xl border-[#EBEBEB] bg-[#FDFDFD] px-4 text-sm">
                                 <SelectValue placeholder="Select Status" />
@@ -165,13 +165,12 @@ export function CreatePayslip({ onBack }: CreatePayslipProps) {
                 </div>
 
                 {/* Footer Section */}
-                <div className="mt-16 flex items-center justify-between">
-                    <p className="text-2xl font-bold !text-[#4157FE]">Total Amount: 0</p>
-                    <Button className="h-14 flex items-center gap-2 bg-[#4157FE] text-white rounded-2xl hover:bg-[#3249e0] px-8 font-bold shadow-sm transition-all whitespace-nowrap">
+                <div className="mt-8 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <p className="text-xl sm:text-2xl font-bold !text-[#4157FE]">Total Amount: 0</p>
+                    <Button className="h-12 sm:h-14 w-full sm:w-auto flex items-center justify-center gap-2 bg-[#4157FE] text-white rounded-2xl hover:bg-[#3249e0] px-8 font-bold shadow-sm transition-all whitespace-nowrap">
                         <FileText className="h-5 w-5" />
                         Generate Payslip
                     </Button>
-
                 </div>
             </div>
         </div>

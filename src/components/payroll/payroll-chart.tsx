@@ -37,7 +37,7 @@ export function PayrollChart() {
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={payrollTrendData}
-                        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+                        margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
                     >
                         <CartesianGrid
                             strokeDasharray="3 3"
@@ -48,16 +48,18 @@ export function PayrollChart() {
                             dataKey="name"
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: "#6B7280", fontSize: 12 }}
+                            tick={{ fill: "#6B7280", fontSize: 10 }}
                             dy={10}
+                            interval={"preserveStartEnd"}
                         />
                         <YAxis
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: "#6B7280", fontSize: 12 }}
-                            tickFormatter={(value) => `${value}`}
-                            domain={[75000, 375000]}
-                            ticks={[75000, 150000, 225000, 300000]}
+                            tick={{ fill: "#6B7280", fontSize: 10 }}
+                            tickFormatter={(value) => `${value / 1000}k`}
+                            domain={[0, 400000]}
+                            ticks={[100000, 200000, 300000, 400000]}
+                            width={40}
                         />
                         <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
                         <Line
