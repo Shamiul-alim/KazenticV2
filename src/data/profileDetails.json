@@ -1,0 +1,222 @@
+{
+    "header": {
+        "name": "John Doe",
+        "avatarInitials": "JD",
+        "coverPattern": "wavy-blue"
+    },
+    "profile": {
+        "personal": {
+            "description": "Lorem ipsum dolor sit amet consectetur. Ut amet."
+        },
+        "contact": [
+            {
+                "label": "Email",
+                "value": "mail@carbonstream.com",
+                "icon": "sms.svg"
+            },
+            {
+                "label": "Recovery email",
+                "value": "mail@carbonstream.com",
+                "icon": "sms.svg"
+            },
+            {
+                "label": "Phone",
+                "value": "+99234545735",
+                "icon": "call.svg"
+            },
+            {
+                "label": "Gender",
+                "value": "Male",
+                "icon": "user-tag.svg"
+            },
+            {
+                "label": "Date of Birth",
+                "value": "English",
+                "icon": "calendar-blue.svg"
+            },
+            {
+                "label": "Language",
+                "value": "English",
+                "icon": "language-circle.svg"
+            },
+            {
+                "label": "Address",
+                "value": "2972 Westheimer Rd. Santa Ana, Illinois 85486",
+                "icon": "location.svg"
+            },
+            {
+                "label": "About",
+                "value": "Lorem ipsum dolor sit amet consectetur.",
+                "icon": "information.svg"
+            }
+        ],
+        "extra": {
+            "education": {
+                "label": "Education",
+                "value": "Bsc. in CSE",
+                "icon": "teacher.svg"
+            },
+            "emergency": {
+                "label": "Emergency Contact",
+                "value": "+99234545735",
+                "icon": "call.svg"
+            },
+            "marital": {
+                "label": "Marital Status",
+                "value": "Male",
+                "icon": "user-tag.svg"
+            },
+            "skills": [
+                "Tag 1",
+                "Tag 2",
+                "Tag 3"
+            ]
+        },
+        "bank": [
+            {
+                "label": "Bank Name",
+                "value": "City Bank PLC",
+                "icon": "bank.svg"
+            },
+            {
+                "label": "Branch Name",
+                "value": "Bashundhara R/A",
+                "icon": "bank.svg"
+            },
+            {
+                "label": "Account Holder name",
+                "value": "John Doe",
+                "icon": "user-tag.svg"
+            },
+            {
+                "label": "Account Number",
+                "value": "99234545735",
+                "icon": "hashtag.svg"
+            },
+            {
+                "label": "Routing Number",
+                "value": "99234545735",
+                "icon": "hashtag.svg"
+            },
+            {
+                "label": "SWIFT Code",
+                "value": "99234545735",
+                "icon": "hashtag.svg"
+            }
+        ]
+    },
+    "socials": {
+        "personal": {
+            "description": "Lorem ipsum dolor sit amet consectetur. Ut amet."
+        },
+        "contact": [
+            {
+                "platform": "Facebook",
+                "handle": "@johndoe",
+                "icon": "facebook.svg"
+            },
+            {
+                "platform": "LinkedIn",
+                "handle": "@johndoe",
+                "icon": "linkedin.svg"
+            },
+            {
+                "platform": "X",
+                "handle": "@johndoe",
+                "icon": "twitter.svg"
+            },
+            {
+                "platform": "GitHub",
+                "handle": "@johndoe",
+                "icon": "github.svg"
+            },
+            {
+                "platform": "Instagram",
+                "handle": "@johndoe",
+                "icon": "instagram.svg"
+            }
+        ]
+    },
+    "security": {
+        "personal": {
+            "description": "Lorem ipsum dolor sit amet consectetur. Ut amet."
+        },
+        "authenticator": {
+            "title": "Authenticator App",
+            "desc": "Enhance your account security by using an authenticator app to generate a time-based...",
+            "status": "Not registered",
+            "enabled": false
+        },
+        "emailVer": {
+            "title": "Email Verification",
+            "desc": "Enable email verification to receive a verification code in your inbox each time you log in...",
+            "status": "Disabled",
+            "enabled": true
+        },
+        "smsVer": {
+            "title": "SMS Verification",
+            "desc": "Enable SMS verification to receive a one-time passcode via text message during login...",
+            "status": "Disabled",
+            "enabled": true
+        },
+        "password": {
+            "password": "********",
+            "lastChanged": "Aug 1, 2025"
+        }
+    },
+    "notifications": {
+        "personal": {
+            "description": "Lorem ipsum dolor sit amet consectetur. Ut amet."
+        },
+        "contact": [
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            },
+            {
+                "type": "TASK_STARTED",
+                "inApp": true,
+                "telegram": true,
+                "email": true
+            }
+        ]
+    }
+}

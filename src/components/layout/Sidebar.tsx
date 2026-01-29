@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Sidebar() {
   return (
-    <div className=" w-9.5 h-full  px-2 py-4 hidden md:flex  flex-col items-center bg-[#111953] text-[#FFFFFF] z-10 pb-10">
+    <div className=" w-9.5 h-full  px-2 py-4 hidden md:flex   flex-col items-center bg-[#111953] text-[#FFFFFF] z-10 pb-10">
       {/* Sidebar Buttons */}
       <div className="space-y-3 flex flex-col flex-1 items-center">
         {/* Section C */}
