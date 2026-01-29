@@ -7,7 +7,7 @@ type StatCardProps = {
 
 export function StatCard({ label, total }: StatCardProps) {
     return (
-        <Card>
+        <Card className="bg-[#FDFDFD]">
             <CardHeader>
                 <CardTitle className="text-sm font-semibold text-[#191F38]">
                     {label}

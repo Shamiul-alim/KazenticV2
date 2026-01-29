@@ -10,14 +10,16 @@ const variantClasses = {
 }
 
 export function Section({
+    className,
     title,
     children,
 }: {
+    className?: string
     title: string
     children: React.ReactNode
 }) {
     return (
-        <div className="space-y-1">
+        <div className={cn("space-y-1", className)}>
             <p className="text-[11px] font-medium text-[#9BA2AD] px-4 mb-2">
                 {title}
             </p>
@@ -31,12 +33,14 @@ export function SectionRow({
     value,
     icon,
     isSwitch = false,
+    isInput = false,
     variant = "default",
 }: {
     label: string | React.ReactNode
-    value?: string
+    value?: string | React.ReactNode
     icon?: React.ReactNode
     isSwitch?: boolean
+    isInput?: boolean
     variant?: keyof typeof variantClasses
 }) {
     return (
@@ -45,7 +49,7 @@ export function SectionRow({
                 {icon}
                 {label}
             </span>
-            {isSwitch ? <Switch /> : (value && <span className="text-[11px] text-[#9BA2AD] flex items-center gap-2">
+            {isSwitch ? <Switch /> : isInput ? value : (value && <span className="text-[11px] text-[#9BA2AD] flex items-center gap-2">
                 {value}
                 <ChevronRight className="size-4 text-[#697588]" />
             </span>

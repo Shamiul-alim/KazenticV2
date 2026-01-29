@@ -65,19 +65,39 @@ export default function SprintReportingTab() {
                     <StatCard label="Completed" total={10} />
 
                     {/* Summary */}
-                    <CardContainer className="col-span-2" title="Priority Breakdown">
+                    <CardContainer
+                        className="col-span-2"
+                        title="Priority Breakdown"
+                        chartTitle="Line Chart"
+                        chart={true}
+                    >
                         <PriorityBreakdownChart />
                     </CardContainer>
 
-                    <CardContainer className="col-span-2" title="Tasks by Assignee">
+                    <CardContainer
+                        className="col-span-2"
+                        title="Tasks by Assignee"
+                        chartTitle="Pie Chart"
+                        chart={true}
+                    >
                         <TasksByAssigneeChart />
                     </CardContainer>
 
-                    <CardContainer className="col-span-2" title="Total time in Status">
+                    <CardContainer
+                        className="col-span-2"
+                        title="Total time in Status"
+                        chartTitle="Bar Chart"
+                        chart={true}
+                    >
                         <TotalTimeInStatusChart />
                     </CardContainer>
 
-                    <CardContainer className="col-span-2" title="Sprint Burn down">
+                    <CardContainer
+                        className="col-span-2"
+                        title="Sprint Burn down"
+                        chartTitle="Sprint Burn down"
+                        chart={true}
+                    >
                         <SprintBurnDownChart />
                     </CardContainer>
 
