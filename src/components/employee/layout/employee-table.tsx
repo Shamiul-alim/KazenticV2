@@ -19,18 +19,18 @@ import StatusSelect from "../custom/status-select"
 
 export function EmployeeTable() {
     return (
-        <div className="rounded-lg border w-full overflow-hidden">
+        <div className="rounded-lg border w-full overflow-hidden text-black">
             <Table>
                 <colgroup>
-                    <col style={{ width: "20%" }} />
-                    <col style={{ width: "20%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "15%" }} />
                     <col style={{ width: "18%" }} />
                     <col style={{ width: "15%" }} />
                     <col style={{ width: "14%" }} />
-                    <col style={{ width: "20%" }} />
-                    <col style={{ width: "20%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "15%" }} />
                 </colgroup>
-                <TableHeader className="bg-primary-dashboard/10">
+                <TableHeader className="bg-[#F2F9FE]">
                     <TableRow>
                         {[
                             "Name",
@@ -42,7 +42,7 @@ export function EmployeeTable() {
                             "Status",
                         ].map((h) => (
                             <TableHead key={h}>
-                                <div className="flex items-center gap-1 text-[11px]">
+                                <div className="flex items-center gap-1 text-[11px] text-black font-semibold">
                                     {h}
                                     <ChevronsUpDown className="h-4 w-4 text-muted-foreground" />
                                 </div>
@@ -53,7 +53,7 @@ export function EmployeeTable() {
 
                 <TableBody>
                     {EMPLOYEE_DATA.map((emp) => (
-                        <TableRow key={emp.id} className="text-xs">
+                        <TableRow key={emp.id} className="text-xs font-medium">
                             {/* Name */}
                             <TableCell>
                                 <div className="flex gap-3">
@@ -91,7 +91,7 @@ export function EmployeeTable() {
                             {/* Designation */}
                             <TableCell>
                                 <Select defaultValue={emp.designation}>
-                                    <SelectTrigger className="w-full p-0 m-0 max-w-60 border-none shadow-none focus:ring-0 focus:ring-offset-0">
+                                    <SelectTrigger className="w-full p-0 m-0 max-w-60 border-none shadow-none focus:ring-0 focus:ring-offset-0 text-xs">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>

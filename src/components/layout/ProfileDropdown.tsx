@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function ProfileDropdown() {
   const { user, status, notifications, preferences } = profileData;
   const router = useRouter();
+
   const navigateToDashboard = () => {
     router.push("/setting");
   };

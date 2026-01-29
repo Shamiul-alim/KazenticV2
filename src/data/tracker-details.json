@@ -1,0 +1,612 @@
+{
+    "header": {
+        "tabs": [
+            {
+                "key": "Time Tracker",
+                "label": "Time Tracker",
+                "icon": "/assets/clock.svg",
+                "activeIcon": "/assets/clock-blue.svg"
+            },
+            {
+                "key": "My Time Logs",
+                "label": "My Time Logs",
+                "icon": "/assets/timer2.svg",
+                "activeIcon": "/assets/timer2-blue.svg"
+            },
+            {
+                "key": "All Time Logs",
+                "label": "All Time Logs",
+                "icon": "/assets/timer.svg",
+                "activeIcon": "/assets/timer-blue.svg"
+            },
+            {
+                "key": "Review Requests",
+                "label": "Review Requests",
+                "icon": "/assets/tick-circle.svg",
+                "activeIcon": "/assets/tick-circle-blue.svg"
+            }
+        ]
+    },
+    "timeTracker": [
+        {
+            "id": "1",
+            "name": "Alif Hassan",
+            "taskid": "[kzt-242]",
+            "task": " Create Pages using new design system..",
+            "status": "COMPLETED",
+            "isOutOfOffice": true,
+            "signIn": "10:00 AM",
+            "duration": "10H : 00M",
+            "isExpanded": false
+        },
+        {
+            "id": "2",
+            "name": "John Doe",
+            "taskid": "[kzt-242]",
+            "task": " Create Pages using new design system..",
+            "status": "IN PROGRESS",
+            "isOutOfOffice": false,
+            "signIn": "10:00 AM",
+            "duration": "10H : 00M",
+            "isExpanded": false
+        },
+        {
+            "id": "3",
+            "name": "Alex Wayne",
+            "taskid": "[kzt-242]",
+            "task": " Create Pages using new design system..",
+            "status": "IN PROGRESS",
+            "isOutOfOffice": false,
+            "signIn": "10:00 AM",
+            "duration": "10H : 00M",
+            "isExpanded": true,
+            "description": "Lorem ipsum dolor sit amet consectetur. Id orci praesent velit sed nec iaculis tristique mi. Mauris augue turpis sed mattis quis auctor in molestie.",
+            "breakdown": [
+                {
+                    "signedIn": "11:59 AM",
+                    "taskid": "[kzt-242]",
+                    "task": " Create Pages using new design system (Design)",
+                    "payable": true,
+                    "signedOut": "02:59 PM",
+                    "duration": "05H : 00M",
+                    "break": "03H : 00M",
+                    "reason": "Prayer Break",
+                    "icon": "/assets/prayer.svg"
+                },
+                {
+                    "signedIn": "11:59 AM",
+                    "taskid": "[kzt-242]",
+                    "task": " Create Pages using new design system (Design)",
+                    "payable": false,
+                    "signedOut": "02:59 PM",
+                    "duration": "02:59 PM",
+                    "break": "02:59 PM",
+                    "reason": "Dinner Break",
+                    "icon": "/assets/dinner.svg"
+                },
+                {
+                    "signedIn": "11:59 AM",
+                    "taskid": "[kzt-242]",
+                    "task": " Create Pages using new design system (Design)",
+                    "payable": false,
+                    "signedOut": "02:59 PM",
+                    "duration": "02:59 PM",
+                    "break": "02:59 PM",
+                    "reason": "Out of Office",
+                    "icon": "/assets/logout-fill.svg"
+                },
+                {
+                    "signedIn": "11:59 AM",
+                    "taskid": "[kzt-242]",
+                    "task": " Create Pages using new design system (Design)",
+                    "payable": false,
+                    "signedOut": "02:59 PM",
+                    "duration": "02:59 PM",
+                    "break": "02:59 PM",
+                    "reason": "Out of Office",
+                    "icon": "/assets/logout-fill.svg"
+                },
+                {
+                    "signedIn": "11:59 AM",
+                    "taskid": "[kzt-242]",
+                    "task": " Create Pages using new design system (Design)",
+                    "payable": false,
+                    "signedOut": "02:59 PM",
+                    "duration": "02:59 PM",
+                    "break": "02:59 PM",
+                    "reason": "Out of Office",
+                    "icon": "/assets/logout-fill.svg"
+                }
+            ]
+        }
+    ],
+    "timeEntries": [
+        {
+            "date": "Mon, Jan 8",
+            "totalHours": "9h",
+            "limit": "8h",
+            "entries": [
+                {
+                    "id": "e1",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": true,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                }
+            ]
+        },
+        {
+            "date": "Mon, Jan 9",
+            "totalHours": "9h",
+            "limit": "8h",
+            "entries": [
+                {
+                    "id": "e1",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": true,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                },
+                {
+                    "id": "e2",
+                    "task": "[kzt-242] Create Pages using new design system.",
+                    "description": "-",
+                    "payable": false,
+                    "tag": "Kazentic",
+                    "signIn": "11:59 AM",
+                    "signOut": "02:59 PM",
+                    "duration": "05H : 00M"
+                }
+            ]
+        }
+    ],
+    "myLogs": [
+        {
+            "id": "task-2",
+            "title": "[kzt-242] Create Pages using new design system.",
+            "isExpanded": false,
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h",
+            "status": ""
+        },
+        {
+            "id": "task-2",
+            "title": "[kzt-242] Create Pages using new design system.",
+            "isExpanded": false,
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h",
+            "status": ""
+        },
+        {
+            "id": "task-2",
+            "title": "[kzt-242] Create Pages using new design system.",
+            "isExpanded": false,
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h",
+            "status": ""
+        },
+        {
+            "id": "task-2",
+            "title": "[kzt-242] Create Pages using new design system.",
+            "isExpanded": false,
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h",
+            "status": ""
+        },
+        {
+            "id": "task-1",
+            "title": "[kzt-242] Create Pages using new design system.",
+            "isExpanded": true,
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h",
+            "status": "pending",
+            "subEntries": [
+                {
+                    "time": "11:59 AM - 2:00 PM",
+                    "payable": true,
+                    "weeklyHours": [
+                        "-",
+                        "1h",
+                        "9h",
+                        "9h",
+                        "9h",
+                        "9h",
+                        "-"
+                    ]
+                },
+                {
+                    "time": "2:30 PM - 4:00 PM",
+                    "payable": false,
+                    "status": "completed",
+                    "weeklyHours": [
+                        "-",
+                        "1h",
+                        "9h",
+                        "9h",
+                        "9h",
+                        "9h",
+                        "-"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "task-2",
+            "title": "[kzt-242] Create Pages using new design system.",
+            "isExpanded": false,
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h",
+            "status": "completed"
+        }
+    ],
+    "allLogs": [
+        {
+            "id": "all-1",
+            "initials": "AH",
+            "name": "Alif Hassan",
+            "capacity": "45h",
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h"
+        },
+        {
+            "id": "all-2",
+            "initials": "JD",
+            "name": "John Doe",
+            "capacity": "45h",
+            "weeklyHours": [
+                "-",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "-"
+            ],
+            "total": "40h"
+        },
+        {
+            "id": "all-3",
+            "initials": "JD",
+            "name": "John Doe",
+            "capacity": "45h",
+            "weeklyHours": [
+                "-",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "-"
+            ],
+            "total": "40h"
+        },
+        {
+            "id": "all-4",
+            "initials": "JD",
+            "name": "John Doe",
+            "capacity": "45h",
+            "weeklyHours": [
+                "-",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "-"
+            ],
+            "total": "40h"
+        },
+        {
+            "id": "all-5",
+            "initials": "JD",
+            "name": "John Doe",
+            "capacity": "45h",
+            "weeklyHours": [
+                "-",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "8h",
+                "-"
+            ],
+            "total": "40h"
+        },
+        {
+            "id": "all-6",
+            "initials": "JD",
+            "name": "John Doe",
+            "capacity": "45h",
+            "weeklyHours": [
+                "-",
+                "1h",
+                "9h",
+                "9h",
+                "9h",
+                "9h",
+                "-"
+            ],
+            "total": "37h"
+        }
+    ],
+    "reviewRequests": {
+        "toReview": [
+            {
+                "id": "1",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "2",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "3",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "4",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            }
+        ],
+        "changesRequired": [
+            {
+                "id": "5",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "6",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "7",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "8",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Dec 07-Dec 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            }
+        ],
+        "approved": [
+            {
+                "id": "9",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Jan 07-Jan 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "10",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Jan 07-Jan 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "10",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Jan 07-Jan 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "10",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Jan 07-Jan 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "10",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Jan 07-Jan 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            },
+            {
+                "id": "10",
+                "initials": "AH",
+                "name": "Alif Hassan",
+                "date": "Jan 07-Jan 13, 2025",
+                "duration": "9h 33m",
+                "limit": "9h",
+                "payable": "9h 33m",
+                "overLimit": "9h 33m"
+            }
+        ]
+    }
+}

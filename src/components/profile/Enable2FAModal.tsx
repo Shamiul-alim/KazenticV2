@@ -61,7 +61,7 @@ export default function Enable2FAModal({
 
         {/* Step 1: Apps */}
         <div className="mb-8 px-3">
-          <p className="text-[#191F38] text-xs leading-5 font-medium -tracking-tight mb-6">
+          <p className="text-[#191F38] text-xs leading-5 font-medium -tracking-tight mb-8">
             <span className=" mr-1">1.</span>
             You will need an authentication mobile app to complete this process,
             such as one of the following :
@@ -93,14 +93,14 @@ export default function Enable2FAModal({
         </div>
 
         {/* Step 2: QR Code */}
-        <div className="mb-12 px-3">
-          <p className="text-[#191F38] text-xs leading-5 font-medium -tracking-tight mb-3">
+        <div className="mb-15 px-3">
+          <p className="text-[#191F38] text-xs leading-5 font-medium -tracking-tight mb-12">
             <span className="font-bold mr-2">2.</span>
             Scan the QR code with your authenticator, If you can&apos;t scan the
             code, you can enter this secret key into your authentication app.
           </p>
           <div className="flex flex-col items-center">
-            <div className="mb-3 ">
+            <div className="mb-4 ">
               <Image
                 src="/assets/qr.svg"
                 alt="QR Code"
@@ -121,7 +121,7 @@ export default function Enable2FAModal({
 
         {/* Step 3: Verify */}
         <div className="mb-10 px-3">
-          <p className="text-[#191F38] text-xs leading-5 font-medium -tracking-tight mb-4">
+          <p className="text-[#191F38] text-xs leading-5 font-medium -tracking-tight mb-8">
             <span className="font-bold mr-2">3.</span>
             After scanning the QR code above, enter the six-digit code generated
             by your authenticator.
