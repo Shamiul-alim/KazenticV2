@@ -1,5 +1,5 @@
 "use client";
-import mockData from "@/data/tracker-details.json";
+import mockData from "@/data/time-tracker/tracker-details.json";
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import { useState } from "react";

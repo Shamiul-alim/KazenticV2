@@ -7,9 +7,15 @@ interface RequestFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
 export default function RequestForm({ isOpen, onClose }: RequestFormProps) {
   const router = useRouter();
   if (!isOpen) return null;
+
+  const handleCardClick = () => {
+    const mockId = "1";
+    router.push(`/time-tracker/pending/${mockId}`);
+  };
 
   return (
     <div className="fixed h-screen inset-0 z-50 flex items-center justify-center bg-black/20 ">
@@ -36,7 +42,7 @@ export default function RequestForm({ isOpen, onClose }: RequestFormProps) {
 
           {/* Time Entry Card */}
           <div
-            onClick={() => router.push("/time-tracker/pending")}
+            onClick={handleCardClick}
             className="group  border border-[#EBEBEB] rounded-xl mt-2 px-2 py-3.5 flex items-center gap-4 relative overflow-hidden hover:border-[#4157FE] hover:bg-[#F8FAFF] cursor-pointer"
           >
             {/* Blue Left Accent */}

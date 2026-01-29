@@ -4,11 +4,13 @@ import { Button } from "../../ui/Button";
 import mockData from "@/data/time-tracker/tracker-details.json";
 import { useRouter } from "next/navigation";
 
-interface PendingDetailViewwProps {
+interface RequestChangeDetailViewProps {
   onBack: () => void;
 }
 
-export default function PendingDetailView({ onBack }: PendingDetailViewwProps) {
+export default function RequestChangeDetailView({
+  onBack,
+}: RequestChangeDetailViewProps) {
   const metrics = [
     {
       label: "Time Tracked",
@@ -77,43 +79,14 @@ export default function PendingDetailView({ onBack }: PendingDetailViewwProps) {
             <span className="text-xs ">Jan 7 - Jan 13,2025</span>
           </Button>
 
-          <Button variant="pending">
+          <Button variant="pending" className="flex gap-1">
             <Image
-              src="/assets/clock-red.svg"
-              alt="down"
-              width={13}
-              height={13}
-            />
-            Pending
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="md"
-            className="text-[#191F38] text-xs leading-4"
-          >
-            <Image
-              src="/assets/arrow-right.svg"
-              alt="down"
-              width={14}
-              height={14}
-            />{" "}
-            Request Change
-          </Button>
-          <Button
-            variant="outline"
-            size="md"
-            className="text-[#191F38] text-xs leading-4"
-          >
-            <Image
-              src="/assets/tick-circle-green.svg"
-              alt="down"
+              src="/assets/setting-red.svg"
+              alt=""
               width={16}
               height={16}
-            />{" "}
-            Approve
+            />
+            Changes Required
           </Button>
         </div>
       </div>

@@ -369,6 +369,7 @@
             "initials": "AH",
             "name": "Alif Hassan",
             "capacity": "45h",
+            "count": "2",
             "weeklyHours": [
                 "-",
                 "1h",
@@ -385,6 +386,7 @@
             "initials": "JD",
             "name": "John Doe",
             "capacity": "45h",
+            "count": "4",
             "weeklyHours": [
                 "-",
                 "8h",
@@ -401,6 +403,7 @@
             "initials": "JD",
             "name": "John Doe",
             "capacity": "45h",
+            "count": "8",
             "weeklyHours": [
                 "-",
                 "8h",
@@ -466,7 +469,7 @@
             {
                 "id": "1",
                 "initials": "AH",
-                "name": "Alif Hassan",
+                "name": "John Doe",
                 "date": "Dec 07-Dec 13, 2025",
                 "duration": "9h 33m",
                 "limit": "9h",
@@ -568,7 +571,7 @@
                 "overLimit": "9h 33m"
             },
             {
-                "id": "10",
+                "id": "11",
                 "initials": "AH",
                 "name": "Alif Hassan",
                 "date": "Jan 07-Jan 13, 2025",
@@ -578,7 +581,7 @@
                 "overLimit": "9h 33m"
             },
             {
-                "id": "10",
+                "id": "11",
                 "initials": "AH",
                 "name": "Alif Hassan",
                 "date": "Jan 07-Jan 13, 2025",
@@ -588,7 +591,7 @@
                 "overLimit": "9h 33m"
             },
             {
-                "id": "10",
+                "id": "11",
                 "initials": "AH",
                 "name": "Alif Hassan",
                 "date": "Jan 07-Jan 13, 2025",
@@ -598,7 +601,7 @@
                 "overLimit": "9h 33m"
             },
             {
-                "id": "10",
+                "id": "11",
                 "initials": "AH",
                 "name": "Alif Hassan",
                 "date": "Jan 07-Jan 13, 2025",

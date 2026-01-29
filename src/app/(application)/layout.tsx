@@ -1,7 +1,6 @@
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "../../components/layout/Topbar";
 import SideMenu from "@/components/sidemenu/SideMenu";
-import App from "next/app";
 import ApplicationTopbar from "@/components/layout/ApplicationTopbar";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

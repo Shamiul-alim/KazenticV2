@@ -2,16 +2,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import mockData from "@/data/time-tracker/tracker-details.json";
-import { Button } from "../ui/Button";
-import RequestForm from "./floating-component/RequestForm";
-import TaskSection from "./floating-component/TaskSection";
-import ThreeDotMenu from "./floating-component/ThreeDotMenu";
-import TimeLogDrawer from "./floating-component/TimeLogDrawer";
+import { Button } from "@/components/ui/Button";
+import TaskSection from "@/components/time-tracker/floating-component/TaskSection";
+import ThreeDotMenu from "@/components/time-tracker/floating-component/ThreeDotMenu";
+import TimeLogDrawer from "@/components/time-tracker/floating-component/TimeLogDrawer";
+import RequestForm from "@/components/time-tracker/floating-component/RequestForm";
+import { useRouter } from "next/navigation";
+import CustomizeSection from "@/components/time-tracker/floating-component/CustomizeSection";
 
 export default function MyTimeLogs() {
   const [viewMode, setViewMode] = useState<"entries" | "sheet">("sheet");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTimeLogOpen, setIsTimeLogOpen] = useState(false);
+  const router = useRouter();
+  const [isCustomizeOpen, setIsCustomizeOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<{
     id: string | number;
     x: number;
@@ -99,7 +103,7 @@ export default function MyTimeLogs() {
     );
   };
   const renderTimeEntriesView = () => (
-    <div className="space-y-4 mt-5 mx-4 leading-5 tracking-[-0.05em]">
+    <div className="space-y-4 mt-5 mx-4 leading-5 tracking-[-0.05em] ">
       {mockData.timeEntries.map((group, idx) => (
         <div key={idx} className="">
           {/* Group Header */}
@@ -227,7 +231,7 @@ export default function MyTimeLogs() {
   );
 
   return (
-    <div className="space-y-3 leading-5 tracking-[-0.05em] text-[#191F38] w-full ">
+    <div className="space-y-3 leading-5 tracking-[-0.05em] text-[#191F38] w-full border-t border-[#EBEBEB]  h-lvw bg-[#FFFFFF]">
       <TaskSection
         isOpen={menuConfig.isOpen}
         onClose={() => setMenuConfig({ ...menuConfig, isOpen: false })}
@@ -333,6 +337,36 @@ export default function MyTimeLogs() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="flex items-center justify-between px-4 relative">
+        <div className="flex items-center gap-2  py-1 mt-2 ">
+          <button
+            onClick={() => router.back()}
+            className="p-1 bg-[#F4F5F6] rounded-sm transition-colors"
+          >
+            <Image src="/assets/arrow-left.svg" alt="" width={16} height={16} />
+          </button>
+
+          <Button variant="outline" size="md">
+            <div className="w-4.5 h-4.5 rounded-full bg-[#4157FE] text-white flex items-center justify-center text-[8px] font-medium">
+              AH
+            </div>
+            <span className="text-xs font-medium leading-4 text-[#64748B]">
+              Alif Hassan
+            </span>
+          </Button>
+        </div>
+        <Button
+          variant="outline"
+          onClick={() => setIsCustomizeOpen(!isCustomizeOpen)}
+          className="relative"
+        >
+          <Image src="/assets/setting.svg" alt="" width={14} height={14} />
+          Customize
+        </Button>
+        {isCustomizeOpen && (
+          <CustomizeSection onClose={() => setIsCustomizeOpen(false)} />
+        )}
       </div>
       <RequestForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       {viewMode === "sheet" ? (

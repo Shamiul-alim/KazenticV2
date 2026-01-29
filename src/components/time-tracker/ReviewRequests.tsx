@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import mockData from "@/data/tracker-details.json";
+import mockData from "@/data/time-tracker/tracker-details.json";
 import { Button } from "../ui/Button";
+import RequestChange from "./floating-component/RequestChange";
+import AcceptLog from "./floating-component/AcceptLog";
+import { useRouter } from "next/navigation";
 
 export default function ReviewRequests() {
   const [openSections, setOpenSections] = useState({
@@ -10,11 +13,39 @@ export default function ReviewRequests() {
     changes: true,
     approved: true,
   });
-
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<string>("");
   const data = mockData.reviewRequests;
+  const router = useRouter();
 
   const toggle = (section: keyof typeof openSections) =>
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
+
+  const handleRequestClick = (name: string) => {
+    setSelectedUser(name);
+    setIsRequestModalOpen(true);
+  };
+
+  const handleOpenApprove = (name: string) => {
+    setSelectedUser(name);
+    setIsApproveModalOpen(true);
+  };
+
+  const handleConfirmApprove = () => {
+    console.log("Approved log for:", selectedUser);
+    setIsApproveModalOpen(false);
+  };
+
+  const handleReviewClick = (id: string | number) => {
+    router.push(`/time-tracker/pending/${id}`);
+  };
+  const handleRequireChangeClick = (id: string | number) => {
+    router.push(`/time-tracker/require-change/${id}`);
+  };
+  const handleApproveClick = (id: string | number) => {
+    router.push(`/time-tracker/approve/${id}`);
+  };
 
   return (
     <div className="w-full bg-white font-sans px-1 py-2 leading-5 tracking-[-0.05em]">
@@ -90,7 +121,11 @@ export default function ReviewRequests() {
                         <span className="text-[11px] leading-4 text-[#9BA2AD] font-medium whitespace-nowrap">
                           {item.date}
                         </span>
-                        <Button variant="success" size="md">
+                        <Button
+                          onClick={() => handleReviewClick(item.id)}
+                          variant="success"
+                          size="md"
+                        >
                           Review{" "}
                           <Image
                             src="/assets/sidearrow.svg"
@@ -124,7 +159,11 @@ export default function ReviewRequests() {
                   </td>
                   <td className=" pr-6">
                     <div className="flex items-center gap-2">
-                      <Button variant="outline" size="md">
+                      <Button
+                        variant="outline"
+                        size="md"
+                        onClick={() => handleRequestClick(item.name)}
+                      >
                         <Image
                           src="/assets/sidearrow-red.svg"
                           alt=""
@@ -132,7 +171,10 @@ export default function ReviewRequests() {
                           height={12}
                         />
                       </Button>
-                      <Button variant="outline">
+                      <Button
+                        onClick={() => handleOpenApprove(item.name)}
+                        variant="outline"
+                      >
                         <Image
                           src="/assets/tick-circle-green.svg"
                           alt="down"
@@ -140,8 +182,20 @@ export default function ReviewRequests() {
                           height={16}
                         />{" "}
                       </Button>
+                      <AcceptLog
+                        isOpen={isApproveModalOpen}
+                        onClose={() => setIsApproveModalOpen(false)}
+                        onConfirm={handleConfirmApprove}
+                        userName={selectedUser || ""}
+                      />
                     </div>
                   </td>
+                  {isRequestModalOpen && (
+                    <RequestChange
+                      name={selectedUser}
+                      onClose={() => setIsRequestModalOpen(false)}
+                    />
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -216,7 +270,11 @@ export default function ReviewRequests() {
                         <span className="text-[11px] leading-4 text-[#9BA2AD] font-medium whitespace-nowrap">
                           {item.date}
                         </span>
-                        <Button variant="success" size="md">
+                        <Button
+                          onClick={() => handleRequireChangeClick(item.id)}
+                          variant="success"
+                          size="md"
+                        >
                           Review{" "}
                           <Image
                             src="/assets/sidearrow.svg"
@@ -333,7 +391,11 @@ export default function ReviewRequests() {
                         <span className="text-[11px] leading-4 text-[#9BA2AD] font-medium whitespace-nowrap">
                           {item.date}
                         </span>
-                        <Button variant="success" size="md">
+                        <Button
+                          onClick={() => handleApproveClick(item.id)}
+                          variant="success"
+                          size="md"
+                        >
                           Review{" "}
                           <Image
                             src="/assets/sidearrow.svg"

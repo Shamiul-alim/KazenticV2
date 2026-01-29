@@ -3,12 +3,15 @@ import Image from "next/image";
 import { Button } from "../../ui/Button";
 import mockData from "@/data/time-tracker/tracker-details.json";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import WithdrawLog from "../floating-component/WithdrawLog";
 
-interface PendingDetailViewwProps {
+interface LogViewProps {
   onBack: () => void;
 }
 
-export default function PendingDetailView({ onBack }: PendingDetailViewwProps) {
+export default function LogView({ onBack }: LogViewProps) {
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const metrics = [
     {
       label: "Time Tracked",
@@ -46,10 +49,13 @@ export default function PendingDetailView({ onBack }: PendingDetailViewwProps) {
     }
     router.back();
   };
+  const handleWithdrawConfirm = () => {
+    setIsWithdrawModalOpen(false);
+  };
   return (
     <div className="flex flex-col h-lvw bg-[#FFFFFF] ">
       {/* 1. Header Navigation Bar */}
-      <div className="flex items-center justify-between px-3 bg-white  border-t border-[#EBEBEB] ">
+      <div className="flex items-center justify-between px-3 bg-white  border-t border-[#EBEBEB] relative">
         <div className="flex items-center gap-2 py-1 mt-2">
           <button
             onClick={handleBackClick}
@@ -88,36 +94,21 @@ export default function PendingDetailView({ onBack }: PendingDetailViewwProps) {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="md"
-            className="text-[#191F38] text-xs leading-4"
-          >
-            <Image
-              src="/assets/arrow-right.svg"
-              alt="down"
-              width={14}
-              height={14}
-            />{" "}
-            Request Change
-          </Button>
-          <Button
-            variant="outline"
-            size="md"
-            className="text-[#191F38] text-xs leading-4"
-          >
-            <Image
-              src="/assets/tick-circle-green.svg"
-              alt="down"
-              width={16}
-              height={16}
-            />{" "}
-            Approve
-          </Button>
-        </div>
+        <Button
+          onClick={() => setIsWithdrawModalOpen(true)}
+          variant="outline"
+          size="md"
+        >
+          <Image src="/assets/redo-blue.svg" alt="" width={16} height={16} />
+          Withdraw
+        </Button>
+        <WithdrawLog
+          isOpen={isWithdrawModalOpen}
+          onClose={() => setIsWithdrawModalOpen(false)}
+          onConfirm={handleWithdrawConfirm}
+          userName="Alif Hassan"
+        />
       </div>
-
       {/* 2. Metrics Grid */}
       <div className="px-3">
         <div className="flex justify-items-start gap-4 pt-3 border-t vorder">
