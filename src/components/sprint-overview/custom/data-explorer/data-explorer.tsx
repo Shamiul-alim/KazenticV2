@@ -5,7 +5,7 @@ import { TASK_DATA } from "./task.mock";
 
 export function DataExplorer() {
     return (
-        <div className="space-y-3">
+        <div className="space-y-2 overflow-auto">
             <DataExplorerHeader />
             <TaskTable
                 data={TASK_DATA}
