@@ -1,3 +1,5 @@
+import { TaskStatus } from "./task-status.enum";
+
 export const SPRINT_REPORTING_DATA = [
     { date: "1 Oct", inReview: 1800, inProgress: 200 },
     { date: "3 Oct", inReview: 2600, inProgress: 1200 },
@@ -36,3 +38,45 @@ export const SPRINT_BURN_DOWN_DATA = [
     { date: "27 Oct", effort: 65 },
     { date: "30 Oct", effort: 158 },
 ]
+
+export const TASK_STATUS_CONFIG: Record<
+    TaskStatus,
+    {
+        label: string;
+        color: string;
+        icon?: string;
+    }
+> = {
+    [TaskStatus.TODO]: {
+        label: "TO DO",
+        color: "orange",
+    },
+    [TaskStatus.IN_PROGRESS]: {
+        label: "IN PROGRESS",
+        color: "blue",
+    },
+    [TaskStatus.ACTIVE]: {
+        label: "ACTIVE",
+        color: "green",
+    },
+    [TaskStatus.IN_REVIEW]: {
+        label: "IN REVIEW",
+        color: "purple",
+    },
+    [TaskStatus.PENDING]: {
+        label: "PENDING",
+        color: "amber",
+    },
+    [TaskStatus.REJECTED]: {
+        label: "REJECTED",
+        color: "red",
+    },
+    [TaskStatus.QUALITY_ASSURANCE]: {
+        label: "QUALITY ASSURANCE",
+        color: "violet",
+    },
+    [TaskStatus.CLOSED]: {
+        label: "CLOSED",
+        color: "gray",
+    },
+};

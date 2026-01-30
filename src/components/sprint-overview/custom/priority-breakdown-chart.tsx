@@ -1,8 +1,6 @@
 import { SPRINT_REPORTING_DATA } from '@/data/sprint-data'
-import React from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { LegendItem } from './chart-legend-item'
-import { ChartConfig, ChartContainer } from '../ui/chart'
 
 export default function PriorityBreakdownChart() {
     return (
