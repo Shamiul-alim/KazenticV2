@@ -7,6 +7,7 @@ import { Filter, Plus } from 'lucide-react';
 import NoticeCard, { NoticeType } from './NoticeCard';
 import NoticeDetails from './NoticeDetails';
 import { AddNoticeSidebar } from '@/components/leaves/manage-leaves/add-notice-sidebar';
+import { FilterPopover } from '@/components/sprint-overview/custom/filters/filter-popover';
 
 const MOCK_NOTICES = [
     {
@@ -66,13 +67,10 @@ export default function Notice() {
                         </TabsList>
 
                         <div className="ml-auto flex items-center gap-3">
-                            <Button variant="outline" className="h-10 gap-2 !rounded-md border-gray-200 px-4 text-gray-600 hover:bg-gray-50">
-                                <Filter className="h-4 w-4" />
-                                <span className='text-xs'>Filter</span>
-                            </Button>
+                            <FilterPopover />
                             <Button
                                 onClick={() => setIsAddSidebarOpen(true)}
-                                className="h-10 flex items-center gap-2 bg-[#4157FE] px-4 text-white hover:bg-[#4157FE]/90 !rounded-md whitespace-nowrap"
+                                className="h-7 flex items-center gap-2 bg-[#4157FE] px-4 text-white hover:bg-[#4157FE]/90 !rounded-md whitespace-nowrap"
                             >
                                 <Plus className="h-3 w-3" />
                                 <span className="text-xs">Add New</span>
