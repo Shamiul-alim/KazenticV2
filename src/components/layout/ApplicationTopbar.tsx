@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown, Folder, LayoutDashboardIcon } from "lucide-react";
+import { ChevronDown, LayoutDashboardIcon } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb";
@@ -13,33 +13,10 @@ export default function ApplicationTopbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  return (
-    <header className="flex h-[2.188rem] w-full items-center bg-[#FFFFFF] py-4 px-3">
-      <div className="flex items-center gap-1">
-        {/* Workspace Switcher */}
-        <button className="group flex items-center gap-2 rounded-md p-1 transition-colors hover:bg-gray-50 cursor-pointer">
-          <Image
-            src="/assets/K-fill.svg"
-            alt="kazentic-logo"
-            width={16}
-            height={16}
-          />
-          <span className="text-xs leading-4 tracking-tighter font-semibold text-[#191F38]">
-            Kazentic
-          </span>
-          <ChevronDown
-            size={14}
-            className="text-gray-400 group-hover:text-gray-600"
-          />
-        </button>
-
-        {/* Vertical Separator */}
-        <div className="h-4 w-[0.1rem] bg-gray-300 mx-1" aria-hidden="true" />
-
-        {/* Breadcrumb Section */}
-
-
-        <Breadcrumb>
+  const renderBreadcrumbs = () => {
+    switch (pathname) {
+      case `/sprint-overview/${pathname.split('/')[2]}`:
+        return <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="/sprint-overview/1">
@@ -75,6 +52,51 @@ export default function ApplicationTopbar() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
+      case `/tasks/${pathname.split('/')[2]}`:
+        return <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/tasks">
+                <div className="flex items-center gap-2 text-gray-500">
+                  <PlayOutlineIcon className="w-4 h-4 text-[#697588] stroke-[#697588]" />
+                  <span className="text-xs font-medium leading-4 tracking-tighter text-[#697588]">
+                    Tasks
+                  </span>
+                </div>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      default:
+        break;
+    }
+  }
+
+  return (
+    <header className="flex h-[2.188rem] w-full items-center bg-[#FFFFFF] py-4 px-3">
+      <div className="flex items-center gap-1">
+        {/* Workspace Switcher */}
+        <button className="group flex items-center gap-2 rounded-md p-1 transition-colors hover:bg-gray-50 cursor-pointer">
+          <Image
+            src="/assets/K-fill.svg"
+            alt="kazentic-logo"
+            width={16}
+            height={16}
+          />
+          <span className="text-xs leading-4 tracking-tighter font-semibold text-[#191F38]">
+            Kazentic
+          </span>
+          <ChevronDown
+            size={14}
+            className="text-gray-400 group-hover:text-gray-600"
+          />
+        </button>
+
+        {/* Vertical Separator */}
+        <div className="h-4 w-[0.1rem] bg-gray-300 mx-1" aria-hidden="true" />
+
+        {/* Breadcrumb Section */}
+        {renderBreadcrumbs()}
       </div>
     </header>
   );
