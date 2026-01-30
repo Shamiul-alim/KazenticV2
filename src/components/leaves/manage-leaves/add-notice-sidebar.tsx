@@ -19,18 +19,12 @@ interface AddNoticeSidebarProps {
 export function AddNoticeSidebar({ isOpen, onClose }: AddNoticeSidebarProps) {
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="sm:max-w-[540px] p-0 border-none shadow-2xl bg-white">
-                <SheetHeader className="px-6 py-5 flex flex-row items-center justify-between border-b border-gray-50">
+            <SheetContent className="flex flex-col h-full sm:max-w-[540px] p-0 border-none shadow-2xl bg-white">
+                <SheetHeader className="flex-none px-6 py-5 border-b border-gray-50">
                     <SheetTitle className="text-[18px] font-bold text-[#1e293b]">Add New Notice</SheetTitle>
-                    <button
-                        onClick={onClose}
-                        className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
-                    >
-                        <X className="h-4 w-4" />
-                    </button>
                 </SheetHeader>
 
-                <div className="p-8 space-y-8 overflow-y-auto max-h-[calc(100vh-80px)]">
+                <div className="flex-1 p-8 space-y-8 overflow-y-auto">
                     {/* Notice Title */}
                     <div className="space-y-3">
                         <label className="flex items-center gap-2 text-[14px] font-bold text-[#1e293b]">
