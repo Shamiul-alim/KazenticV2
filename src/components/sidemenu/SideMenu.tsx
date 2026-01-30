@@ -90,8 +90,8 @@ export default function SideMenu() {
           </button>
         </CollapsibleTrigger>
 
-        <CollapsibleContent className="pl-6 space-y-1 text-[12px] text-gray-600">
-          <Button variant="ghost" className="flex items-center gap-2">
+        <CollapsibleContent className="pl-6 space-y-1 text-gray-600">
+          <Button variant="ghost" className="flex items-center gap-2 text-xs">
             Projects
           </Button>
         </CollapsibleContent>
