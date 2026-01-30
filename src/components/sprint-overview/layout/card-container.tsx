@@ -19,15 +19,15 @@ export default function CardContainer({ className, title, children, chartTitle, 
     return (
         <Card className={cn("rounded-xl gap-0 py-0", className)}>
             {/* Header */}
-            <CardHeader className="flex flex-row items-center justify-between bg-[#F2F9FE] rounded-t-xl py-3 border-b">
-                <CardTitle className="text-sm font-semibold text-[#191F38]">
+            <CardHeader className="flex flex-row items-center justify-between bg-[#F2F9FE] rounded-t-xl py-2 sm:py-3 px-3 sm:px-6 border-b">
+                <CardTitle className="text-xs sm:text-sm font-semibold text-[#191F38] truncate pr-2">
                     {title}
                 </CardTitle>
 
-                <div className="flex items-center gap-3 text-muted-foreground">
-                    <RefreshCw className="h-4 w-4 cursor-pointer" />
-                    <Maximize2 className="h-4 w-4 cursor-pointer" />
-                    {filterBtn && <Filter className="h-4 w-4 cursor-pointer" />}
+                <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-muted-foreground shrink-0">
+                    <RefreshCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 cursor-pointer" />
+                    <Maximize2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 cursor-pointer" />
+                    {filterBtn && <Filter className="h-3.5 w-3.5 sm:h-4 sm:w-4 cursor-pointer" />}
 
                     {/* <Settings className="h-4 w-4 cursor-pointer" /> */}
                     <ChartSettingsDialog title={chartTitle || ""} isChart={!!chart}>
@@ -38,7 +38,7 @@ export default function CardContainer({ className, title, children, chartTitle, 
             </CardHeader>
 
             {/* Chart */}
-            <CardContent className="py-4 bg-[#FDFDFD]">
+            <CardContent className="py-3 sm:py-4 px-3 sm:px-6 bg-[#FDFDFD]">
                 {children}
             </CardContent>
         </Card>

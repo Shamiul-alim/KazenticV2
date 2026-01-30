@@ -1,5 +1,3 @@
-// components/ui/Card.tsx
-
 import React from "react";
 
 interface CardProps {
@@ -24,11 +22,10 @@ const Card: React.FC<CardProps> = ({
     >
       {(title || extra) && (
         <div
-          className={`flex justify-between items-center px-3.5 py-3.5 ${
-            isDashboard
-              ? "bg-[#F2F9FE] border-b rounded-tl-3xl rounded-tr-3xl border-[#EBEBEB]"
-              : "bg-transparent"
-          }`}
+          className={`flex justify-between items-center p-4 ${isDashboard
+            ? "bg-[#F2F9FE] border-b rounded-tl-3xl rounded-tr-3xl border-[#EBEBEB]"
+            : "bg-transparent"
+            }`}
         >
           <h2 className="text-[14px] font-semibold text-[#191F38] leading-6 -tracking-normal">
             {title}

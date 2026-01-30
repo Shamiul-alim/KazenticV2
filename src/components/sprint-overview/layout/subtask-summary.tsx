@@ -22,13 +22,13 @@ export default function SubtaskSummary({
     color
 }: SubtaskSummaryProps) {
     return (
-        <div className="flex items-center border rounded-md border-[#E4E8F0] p-4 gap-2 w-65">
-            <div className={cn("p-2 border rounded-lg", colorVariants[color] || colorVariants['green'])}>
+        <div className="flex items-center border rounded-md border-[#E4E8F0] p-2 sm:p-3 lg:p-4 gap-1.5 sm:gap-2 w-full sm:w-auto flex-1">
+            <div className={cn("p-1.5 sm:p-2 border rounded-lg [&>svg]:h-4 [&>svg]:w-4 sm:[&>svg]:h-5 sm:[&>svg]:w-5", colorVariants[color] || colorVariants['green'])}>
                 {icon}
             </div>
-            <div className='space-y-2'>
-                <h3 className="text-xs font-semibold text-[#191F38]">{title}</h3>
-                <p className="text-xs font-medium text-[#697588]">{subtitle}</p>
+            <div className='space-y-1 sm:space-y-2'>
+                <h3 className="text-[10px] sm:text-xs font-semibold text-[#191F38]">{title}</h3>
+                <p className="text-[10px] sm:text-xs font-medium text-[#697588]">{subtitle}</p>
             </div>
         </div>
     )

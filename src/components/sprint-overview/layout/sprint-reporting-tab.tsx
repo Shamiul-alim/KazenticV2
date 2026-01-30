@@ -22,12 +22,12 @@ export default function SprintReportingTab() {
     return (
         <div className="flex flex-col">
             {/* header */}
-            <div className="flex justify-between items-center border-b px-4 pb-2">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2 sm:gap-0 border-b px-2 sm:px-4 py-2 sm:pb-2">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm">
-                            <RefreshCcw className="mr-0.5" />
-                            Refresh
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                            <RefreshCcw className="mr-0.5 w-4 h-4" />
+                            <span className="hidden xs:inline">Refresh</span>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-40" align="start">
@@ -39,25 +39,26 @@ export default function SprintReportingTab() {
                         </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <div className="flex gap-2">
-                    <Button variant="outline" size="sm">
-                        <Filter className="mr-0.5" />
-                        Filter
+                <div className="flex gap-1.5 sm:gap-2 flex-wrap sm:flex-nowrap">
+                    <Button variant="outline" size="sm" className="flex-1 sm:flex-none">
+                        <Filter className="mr-0.5 w-4 h-4" />
+                        <span className="hidden xs:inline">Filter</span>
                     </Button>
 
                     {/* Customize View Button */}
                     <CustomizeViewTrigger />
 
-                    <Button size="sm">
-                        <Plus className="mr-0.5 stroke-3" />
-                        Add Widget
+                    <Button size="sm" className="flex-1 sm:flex-none">
+                        <Plus className="mr-0.5 stroke-3 w-4 h-4" />
+                        <span className="hidden sm:inline">Add Widget</span>
+                        <span className="sm:hidden">Add</span>
                     </Button>
                 </div>
             </div>
 
             {/* body */}
-            <div className="grow">
-                <div className="grid grid-cols-4 gap-4 p-4">
+            <div className="grow overflow-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-2 sm:p-4">
                     {/* Stat Cards */}
                     <StatCard label="Total Tasks" total={120} />
                     <StatCard label="Not Started" total={85} />
@@ -66,7 +67,7 @@ export default function SprintReportingTab() {
 
                     {/* Summary */}
                     <CardContainer
-                        className="col-span-2"
+                        className="col-span-1 sm:col-span-2"
                         title="Priority Breakdown"
                         chartTitle="Line Chart"
                         chart={true}
@@ -75,7 +76,7 @@ export default function SprintReportingTab() {
                     </CardContainer>
 
                     <CardContainer
-                        className="col-span-2"
+                        className="col-span-1 sm:col-span-2"
                         title="Tasks by Assignee"
                         chartTitle="Pie Chart"
                         chart={true}
@@ -84,7 +85,7 @@ export default function SprintReportingTab() {
                     </CardContainer>
 
                     <CardContainer
-                        className="col-span-2"
+                        className="col-span-1 sm:col-span-2"
                         title="Total time in Status"
                         chartTitle="Bar Chart"
                         chart={true}
@@ -93,7 +94,7 @@ export default function SprintReportingTab() {
                     </CardContainer>
 
                     <CardContainer
-                        className="col-span-2"
+                        className="col-span-1 sm:col-span-2"
                         title="Sprint Burn down"
                         chartTitle="Sprint Burn down"
                         chart={true}
@@ -101,7 +102,7 @@ export default function SprintReportingTab() {
                         <SprintBurnDownChart />
                     </CardContainer>
 
-                    <CardContainer className="col-span-2" title="Sprint Task Report" filterBtn={false}>
+                    <CardContainer className="col-span-1 sm:col-span-2" title="Sprint Task Report" filterBtn={false}>
                         <div className="space-y-4">
                             <SprintMeta />
                             <SprintStats />

@@ -25,8 +25,8 @@ const textColors: Record<string, string> = {
 
 export function TasksByAssigneeChart() {
     return (
-        <div className="h-105">
-            <ResponsiveContainer width="95%" height="95%">
+        <div className="h-auto min-h-70 sm:min-h-87.5 lg:h-105">
+            <ResponsiveContainer width="100%" height="95%" minHeight={250}>
                 <PieChart>
                     <Pie
                         data={TASK_BY_ASSIGNEE_DATA}
@@ -35,7 +35,7 @@ export function TasksByAssigneeChart() {
                         cy="50%"
                         startAngle={90}
                         endAngle={-270}
-                        outerRadius={140}
+                        outerRadius="45%"
                         label={renderLabel}
                         labelLine={false}
                     >
@@ -47,7 +47,7 @@ export function TasksByAssigneeChart() {
             </ResponsiveContainer>
 
             {/* Legend */}
-            <div className="flex justify-center gap-6 text-sm mb-6">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm mb-3 sm:mb-4 lg:mb-6 px-2">
                 {TASK_BY_ASSIGNEE_DATA.map((item) => (
                     <LegendItem
                         key={item.name}
@@ -70,7 +70,7 @@ function renderLabel({
     color
 }: any) {
     const RADIAN = Math.PI / 180
-    const radius = outerRadius + 30
+    const radius = outerRadius + (window.innerWidth < 640 ? 20 : window.innerWidth < 1024 ? 25 : 30)
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)
 
@@ -82,7 +82,7 @@ function renderLabel({
             height={60}
             className=""
         >
-            <div className="w-fit rounded-lg rounded-br-none bg-white px-3 py-2 text-xs shadow-md inset-shadow-xs">
+            <div className="w-fit rounded-lg rounded-br-none bg-white px-2 sm:px-3 py-1.5 sm:py-2 text-[10px] sm:text-xs shadow-md inset-shadow-xs">
                 <span className="font-semibold mr-1" style={{ color: textColors[color] }}>{name}</span>{" "}
                 <span className="font-semibold text-[#191F38]">
                     {(percent * 100).toFixed(1)}%

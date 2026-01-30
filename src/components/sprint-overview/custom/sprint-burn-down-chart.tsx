@@ -13,9 +13,9 @@ import { SPRINT_BURN_DOWN_DATA } from "@/data/sprint-data"
 
 export function SprintBurnDownChart() {
     return (
-        <div className="h-105 pt-6">
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={SPRINT_BURN_DOWN_DATA} margin={{ top: 5, right: 10, left: 30, bottom: 5 }}>
+        <div className="h-auto min-h-62.5 sm:min-h-75 lg:h-105 pt-3 sm:pt-4 lg:pt-6">
+            <ResponsiveContainer width="100%" height="100%" minHeight={200}>
+                <LineChart data={SPRINT_BURN_DOWN_DATA} margin={{ top: 5, right: 5, left: 10, bottom: 5 }}>
                     <CartesianGrid
                         strokeDasharray="3 3"
                         vertical={false}
@@ -23,29 +23,32 @@ export function SprintBurnDownChart() {
                     <Tooltip />
 
                     <XAxis
-                        tickMargin={15}
+                        tickMargin={10}
                         dataKey="date"
                         tickLine={false}
                         axisLine={false}
-                        tick={{ fontSize: 12 }}
+                        tick={{ fontSize: 10 }}
+                        className="sm:text-xs"
                     />
 
                     <YAxis
                         width={20}
-                        tickMargin={15}
-                        tick={{ fontSize: 12 }}
+                        tickMargin={8}
+                        tick={{ fontSize: 10 }}
                         tickLine={false}
                         axisLine={false}
                         ticks={[0, 50, 100, 150, 200]}
+                        className="sm:text-xs"
                     />
 
                     <Line
                         type="linear"
                         dataKey="effort"
                         stroke="#3B5BFF"
-                        strokeWidth={3}
-                        dot={{ r: 8 }}
-                        activeDot={{ r: 10 }}
+                        strokeWidth={2}
+                        dot={{ r: 4 }}
+                        activeDot={{ r: 6 }}
+                        className="sm:stroke-[2.5] lg:stroke-3"
                     />
                 </LineChart>
             </ResponsiveContainer>

@@ -37,20 +37,20 @@ export default function Topbar() {
           <Image
             src="/assets/topbarSearch.svg"
             alt="Search Icon"
-            width={30}
-            height={30}
+            width={16}
+            height={16}
           />
           <input
             type="text"
             placeholder="Search ..."
-            className="w-full bg-transparent text-[#FFFFFF] placeholder-[#FFFFFF] focus:outline-none ml-2"
+            className="w-full bg-transparent text-[#FFFFFF] placeholder-[#FFFFFF] focus:outline-none ml-2 text-xs"
           />
           <div className="ml-auto h-6 pr-2 border-l-2 border-[#FFFFFF33] pl-2 flex justify-center items-center">
             <Image
               src="/assets/topbarDeco.svg"
               alt="icon"
-              width={24}
-              height={24}
+              width={16}
+              height={16}
             />
           </div>
         </div>
@@ -61,8 +61,8 @@ export default function Topbar() {
           <Image
             src="/assets/notification.svg"
             alt="Notification"
-            width={20}
-            height={20}
+            width={16}
+            height={16}
           />
         </button>
 
@@ -71,27 +71,27 @@ export default function Topbar() {
         </button>
         <div className="w-px h-7 bg-gray-300 bg-opacity-30"></div>
 
-        <div className="flex items-center space-x-2" ref={dropdownRef}>
-          <div className="w-8 h-8 rounded-full">
+        <div className="flex items-center gap-2" ref={dropdownRef}>
+          <div className="w-6 h-6 rounded-full">
             <Image
               src="/assets/profile.svg"
               alt="Profile"
-              width={32}
-              height={32}
+              width={24}
+              height={24}
               className="rounded-full"
             />
           </div>
-          <div className="hidden lg:flex lg:flex-col leading-3 gap-0.5 text-[#FFFFFF]">
-            <div className="font-bold text-[0.813rem]">{"User"}</div>
-            <div className="text-[0.75rem] text-opacity-70">
+          <div className="hidden lg:flex lg:flex-col text-[#FFFFFF]">
+            <div className="font-semibold text-xs">{"User"}</div>
+            <div className="text-[11px] font-medium text-opacity-70">
               {"user@example.com"}
             </div>
           </div>
           <Image
             src="/assets/moreB.svg"
             alt="icon"
-            width={20}
-            height={20}
+            width={16}
+            height={16}
             className={`cursor-pointer transition-transform ${isDropdownOpen ? "rotate-180 z-100" : ""}`}
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           />

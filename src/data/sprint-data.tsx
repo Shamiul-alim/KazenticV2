@@ -80,3 +80,15 @@ export const TASK_STATUS_CONFIG: Record<
         color: "gray",
     },
 };
+
+interface Sprint {
+    id: string;
+    name: string;
+    range: string;
+}
+
+export const SPRINTS_MOCK_DATA: Sprint[] = [
+    { id: "1", name: "Sprint 1", range: "7/12 - 8/12" },
+    { id: "2", name: "Sprint 2", range: "8/12 - 9/12" },
+    { id: "3", name: "Sprint 3", range: "9/12 - 10/12" },
+];

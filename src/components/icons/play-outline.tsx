@@ -1,0 +1,11 @@
+import React from 'react'
+
+export default function PlayOutlineIcon({ className }: { className?: string }) {
+    return (
+        <svg className={className} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.98014 14.6666C11.662 14.6666 14.6468 11.6818 14.6468 7.99992C14.6468 4.31802 11.662 1.33325 7.98014 1.33325C4.29824 1.33325 1.31348 4.31802 1.31348 7.99992C1.31348 11.6818 4.29824 14.6666 7.98014 14.6666Z" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M5.82715 8.15325V7.03992C5.82715 5.65325 6.80715 5.08659 8.00715 5.77992L8.97382 6.33992L9.94048 6.89992C11.1405 7.59325 11.1405 8.72659 9.94048 9.41992L8.97382 9.97992L8.00715 10.5399C6.80715 11.2333 5.82715 10.6666 5.82715 9.27992V8.15325Z" strokeWidth="1.25" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+
+    )
+}

@@ -13,7 +13,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="bg-[#111953] relative hidden lg:flex">
           <SideMenu />
         </div>
-        <div className="w-full bg-[#111953] flex flex-col">
+        <div className="w-full bg-[#111953] flex flex-col overflow-hidden">
           <ApplicationTopbar />
           {children}
         </div>

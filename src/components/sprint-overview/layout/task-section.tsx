@@ -29,28 +29,28 @@ export function TaskSection({
 }) {
     return (
         <Collapsible defaultOpen>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
                 <CollapsibleTrigger>
-                    <ArrowDownIcon className="h-5 w-5 text-muted-foreground" />
+                    <ArrowDownIcon className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
                 </CollapsibleTrigger>
 
-                <Badge variant="outline" className={cn("px-1.5 py-1 text-xs font-medium", variantStyles[isDialog ? 'default' : color])}>
+                <Badge variant="outline" className={cn("px-1.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium", variantStyles[isDialog ? 'default' : color])}>
                     {title}
                 </Badge>
                 {
                     taskCount !== undefined && (
                         <div className="flex items-center">
-                            <Badge variant="outline" className={cn("px-2 py-1 text-xs font-medium", variantStyles[isDialog ? 'default' : color])}>
+                            <Badge variant="outline" className={cn("px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium", variantStyles[isDialog ? 'default' : color])}>
                                 {taskCount}
                             </Badge>
                             <StatusGroupMenu />
-                            <Plus className="ml-2 h-4 w-4 text-muted-foreground cursor-pointer" />
+                            <Plus className="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground cursor-pointer" />
                         </div>
                     )
                 }
             </div>
 
-            <CollapsibleContent className="mt-4">
+            <CollapsibleContent className="mt-2 sm:mt-3 lg:mt-4">
                 {children}
             </CollapsibleContent>
         </Collapsible>

@@ -1,20 +1,19 @@
 'use client';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Button } from '../ui/button'
-import { ChartColumn, Check, ChevronRight, Copy, Filter, Plus, RefreshCcw, Timer, User } from 'lucide-react'
+import { ChartColumn, Check, ChevronRight, Copy, Plus, Timer, User } from 'lucide-react'
 import SubtaskIcon from '../icons/subtask'
 import { CustomizeViewTrigger } from '../custom/customize-view-trigger'
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import SubtaskSummary from './subtask-summary'
 import { TaskSection } from './task-section'
 import { TaskTable } from '../custom/data-explorer/data-table'
-import { TASK_DATA, TASK_USER_DATA } from '../custom/data-explorer/task.mock'
+import { TASK_DATA } from '../custom/data-explorer/task.mock'
 import { FilterPopover } from '../custom/filters/filter-popover'
 import { useState } from 'react'
 import { AssigneeSidebar } from '../custom/assignee-sidebar/assignee-sidebar'
 import { AddTaskToSprintDialog } from '../custom/add-to-sprint/add-to-sprint-dialog';
-import { DataExplorer } from '../custom/data-explorer/data-explorer';
 
 export default function SprintListTab() {
     const [openDialog, setOpenDialog] = useState(false);
@@ -27,14 +26,14 @@ export default function SprintListTab() {
     return (
         <div className="flex flex-col h-full">
             {/* header */}
-            <div className="flex justify-between items-center border-b px-4 pb-2">
-                <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2 sm:gap-0 border-b px-2 sm:px-4 py-2 sm:pb-2">
+                <div className="flex gap-1.5 sm:gap-2 flex-wrap">
                     {/* Subtasks */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="sm">
-                                <SubtaskIcon className="mr-0.5" />
-                                Subtasks
+                            <Button variant="outline" size="sm" className="flex-1 sm:flex-none text-xs">
+                                <SubtaskIcon className="mr-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                <span className="hidden xs:inline">Subtasks</span>
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-40" align="start">
@@ -50,9 +49,10 @@ export default function SprintListTab() {
                     {/* Group By */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="sm">
-                                <SubtaskIcon className="mr-0.5" />
-                                Group By: Status
+                            <Button variant="outline" size="sm" className="flex-1 sm:flex-none text-xs">
+                                <SubtaskIcon className="mr-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                <span className="hidden sm:inline">Group By: Status</span>
+                                <span className="sm:hidden">Group By</span>
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-40" align="start">
@@ -94,33 +94,31 @@ export default function SprintListTab() {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                <div className="flex gap-2">
-                    {/* <Button variant="outline" size="sm">
-                        <Filter className="mr-0.5" />
-                        Filter
-                    </Button> */}
+                <div className="flex gap-1.5 sm:gap-2 flex-wrap">
                     <FilterPopover />
 
-                    <Button onClick={openAssigneeSider} variant="outline" size="sm">
+                    <Button onClick={openAssigneeSider} variant="outline" size="sm" className="flex-1 sm:flex-none text-xs">
                         <Avatar size="xs" className="mr-0.5">
                             <AvatarFallback>AH</AvatarFallback>
                         </Avatar>
-                        Alif Hassan
+                        <span className="hidden sm:inline">Alif Hassan</span>
+                        <span className="sm:hidden">AH</span>
                     </Button>
 
                     {/* Customize View Button */}
                     <CustomizeViewTrigger />
 
-                    <Button size="sm" onClick={() => setOpenDialog(true)}>
-                        <Plus className="mr-0.5 stroke-3" />
-                        Add Task to Sprint
+                    <Button size="sm" onClick={() => setOpenDialog(true)} className="flex-1 sm:flex-none text-xs">
+                        <Plus className="mr-0.5 stroke-3 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        <span className="hidden md:inline">Add Task to Sprint</span>
+                        <span className="md:hidden">Add Task</span>
                     </Button>
                 </div>
             </div>
 
             {/* body */}
-            <div className="p-4 flex flex-col gap-4 text-xs">
-                <div className='flex gap-4'>
+            <div className="p-2 sm:p-4 flex flex-col gap-3 sm:gap-4 text-xs overflow-auto">
+                <div className='flex flex-col sm:flex-row gap-2 sm:gap-4'>
                     <SubtaskSummary
                         title="Backlog"
                         subtitle="4 new tasks added"
@@ -140,7 +138,7 @@ export default function SprintListTab() {
                         color="red"
                     />
                 </div>
-                <div>
+                <div className='flex flex-col gap-4'>
                     <TaskSection
                         title={
                             <span className="flex gap-1">

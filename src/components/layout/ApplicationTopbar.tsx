@@ -1,7 +1,18 @@
-import { ChevronDown, Folder } from "lucide-react";
+'use client';
+
+import { ChevronDown, Folder, LayoutDashboardIcon } from "lucide-react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb";
+import PlayCircleIcon from "../sprint-overview/icons/play-circle";
+import PlayOutlineIcon from "../icons/play-outline";
+import { SprintSelectPopover } from "../sprint-overview/custom/sprint-select/sprint-select-popover";
+import { SPRINTS_MOCK_DATA } from "@/data/sprint-data";
 
 export default function ApplicationTopbar() {
+  const router = useRouter();
+  const pathname = usePathname();
+
   return (
     <header className="flex h-[2.188rem] w-full items-center bg-[#FFFFFF] py-4 px-3">
       <div className="flex items-center gap-1">
@@ -26,12 +37,44 @@ export default function ApplicationTopbar() {
         <div className="h-4 w-[0.1rem] bg-gray-300 mx-1" aria-hidden="true" />
 
         {/* Breadcrumb Section */}
-        <div className="flex items-center gap-2 text-gray-500">
-          <Folder size={16} className="text-gray-400" />
-          <span className="text-xs font-medium leading-4 tracking-tighter text-[#697588]">
-            Projects
-          </span>
-        </div>
+
+
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/sprint-overview/1">
+                <div className="flex items-center gap-2 text-gray-500">
+                  <PlayOutlineIcon className="w-4 h-4 text-[#697588] stroke-[#697588]" />
+                  <span className="text-xs font-medium leading-4 tracking-tighter text-[#697588]">
+                    Sprints
+                  </span>
+                </div>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>|</BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage className="flex flex-row gap-2">
+                <LayoutDashboardIcon className="w-4 h-4 text-[#697588]" />
+                Sprint Category
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>|</BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <SprintSelectPopover value={pathname.split('/')[2]} sprints={SPRINTS_MOCK_DATA} onChange={(sprintId) => {
+                router.push(`/sprint-overview/${sprintId}`);
+              }}>
+                <BreadcrumbPage className="flex flex-row gap-2">
+                  <PlayCircleIcon className="w-4 h-4 stroke-muted" />
+                  {
+                    `${SPRINTS_MOCK_DATA.find(sprint => sprint.id === pathname.split('/')[2])?.name} 
+                    (${SPRINTS_MOCK_DATA.find(sprint => sprint.id === pathname.split('/')[2])?.range} )`
+                  }
+                  <ChevronDown size={14} className="text-gray-400" />
+                </BreadcrumbPage>
+              </SprintSelectPopover>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
       </div>
     </header>
   );
