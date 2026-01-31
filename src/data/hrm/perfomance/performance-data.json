@@ -1,0 +1,145 @@
+{
+    "user": {
+        "name": "John Doe",
+        "role": "Senior Developer",
+        "avatar": "/assets/avatar-john.png",
+        "email": "john@kazentic.com",
+        "phone": "+8801712345678"
+    },
+    "metrics": {
+        "hoursAssigned": 282,
+        "hoursLogged": 282,
+        "backlogTasks": 1
+    },
+    "charts": {
+        "taskCompletion": [
+            {
+                "name": "Completed",
+                "value": 70,
+                "fill": "#9FAGFF"
+            },
+            {
+                "name": "Remaining",
+                "value": 30,
+                "fill": "#FFECC8"
+            }
+        ],
+        "workload": [
+            {
+                "month": "Jan",
+                "est": 14,
+                "worked": 12
+            },
+            {
+                "month": "Feb",
+                "est": 15,
+                "worked": 12
+            },
+            {
+                "month": "Mar",
+                "est": 20,
+                "worked": 18
+            },
+            {
+                "month": "Apr",
+                "est": 10,
+                "worked": 4
+            },
+            {
+                "month": "May",
+                "est": 20,
+                "worked": 18
+            },
+            {
+                "month": "Jun",
+                "est": 20,
+                "worked": 18
+            }
+        ]
+    },
+    "healthMonitor": {
+        "overdue": [
+            {
+                "id": "kzt-1",
+                "title": "Auth, Profile, Dashboard, Access Control, Configuration, Forms Fixing",
+                "type": "Type",
+                "assignee": "Pat Cummins",
+                "dueDate": "2024-01-15",
+                "status": "High",
+                "meta": "5 days overdue"
+            }
+        ],
+        "delayed": [
+            {
+                "id": "kzt-2",
+                "title": "Auth, Profile, Dashboard, Access Control, Configuration, Forms Fixing",
+                "type": "Type",
+                "assignee": "Pat Cummins",
+                "dueDate": "2024-01-15",
+                "status": "Medium",
+                "meta": "65% Completed"
+            }
+        ],
+        "pending": [
+            {
+                "id": "kzt-3",
+                "title": "Auth, Profile, Dashboard, Access Control, Configuration, Forms Fixing",
+                "type": "Type",
+                "assignee": "Pat Cummins",
+                "dueDate": "2024-01-15",
+                "status": "Medium",
+                "meta": "65% Completed"
+            }
+        ]
+    },
+    "tasksList": [
+        {
+            "id": 1,
+            "dependency": "[kzt-1]",
+            "name": "[kzt-1] Auth, Profile, Dashboard...",
+            "status": "ACTIVE",
+            "assignee": "AH",
+            "priority": "Urgent",
+            "startDate": "23/11/25",
+            "dueDate": "23/11/25",
+            "Loged": "2H:30M",
+            "estTime": "1h",
+            "trackedTime": "1h",
+            "hasSubtasks": false
+        },
+        {
+            "id": 2,
+            "dependency": "[kzt-1]",
+            "name": "[kzt-1] Auth, Profile, Dashboard...",
+            "status": "ACTIVE",
+            "assignee": "AH",
+            "priority": "Urgent",
+            "startDate": "23/11/25",
+            "dueDate": "23/11/25",
+            "Loged": "2H:30M",
+            "estTime": "1h",
+            "trackedTime": "1h",
+            "hasSubtasks": false
+        },
+        {
+            "id": 3,
+            "dependency": "[kzt-1]",
+            "name": "[kzt-1] Auth, Profile, Dashboard...",
+            "status": "ACTIVE",
+            "priority": "Urgent",
+            "assignee": "AH",
+            "startDate": "23/11/25",
+            "dueDate": "23/11/25",
+            "Loged": "2H:30M",
+            "estTime": "1h",
+            "trackedTime": "1h",
+            "hasSubtasks": true
+        },
+        {
+            "id": 4,
+            "name": "[kzt-1] Auth, Profile, Dashboard...",
+            "status": "ACTIVE",
+            "hasSubtasks": true
+        }
+    ]
+}

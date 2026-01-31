@@ -1,0 +1,107 @@
+{
+    "metrics": [
+        {
+            "id": 1,
+            "label": "Total Hours",
+            "value": "10:00:32",
+            "type": "total"
+        },
+        {
+            "id": 2,
+            "label": "Avg Hours/Day",
+            "value": "9H : 25 M",
+            "type": "avg"
+        },
+        {
+            "id": 3,
+            "label": "Active Days",
+            "value": "22/30",
+            "type": "active"
+        },
+        {
+            "id": 4,
+            "label": "Late Arrivals",
+            "value": "0",
+            "type": "late"
+        }
+    ],
+    "records": [
+        {
+            "id": 1,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        },
+        {
+            "id": 2,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        },
+        {
+            "id": 3,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        },
+        {
+            "id": 4,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        },
+        {
+            "id": 5,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        },
+        {
+            "id": 6,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        },
+        {
+            "id": 7,
+            "name": "Pat Cummins",
+            "tasks": "12 Tasks",
+            "date": "11/12/2024",
+            "signIn": "10:20 AM",
+            "signOut": "11:20 AM",
+            "duration": "1 H",
+            "status": "PRESENT",
+            "reason": "Prayer Break"
+        }
+    ]
+}

@@ -21,7 +21,7 @@ const buttonVariants = cva("", {
         "flex items-center gap-1 px-1.5 pr-2 py-1 bg-[#4157FE] rounded-sm text-xs leading-3 tracking-tighter font-medium text-[#FFFFFF] cursor-pointer",
       active:
         "flex items-center gap-1 px-[5.43px] h-5 bg-[#C4FFE2] border border-[#05966980] rounded-sm text-[11px] font-medium leading-4 tracking-tighter text-[#059669] cursor-pointer",
-      type: "px-1.5 py-0.5 bg-[#F2F9FE] text-[#4157FE] rounded-sm border border-[#4157FE80] text-[11px] font-medium leading-4 tracking-tighter",
+      type: "flex item-center gap-1 px-1.5 py-0.5 bg-[#F2F9FE] text-[#4157FE] rounded-sm border border-[#4157FE80] text-[11px] font-medium leading-4 tracking-tighter",
       inactive:
         "flex items-center gap-1 px-[5.43px] h-5 bg-[#EBEBEB] border border-[#69758880] rounded-md text-[11px] font-medium leading-4 tracking-tighter text-[#697588] cursor-pointer",
       transparent:

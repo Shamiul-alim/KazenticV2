@@ -1,0 +1,84 @@
+{
+    "1": {
+        "basicInfo": [
+            {
+                "label": "Position",
+                "value": "Senior Developer",
+                "icon": "briefcase.svg"
+            },
+            {
+                "label": "Team Name",
+                "value": "Lorem Ipsum",
+                "icon": "people.svg"
+            },
+            {
+                "label": "Job Type",
+                "value": "Full-Time",
+                "icon": "briefcase.svg"
+            },
+            {
+                "label": "Offered Salary",
+                "value": "1000-2000 USD",
+                "icon": "dollar-circle.svg"
+            },
+            {
+                "label": "Applicants",
+                "value": "mail@carbonstream.com",
+                "icon": "profile-2user.svg"
+            },
+            {
+                "label": "Application Deadline",
+                "value": "Aug 28, 2025",
+                "icon": "calendar-blue.svg"
+            },
+            {
+                "label": "Office Hours",
+                "value": "Full-Time",
+                "icon": "clock-blue.svg"
+            },
+            {
+                "label": "Age Range",
+                "value": "24-30 Years",
+                "icon": "people.svg"
+            },
+            {
+                "label": "Gender",
+                "value": "Both Male & Female",
+                "icon": "security-user-blue.svg"
+            },
+            {
+                "label": "Job Category",
+                "value": "Category Name",
+                "icon": "briefcase.svg"
+            },
+            {
+                "label": "Location",
+                "value": "Dhaka",
+                "icon": "location.svg"
+            }
+        ],
+        "skills": [
+            "Skill Name",
+            "Skill Name",
+            "Skill Name",
+            "Skill Name",
+            "Skill Name"
+        ],
+        "education": [
+            "B.Sc. in CSE (American International Universe Of Bangladesh)",
+            "M.Sc. in CSE (American International Universe Of Bangladesh)"
+        ],
+        "attachments": [
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "type": "PDF"
+            },
+            {
+                "name": "PRD",
+                "size": "5 MB",
+                "type": "PDF"
+            }
+        ]
+    }
+}

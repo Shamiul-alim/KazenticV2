@@ -1,0 +1,81 @@
+{
+    "options": {
+        "teams": [
+            "Engineering",
+            "Design",
+            "Marketing",
+            "Sales"
+        ],
+        "locations": [
+            "Dhaka, Bangladesh",
+            "New York, USA",
+            "London, UK",
+            "Remote"
+        ],
+        "positions": [
+            "Junior",
+            "Mid-Level",
+            "Senior",
+            "Lead"
+        ]
+    },
+    "jobs": [
+        {
+            "id": 1,
+            "title": "Software Engineer -Frontend",
+            "company": "BBC technology",
+            "location": "Dhaka, Bangladesh",
+            "team": "Engineering",
+            "position": "Senior",
+            "posted": "2025-08-09",
+            "deadline": "2025-09-09",
+            "salaryMin": 100,
+            "salaryMax": 300,
+            "type": "Full-Time",
+            "tags": {
+                "status": "Status",
+                "category": "Category",
+                "type": "Type"
+            },
+            "recruitmentStatus": "Interviewed"
+        },
+        {
+            "id": 2,
+            "title": "UI/UX Designer",
+            "company": "Google",
+            "location": "Remote",
+            "team": "Design",
+            "position": "Mid-Level",
+            "posted": "2025-08-10",
+            "deadline": "2025-09-15",
+            "salaryMin": 200,
+            "salaryMax": 500,
+            "type": "Part-Time",
+            "tags": {
+                "status": "Status",
+                "category": "Category",
+                "type": "Type"
+            },
+            "recruitmentStatus": "Screened"
+        },
+        {
+            "id": 3,
+            "title": "Backend Developer",
+            "company": "Amazon",
+            "location": "London, UK",
+            "team": "Engineering",
+            "position": "Lead",
+            "posted": "2025-08-05",
+            "deadline": "2025-08-30",
+            "salaryMin": 400,
+            "salaryMax": 800,
+            "type": "Internship",
+            "tags": {
+                "status": "Status",
+                "category": "Category",
+                "type": "Type"
+            },
+            "recruitmentStatus": "Cancelled"
+        }
+    ]
+}

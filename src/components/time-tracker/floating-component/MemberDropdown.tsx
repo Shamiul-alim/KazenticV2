@@ -2,10 +2,9 @@
 import { Search } from "lucide-react";
 import Image from "next/image";
 
-interface Person {
+export interface Person {
   id: string;
   name: string;
-  // add other fields if necessary
 }
 
 interface MemberDropdownProps {

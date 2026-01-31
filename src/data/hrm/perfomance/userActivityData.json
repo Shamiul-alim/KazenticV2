@@ -1,0 +1,86 @@
+{
+    "user": {
+        "name": "John Doe",
+        "email": "johndoe@gmail.com",
+        "role": "Software Developert",
+        "status": "ONLINE",
+        "session": "10:00:32",
+        "os": "Mac OS",
+        "browser": "Brave Browser",
+        "ip": "204.675.7880",
+        "address": "65-1 Bayard St Staten Island, NY 10312"
+    },
+    "metrics": [
+        {
+            "label": "Total Session Time",
+            "value": "10:00:32",
+            "type": "time"
+        },
+        {
+            "label": "Daily Logins",
+            "value": "24",
+            "type": "logins"
+        },
+        {
+            "label": "Active Days",
+            "value": "22/30",
+            "type": "days"
+        },
+        {
+            "label": "Productivity Score",
+            "value": "97%",
+            "type": "score"
+        }
+    ],
+    "activities": [
+        {
+            "id": 1,
+            "title": "John Doe Logged in",
+            "desc": "Successful authentication",
+            "date": "29 Jul, 2025",
+            "type": "login"
+        },
+        {
+            "id": 2,
+            "title": "John Doe Logged in",
+            "desc": "Successful authentication",
+            "date": "29 Jul, 2025",
+            "type": "login"
+        },
+        {
+            "id": 3,
+            "title": "John Doe Logged in",
+            "desc": "Successful authentication",
+            "date": "29 Jul, 2025",
+            "type": "login"
+        },
+        {
+            "id": 4,
+            "title": "John Doe Logged in",
+            "desc": "Successful authentication",
+            "date": "29 Jul, 2025",
+            "type": "login"
+        },
+        {
+            "id": 5,
+            "title": "Accessed project files",
+            "desc": "Downloaded quarterly_report.pdf",
+            "date": "29 Jul, 2025",
+            "type": "file"
+        },
+        {
+            "id": 6,
+            "title": "Updated profile settings",
+            "desc": "Changed notification preferences",
+            "date": "29 Jul, 2025",
+            "type": "settings"
+        },
+        {
+            "id": 7,
+            "title": "Updated profile settings",
+            "desc": "Changed notification preferences",
+            "date": "29 Jul, 2025",
+            "type": "settings"
+        }
+    ]
+}
