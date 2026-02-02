@@ -26,7 +26,7 @@ export function TaskTable({ data }: Props) {
     const [selected, setSelected] = useState<Record<string, boolean>>({});
 
     return (
-        <div className="rounded-md overflow-hidden border">
+        <div className="rounded-md overflow-hidden border mx-2">
             <Table>
                 <TableHeader>
                     <TableRow className="items-center">
