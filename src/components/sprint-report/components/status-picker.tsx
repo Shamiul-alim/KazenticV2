@@ -26,7 +26,12 @@ const statuses = [
     { id: "closed", label: "CLOSED", icon: MinusCircle, color: "text-emerald-600" },
 ]
 
-export const StatusPicker = () => {
+interface StatusPickerProps {
+    onSelect?: (status: string) => void
+    selectedValues?: string[]
+}
+
+export const StatusPicker = ({ onSelect, selectedValues = [] }: StatusPickerProps) => {
     return (
         <div className="w-[280px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
             {/* Search Bar */}
@@ -51,24 +56,26 @@ export const StatusPicker = () => {
             <div className="flex-1 overflow-y-auto py-1 max-h-[350px] no-scrollbar">
                 {statuses.map((status) => {
                     const Icon = status.icon === "Monitor" ? Monitor : status.icon
+                    const isSelected = selectedValues.includes(status.label)
                     return (
                         <div
                             key={status.id}
                             className={cn(
                                 "flex items-center justify-between px-4 py-2.5 cursor-pointer transition-colors group",
-                                status.active ? "bg-blue-50/50" : "hover:bg-gray-50"
+                                isSelected ? "bg-blue-50/50" : "hover:bg-gray-50"
                             )}
+                            onClick={() => onSelect?.(status.label)}
                         >
                             <div className="flex items-center gap-4">
                                 <Icon className={cn("w-5 h-5", status.color)} />
                                 <span className={cn(
                                     "text-[13px] font-bold tracking-tight",
-                                    status.active ? "text-blue-600" : "text-[#475569]"
+                                    isSelected ? "text-blue-600" : "text-[#475569]"
                                 )}>
                                     {status.label}
                                 </span>
                             </div>
-                            {status.active && (
+                            {isSelected && (
                                 <Check className="w-4 h-4 text-blue-600" />
                             )}
                         </div>

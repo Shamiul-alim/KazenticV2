@@ -30,13 +30,13 @@ interface FilterCondition {
     value: string
 }
 
-export const NestedFilter = () => {
+interface NestedFilterProps {
+    onRemove?: () => void
+}
+
+export const NestedFilter = ({ onRemove }: NestedFilterProps) => {
     const [conditions, setConditions] = React.useState<FilterCondition[]>([
-        { id: '1', operator: 'AND', filterType: 'Status', condition: 'Is', value: '' },
-        { id: '2', operator: 'AND', filterType: 'Due Date', condition: 'Is', value: '' },
-        { id: '3', operator: 'AND', filterType: 'Assignee', condition: 'Is', value: '' },
-        { id: '4', operator: 'AND', filterType: 'Priority', condition: 'Is', value: '' },
-        { id: '5', operator: 'AND', filterType: 'Tags', condition: 'Is', value: '' },
+        { id: '1', operator: 'AND', filterType: 'Select Filter', condition: 'Is', value: '' },
     ])
 
     const [openFilterPicker, setOpenFilterPicker] = React.useState<string | null>(null)
@@ -56,7 +56,11 @@ export const NestedFilter = () => {
     }
 
     const removeCondition = (id: string) => {
-        setConditions(conditions.filter(c => c.id !== id))
+        if (conditions.length === 1) {
+            onRemove?.()
+        } else {
+            setConditions(conditions.filter(c => c.id !== id))
+        }
     }
 
     const updateCondition = (id: string, field: keyof FilterCondition, value: string) => {
@@ -90,7 +94,10 @@ export const NestedFilter = () => {
             {/* Header */}
             <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-semibold text-gray-500 uppercase">Where</span>
-                <button className="p-1 hover:bg-gray-200 rounded-md transition-colors">
+                <button
+                    onClick={onRemove}
+                    className="p-1 hover:bg-gray-200 rounded-md transition-colors"
+                >
                     <X size={14} className="text-gray-400" />
                 </button>
             </div>
@@ -157,13 +164,21 @@ export const NestedFilter = () => {
                         </div>
                         {openValuePicker === firstCondition.id && firstCondition.filterType === 'Status' && (
                             <div className="absolute top-full right-0 mt-1 z-[100]">
-                                <StatusPicker />
+                                <StatusPicker
+                                    selectedValues={firstCondition.value ? [firstCondition.value] : []}
+                                    onSelect={(status) => {
+                                        updateCondition(firstCondition.id, 'value', status)
+                                        setOpenValuePicker(null)
+                                    }}
+                                />
                             </div>
                         )}
                     </div>
 
-                    {/* Remove Button */}
-                    <button className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                    <button
+                        onClick={() => removeCondition(firstCondition.id)}
+                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                    >
                         <X size={16} />
                     </button>
                 </div>
@@ -251,7 +266,13 @@ export const NestedFilter = () => {
                             </div>
                             {openValuePicker === condition.id && condition.filterType === 'Status' && (
                                 <div className="absolute top-full right-0 mt-1 z-[100]">
-                                    <StatusPicker />
+                                    <StatusPicker
+                                        selectedValues={condition.value ? [condition.value] : []}
+                                        onSelect={(status) => {
+                                            updateCondition(condition.id, 'value', status)
+                                            setOpenValuePicker(null)
+                                        }}
+                                    />
                                 </div>
                             )}
                         </div>
@@ -267,13 +288,13 @@ export const NestedFilter = () => {
                 </div>
             ))}
 
-            {/* Add Nested Filter Button */}
+            {/* Add Condition Button */}
             <button
                 onClick={addCondition}
                 className="flex items-center gap-2 mt-3 px-3 py-2 text-[13px] font-semibold text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
             >
                 <Plus size={16} className="text-gray-500" />
-                Add Nested Filter
+                Add Condition
             </button>
         </div>
     )

@@ -134,7 +134,15 @@ const FilterRow = () => {
 }
 
 export const FilterPopover = () => {
-    const [showNestedFilter, setShowNestedFilter] = React.useState(false)
+    const [nestedFilters, setNestedFilters] = React.useState<string[]>([])
+
+    const addNestedFilter = () => {
+        setNestedFilters([...nestedFilters, `nested-${Date.now()}`])
+    }
+
+    const removeNestedFilter = (id: string) => {
+        setNestedFilters(nestedFilters.filter(filterId => filterId !== id))
+    }
 
     return (
         <div className="w-[90vw] sm:w-[700px] max-w-[700px] bg-white rounded-2xl border border-gray-100 shadow-2xl p-5 select-none">
@@ -148,7 +156,7 @@ export const FilterPopover = () => {
             <div className="bg-[#f8fafc]/50 rounded-xl border border-gray-100 p-4 mb-6">
                 <FilterRow />
                 <button
-                    onClick={() => setShowNestedFilter(!showNestedFilter)}
+                    onClick={addNestedFilter}
                     className="flex items-center gap-2 h-9 px-3 bg-white border border-gray-200 rounded-lg text-[13px] font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
                 >
                     <Copy size={14} className="text-[#64748b]" />
@@ -156,12 +164,12 @@ export const FilterPopover = () => {
                 </button>
             </div>
 
-            {/* Nested Filter Section */}
-            {showNestedFilter && (
-                <div className="mb-6">
-                    <NestedFilter />
+            {/* Nested Filter Sections */}
+            {nestedFilters.map((filterId) => (
+                <div key={filterId} className="mb-6">
+                    <NestedFilter onRemove={() => removeNestedFilter(filterId)} />
                 </div>
-            )}
+            ))}
 
             <Button className="bg-blue-600 hover:bg-blue-700 text-white gap-2 h-10 px-4 rounded-xl font-bold shadow-lg shadow-blue-200 transition-all active:scale-95">
                 <Plus size={18} />
