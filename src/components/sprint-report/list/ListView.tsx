@@ -33,24 +33,24 @@ import {
 } from "lucide-react"
 
 // --- UI Components ---
-import { Button } from "@/components/sprint-report/ui/button"
-import { Badge } from "@/components/sprint-report/ui/badge"
-import { Checkbox } from "@/components/sprint-report/ui/checkbox"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover"
+import { Button } from "@/components/ui/Button"
+import { Badge } from "@/components/ui/badge"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 // --- Local Components ---
-import { StatusPicker } from "@/components/sprint-report/ui/status-picker"
-import { AssigneePicker } from "@/components/sprint-report/ui/assignee-picker"
-import { CustomDatePicker } from "@/components/sprint-report/ui/date-picker-custom"
-import { StatusActionMenu } from "@/components/sprint-report/ui/status-action-menu"
+import { StatusPicker } from "@/components/sprint-report/components/status-picker"
+import { AssigneePicker } from "@/components/sprint-report/components/assignee-picker"
+import { CustomDatePicker } from "@/components/sprint-report/components/date-picker-custom"
+import { StatusActionMenu } from "@/components/sprint-report/components/status-action-menu"
 import { TaskTable } from "@/components/sprint-report/list/TaskTable"
 import { FilterPopover } from "@/components/sprint-report/list/FilterPopover"
 import { AssigneeSidebar } from "@/components/sprint-report/list/AssigneeSidebar"
 import { CustomizeViewSidebar } from "@/components/sprint-report/list/CustomizeViewSidebar"
 import { SubtaskPopover } from "@/components/sprint-report/SubtaskPopover"
 import { AddTaskModal } from "@/components/sprint-report/list/AddTaskModal"
-import { FilterOptionsPicker, filterOptions } from "@/components/sprint-report/ui/filter-options-picker"
+import { FilterOptionsPicker, filterOptions } from "@/components/sprint-report/components/filter-options-picker"
 
 // --- Utilities ---
 import { cn } from "@/lib/utils"
@@ -157,51 +157,80 @@ export const ListView = () => {
                         </PopoverContent>
                     </Popover>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
+
+                    {/* Filter */}
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button variant="ghost" size="sm" className="h-8 text-[12px] font-bold text-gray-600 gap-1.5 px-3 border border-gray-100 bg-white hover:bg-gray-50">
-                                <Filter size={14} />
+                            <Button
+                                variant="outline"
+                                className="h-[38px] min-w-[110px] px-3 flex items-center justify-center gap-1.5
+        border-gray-100 bg-white hover:bg-gray-50
+        text-gray-600 rounded-lg text-[12px] font-bold"
+                            >
+                                <Filter size={14} strokeWidth={2.5} />
                                 <span className="hidden sm:inline">Filter</span>
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="p-0 border-none bg-transparent shadow-none w-auto" align="end" sideOffset={8}>
+                        <PopoverContent
+                            className="p-0 border-none bg-transparent shadow-none w-auto"
+                            align="end"
+                            sideOffset={8}
+                        >
                             <FilterPopover />
                         </PopoverContent>
                     </Popover>
-                    <div
+
+                    {/* Assignee */}
+                    <Button
+                        variant="outline"
                         onClick={() => setIsAssigneeOpen(true)}
-                        className="flex items-center gap-1.5 bg-white border border-gray-100 rounded-md px-2 py-1 h-8 cursor-pointer hover:bg-gray-50 active:scale-95 transition-all"
+                        className="h-[38px] min-w-[110px] px-3 flex items-center justify-center gap-2
+    border-gray-100 bg-white hover:bg-gray-50
+    text-gray-700 rounded-lg text-[12px] font-bold"
                     >
                         <Avatar className="h-5 w-5">
-                            <AvatarFallback className="bg-blue-600 text-white text-[8px] font-bold">AH</AvatarFallback>
+                            <AvatarFallback className="bg-blue-600 text-white text-[9px] font-bold">
+                                AH
+                            </AvatarFallback>
                         </Avatar>
-                        <span className="text-[12px] font-bold text-gray-700 hidden sm:inline">Alif Hassan</span>
-                    </div>
+                        <span className="hidden sm:inline">Alif Hassan</span>
+                    </Button>
+
+                    {/* Customize */}
                     <Button
-                        variant="ghost"
-                        size="sm"
+                        variant="outline"
                         onClick={() => setIsCustomizeOpen(true)}
-                        className="h-8 text-[12px] font-bold text-gray-600 gap-1.5 px-3 border border-gray-100 bg-white hover:bg-gray-50 active:scale-95 transition-all"
+                        className="h-[38px] min-w-[110px] px-3 flex items-center justify-center gap-1.5
+    border-gray-100 bg-white hover:bg-gray-50
+    text-gray-600 rounded-lg text-[12px] font-bold"
                     >
-                        <Settings2 size={14} />
+                        <Settings2 size={14} strokeWidth={2.5} />
                         <span className="hidden sm:inline">Customize view</span>
                     </Button>
+
+                    {/* Add Task */}
                     <Button
                         variant="default"
                         size="sm"
                         onClick={() => setIsAddTaskModalOpen(true)}
-                        className="h-8 text-[12px] font-bold bg-blue-600 hover:bg-blue-700 text-white gap-1.5 px-3 border-0 active:scale-95 transition-all"
+                        className="h-[38px] min-w-[140px] px-4 flex items-center justify-center gap-2 whitespace-nowrap
+    text-[13px] font-bold
+    bg-blue-600 hover:bg-blue-700 text-white
+    border-0 active:scale-95 transition-all rounded-lg"
                     >
-                        <Plus size={14} />
+                        <Plus size={18} strokeWidth={2.5} />
                         <span className="hidden sm:inline">Add Task to Sprint</span>
+                        <span className="sm:hidden">Add Task</span>
                     </Button>
+
                 </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-6 no-scrollbar">
+
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 no-scrollbar">
                 {/* Summary Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <SummaryCard
                         icon={LayoutGrid}
                         title="Backlog"

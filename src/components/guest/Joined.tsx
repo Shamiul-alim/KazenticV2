@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/sprint-report/ui/table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar"
-import { StatusBadge } from "@/components/sprint-report/ui/status-badge"
+import { StatusBadge } from "@/components/sprint-report/components/status-badge"
 import { Switch } from "@/components/sprint-report/ui/switch"
 import { joinedGuests as initialGuests } from "@/data/guest-data"
 import { Copy, ChevronsUpDown, CheckCircle2, AlertCircle } from 'lucide-react'

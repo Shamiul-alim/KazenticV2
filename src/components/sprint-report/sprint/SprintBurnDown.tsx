@@ -17,7 +17,7 @@ import {
     MoreHorizontal,
     LayoutGrid,
 } from 'lucide-react';
-import { Card } from '../ui/card';
+import Card from "@/components/ui/card"
 import { cn } from "@/lib/utils";
 import { SprintBurnSettings } from './Settings/sprint-burn-setting';
 

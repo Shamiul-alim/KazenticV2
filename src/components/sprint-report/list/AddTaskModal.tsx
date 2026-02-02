@@ -26,9 +26,9 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from "@/components/sprint-report/ui/dialog"
-import { Badge } from "@/components/sprint-report/ui/badge"
-import { Button } from "@/components/sprint-report/ui/button"
+} from "@/components/ui/dialog"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/Button"
 
 // --- Local Components ---
 import { TaskTable } from "@/components/sprint-report/list/TaskTable"
@@ -44,7 +44,7 @@ interface AddTaskModalProps {
 export const AddTaskModal = ({ isOpen, onClose }: AddTaskModalProps) => {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent showCloseButton={false} className="sm:max-w-none max-w-[1100px] w-full h-full sm:w-[90vw] sm:h-[90vh] flex flex-col p-0 gap-0 overflow-hidden bg-white border-0 shadow-2xl">
+            <DialogContent className="sm:max-w-none max-w-[1100px] w-full h-full sm:w-[90vw] sm:h-[90vh] flex flex-col p-0 gap-0 overflow-hidden bg-white border-0 shadow-2xl">
                 {/* Header */}
                 <DialogHeader className="px-6 py-4 flex flex-row items-center justify-between shrink-0 border-b border-gray-50">
                     <DialogTitle className="text-xl font-bold text-[#1e293b]">Add Task to Sprint</DialogTitle>

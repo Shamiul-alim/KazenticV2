@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Search, X, Check, Users } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/sprint-report/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 
 interface AssigneeItemProps {

@@ -15,7 +15,7 @@ import {
     Settings,
     MoreHorizontal,
 } from "lucide-react"
-import { Card } from "../ui/card"
+import Card from "@/components/ui/card"
 import { TasksByAssigneeSettings } from "./Settings/tasks-by-assignee-setting"
 
 /* ===================== DATA ===================== */

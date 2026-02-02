@@ -4,7 +4,7 @@ import * as React from "react"
 import { Filter, Eye, Clock, Settings, RotateCcw } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/sprint-report/ui/button"
-import { StatusBadge } from "@/components/sprint-report/ui/status-badge"
+import { StatusBadge } from "@/components/sprint-report/components/status-badge"
 import { Avatar, AvatarFallback } from "@/components/sprint-report/ui/avatar"
 import { LeaveDetailsModal } from "./leave-details-modal"
 

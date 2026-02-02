@@ -13,8 +13,8 @@ import {
     LabelList
 } from 'recharts';
 import { LayoutGrid } from 'lucide-react';
-import { Card } from '../ui/card';
-import { ChartHeader } from '../ui/chart-header';
+import Card from "@/components/ui/card"
+import { ChartHeader } from "../components/chart-header"
 import { TotalTimeStatusSettings } from './Settings/total-time-status-setting';
 import { FilterPopover } from '../list/FilterPopover';
 

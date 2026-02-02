@@ -1,7 +1,7 @@
 "use client";
 // Still need to work on feature 
 import React, { useState } from 'react';
-import { Card } from '../ui/card';
+import Card from "@/components/ui/card"
 import {
     LayoutGrid,
     BarChart2,
@@ -24,8 +24,8 @@ import { cn } from "@/lib/utils";
 import { StatusPopover } from './StatusPopover';
 import { FilterPopover } from "../list/FilterPopover"
 import { CustomizeViewSidebar } from "../list/CustomizeViewSidebar"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { Button } from "../ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Button } from "@/components/ui/Button"
 
 /* ===================== SUB COMPONENTS ===================== */
 

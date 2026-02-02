@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import { Trash2, Plus, ChevronDown, Copy, Check } from "lucide-react"
-import { Button } from "@/components/sprint-report/ui/button"
+import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
-import { StatusPicker } from "@/components/sprint-report/ui/status-picker"
-import { NestedFilter } from "@/components/sprint-report/ui/nested-filter"
-import { FilterOptionsPicker, type FilterOption } from "@/components/sprint-report/ui/filter-options-picker"
+import { StatusPicker } from "@/components/sprint-report/components/status-picker"
+import { NestedFilter } from "@/components/sprint-report/components/nested-filter"
+import { FilterOptionsPicker, type FilterOption } from "@/components/sprint-report/components/filter-options-picker"
 
 const FilterRow = () => {
     const [isFilterOpen, setIsFilterOpen] = React.useState(false)

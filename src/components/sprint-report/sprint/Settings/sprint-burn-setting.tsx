@@ -19,8 +19,8 @@ import {
     Layers,
     ArrowUpDown,
 } from "lucide-react"
-import { Card } from "../../ui/card"
-import { Switch } from "../../ui/switch"
+import Card from "@/components/ui/card"
+import { Switch } from "@/components/ui/switch"
 import { cn } from "@/lib/utils"
 import { TaskTable } from "../../list/TaskTable"
 

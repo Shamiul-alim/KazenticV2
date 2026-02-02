@@ -7,34 +7,34 @@ import {
     Calendar as CalendarIcon,
     ChevronDown
 } from "lucide-react"
+import moment from "moment"
 import { cn } from "@/lib/utils"
 
 export const CustomDatePicker = () => {
-    const today = new Date(2026, 0, 21) // Mocking "now" from metadata: Jan 21, 2026
-    const [viewDate, setViewDate] = React.useState(new Date(today.getFullYear(), today.getMonth(), 1))
-    const [selectedDate, setSelectedDate] = React.useState(today)
+    const today = moment("2026-01-21") // Mocking "now" from metadata: Jan 21, 2026
+    const [viewDate, setViewDate] = React.useState(moment(today).startOf('month'))
+    const [selectedDate, setSelectedDate] = React.useState(moment(today))
 
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const monthNames = moment.monthsShort()
     const dayNames = ["S", "M", "T", "W", "T", "F", "S"]
 
-    const daysInMonth = (month: number, year: number) => new Date(year, month + 1, 0).getDate()
-    const firstDayOfMonth = (month: number, year: number) => new Date(year, month, 1).getDay()
+    const currentYear = viewDate.year()
+    const currentMonth = viewDate.month()
 
-    const currentYear = viewDate.getFullYear()
-    const currentMonth = viewDate.getMonth()
-
-    const prevMonth = () => setViewDate(new Date(currentYear, currentMonth - 1, 1))
-    const nextMonth = () => setViewDate(new Date(currentYear, currentMonth + 1, 1))
-    const prevYear = () => setViewDate(new Date(currentYear - 1, currentMonth, 1))
-    const nextYear = () => setViewDate(new Date(currentYear + 1, currentMonth, 1))
+    const prevMonth = () => setViewDate(viewDate.clone().subtract(1, 'month'))
+    const nextMonth = () => setViewDate(viewDate.clone().add(1, 'month'))
+    const prevYear = () => setViewDate(viewDate.clone().subtract(1, 'year'))
+    const nextYear = () => setViewDate(viewDate.clone().add(1, 'year'))
 
     // Generate calendar grid
     const days = []
-    const totalDays = daysInMonth(currentMonth, currentYear)
-    const firstDay = firstDayOfMonth(currentMonth, currentYear)
+    const totalDays = viewDate.daysInMonth()
+    const firstDay = viewDate.clone().startOf('month').day()
 
     // Previous month filler
-    const prevMonthDays = daysInMonth(currentMonth - 1, currentYear)
+    const prevMonthDate = viewDate.clone().subtract(1, 'month')
+    const prevMonthDays = prevMonthDate.daysInMonth()
+
     for (let i = firstDay - 1; i >= 0; i--) {
         days.push({ day: prevMonthDays - i, current: false })
     }
@@ -51,25 +51,29 @@ export const CustomDatePicker = () => {
     }
 
     const quickOptions = [
-        { label: "Today", value: "Wed", date: today },
-        { label: "Tomorrow", value: "Thu", date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1) },
-        { label: "Later", value: "1:54 pm", date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2) },
-        { label: "This weekend", value: "Sat", date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 - today.getDay())) },
-        { label: "Next Week", value: "Mon", date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + (8 - today.getDay())) },
-        { label: "2 Weeks", value: "Feb 04", date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14) },
+        { label: "Today", value: "Wed", date: moment(today) },
+        { label: "Tomorrow", value: "Thu", date: moment(today).add(1, 'days') },
+        { label: "Later", value: "1:54 pm", date: moment(today).add(2, 'days') },
+        { label: "This weekend", value: "Sat", date: moment(today).day(6) },
+        { label: "Next Week", value: "Mon", date: moment(today).add(1, 'weeks').startOf('isoWeek') },
+        { label: "2 Weeks", value: moment(today).add(14, 'days').format("MMM DD"), date: moment(today).add(14, 'days') },
     ]
 
     const handleSelectDate = (day: number) => {
-        const newDate = new Date(currentYear, currentMonth, day)
+        const newDate = viewDate.clone().date(day)
         setSelectedDate(newDate)
     }
 
     const isToday = (day: number, isCurrent: boolean) => {
-        return isCurrent && day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()
+        if (!isCurrent) return false
+        const checkDate = viewDate.clone().date(day)
+        return checkDate.isSame(today, 'day')
     }
 
     const isSelected = (day: number, isCurrent: boolean) => {
-        return isCurrent && day === selectedDate.getDate() && currentMonth === selectedDate.getMonth() && currentYear === selectedDate.getFullYear()
+        if (!isCurrent) return false
+        const checkDate = viewDate.clone().date(day)
+        return checkDate.isSame(selectedDate, 'day')
     }
 
     return (
@@ -77,13 +81,13 @@ export const CustomDatePicker = () => {
             {/* Top Inputs */}
             <div className="flex border-b border-gray-100">
                 <div className="flex-1 p-2 border-r border-gray-100">
-                    <div className="flex items-center gap-2 bg-gray-50/50 border border-gray-200 rounded-lg px-3 py-1.5 group hover:border-blue-400 transition-colors cursor-pointer" onClick={() => setSelectedDate(today)}>
+                    <div className="flex items-center gap-2 bg-gray-50/50 border border-gray-200 rounded-lg px-3 py-1.5 group hover:border-blue-400 transition-colors cursor-pointer" onClick={() => setSelectedDate(moment(today))}>
                         <CalendarIcon size={16} className="text-gray-400" />
                         <span className="text-sm font-bold text-gray-600">Today</span>
                     </div>
                 </div>
                 <div className="flex-1 p-2">
-                    <div className="flex items-center gap-2 bg-gray-50/50 border border-gray-200 rounded-lg px-3 py-1.5 group hover:border-blue-400 transition-colors cursor-pointer" onClick={() => setSelectedDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1))}>
+                    <div className="flex items-center gap-2 bg-gray-50/50 border border-gray-200 rounded-lg px-3 py-1.5 group hover:border-blue-400 transition-colors cursor-pointer" onClick={() => setSelectedDate(moment(today).add(1, 'd'))}>
                         <CalendarIcon size={16} className="text-gray-400" />
                         <span className="text-sm font-bold text-gray-600">Tomorrow</span>
                     </div>
@@ -94,13 +98,13 @@ export const CustomDatePicker = () => {
                 {/* Left Pane: Quick Selection */}
                 <div className="w-[200px] border-r border-gray-100 py-2">
                     {quickOptions.map((opt, i) => {
-                        const active = selectedDate.toDateString() === opt.date.toDateString()
+                        const active = selectedDate.isSame(opt.date, 'day')
                         return (
                             <div
                                 key={i}
                                 onClick={() => {
                                     setSelectedDate(opt.date)
-                                    setViewDate(new Date(opt.date.getFullYear(), opt.date.getMonth(), 1))
+                                    setViewDate(opt.date.clone().startOf('month'))
                                 }}
                                 className={cn(
                                     "px-4 py-2.5 flex items-center justify-between cursor-pointer transition-colors",
@@ -120,7 +124,7 @@ export const CustomDatePicker = () => {
                     <div className="flex items-center justify-between mb-4 px-2">
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-1 cursor-pointer hover:bg-gray-50 px-2 py-1 rounded">
-                                <span className="font-bold text-gray-700 text-sm">{monthNames[currentMonth]}</span>
+                                <span className="font-bold text-gray-700 text-sm">{viewDate.format("MMM")}</span>
                                 <ChevronDown size={14} className="text-gray-400" />
                             </div>
                             <div className="flex items-center gap-4">

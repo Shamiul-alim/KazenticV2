@@ -12,8 +12,8 @@ import * as React from "react"
 import { ChevronDown, X, Plus } from "lucide-react"
 
 // --- UI Components ---
-import { FilterOptionsPicker, type FilterOption } from "@/components/sprint-report/ui/filter-options-picker"
-import { StatusPicker } from "@/components/sprint-report/ui/status-picker"
+import { FilterOptionsPicker, type FilterOption } from "./filter-options-picker"
+import { StatusPicker } from "./status-picker"
 
 // --- Utilities ---
 import { cn } from "@/lib/utils"

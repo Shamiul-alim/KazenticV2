@@ -30,12 +30,12 @@ import {
 } from "lucide-react"
 
 // --- UI Components ---
-import { Checkbox } from "@/components/sprint-report/ui/checkbox"
-import { Avatar, AvatarFallback } from "@/components/sprint-report/ui/avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/sprint-report/ui/popover"
-import { StatusPicker } from "@/components/sprint-report/ui/status-picker"
-import { AssigneePicker } from "@/components/sprint-report/ui/assignee-picker"
-import { CustomDatePicker } from "@/components/sprint-report/ui/date-picker-custom"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { StatusPicker } from "@/components/sprint-report/components/status-picker"
+import { AssigneePicker } from "@/components/sprint-report/components/assignee-picker"
+import { CustomDatePicker } from "@/components/sprint-report/components/date-picker-custom"
 
 // --- Utilities ---
 import { cn } from "@/lib/utils"
@@ -75,14 +75,14 @@ const TaskRow = ({
     priority = "Urgent",
     priorityColor = "#e11d48",
 }: TaskRowProps) => (
-    <div className="flex items-center h-[44px] border-b border-gray-100 hover:bg-[#f8fbff] text-[13px] min-w-max">
+    <div className="flex items-center h-[44px] border-b border-gray-100 hover:bg-[#f8fbff] text-[13px] w-full min-w-max">
         {/* Checkbox */}
         <div className="w-[40px] shrink-0 flex justify-center">
             <Checkbox className="h-4 w-4" />
         </div>
 
         {/* Task Name */}
-        <div className="w-[300px] sm:w-[500px] lg:w-[650px] shrink-0 flex items-center gap-1 px-2 transition-all duration-300">
+        <div className="flex-1 min-w-[300px] shrink-0 flex items-center gap-1 px-2 transition-all duration-300">
             <ChevronRight size={14} className="text-gray-400" />
             <span
                 className={cn(
@@ -226,12 +226,12 @@ export const TaskTable = () => {
     return (
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-x-auto no-scrollbar">
             {/* Header Row */}
-            <div className="flex items-center h-[44px] bg-[#f5faff] border-b border-[#e6f0ff] min-w-max">
+            <div className="flex items-center h-[44px] bg-[#f5faff] border-b border-[#e6f0ff] w-full min-w-max">
                 <div className="w-[40px] shrink-0 flex justify-center">
                     <Checkbox className="h-4 w-4" />
                 </div>
 
-                <div className="w-[300px] sm:w-[500px] lg:w-[650px] shrink-0 transition-all duration-300">
+                <div className="flex-1 min-w-[300px] shrink-0 transition-all duration-300">
                     <ColumnHeader label="Task Name" />
                 </div>
                 <div className="w-[140px] shrink-0">

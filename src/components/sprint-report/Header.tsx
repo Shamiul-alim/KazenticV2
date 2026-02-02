@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { ChevronDown, LayoutGrid, Calendar, Star, RefreshCw, Filter, Settings2, Plus, List } from "lucide-react"
-import { Button } from "@/components/sprint-report/ui/button"
-import { Badge } from "@/components/sprint-report/ui/badge"
+import { Button } from "@/components/ui/Button"
+import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 interface HeaderProps {
@@ -97,10 +97,15 @@ export const Header = ({ activeTab, onTabChange }: HeaderProps) => {
                             <Settings2 size={13} />
                             Customize view
                         </Button>
-                        <Button variant="default" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white gap-1.5 font-bold h-7 px-3 border-0 text-[11px]">
+                        <Button
+                            variant="default"
+                            size="sm"
+                            className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold h-7 px-3 border-0 text-[11px]"
+                        >
                             <Plus size={14} />
-                            Add Widget
+                            <span>Add Widget</span>
                         </Button>
+
                     </div>
                 </div>
             )}

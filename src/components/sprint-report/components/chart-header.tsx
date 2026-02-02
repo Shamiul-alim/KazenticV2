@@ -1,7 +1,7 @@
 import * as React from "react"
 import { RefreshCcw, Maximize2, Filter, Settings, MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 
 interface ChartHeaderProps {
     title: string

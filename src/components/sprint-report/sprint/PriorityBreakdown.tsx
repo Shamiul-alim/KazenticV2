@@ -22,9 +22,9 @@ import {
     ChevronRight,
     Trash2
 } from 'lucide-react';
-import { Card } from '../ui/card';
-import { Checkbox } from '../ui/checkbox';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import Card from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { PriorityBreakdownSettings } from './Settings/priority-breakdown-setting';
 
 const data = [
