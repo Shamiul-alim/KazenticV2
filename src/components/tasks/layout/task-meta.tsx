@@ -4,8 +4,12 @@ import { AvatarGroup } from "@/components/dashboard/ui/avatar";
 import BrokenStatusIcon from "@/components/icons/broken-status";
 import FlashIcon from "@/components/icons/flash";
 import { StatusSelect } from "@/components/sprint-overview/custom/status-group/task-status-select";
+import FlagIcon from "@/components/sprint-overview/icons/flag";
+import { DropdownMenu } from "@/components/sprint-overview/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TaskStatus } from "@/data/task-status.enum";
 import { ArrowRight, Calendar, ChevronDown, FlagTriangleRight, Hourglass, Tags, Timer, User, UserPlus } from "lucide-react";
 
@@ -45,9 +49,11 @@ export default function TaskMeta() {
             <Meta label="Dates" icon={
                 <Calendar className="mr-0.5 sm:mr-1 h-3 w-3 sm:h-4 sm:w-4 inline-block" />
             }>
-                <span>Today</span>
-                <ArrowRight className="mx-0.5 sm:mx-1 h-3 w-3 sm:h-4 sm:w-4 inline-block" />
-                <span>Tomorrow</span>
+                <div className="flex items-center">
+                    <span className="flex gap-2"><Calendar className="h-4 w-4" /> Today</span>
+                    <ArrowRight className="mx-0.5 sm:mx-1 h-3 w-3 sm:h-4 sm:w-4 inline-block" />
+                    <span className="flex gap-2"><Calendar className="h-4 w-4" /> Tomorrow</span>
+                </div>
             </Meta>
 
             <Meta label="Reporter" icon={<UserPlus className="h-3 w-3 sm:h-4 sm:w-4" />}>
@@ -62,61 +68,52 @@ export default function TaskMeta() {
 
             <Meta label="Type" icon={<UserPlus className="h-3 w-3 sm:h-4 sm:w-4" />}>
                 <div className="flex gap-1.5 sm:gap-2 items-center">
-                    <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                        <AvatarImage src="" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <span className="truncate">Pat Cummins</span>
+                    <Select>
+                        <SelectTrigger className="py-1 w-28 sm:w-36 text-[10px] sm:text-xs">
+                            <SelectValue placeholder="Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectLabel>Fruits</SelectLabel>
+                                <SelectItem value="apple">Apple</SelectItem>
+                                <SelectItem value="banana">Banana</SelectItem>
+                                <SelectItem value="blueberry">Blueberry</SelectItem>
+                                <SelectItem value="grapes">Grapes</SelectItem>
+                                <SelectItem value="pineapple">Pineapple</SelectItem>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                 </div>
             </Meta>
 
             <Meta label="Tags" icon={<Tags className="h-3 w-3 sm:h-4 sm:w-4" />}>
                 <div className="flex gap-1.5 sm:gap-2 items-center">
-                    <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                        <AvatarImage src="" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <span className="truncate">Pat Cummins</span>
+                    <Input className="w-60 h-6 text-center text-[10px] sm:text-xs" placeholder="Add tags" />
                 </div>
             </Meta>
 
             <Meta label="Time Estimate" icon={<Hourglass className="h-3 w-3 sm:h-4 sm:w-4" />}>
                 <div className="flex gap-1.5 sm:gap-2 items-center">
-                    <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                        <AvatarImage src="" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <span className="truncate">Pat Cummins</span>
+                    2h
                 </div>
             </Meta>
 
             <Meta label="Points" icon={<BrokenStatusIcon className="h-3 w-3 sm:h-4 sm:w-4" />}>
                 <div className="flex gap-1.5 sm:gap-2 items-center">
-                    <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                        <AvatarImage src="" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <span className="truncate">Pat Cummins</span>
+                    <Input className="w-60 h-6 text-center text-[10px] sm:text-xs" placeholder="Empty" />
                 </div>
             </Meta>
 
             <Meta label="Track Time" icon={<Timer className="h-3 w-3 sm:h-4 sm:w-4" />}>
                 <div className="flex gap-1.5 sm:gap-2 items-center">
-                    <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                        <AvatarImage src="" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <span className="truncate">Pat Cummins</span>
+                    2h 20m
                 </div>
             </Meta>
 
             <Meta label="Priority" icon={<FlagTriangleRight className="h-3 w-3 sm:h-4 sm:w-4" />}>
                 <div className="flex gap-1.5 sm:gap-2 items-center">
-                    <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                        <AvatarImage src="" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <span className="truncate">Pat Cummins</span>
+                    <FlagIcon className="h-4 w-4" />
+                    High
                 </div>
             </Meta>
         </div>
