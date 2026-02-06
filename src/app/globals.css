@@ -165,3 +165,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .timeline-cell {
+    cursor: url("/assets/workload/add.png") 16 16, pointer;
+  }
+}

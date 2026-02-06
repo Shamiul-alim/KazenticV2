@@ -9,6 +9,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useWorkload } from './workload-context'
 import { Separator } from '../ui/separator';
 import { stackOverlappingBars, TimelineColumn, TimelineEngine, WorkloadItem } from './workload-engine';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Button } from '../ui/Button';
 
 type Subtask = {
     id: string;
@@ -308,6 +310,7 @@ function TimelineBodyRow({
     capacityByDate,
     bars,
 }: TimelineBodyRowProps) {
+    const [dialogOpen, setDialogOpen] = useState(false)
 
     return (
         <div className="relative border-b" style={{ height: rowHeight }}>
@@ -325,10 +328,12 @@ function TimelineBodyRow({
                     const scheduled = capacityByDate[col.date] || { used: 0, capacity: col.capacityHours }
                     const percent = (scheduled.used / scheduled.capacity) * 100
 
+                    // Grid cell with capacity indicator
                     return (
                         <div
                             key={col.date}
-                            className="border-r bg-muted/20 relative"
+                            className="border-r bg-muted/20 hover:bg-muted/70 hover:shadow-md relative timeline-cell"
+                            onClick={() => setDialogOpen(true)}
                         >
                             <div className="p-2 text-xs">
                                 <span
@@ -403,6 +408,23 @@ function TimelineBodyRow({
                     <span className="opacity-70">{bar.item.hoursPerDay}h/day</span>
                 </div>
             ))}
+
+            {/* Task Creation Dialog */}
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                <DialogContent className="sm:max-w-sm">
+                    <DialogHeader>
+                        <DialogTitle>Add New Task</DialogTitle>
+                        <DialogDescription>
+                            Fill in the details for the new task you want to create.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
