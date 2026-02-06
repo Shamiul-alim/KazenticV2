@@ -10,9 +10,6 @@ import ArrowRightBoldIcon from "./icons/arrow-right-bold"
 import ArrowLeftBoldIcon from "./icons/arrow-left-bold"
 import { useWorkload } from './workload-context'
 import { Separator } from "../ui/separator"
-import { ROW_HEIGHT } from "./workload-timeline"
-
-const HEADER_HEIGHT = 70 // px
 
 type Subtask = {
     id: string
@@ -54,7 +51,7 @@ const users: User[] = [
 ]
 
 export default function WorkloadLeftSidebar() {
-    const { expandedUsers, toggleUser, isCollapsed, toggleCollapsed } = useWorkload()
+    const { expandedUsers, toggleUser, isCollapsed, toggleCollapsed, engine } = useWorkload()
 
     return (
         <aside className={cn(
@@ -62,7 +59,7 @@ export default function WorkloadLeftSidebar() {
             isCollapsed ? 'w-20' : 'w-80'
         )}>
             {/* Header */}
-            <div className="w-full flex flex-col border-b" style={{ height: HEADER_HEIGHT }}>
+            <div className="w-full flex flex-col border-b" style={{ height: engine.getRowHeight() }}>
                 <div className='flex justify-between items-start px-4 pt-2'>
                     {!isCollapsed && (
                         <span className='flex border rounded-md overflow-hidden'>
@@ -103,10 +100,11 @@ export default function WorkloadLeftSidebar() {
                             isExpanded={expandedUsers.has(user.id)}
                             onToggle={() => toggleUser(user.id)}
                             isCollapsed={isCollapsed}
+                            cellHeight={engine.getRowHeight()}
                         />
                         {!isCollapsed && expandedUsers.has(user.id) && user.subtasks?.map((subtask) => (
                             // <SidebarSubtaskRow key={subtask.id} subtask={subtask} />
-                            <Separator className="bg-white" style={{ height: ROW_HEIGHT }} />
+                            <Separator className="bg-white" style={{ height: engine.getRowHeight() }} />
                         ))}
                     </div>
                 ))}
@@ -118,7 +116,7 @@ export default function WorkloadLeftSidebar() {
                         "w-full flex items-center border-b border-muted hover:bg-muted transition",
                         isCollapsed ? "justify-center px-2" : "justify-between px-4"
                     )}
-                    style={{ height: ROW_HEIGHT }}
+                    style={{ height: engine.getRowHeight() }}
                 >
                     {isCollapsed ? (
                         <ProfileIcon className="h-6 w-6 text-muted-foreground border rounded-full p-1" />
@@ -137,7 +135,15 @@ export default function WorkloadLeftSidebar() {
     )
 }
 
-function SidebarUserRow({ user, isExpanded, onToggle, isCollapsed }: { user: User; isExpanded: boolean; onToggle: () => void; isCollapsed: boolean }) {
+type SidebarUserRowProps = {
+    user: User
+    isExpanded: boolean
+    onToggle: () => void
+    isCollapsed: boolean
+    cellHeight: number
+}
+
+function SidebarUserRow({ user, isExpanded, onToggle, isCollapsed, cellHeight }: SidebarUserRowProps) {
     if (isCollapsed) {
         return (
             <Button
@@ -147,7 +153,7 @@ function SidebarUserRow({ user, isExpanded, onToggle, isCollapsed }: { user: Use
                     "w-full flex items-center justify-center px-2 border-t border-muted",
                     "hover:bg-muted transition"
                 )}
-                style={{ height: ROW_HEIGHT }}
+                style={{ height: cellHeight }}
             >
                 <Avatar className="h-9 w-9">
                     <AvatarImage src={user.avatar} />
@@ -170,7 +176,7 @@ function SidebarUserRow({ user, isExpanded, onToggle, isCollapsed }: { user: Use
                 "w-full flex items-center justify-between px-4 border-t border-muted",
                 "hover:bg-muted transition"
             )}
-            style={{ height: ROW_HEIGHT }}
+            style={{ height: cellHeight }}
         >
             <div className="flex items-center gap-3">
                 <Avatar className="h-9 w-9">
@@ -212,20 +218,3 @@ function SidebarUserRow({ user, isExpanded, onToggle, isCollapsed }: { user: Use
         </Button>
     )
 }
-
-function SidebarSubtaskRow({ subtask }: { subtask: Subtask }) {
-    return (
-        <Button
-            variant="ghost"
-            className={cn(
-                "w-full flex items-center justify-between pl-16 pr-4 border-t border-muted",
-                "hover:bg-muted/50 transition"
-            )}
-            style={{ height: ROW_HEIGHT }}
-        >
-        </Button>
-    )
-}
-
-
-

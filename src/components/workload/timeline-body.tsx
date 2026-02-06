@@ -1,15 +1,14 @@
 'use client'
 
 import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
 import minMax from 'dayjs/plugin/minMax';
 import { cn } from "@/lib/utils";
 
 dayjs.extend(minMax);
-import type { Day } from './timeline-header';
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useWorkload } from './workload-context'
 import { Separator } from '../ui/separator';
+import { stackOverlappingBars, TimelineColumn, TimelineEngine, WorkloadItem } from './workload-engine';
 
 type Subtask = {
     id: string;
@@ -22,14 +21,18 @@ type User = {
     subtasks?: Subtask[];
 }
 
-type TimelineBodyProps = {
-    days: Day[];
-    dayWidth: number;
-    rowHeight: number;
+interface ColumnType extends TimelineColumn {
+    capacityHours: number;
+    workloadHours: number;
 }
 
-export default function TimelineBody({ days, dayWidth, rowHeight }: TimelineBodyProps) {
-    const { expandedUsers } = useWorkload()
+type TimelineBodyProps = {
+    columns: ColumnType[];
+    workloadItems: Record<string, WorkloadItem[]>;
+}
+
+export default function TimelineBody({ columns, workloadItems }: TimelineBodyProps) {
+    const { expandedUsers, engine } = useWorkload()
 
     // Memoize users data
     const users = useMemo<User[]>(() => [
@@ -52,323 +55,354 @@ export default function TimelineBody({ days, dayWidth, rowHeight }: TimelineBody
     ], [])
 
     // Memoize workload data
-    const mockWorkloads = useMemo<Record<string, WorkloadItem[]>>(() => ({
-        '1': [
-            {
-                id: '1',
-                title: 'UI Design',
-                startDate: new Date(Date.now()).toISOString().split('T')[0],
-                endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                color: 'purple' as const,
-                hoursPerDay: 6,
-            },
-            {
-                id: '2',
-                title: 'Dashboard Layout',
-                startDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                endDate: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                color: 'green' as const,
-                hoursPerDay: 4,
-            },
-        ],
-        '2': [
-            {
-                id: '3',
-                title: 'Sprint Planning',
-                startDate: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                endDate: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                color: 'purple' as const,
-                hoursPerDay: 5,
-            },
-        ],
-        '3': [],
-        '1-1': [
-            {
-                id: '1-1-1',
-                title: 'Wireframes',
-                startDate: new Date(Date.now()).toISOString().split('T')[0],
-                endDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                color: 'green' as const,
-                hoursPerDay: 4,
-            },
-        ],
-        '1-2': [
-            {
-                id: '1-2-1',
-                title: 'Mobile UI',
-                startDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                endDate: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                color: 'purple' as const,
-                hoursPerDay: 5,
-            },
-        ],
-        '2-1': [
-            {
-                id: '2-1-1',
-                title: 'Meeting Prep',
-                startDate: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                endDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                color: 'green' as const,
-                hoursPerDay: 3,
-            },
-        ],
-    }), [])
+    // const mockWorkloads = useMemo<Record<string, WorkloadItem[]>>(() => ({
+
+    // }), [])
 
     return (
         <div>
             {users.map(user => (
-                <div key={user.id} className='border-b hello'>
-                    <TimelineRow
-                        user={user}
-                        days={days}
-                        workloadItems={mockWorkloads[user.id] || []}
-                        dayWidth={dayWidth}
-                        rowHeight={rowHeight}
+                <div key={user.id}>
+                    <TimelineRowContainer
+                        workloadItems={workloadItems[user.id] || []}
+                        columns={columns}
                     />
-                    {expandedUsers.has(user.id) && user.subtasks?.map((subtask) => (
-                        <TimelineRow
-                            key={subtask.id}
-                            user={subtask}
-                            days={days}
-                            workloadItems={mockWorkloads[subtask.id] || []}
-                            isSubtask
-                            dayWidth={dayWidth}
-                            rowHeight={rowHeight}
-                        />
-                    ))}
+
+                    {expandedUsers.has(user.id) &&
+                        user.subtasks?.map(sub => (
+                            <TimelineRowContainer
+                                key={sub.id}
+                                workloadItems={workloadItems[sub.id] || []}
+                                columns={columns}
+                            />
+                        ))}
                 </div>
             ))}
         </div>
     )
+
 }
 
-type TimelineRowProps = {
-    user: User | Subtask;
-    days: Day[];
-    workloadItems: WorkloadItem[];
-    isSubtask?: boolean;
-    dayWidth: number;
-    rowHeight: number;
-}
+function TimelineRowContainer({
+    workloadItems,
+    columns,
+}: {
+    workloadItems: WorkloadItem[]
+    columns: ColumnType[]
+}) {
+    const { engine, cellWidth, cellHeight } = useWorkload()
+    const [items, setItems] = useState(workloadItems)
+    const dragBaseRef = useRef<WorkloadItem | null>(null)
+    const resizeBaseRef = useRef<WorkloadItem | null>(null)
 
-function TimelineRow({ user, days, workloadItems, isSubtask, dayWidth, rowHeight }: TimelineRowProps) {
-    // Calculate scheduled hours per day
-    const scheduledHoursPerDay = useMemo(() => {
-        const hoursMap: Record<string, number> = {}
+    useEffect(() => {
+        setItems(workloadItems)
+    }, [workloadItems])
 
-        workloadItems.forEach(item => {
-            const startIndex = dayIndex(item.startDate)
-            const endIndex = dayIndex(item.endDate)
+    /* ---------- capacity ---------- */
+    const capacityByDate = useMemo(() => {
+        const map: Record<string, { used: number; capacity: number }> = {}
 
-            for (let i = startIndex; i <= endIndex; i++) {
-                if (i >= 0 && i < days.length) {
-                    const dayDate = days[i].date
-                    hoursMap[dayDate] = (hoursMap[dayDate] || 0) + item.hoursPerDay
+        items.forEach(item => {
+            const s = engine.dateToColumnIndex(item.startDate)
+            const e = engine.dateToColumnIndex(item.endDate)
+
+            for (let i = s; i <= e; i++) {
+                const col = columns[i]
+                if (!col) continue
+                map[col.date] = {
+                    used: (map[col.date]?.used || 0) + item.hoursPerDay,
+                    capacity: col.capacityHours
                 }
             }
         })
 
-        return hoursMap
-    }, [workloadItems, days])
+        return map
+    }, [items, columns, engine])
+
+    /* ---------- bar layouts + stacking ---------- */
+    const bars = useMemo(() => {
+        const stackedBars = stackOverlappingBars(
+            items.map(item => {
+                const clamped = engine.clampDates(item)
+                if (!clamped) return null
+
+                const start = engine.dateToColumnIndex(clamped.startDate)
+                const end = engine.dateToColumnIndex(clamped.endDate)
+
+                return {
+                    id: item.id,
+                    start,
+                    end,
+                    item: clamped,
+                }
+            }).filter(Boolean) as {
+                id: string
+                start: number
+                end: number
+                item: WorkloadItem
+            }[]
+        )
+
+        return stackedBars
+            .map(({ id, start, end, level, item }) => {
+                if (end < 0 || start >= columns.length) return null
+
+                const clampedStart = Math.max(start, 0)
+                const clampedEnd = Math.min(end, columns.length - 1)
+
+                const left = engine.columnIndexToLeft(clampedStart)
+                const right = engine.columnIndexToLeft(clampedEnd + 1)
+
+                return {
+                    id,
+                    left,
+                    width: right - left,
+                    top: 6 + level * 28,
+                    item,
+                    onMoveStart: () => { dragBaseRef.current = item },
+                    onMove: (dx: number) => handleMove(id, dx),
+                    onResizeStartBegin: () => { resizeBaseRef.current = item },
+                    onResizeStart: (dx: number) => handleResize(id, "start", dx),
+                    onResizeEndBegin: () => { resizeBaseRef.current = item },
+                    onResizeEnd: (dx: number) => handleResize(id, "end", dx),
+                }
+            })
+            .filter((bar): bar is NonNullable<typeof bar> => bar !== null)
+    }, [items, engine, columns])
+
+
+    /* ---------- event handlers ---------- */
+    function handleMove(itemId: string, deltaX: number) {
+        const base = dragBaseRef.current
+        if (!base) return
+
+        const deltaCols = engine.pixelToColumnDelta(deltaX)
+
+        setItems(prev =>
+            prev.map(item => {
+                if (item.id !== itemId) return item
+                const clamped = engine.clampDates({
+                    ...item,
+                    startDate: engine.addColumns(base.startDate, deltaCols),
+                    endDate: engine.addColumns(base.endDate, deltaCols),
+                })
+                return clamped || item
+            })
+        )
+    }
+
+    function handleResize(
+        itemId: string,
+        edge: "start" | "end",
+        deltaX: number
+    ) {
+        const base = resizeBaseRef.current
+        if (!base) return
+
+        const deltaCols = engine.pixelToColumnDelta(deltaX)
+
+        setItems(prev =>
+            prev.map(item => {
+                if (item.id !== itemId) return item
+                const clamped = engine.clampDates(
+                    edge === "start"
+                        ? {
+                            ...item,
+                            startDate: engine.addColumns(base.startDate, deltaCols),
+                        }
+                        : {
+                            ...item,
+                            endDate: engine.addColumns(base.endDate, deltaCols),
+                        }
+                )
+                return clamped || item
+            })
+        )
+    }
+
 
     return (
-        <div
-            className="relative"
-            style={{ height: rowHeight }}
-        >
-            {/* grid background with capacity info */}
-            <div
-                className="absolute inset-0 grid"
-                style={{
-                    gridTemplateColumns: `repeat(${days.length}, ${dayWidth}px)`,
-                }}
-            >
-                {days.map(day => {
-                    const scheduledHours = scheduledHoursPerDay[day.date] || 0
-                    const progressPercentage = (scheduledHours / day.capacityHours) * 100
-
-                    return (
-                        <div
-                            key={day.date}
-                            className="border-r bg-muted/20 relative flex flex-col"
-                        >
-                            {/* Scheduled hours display */}
-                            <div className="p-2 text-muted-foreground">
-                                {scheduledHours > 0 && (
-                                    <span className={cn(
-                                        "font-medium",
-                                        scheduledHours > day.capacityHours && "text-red-500"
-                                    )}>
-                                        {scheduledHours}h / {day.capacityHours}h
-                                    </span>
-                                )}
-                            </div>
-
-                            {/* Progress bar at bottom */}
-                            {scheduledHours > 0 && (
-                                <div className="absolute top-0 left-0 right-0 h-1 bg-muted">
-                                    <div
-                                        className={cn(
-                                            "h-full transition-all",
-                                            progressPercentage <= 100 ? "bg-green-500" : "bg-red-500"
-                                        )}
-                                        style={{ width: `${Math.min(progressPercentage, 100)}%` }}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    )
-                })}
-            </div>
-
-            {/* workload bars */}
-            <div className="absolute inset-0 top-5 pointer-events-none">
-                <div className="pointer-events-auto">
-                    {workloadItems.map(item => (
-                        <WorkloadBar key={item.id} item={item} />
-                    ))}
-                </div>
-            </div>
-        </div>
+        <TimelineBodyRow
+            engine={engine}
+            columns={columns}
+            rowHeight={cellHeight}
+            dayWidth={cellWidth}
+            capacityByDate={capacityByDate}
+            bars={bars}
+        />
     )
 }
 
-type WorkloadItem = {
+type ItemType = {
     id: string;
     title: string;
     startDate: string;
     endDate: string;
     color: "purple" | "green";
     hoursPerDay: number;
-    dayWidth?: number;
-    rowHeight?: number;
 }
 
-function WorkloadBar({ item: { dayWidth = 100, rowHeight = 70, ...rest } }: { item: WorkloadItem }) {
-    const position = useMemo(() => {
-        const startIndex = dayIndex(rest.startDate)
-        const endIndex = dayIndex(rest.endDate)
-        const left = startIndex * dayWidth
-        const width = (endIndex - startIndex + 1) * dayWidth
-        return { left, width }
-    }, [rest.startDate, rest.endDate])
+type TimelineBodyRowProps = {
+    engine: TimelineEngine;
+    columns: ColumnType[]
+    rowHeight: number
+    dayWidth: number
+
+    capacityByDate: Record<string, { used: number; capacity: number }>
+
+    bars: {
+        id: string
+        left: number
+        width: number
+        top: number
+
+        item: ItemType
+
+        onMoveStart: () => void
+        onMove: (dx: number) => void
+
+        onResizeStartBegin: () => void
+        onResizeStart: (dx: number) => void
+
+        onResizeEndBegin: () => void
+        onResizeEnd: (dx: number) => void
+    }[]
+}
+
+function usePointerDrag(
+    onMove: (dx: number) => void,
+    onStart?: () => void,
+    onEnd?: () => void
+) {
+    return (e: React.PointerEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        onStart?.()
+
+        const startX = e.clientX
+        const target = e.target as HTMLElement
+        target.setPointerCapture(e.pointerId)
+
+        function onPointerMove(ev: PointerEvent) {
+            onMove(ev.clientX - startX)
+        }
+
+        function onPointerUp() {
+            target.releasePointerCapture(e.pointerId)
+            window.removeEventListener("pointermove", onPointerMove)
+            window.removeEventListener("pointerup", onPointerUp)
+            onEnd?.()
+        }
+
+        window.addEventListener("pointermove", onPointerMove)
+        window.addEventListener("pointerup", onPointerUp)
+    }
+}
+
+function TimelineBodyRow({
+    columns,
+    rowHeight,
+    dayWidth,
+    capacityByDate,
+    bars,
+}: TimelineBodyRowProps) {
 
     return (
-        <div
-            className={cn(
-                "absolute top-4 h-7 rounded-md px-1.5 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity",
-                rest.color === "purple" && "bg-purple-100 text-purple-800",
-                rest.color === "green" && "bg-green-100 text-green-800"
-            )}
-            style={{ left: position.left, width: position.width }}
-        >
-            <Separator orientation="vertical" className="w-0.5 h-5.5 bg-current rounded-lg" />
-            <span className="font-medium truncate">{rest.title}</span>
-            <span className="opacity-70 whitespace-nowrap">{rest.hoursPerDay}h/day</span>
+        <div className="relative border-b" style={{ height: rowHeight }}>
+            <div className="absolute inset-y-0 left-0 w-1 cursor-ew-resize" />
+            <div className="absolute inset-y-0 right-0 w-1 cursor-ew-resize" />
+
+            {/* grid */}
+            <div
+                className="absolute inset-0 grid"
+                style={{
+                    gridTemplateColumns: `repeat(${columns.length}, ${dayWidth}px)`,
+                }}
+            >
+                {columns.map(col => {
+                    const scheduled = capacityByDate[col.date] || { used: 0, capacity: col.capacityHours }
+                    const percent = (scheduled.used / scheduled.capacity) * 100
+
+                    return (
+                        <div
+                            key={col.date}
+                            className="border-r bg-muted/20 relative"
+                        >
+                            <div className="p-2 text-xs">
+                                <span
+                                    className={cn(
+                                        scheduled.used > scheduled.capacity && "text-red-500"
+                                    )}
+                                >
+                                    {scheduled.used}h / {scheduled.capacity}h
+                                </span>
+                            </div>
+
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-muted">
+                                <div
+                                    className={cn(
+                                        "h-full",
+                                        percent <= 100 ? "bg-green-500" : "bg-muted"
+                                    )}
+                                    style={{ width: `${Math.min(percent, 100)}%` }}
+                                />
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            {/* bars */}
+            {bars.map(bar => (
+                <div
+                    key={bar.id}
+                    className={cn(
+                        "absolute h-7 rounded-md px-1.5 flex items-center gap-2",
+                        bar.item.color === "purple" && "bg-purple-100 text-purple-800",
+                        bar.item.color === "green" && "bg-green-100 text-green-800"
+                    )}
+                    style={{
+                        left: bar.left,
+                        width: bar.width,
+                        top: bar.top + 25,
+                    }}
+                    onPointerDown={usePointerDrag(
+                        bar.onMove,
+                        bar.onMoveStart,
+                    )}
+                >
+                    {/* left resize */}
+                    <div
+                        className="absolute left-0 inset-y-0 w-1 cursor-ew-resize"
+                        onPointerDown={(e) => {
+                            e.stopPropagation()
+                            usePointerDrag(
+                                bar.onResizeStart,
+                                bar.onResizeStartBegin
+                            )(e)
+                        }}
+                    />
+
+                    {/* right resize */}
+                    <div
+                        className="absolute right-0 inset-y-0 w-1 cursor-ew-resize"
+                        onPointerDown={(e) => {
+                            e.stopPropagation()
+                            usePointerDrag(
+                                bar.onResizeEnd,
+                                bar.onResizeEndBegin
+                            )(e)
+                        }}
+                    />
+
+                    {/* Content */}
+                    <Separator orientation="vertical" />
+                    <span className="truncate">{bar.item.title}</span>
+                    <span className="opacity-70">{bar.item.hoursPerDay}h/day</span>
+                </div>
+            ))}
         </div>
     )
 }
-
-function dayIndex(dateStr: string): number {
-    const date = new Date(dateStr)
-    date.setHours(0, 0, 0, 0)
-
-    const startDate = new Date() // Timeline starts today
-    startDate.setHours(0, 0, 0, 0)
-
-    const diffTime = date.getTime() - startDate.getTime()
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
-    return diffDays
-}
-
-function getTimelineRange(viewDate: dayjs.Dayjs, viewType = "month"): { start: dayjs.Dayjs, end: dayjs.Dayjs } {
-    const start =
-        viewType === "month"
-            ? dayjs(viewDate).startOf("month")
-            : dayjs(viewDate).startOf("week");
-
-    const end =
-        viewType === "month"
-            ? dayjs(viewDate).endOf("month")
-            : dayjs(viewDate).endOf("week");
-
-    return { start, end };
-}
-
-const DAY_WIDTH = 100 // px
-const ROW_HEIGHT = 70
-
-function dateToX(date: dayjs.Dayjs, timelineStart: dayjs.Dayjs): number {
-    const diffDays = dayjs(date).diff(timelineStart, "day");
-    return diffDays * DAY_WIDTH;
-}
-
-function taskWidth(startDate: string, endDate: string): number {
-    const duration = dayjs(endDate).diff(dayjs(startDate), "day") + 1;
-    return duration * DAY_WIDTH;
-}
-
-function getTaskBar(task: WorkloadItem, timelineStart: dayjs.Dayjs) {
-    return {
-        id: task.id,
-        x: dateToX(dayjs(task.startDate), timelineStart),
-        width: taskWidth(task.startDate, task.endDate),
-    };
-}
-
-function getTodayX(timelineStart: dayjs.Dayjs): number {
-    return dateToX(dayjs(), timelineStart);
-}
-
-function buildHeader(start: dayjs.Dayjs, end: dayjs.Dayjs) {
-    const days = [];
-    let current = start;
-
-    while (current.isBefore(end) || current.isSame(end, "day")) {
-        days.push({
-            date: current.format("YYYY-MM-DD"),
-            day: current.format("DD"),
-            weekday: current.format("ddd"),
-        });
-        current = current.add(1, "day");
-    }
-
-    return days;
-}
-
-function clampTaskToView(task: WorkloadItem, start: dayjs.Dayjs, end: dayjs.Dayjs) {
-    const taskStart = dayjs(task.startDate);
-    const taskEnd = dayjs(task.endDate);
-
-    if (taskEnd.isBefore(start) || taskStart.isAfter(end)) return null;
-
-    return {
-        ...task,
-        startDate: dayjs.max(taskStart, start).format("YYYY-MM-DD"),
-        endDate: dayjs.min(taskEnd, end).format("YYYY-MM-DD"),
-    };
-}
-
-function isOverlapping(a: WorkloadItem, b: WorkloadItem) {
-    return dayjs(a.startDate).isBetween(b.startDate, b.endDate, null, "[]") ||
-        dayjs(b.startDate).isBetween(a.startDate, a.endDate, null, "[]");
-}
-
-const ZOOM_LEVELS = {
-    day: 40,
-    week: 12,
-    month: 4,
-};
-
-function setZoom(level: keyof typeof ZOOM_LEVELS): number {
-    return ZOOM_LEVELS[level];
-}
-
-const { start, end } = getTimelineRange(dayjs("2026-02-10"));
-
-const header = buildHeader(start, end);
-
-// const positionedTasks = days
-//     .map(t => clampTaskToView(t, start, end))
-//     .filter(Boolean)
-//     .map(t => getTaskBar(t, start));

@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useWorkload } from "./workload-context";
+import { TimelineColumn } from "./workload-engine";
+
 export type Day = {
     date: string;
     label: string;
@@ -5,37 +9,52 @@ export type Day = {
 }
 
 type TimelineHeaderProps = {
-    days: Day[];
-    dayWidth: number;
-    rowHeight: number;
+    columns: TimelineColumn[];
 }
 
-export default function TimelineHeader({ days, dayWidth, rowHeight }: TimelineHeaderProps) {
+export default function TimelineHeader({
+    columns,
+}: TimelineHeaderProps) {
+    const { engine, cellWidth, cellHeight } = useWorkload();
+
     return (
-        <div className="sticky top-0 z-20 bg-background border-b"
-            style={{ height: rowHeight }}
+        <div className="sticky top-0 z-20 bg-background"
+            style={{ height: cellHeight }}
         >
-            <div className="px-3 py-2 border-b text-primary font-medium bg-[#F2F9FE]">
-                January 2025
+            <div className="grid sticky top-0 z-20 h-8.25"
+                style={{ gridTemplateColumns: `repeat(${columns.length}, ${cellWidth}px)` }}
+            >
+                {columns.map((col, i) =>
+                    col.isMonthStart ? (
+                        <div
+                            key={i}
+                            style={{
+                                gridColumn: `span ${engine.getMonthSpan(columns, i)}`,
+                            }}
+                            className="px-3 py-2 font-semibold border-r bg-primary/10 border-b"
+                        >
+                            {col.monthLabel}
+                        </div>
+                    ) : null
+                )}
             </div>
             <div
-                className="grid"
+                className="grid sticky top-10 z-20 h-9"
                 style={{
-                    gridTemplateColumns: `repeat(${days.length}, ${dayWidth}px)`,
-
+                    gridTemplateColumns: `repeat(${columns.length}, ${cellWidth}px)`,
                 }}
             >
-                {days.map(day => (
-                    <div key={day.date}>
-                        <div
-                            className="px-3 py-2 font-medium border-r text-center text-primary"
-                        >
-                            <div>{day.label}</div>
-                        </div>
+                {columns.map(col => (
+                    <div
+                        key={col.index}
+                        className="px-2 py-2 border-r text-primary text-center border-b"
+                    >
+                        <span className="flex gap-2 justify-center items-center">
+                            {col.dayLabel} {col.dayNumber}
+                        </span>
                     </div>
                 ))}
             </div>
-        </div>
-
+        </div >
     )
 }
