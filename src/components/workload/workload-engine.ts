@@ -1,20 +1,37 @@
 import dayjs from "dayjs"
 import weekOfYear from "dayjs/plugin/weekOfYear"
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
 import { useEffect, useRef } from "react"
 import { useWorkload } from "./workload-context"
 
 dayjs.extend(weekOfYear)
+dayjs.extend(isSameOrBefore)
+dayjs.extend(isSameOrAfter)
 
 // export const DAY_WIDTH = 100 // px
 // export const ROW_HEIGHT = 70
-
-export type WorkloadItem = {
+export type Task = {
     id: string;
     title: string;
+    assignees: string[];        // userIds
+    priority: "low" | "medium" | "high" | "urgent";
+    status: "todo" | "in_progress" | "review" | "done";
+    tags: string[];
     startDate: string;
+    dueDate: string;
+    taskType: "sprint_point" | "task_group" | "time_estimate";
+    estimate?: number;          // hours or points
+    color?: string;
+    parentId?: string;          // for hierarchy
+};
+
+export interface WorkloadItem extends Task {
     endDate: string;
     color: "purple" | "green";
     hoursPerDay: number;
+    timeEstimate: number | null;
+    sprintPoints: number | null;
 }
 
 export type TimelineWindow = {
@@ -98,7 +115,7 @@ export class TimelineEngine {
         this.layout = {
             containerWidth: visibleUnits * 120, // default to 120px per day/week/month can be adjusted by zoom level or user settings
             cellWidth: 120,
-            rowHeight: 70, // default row height
+            rowHeight: 64, // default row height
         }
     }
 
@@ -113,20 +130,22 @@ export class TimelineEngine {
         this.window = window
     }
 
-    // Shift window forward or backward by N days */
-    shift(sizeInDays: number, direction: "prev" | "next") {
+    // Shift window forward or backward by N units (days/weeks/months based on zoom)
+    shift(direction: "prev" | "next") {
         const start = dayjs(this.window.startDate)
         const end = dayjs(this.window.endDate)
+        const unit = ZOOM_CONFIG[this.zoom].unit
+        const visibleUnits = ZOOM_CONFIG[this.zoom].visibleUnits
 
         if (direction === "prev") {
             this.window = {
-                startDate: start.subtract(sizeInDays, "day").format("YYYY-MM-DD"),
-                endDate: end.subtract(sizeInDays, "day").format("YYYY-MM-DD"),
+                startDate: start.subtract(visibleUnits, unit).format("YYYY-MM-DD"),
+                endDate: end.subtract(visibleUnits, unit).format("YYYY-MM-DD"),
             }
         } else {
             this.window = {
-                startDate: start.add(sizeInDays, "day").format("YYYY-MM-DD"),
-                endDate: end.add(sizeInDays, "day").format("YYYY-MM-DD"),
+                startDate: start.add(visibleUnits, unit).format("YYYY-MM-DD"),
+                endDate: end.add(visibleUnits, unit).format("YYYY-MM-DD"),
             }
         }
     }
@@ -172,12 +191,33 @@ export class TimelineEngine {
         this.layout.containerWidth = px
     }
 
-    // Set zoom level which internally adjusts cell width and recalculates window to keep center date consistent
+    // Set zoom level which internally adjusts cell width and window size
     setZoom(zoom: ZoomLevel) {
         const cfg = ZOOM_CONFIG[zoom]
+        const currentCenter = dayjs(this.window.startDate).add(
+            Math.floor(this.getColumnCount() / 2),
+            "day"
+        )
 
+        // Calculate days needed for the new zoom level
+        let totalDays: number
+        if (cfg.unit === "day") {
+            totalDays = cfg.visibleUnits
+        } else if (cfg.unit === "week") {
+            totalDays = cfg.visibleUnits * 7
+        } else {
+            totalDays = cfg.visibleUnits * 30 // Approximate
+        }
+
+        // Update zoom and recalculate window around center
         this.zoom = zoom
-        this.layout.cellWidth = this.layout.containerWidth / cfg.visibleUnits
+        this.window = {
+            startDate: currentCenter.subtract(Math.floor(totalDays / 2), "day").format("YYYY-MM-DD"),
+            endDate: currentCenter.add(Math.floor(totalDays / 2), "day").format("YYYY-MM-DD"),
+        }
+
+        // Cell width is based on container width divided by total days
+        this.layout.cellWidth = this.layout.containerWidth / totalDays
     }
 
     // Allow setting zoom level directly (e.g. from dropdown) while recalculating window to keep center date consistent
@@ -228,10 +268,11 @@ export class TimelineEngine {
     }
 
     // Calculate how many columns are visible in the current window based on zoom level
+    // Always returns number of DAYS, regardless of zoom level
     getColumnCount(): number {
         const start = dayjs(this.window.startDate)
         const end = dayjs(this.window.endDate)
-        return end.diff(start, ZOOM_CONFIG[this.zoom].unit) + 1
+        return end.diff(start, "day") + 1
     }
 
     // Calculate total timeline width in pixels for the current window and zoom level (for horizontal scrolling)
@@ -245,6 +286,7 @@ export class TimelineEngine {
     }
 
     // Generate column metadata for timeline rendering
+    // Always generates columns as DAYS, regardless of zoom level
     getColumns(): TimelineColumn[] {
         const columns: TimelineColumn[] = []
 
@@ -252,8 +294,8 @@ export class TimelineEngine {
         const count = this.getColumnCount()
 
         for (let i = 0; i < count; i++) {
-            const currentDate = start.add(i, ZOOM_CONFIG[this.zoom].unit)
-            const prev = start.add(i - 1, ZOOM_CONFIG[this.zoom].unit)
+            const currentDate = start.add(i, "day")
+            const prev = start.add(i - 1, "day")
 
             columns.push({
                 index: i,
@@ -270,17 +312,23 @@ export class TimelineEngine {
         return columns
     }
 
-    // Add or subtract days/weeks/months from a date based on current zoom level (useful for drag/resize)
+    // Add or subtract days from a date (always uses days, regardless of zoom)
     addColumns(date: string, delta: number): string {
-        return dayjs(date).add(delta, ZOOM_CONFIG[this.zoom].unit).format("YYYY-MM-DD")
+        return dayjs(date).add(delta, "day").format("YYYY-MM-DD")
     }
 
     /* ---------------- Mapping helpers ---------------- */
 
-    // Convert date to column index for rendering
+    // Convert date to column index for rendering (always in days)
     dateToColumnIndex(date: string): number {
         const start = dayjs(this.window.startDate)
-        return dayjs(date).diff(start, ZOOM_CONFIG[this.zoom].unit)
+        return dayjs(date).diff(start, "day")
+    }
+
+    // Convert date to column position (always in days)
+    dateToColumnPosition(date: string): number {
+        const start = dayjs(this.window.startDate)
+        return dayjs(date).diff(start, "day")
     }
 
     // Convert column index to pixel left offset for rendering
@@ -288,7 +336,12 @@ export class TimelineEngine {
         return index * this.getCellWidth()
     }
 
-    // Convert pixel offset back to column index (useful for drag/resize)
+    // Convert fractional column position to pixel offset
+    columnPositionToLeft(position: number): number {
+        return position * this.getCellWidth()
+    }
+
+    // Convert pixel offset back to column delta in days (useful for drag/resize)
     pixelToColumnDelta(px: number): number {
         return Math.round(px / this.getCellWidth())
     }
@@ -333,6 +386,39 @@ export class TimelineEngine {
                 dayjs(this.window.endDate)
             ).format("YYYY-MM-DD"),
         }
+    }
+
+    // Get week label groupings for header
+    getWeekGroups(columns: TimelineColumn[]): { startIndex: number; endIndex: number; label: string }[] {
+        const groups: { startIndex: number; endIndex: number; label: string }[] = []
+        let currentWeek = -1
+        let startIndex = 0
+
+        columns.forEach((col, i) => {
+            const weekNum = dayjs(col.date).week()
+            if (weekNum !== currentWeek) {
+                if (currentWeek !== -1) {
+                    groups.push({
+                        startIndex,
+                        endIndex: i - 1,
+                        label: `W${currentWeek}`
+                    })
+                }
+                currentWeek = weekNum
+                startIndex = i
+            }
+        })
+
+        // Add last group
+        if (currentWeek !== -1) {
+            groups.push({
+                startIndex,
+                endIndex: columns.length - 1,
+                label: `W${currentWeek}`
+            })
+        }
+
+        return groups
     }
 }
 

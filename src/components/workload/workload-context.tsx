@@ -4,6 +4,16 @@ import { createContext, useContext, useState, ReactNode, Dispatch, useEffect } f
 import { TimelineEngine, useTimelineEngine, ZoomLevel } from './workload-engine'
 import dayjs from 'dayjs'
 
+export type WorkloadUnit = 'sprint-points' | 'tasks' | 'time-estimates'
+export type GroupByOption = 'Status' | 'Assignee' | 'Priority' | 'Tags' | 'Due Date' | 'Task Type'
+export type SortOrder = 'Ascending' | 'Descending'
+
+type UserWorkload = {
+    userId: string
+    date: string
+    workloadHours: number
+}
+
 type WorkloadContextType = {
     expandedUsers: Set<string>
     toggleUser: (userId: string) => void
@@ -21,6 +31,24 @@ type WorkloadContextType = {
 
     engine: TimelineEngine
     setEngine: Dispatch<TimelineEngine>
+
+    shiftPrev: () => void
+    shiftNext: () => void
+    getDateRange: () => string
+    jumpToToday: () => void
+    refreshKey: number
+
+    unit: WorkloadUnit
+    setUnit: (unit: WorkloadUnit) => void
+
+    data: UserWorkload[]
+    setData: Dispatch<UserWorkload[]>
+
+    groupBy: GroupByOption
+    setGroupBy: (groupBy: GroupByOption) => void
+
+    sortOrder: SortOrder
+    setSortOrder: (sortOrder: SortOrder) => void
 }
 
 const WorkloadContext = createContext<WorkloadContextType | undefined>(undefined)
@@ -28,6 +56,7 @@ const WorkloadContext = createContext<WorkloadContextType | undefined>(undefined
 export function WorkloadProvider({ children }: { children: ReactNode }) {
     const [expandedUsers, setExpandedUsers] = useState<Set<string>>(new Set())
     const [isCollapsed, setIsCollapsed] = useState(false)
+    const [refreshKey, setRefreshKey] = useState(0)
     const [engine, setEngine] = useState<TimelineEngine>(
         useTimelineEngine(
             {
@@ -40,13 +69,15 @@ export function WorkloadProvider({ children }: { children: ReactNode }) {
     const [zoom, setZoom] = useState<ZoomLevel>('14_days')
     const [cellWidth, setCellWidth] = useState(engine.getCellWidth())
     const [cellHeight, setCellHeight] = useState(engine.getRowHeight())
+    const [unit, setUnit] = useState<WorkloadUnit>('time-estimates')
+    const [data, setData] = useState<UserWorkload[]>([])
+    const [groupBy, setGroupBy] = useState<GroupByOption>('Assignee')
+    const [sortOrder, setSortOrder] = useState<SortOrder>('Ascending')
 
     useEffect(() => {
         engine.setZoom(zoom)
         setCellWidth(engine.getCellWidth())
         // setCellHeight(engine.getRowHeight())
-        console.log("debug", zoom);
-        console.log("debug", engine.getCellWidth());
     }, [zoom, engine])
 
     const toggleUser = (userId: string) => {
@@ -103,6 +134,34 @@ export function WorkloadProvider({ children }: { children: ReactNode }) {
         }
     }
 
+    const shiftPrev = () => {
+        engine.shift('prev')
+        setRefreshKey(prev => prev + 1)
+    }
+
+    const shiftNext = () => {
+        engine.shift('next')
+        setRefreshKey(prev => prev + 1)
+    }
+
+    const getDateRange = () => {
+        const window = engine.getWindow()
+        const start = dayjs(window.startDate)
+        const end = dayjs(window.endDate)
+
+        // Format as "Jan 8 - 22" if same month, otherwise "Jan 8 - Feb 5"
+        if (start.month() === end.month()) {
+            return `${start.format('MMM D')} - ${end.format('D')}`
+        } else {
+            return `${start.format('MMM D')} - ${end.format('MMM D')}`
+        }
+    }
+
+    const jumpToToday = () => {
+        engine.jumpTo(dayjs().format('YYYY-MM-DD'))
+        setRefreshKey(prev => prev + 1)
+    }
+
     return (
         <WorkloadContext.Provider value={{
             expandedUsers,
@@ -116,7 +175,20 @@ export function WorkloadProvider({ children }: { children: ReactNode }) {
             cellWidth,
             cellHeight,
             engine,
-            setEngine
+            setEngine,
+            shiftPrev,
+            shiftNext,
+            getDateRange,
+            jumpToToday,
+            refreshKey,
+            unit,
+            setUnit,
+            data,
+            setData,
+            groupBy,
+            setGroupBy,
+            sortOrder,
+            setSortOrder,
         }}>
             {children}
         </WorkloadContext.Provider>

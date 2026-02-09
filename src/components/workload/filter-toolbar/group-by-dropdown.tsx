@@ -13,14 +13,10 @@ import {
 import { cn } from '@/lib/utils'
 import { Check, Group } from 'lucide-react'
 import React, { useState } from 'react'
-
-
-type GroupByOption = 'Status' | 'Assignee' | 'Priority' | 'Tags' | 'Due Date' | 'Task Type'
-type SortOrder = 'Ascending' | 'Descending'
+import { useWorkload, GroupByOption, SortOrder } from '../workload-context'
 
 export default function GroupByPopover() {
-    const [groupBy, setGroupBy] = useState<GroupByOption>('Assignee')
-    const [sortOrder, setSortOrder] = useState<SortOrder>('Ascending')
+    const { groupBy, setGroupBy, sortOrder, setSortOrder } = useWorkload()
     const [isOpen, setIsOpen] = useState(false)
 
     const groupByOptions: GroupByOption[] = ['Status', 'Assignee', 'Priority', 'Tags', 'Due Date', 'Task Type']

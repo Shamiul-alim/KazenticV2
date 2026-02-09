@@ -3,11 +3,12 @@ import React from 'react'
 import ArrowDownLight from '../icons/arrow-down-light'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import ClipboardTextIcon from '../icons/clipboard-text'
+import { useWorkload, WorkloadUnit } from '../workload-context'
 
 export default function WorkloadUnitDropdown() {
-    const [unit, setUnit] = React.useState('time-estimates')
+    const { unit, setUnit } = useWorkload()
 
-    const getLabel = (value: string) => {
+    const getLabel = (value: WorkloadUnit) => {
         switch (value) {
             case 'sprint-points':
                 return 'Sprint Points'
@@ -31,7 +32,7 @@ export default function WorkloadUnitDropdown() {
             <DropdownMenuContent className="w-48 p-0" align="start">
                 <DropdownMenuGroup>
                     <DropdownMenuLabel>Workload Unit</DropdownMenuLabel>
-                    <DropdownMenuRadioGroup value={unit} onValueChange={setUnit}>
+                    <DropdownMenuRadioGroup value={unit} onValueChange={(value) => setUnit(value as WorkloadUnit)}>
                         <DropdownMenuRadioItem value="sprint-points">Sprint Points</DropdownMenuRadioItem>
                         <DropdownMenuRadioItem value="tasks">Tasks</DropdownMenuRadioItem>
                         <DropdownMenuRadioItem value="time-estimates">Time Estimates</DropdownMenuRadioItem>

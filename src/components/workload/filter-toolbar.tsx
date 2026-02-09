@@ -13,14 +13,14 @@ import ZoomLevelDropdown from './filter-toolbar/zoom-level-dropdown'
 
 
 export default function FilterToolbar() {
-    const { zoomIn, zoomOut } = useWorkload()
+    const { zoomIn, zoomOut, jumpToToday } = useWorkload()
 
     return (
         <div className='flex items-center justify-between w-full border-b border-muted py-2 px-4'>
             <div className='flex gap-2'>
                 {/* Group By Filter */}
                 <GroupByPopover />
-                <Button variant="outline">
+                <Button variant="outline" onClick={jumpToToday}>
                     Today
                 </Button>
 
