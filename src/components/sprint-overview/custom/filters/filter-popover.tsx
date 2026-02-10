@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Filter, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { v4 as uuid } from "uuid";
 
 import {
@@ -13,12 +13,15 @@ import { FilterRow } from "./filter-row";
 import { FilterRule } from "./filter.types";
 import FilterOutlineIcon from "@/components/icons/filter-outline";
 import { Button } from "@/components/ui/Button";
+import { useEffect } from "react";
 
-export function FilterPopover() {
-    const [rules, setRules] = React.useState<FilterRule[]>([
-        { id: uuid() },
-    ]);
+type FilterPopoverProps = {
+    rules: FilterRule[];
+    setRules: React.Dispatch<React.SetStateAction<FilterRule[]>>;
+    onChange?: (rules: FilterRule[]) => void;
+};
 
+export function FilterPopover({ rules, setRules, onChange }: FilterPopoverProps) {
     const addRule = () =>
         setRules((r) => [...r, { id: uuid() }]);
 
@@ -26,6 +29,12 @@ export function FilterPopover() {
         setRules((r) => r.filter((rule) => rule.id !== id));
 
     const clearFilters = () => setRules([{ id: uuid() }]);
+
+    useEffect(() => {
+        if (onChange) {
+            onChange(rules);
+        }
+    }, [rules, onChange]);
 
     return (
         <Popover>
@@ -54,6 +63,11 @@ export function FilterPopover() {
                         <FilterRow
                             key={rule.id}
                             rule={rule}
+                            setRule={(updatedRule) =>
+                                setRules((r) =>
+                                    r.map((r) => (r.id === rule.id ? updatedRule : r))
+                                )
+                            }
                             onDelete={() => removeRule(rule.id)}
                         />
                     ))}

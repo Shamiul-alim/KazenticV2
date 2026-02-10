@@ -1,5 +1,6 @@
 'use client'
 
+import { v4 as uuid } from "uuid";
 import { Button } from '@/components/ui/Button'
 import { Plus } from 'lucide-react'
 import SettingsIcon from '@/components/icons/setting'
@@ -11,11 +12,15 @@ import { cn } from '@/lib/utils'
 import { FilterPopover } from '@/components/sprint-overview/custom/filters/filter-popover'
 import { useProjectContext } from '../context/project-context'
 import { CreateProjectDialog } from './create-project/create-project-dialog'
+import { FilterRule } from '@/components/sprint-overview/custom/filters/filter.types'
 
 
 export default function FilterToolbar() {
     const { groupBy, setGroupBy, viewMode, setViewMode } = useProjectContext()
     const [open, setOpen] = useState(false)
+    const [filterRules, setFilterRules] = useState<FilterRule[]>([
+        { id: uuid() },
+    ])
 
     return (
         <div className='flex items-center justify-between w-full border-b border-muted py-2 px-4'>
@@ -31,7 +36,7 @@ export default function FilterToolbar() {
                 </Button>
 
                 {/* Filter */}
-                <FilterPopover />
+                <FilterPopover rules={filterRules} setRules={setFilterRules} onChange={rules => console.log(rules)} />
 
                 {/* Assignees Button */}
                 <span className='hidden sm:flex border rounded-sm items-center bg-[#FDFDFD]'>

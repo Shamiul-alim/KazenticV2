@@ -10,17 +10,27 @@ import {
     SelectValue,
 } from "../../ui/select";
 import { FilterRule } from "./filter.types";
+import { ReactEventHandler } from "react";
 
 interface FilterRowProps {
     rule: FilterRule;
+    setRule: (rule: FilterRule) => void;
     onDelete: () => void;
 }
 
-export function FilterRow({ rule, onDelete }: FilterRowProps) {
+export function FilterRow({ rule, setRule, onDelete }: FilterRowProps) {
+
+    const handleFieldChange = (name: string, value: string) => {
+        setRule({
+            ...rule,
+            [name]: value,
+        });
+    }
+
     return (
         <div className="flex items-center gap-2">
             {/* Field */}
-            <Select>
+            <Select onValueChange={(value) => handleFieldChange("type", value)} name="type">
                 <SelectTrigger className="w-40">
                     <SelectValue placeholder="Select Filter" />
                 </SelectTrigger>
@@ -32,7 +42,7 @@ export function FilterRow({ rule, onDelete }: FilterRowProps) {
             </Select>
 
             {/* Operator */}
-            <Select>
+            <Select onValueChange={(value) => handleFieldChange("operator", value)} name="operator">
                 <SelectTrigger className="w-30">
                     <SelectValue placeholder="Is" />
                 </SelectTrigger>
@@ -44,7 +54,7 @@ export function FilterRow({ rule, onDelete }: FilterRowProps) {
             </Select>
 
             {/* Value */}
-            <Select>
+            <Select onValueChange={(value) => handleFieldChange("value", value)} name="value">
                 <SelectTrigger className="w-40">
                     <SelectValue placeholder="Select Option" />
                 </SelectTrigger>

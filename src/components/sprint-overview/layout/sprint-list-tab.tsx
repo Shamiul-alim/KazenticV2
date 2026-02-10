@@ -1,5 +1,6 @@
 'use client';
 
+import { v4 as uuid } from 'uuid';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Button } from '../ui/button'
 import { ChartColumn, Check, ChevronRight, Copy, Plus, Timer, User } from 'lucide-react'
@@ -14,11 +15,15 @@ import { FilterPopover } from '../custom/filters/filter-popover'
 import { useState } from 'react'
 import { AssigneeSidebar } from '../custom/assignee-sidebar/assignee-sidebar'
 import { AddTaskToSprintDialog } from '../custom/add-to-sprint/add-to-sprint-dialog';
+import { FilterRule } from '../custom/filters/filter.types';
 
 export default function SprintListTab() {
     const [openDialog, setOpenDialog] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
     const [selectedAssignees, setSelectedAssignees] = useState<string[]>([]);
+    const [filterRules, setFilterRules] = useState<FilterRule[]>([
+        { id: uuid(), field: "Status", operator: "IS", value: "Active" },
+    ]);
     const openAssigneeSider = () => {
         setOpenSidebar(true);
     }
@@ -95,7 +100,7 @@ export default function SprintListTab() {
                     </DropdownMenu>
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 flex-wrap">
-                    <FilterPopover />
+                    <FilterPopover rules={filterRules} setRules={setFilterRules} onChange={rules => console.log(rules)} />
 
                     <Button onClick={openAssigneeSider} variant="outline" size="sm" className="flex-1 sm:flex-none text-xs">
                         <Avatar size="xs" className="mr-0.5">
