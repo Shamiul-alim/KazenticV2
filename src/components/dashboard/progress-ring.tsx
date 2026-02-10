@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils"
+
 export function ProgressRing({ value, className, color }: { value: number, className?: string, color?: string }) {
     const radius = 14
     const stroke = 3
@@ -7,7 +9,9 @@ export function ProgressRing({ value, className, color }: { value: number, class
         circumference - (value / 100) * circumference
 
     return (
-        <svg height={32} width={32} className={className}>
+        <svg height={32} width={32} className={
+            cn("text-primary", className)
+        } style={{ color }}>
             <circle
                 stroke="currentColor"
                 fill="transparent"

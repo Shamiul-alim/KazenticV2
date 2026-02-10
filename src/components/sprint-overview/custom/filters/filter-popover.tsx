@@ -9,9 +9,10 @@ import {
     PopoverTrigger,
     PopoverContent,
 } from "../../ui/popover";
-import { Button } from "../../ui/button";
 import { FilterRow } from "./filter-row";
 import { FilterRule } from "./filter.types";
+import FilterOutlineIcon from "@/components/icons/filter-outline";
+import { Button } from "@/components/ui/Button";
 
 export function FilterPopover() {
     const [rules, setRules] = React.useState<FilterRule[]>([
@@ -30,7 +31,7 @@ export function FilterPopover() {
         <Popover>
             <PopoverTrigger asChild>
                 <Button variant="outline" size="sm">
-                    <Filter className="mr-0.5" />
+                    <FilterOutlineIcon className="h-4 w-4" />
                     Filter
                 </Button>
             </PopoverTrigger>
