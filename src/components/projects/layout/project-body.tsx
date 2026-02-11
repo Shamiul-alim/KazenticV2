@@ -24,8 +24,7 @@ export default function ProjectBody() {
 
     return (
         <div className="space-y-6 flex flex-col mt-2 p-4">
-            {/* Controls */}
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
                 <ProjectSummaryCard
                     label="Active Projects"
                     count={filtered.filter((p) => p.status.name !== "Completed").length}

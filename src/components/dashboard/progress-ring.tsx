@@ -1,8 +1,14 @@
 import { cn } from "@/lib/utils"
 
-export function ProgressRing({ value, className, color }: { value: number, className?: string, color?: string }) {
+interface ProgressRingProps extends React.SVGProps<SVGSVGElement> {
+    value: number
+    color?: string
+    strokeWidth?: number
+}
+
+export function ProgressRing({ value, className, color, strokeWidth = 3, ...props }: ProgressRingProps) {
     const radius = 14
-    const stroke = 3
+    const stroke = strokeWidth
     const normalizedRadius = radius - stroke * 2
     const circumference = normalizedRadius * 2 * Math.PI
     const strokeDashoffset =
@@ -11,17 +17,17 @@ export function ProgressRing({ value, className, color }: { value: number, class
     return (
         <svg height={32} width={32} className={
             cn("text-primary", className)
-        } style={{ color }}>
+        } style={{ color }} {...props}>
             <circle
                 stroke="currentColor"
                 fill="transparent"
                 strokeWidth={stroke}
                 strokeDasharray={`${circumference} ${circumference}`}
-                style={{ strokeDashoffset }}
+                style={{ strokeDashoffset: 0 }}
                 r={normalizedRadius}
                 cx={16}
                 cy={16}
-                className="opacity-30"
+                className="opacity-20"
             />
             <circle
                 stroke="currentColor"

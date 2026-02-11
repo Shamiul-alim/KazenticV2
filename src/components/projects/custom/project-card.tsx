@@ -1,10 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Lock } from "lucide-react"
+import { Lock, MoreHorizontal } from "lucide-react"
 import { Project } from "../types/project"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from "@/components/dashboard/ui/avatar"
+import LockIcon from "@/components/icons/lock"
+import { Button } from "@/components/ui/Button"
+import { ProjectActionsDropdown } from "./project-action-dropdown"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { Separator } from "@/components/ui/separator"
 
 type Props = {
     project: Project
@@ -18,9 +23,20 @@ export function ProjectCard({ project }: Props) {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <span className="size-5 flex items-center justify-center bg-[#178D6C] rounded-sm text-sm font-semibold text-white">{project.name.charAt(0)}</span>
-                        <p className="font-medium truncate text-[#191F38]">{project.name}</p>
+                        <p className="font-semibold truncate text-[#191F38]">{project.name}</p>
+                        {project.isPrivate && (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <LockIcon className="w-3 h-3 text-[#9BA2AD]" />
+                                </TooltipTrigger>
+                                <TooltipContent variant="secondary">
+                                    <p>Private Project</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                        )}
                     </div>
-                    {project.isPrivate && <Lock size={14} />}
+                    <ProjectActionsDropdown />
                 </div>
 
                 {/* Pills */}
@@ -71,6 +87,8 @@ export function ProjectCard({ project }: Props) {
                         {project.progress}%
                     </p>
                 </div>
+
+                <Separator className="mb-2" />
 
                 {/* Members */}
                 <AvatarGroup className="">

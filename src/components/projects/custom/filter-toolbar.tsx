@@ -23,12 +23,12 @@ export default function FilterToolbar() {
     ])
 
     return (
-        <div className='flex items-center justify-between w-full border-b border-muted py-2 px-4'>
-            <div className='flex gap-2'>
+        <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between w-full border-b border-muted py-2 px-4'>
+            <div className='flex gap-2 w-full sm:w-auto'>
                 {/* Group By Filter */}
                 <GroupByPopover />
             </div>
-            <div className='flex gap-2'>
+            <div className='flex flex-wrap gap-2 w-full sm:w-auto sm:justify-end'>
                 {/* Customize View */}
                 <Button variant="outline">
                     <SettingsIcon className="h-4 w-4" />
@@ -39,7 +39,7 @@ export default function FilterToolbar() {
                 <FilterPopover rules={filterRules} setRules={setFilterRules} onChange={rules => console.log(rules)} />
 
                 {/* Assignees Button */}
-                <span className='hidden sm:flex border rounded-sm items-center bg-[#FDFDFD]'>
+                <span className='flex border rounded-sm items-center bg-[#FDFDFD]'>
                     <Button variant="ghost" className={
 
                         cn("border-r", viewMode === 'grid' ? "text-[#4157FE] bg-[#F2F9FE]" : "text-[#697588]")

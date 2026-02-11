@@ -31,7 +31,7 @@ export function FilterRow({ rule, setRule, onDelete }: FilterRowProps) {
         <div className="flex items-center gap-2">
             {/* Field */}
             <Select onValueChange={(value) => handleFieldChange("type", value)} name="type">
-                <SelectTrigger className="w-40">
+                <SelectTrigger className="w-32 h-7 shadow-none text-[11px]">
                     <SelectValue placeholder="Select Filter" />
                 </SelectTrigger>
                 <SelectContent>
@@ -43,7 +43,7 @@ export function FilterRow({ rule, setRule, onDelete }: FilterRowProps) {
 
             {/* Operator */}
             <Select onValueChange={(value) => handleFieldChange("operator", value)} name="operator">
-                <SelectTrigger className="w-30">
+                <SelectTrigger className="w-32 h-7 shadow-none text-[11px]">
                     <SelectValue placeholder="Is" />
                 </SelectTrigger>
                 <SelectContent>
@@ -55,7 +55,7 @@ export function FilterRow({ rule, setRule, onDelete }: FilterRowProps) {
 
             {/* Value */}
             <Select onValueChange={(value) => handleFieldChange("value", value)} name="value">
-                <SelectTrigger className="w-40">
+                <SelectTrigger className="w-32 h-7 shadow-none text-[11px]">
                     <SelectValue placeholder="Select Option" />
                 </SelectTrigger>
                 <SelectContent>

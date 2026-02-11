@@ -11,7 +11,7 @@ import ProjectBody from "@/components/projects/layout/project-body"
 export default function ProjectsPage() {
     return (
         <ProjectProvider>
-            <main className="bg-background h-full text-xs">
+            <main className="bg-background min-h-dvh h-full w-full text-xs">
                 <NavigationBar>
                     <span>
                         <Folder2Icon className="inline mr-1.5 h-4 w-4" />

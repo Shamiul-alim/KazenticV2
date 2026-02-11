@@ -14,6 +14,7 @@ import { FilterRule } from "./filter.types";
 import FilterOutlineIcon from "@/components/icons/filter-outline";
 import { Button } from "@/components/ui/Button";
 import { useEffect } from "react";
+import NestedArrowsIcon from "@/components/icons/nested-arrows";
 
 type FilterPopoverProps = {
     rules: FilterRule[];
@@ -45,13 +46,13 @@ export function FilterPopover({ rules, setRules, onChange }: FilterPopoverProps)
                 </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="w-130 p-4">
+            <PopoverContent className="w-130 p-4 text-xs">
                 {/* Header */}
                 <div className="mb-3 flex items-center justify-between">
-                    <span className="font-medium">Filters</span>
+                    <span className="font-semibold text-[#191F38] text-sm">Filters</span>
                     <button
                         onClick={clearFilters}
-                        className="text-sm text-muted-foreground hover:text-primary"
+                        className="text-[13px] font-medium text-muted-foreground hover:text-primary"
                     >
                         Clear Filters
                     </button>
@@ -74,19 +75,19 @@ export function FilterPopover({ rules, setRules, onChange }: FilterPopoverProps)
 
                     {/* Nested filter (UI only for now) */}
                     <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
-                        className="text-muted-foreground"
+                        className="text-muted-foreground py-1"
                     >
+                        <NestedArrowsIcon className="h-4 w-4" />
                         Add Nested Filter
                     </Button>
                 </div>
 
                 {/* Footer */}
                 <Button
-                    variant="secondary"
                     size="sm"
-                    className="mt-3 gap-1"
+                    className="mt-3 flex items-center py-1.5 gap-1"
                     onClick={addRule}
                 >
                     <Plus className="h-4 w-4" />

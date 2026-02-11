@@ -7,7 +7,7 @@ import ClipboardTextIcon from './icons/clipboard-text'
 
 export default function NavigationBar({ children }: { children?: React.ReactNode }) {
     return (
-        <div className='px-4 py-1 flex items-center gap-2'>
+        <div className='px-4 py-1 flex flex-wrap items-center gap-2'>
             <Button variant="ghost" size="md" className='flex gap-1 p-1'>
                 <KazenticLogo className="h-3.5 w-3.5" />
                 Kazentic
