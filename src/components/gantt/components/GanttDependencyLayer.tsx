@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useRef, useState } from "react";
-import { parseISO } from "date-fns";
+import { parseISO, isValid } from "date-fns";
 import { X } from "lucide-react";
 import { bucketIndexFromDate } from "@/components/gantt/utils/bucket";
 import { GanttRow } from "@/components/gantt/hooks/useGanttRows";
@@ -58,6 +58,9 @@ export function GanttDependencyLayer(props: {
     const r = props.rows.find((x) => x.task.id === taskId);
     const ri = rowIndex.get(taskId);
     if (!r || ri == null) return null;
+    const sd = parseISO(r.task.startDate);
+    const dd = parseISO(r.task.dueDate);
+    if (!isValid(sd) || !isValid(dd)) return null;
 
     const sIdx = bucketIndexFromDate(
       props.mode,

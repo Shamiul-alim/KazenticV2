@@ -9,15 +9,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  ChevronDown,
-  ChevronRight,
-  GripVertical,
-  Pencil,
-  Plus,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, GripVertical } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+
+import { parseISO, isValid } from "date-fns";
+import { DateRange } from "react-day-picker";
+import { ClickUpLightRangePicker } from "@/components/ui/ClickUpRangePicker";
 
 export function GanttTaskRow(props: {
   row: GanttRow;
@@ -33,6 +31,7 @@ export function GanttTaskRow(props: {
   overTarget: boolean;
 
   onReorderPointerDown: (e: React.PointerEvent) => void;
+  onSetDates: (taskId: string, from: Date, to: Date) => void;
 }) {
   const { row } = props;
   const showHoverUI = props.hovered || props.dragging;
@@ -40,6 +39,19 @@ export function GanttTaskRow(props: {
   const stop = (e: React.PointerEvent | React.MouseEvent) => {
     e.stopPropagation();
   };
+
+  const start = row.task.startDate ? parseISO(row.task.startDate) : undefined;
+  const due = row.task.dueDate ? parseISO(row.task.dueDate) : undefined;
+
+  const hasDates = !!start && !!due && isValid(start) && isValid(due);
+
+  const [dateOpen, setDateOpen] = React.useState(false);
+  const [draft, setDraft] = React.useState<DateRange | undefined>(undefined);
+
+  React.useEffect(() => {
+    if (!dateOpen) return;
+    setDraft(hasDates ? { from: start!, to: due! } : undefined);
+  }, [dateOpen, hasDates, start, due]);
 
   return (
     <div
@@ -156,9 +168,9 @@ export function GanttTaskRow(props: {
               title={props.expanded ? "Collapse" : "Expand"}
             >
               {props.expanded ? (
-                <ChevronDown className="h-5 w-5" />
+                <ChevronDown className="h-4 w-4" />
               ) : (
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-4 w-4" />
               )}
             </Button>
           )}
@@ -181,6 +193,21 @@ export function GanttTaskRow(props: {
           </Button>
         </div>
       </div>
+
+      {!hasDates && (
+        <div
+          className="ml-auto pr-2"
+          onPointerDown={stop}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ClickUpLightRangePicker
+            startDate={row.task.startDate}
+            dueDate={row.task.dueDate}
+            align="end"
+            onComplete={(from, to) => props.onSetDates(row.task.id, from, to)}
+          />
+        </div>
+      )}
     </div>
   );
 }

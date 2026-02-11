@@ -31,7 +31,7 @@ export function GanttBar(props: {
 
   return (
     <div
-      className="absolute z-30 "
+      className="absolute z-30 rounded-sm"
       style={{
         ...style,
         overflow: "visible",

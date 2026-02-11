@@ -22,6 +22,8 @@ import { GanttDependencyLayer } from "./GanttDependencyLayer";
 import { GanttCreateTaskGhost } from "./GanttCreateTaskGhost";
 import { HeaderMonthRow } from "@/components/timeline/components/HeaderMonthRow";
 import { HeaderSecondRow } from "@/components/timeline/components/HeaderSecondRow";
+import { GanttCreateMarker } from "./GanttCreateMarker";
+
 import { useRef } from "react";
 
 export function GanttGrid(props: {
@@ -59,10 +61,11 @@ export function GanttGrid(props: {
 
   hoveredBarId: string | null;
   setHoveredBarId: (id: string | null) => void;
-  onQuickCreateFromGrid: (payload: {
+  onOpenCreateFromGrid: (payload: {
     clientX: number;
     clientY: number;
     startIdx: number;
+    endIdx: number;
   }) => void;
 
   dep: {
@@ -99,11 +102,14 @@ export function GanttGrid(props: {
     },
   });
 
+  const createRowTop = props.headerHeight + createRowIndex * props.rowHeight;
+
   const ghost = useGanttCreateGhost({
-    rowIndex: createRowIndex,
+    rowTop: createRowTop,
     rowHeight: props.rowHeight,
     cellWidth: props.cellWidth,
     totalCols,
+    defaultSpan: 1,
   });
 
   const onPointerMove = (e: React.PointerEvent) => {
@@ -113,12 +119,11 @@ export function GanttGrid(props: {
     const vpRect = viewport.getBoundingClientRect();
     const x = e.clientX - vpRect.left + viewport.scrollLeft;
     const y = e.clientY - vpRect.top + viewport.scrollTop;
+    ghost.onMove(x, y);
 
     updateHoverFromY(y);
 
     if (props.dep.linkingFrom) props.dep.updateMouse(x, y);
-
-    ghost.onMove(x, y);
   };
 
   const onPointerUp = () => {
@@ -331,55 +336,20 @@ export function GanttGrid(props: {
             onMouseLeave={() => props.setHoverRowId(null)}
           />
 
-          {/* ✅ Create-row ghost (follows mouse) */}
           {ghost.active && props.hoverRowId === "__create__" && (
-            <>
-              {/* full row hover — same exact color as left */}
-              <div
-                className="absolute"
-                style={{
-                  left: 0,
-                  right: 0,
-                  top: props.headerHeight + createRowIndex * props.rowHeight,
-                  height: props.rowHeight,
-                  backgroundColor: "#F2F9FE",
-                  zIndex: 15, // ✅ ensure above GridBackground lines
-                  pointerEvents: "none",
-                }}
-              />
-
-              {/* “Click to Create Task” pill */}
-              <div
-                className="absolute z-40 px-3 py-1 rounded-md text-xs bg-black/70 text-white"
-                style={{
-                  left:
-                    ghost.startIdx * props.cellWidth + props.cellWidth * 1.5,
-                  top: ghost.y - 28,
-                  transform: "translateX(-50%)",
-                }}
-              >
-                Click to Create Task
-              </div>
-
-              {/* clickable ghost bar */}
-              <button
-                type="button"
-                className="absolute z-40 rounded-md border border-[#4157FE] bg-[#EEF2FF]"
-                style={{
-                  left: ghost.startIdx * props.cellWidth,
-                  top: ghost.y,
-                  width: props.cellWidth * 3,
-                  height: 28,
-                }}
-                onClick={(e) => {
-                  props.onQuickCreateFromGrid({
-                    clientX: e.clientX,
-                    clientY: e.clientY,
-                    startIdx: ghost.startIdx,
-                  });
-                }}
-              />
-            </>
+            <GanttCreateMarker
+              x={ghost.dotX}
+              rowTop={createRowTop}
+              rowHeight={props.rowHeight}
+              onClick={(e) => {
+                props.onOpenCreateFromGrid({
+                  clientX: e.clientX,
+                  clientY: e.clientY,
+                  startIdx: ghost.startIdx,
+                  endIdx: ghost.startIdx,
+                });
+              }}
+            />
           )}
         </div>
 

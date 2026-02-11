@@ -217,14 +217,6 @@ export function createTaskFromDates(args: {
     } as GanttTask;
 }
 
-/**
- * ✅ createNewTask supports BOTH:
- * 1) Old grid signature (used by ghost):
- *    { idPrefix, startDate, mode, startIdx, cellSpan }
- *
- * 2) Your new UI signature (used by panel):
- *    { id, title, startISO, dueISO }
- */
 type CreateNewTaskFromGridArgs = {
     idPrefix: string;
     startDate: Date;

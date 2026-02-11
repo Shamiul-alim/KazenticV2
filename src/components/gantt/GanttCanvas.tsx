@@ -20,17 +20,15 @@ import {
   removeTaskFromTree,
 } from "@/components/gantt/utils/tree";
 
-import { GanttCreateTaskPanel } from "@/components/gantt/components/GanttCreateTaskPanel";
+import { GanttCreateTitlePanel } from "@/components/gantt/components/GanttCreateTitlePanel";
 
 type DateRange = { from?: Date; to?: Date };
 
 type CreatePanelState = null | {
-  mode: "new" | "edit";
+  kind: "list" | "grid";
   anchor: { x: number; y: number };
-  taskId?: string; // edit mode
-  initialTitle?: string;
-  initialRange?: DateRange;
-  createdTemp?: boolean; // for quick-create cleanup
+  startIdx?: number;
+  endIdx?: number;
 };
 
 export function GanttCanvas(props: {
@@ -114,104 +112,87 @@ export function GanttCanvas(props: {
 
   const bodyHeight = Math.max(520, props.viewportHeight || 520);
 
-  // ✅ Create panel state
   const [createPanel, setCreatePanel] = useState<CreatePanelState>(null);
-
-  const closePanel = () => {
-    // If it was quick-created but user closes without saving name -> remove temp
-    if (createPanel?.createdTemp && createPanel.taskId) {
-      props.setTasks((prev) => removeTaskFromTree(prev, createPanel.taskId!));
-    }
-    setCreatePanel(null);
-  };
 
   const openCreateFromList = (anchor: { x: number; y: number }) => {
     setHoverRowId("__create__");
-    setCreatePanel({
-      mode: "new",
-      anchor,
-      initialTitle: "",
-      initialRange: {},
-    });
+    setCreatePanel({ kind: "list", anchor });
   };
 
-  const quickCreateFromGrid = (payload: {
+  const openCreateFromGrid = (payload: {
     clientX: number;
     clientY: number;
     startIdx: number;
+    endIdx: number;
   }) => {
-    // Create immediately at clicked bucket (span 3 like your ghost)
-    const id =
-      typeof crypto !== "undefined" && "randomUUID" in crypto
-        ? `new-${crypto.randomUUID()}`
-        : `new-${Date.now()}`;
-
-    const start = props.buckets[payload.startIdx];
-    const endIdx = Math.min(payload.startIdx + 2, props.buckets.length - 1);
-    const due = props.buckets[endIdx];
-
-    const startISO = format(start, "yyyy-MM-dd");
-    const dueISO = format(due, "yyyy-MM-dd");
-
-    props.setTasks((prev) => [
-      ...prev,
-      createNewTask({
-        id,
-        title: "", // temp
-        startISO,
-        dueISO,
-      }),
-    ]);
-
     setCreatePanel({
-      mode: "edit",
+      kind: "grid",
       anchor: { x: payload.clientX, y: payload.clientY },
-      taskId: id,
-      createdTemp: true,
-      initialTitle: "",
-      initialRange: { from: start, to: due },
+      startIdx: payload.startIdx,
+      endIdx: payload.endIdx,
     });
   };
 
-  const onSubmitPanel = (payload: { title: string; range: DateRange }) => {
-    if (!payload.range.from || !payload.range.to) return;
+  const closePanel = () => setCreatePanel(null);
 
-    const startISO = format(payload.range.from, "yyyy-MM-dd");
-    const dueISO = format(payload.range.to, "yyyy-MM-dd");
+  const createId = () =>
+    typeof crypto !== "undefined" && "randomUUID" in crypto
+      ? `new-${crypto.randomUUID()}`
+      : `new-${Date.now()}`;
 
-    if (createPanel?.mode === "new") {
-      const id =
-        typeof crypto !== "undefined" && "randomUUID" in crypto
-          ? `new-${crypto.randomUUID()}`
-          : `new-${Date.now()}`;
+  const onCreateTitle = (title: string) => {
+    const id = createId();
 
+    // ✅ list approach: create WITHOUT dates
+    if (createPanel?.kind === "list") {
       props.setTasks((prev) => [
         ...prev,
-        createNewTask({
+        {
           id,
-          title: payload.title,
-          startISO,
-          dueISO,
-        }),
+          title,
+          startDate: "",
+          dueDate: "",
+          status: "IN_PROGRESS",
+          assignee: "/assets/profile.svg",
+        } as any,
       ]);
+
       setCreatePanel(null);
       return;
     }
 
-    // edit mode: update the temp task
-    if (createPanel?.taskId) {
-      props.setTasks((prev) =>
-        updateTaskInTree(prev, createPanel.taskId!, {
-          title: payload.title,
-          startDate: startISO,
-          dueDate: dueISO,
-        }),
-      );
+    // ✅ grid approach: create WITH dates at clicked position
+    if (createPanel?.kind === "grid") {
+      const s = createPanel.startIdx ?? 0;
+      const e = createPanel.endIdx ?? s;
+
+      const start = props.buckets[s];
+      const due = props.buckets[Math.min(e, props.buckets.length - 1)];
+
+      props.setTasks((prev) => [
+        ...prev,
+        {
+          id,
+          title,
+          startDate: format(start, "yyyy-MM-dd"),
+          dueDate: format(due, "yyyy-MM-dd"),
+          status: "IN_PROGRESS",
+          assignee: "/assets/profile.svg",
+        } as any,
+      ]);
+
       setCreatePanel(null);
     }
   };
+  const onSetDates = (taskId: string, from: Date, to: Date) => {
+    props.setTasks((prev) =>
+      updateTaskInTree(prev, taskId, {
+        startDate: format(from, "yyyy-MM-dd"),
+        dueDate: format(to, "yyyy-MM-dd"),
+      }),
+    );
+  };
 
-  // ✅ resizable width state
   const [leftWidth, setLeftWidth] = useState<number>(props.leftPaneWidth);
 
   // container to clamp max width
@@ -323,6 +304,7 @@ export function GanttCanvas(props: {
               setHoverRowId={setHoverRowId}
               setTasks={props.setTasks}
               onOpenCreateFromList={openCreateFromList}
+              onSetDates={onSetDates}
             />
           </div>
         </div>
@@ -368,20 +350,17 @@ export function GanttCanvas(props: {
             hoveredBarId={hoveredBarId}
             setHoveredBarId={setHoveredBarId}
             dep={dep}
-            onQuickCreateFromGrid={quickCreateFromGrid} // ✅ NEW
+            onOpenCreateFromGrid={openCreateFromGrid}
           />
         </div>
       </div>
 
-      {/* ✅ Floating create panel (shared for both approaches) */}
-      <GanttCreateTaskPanel
+      <GanttCreateTitlePanel
         open={!!createPanel}
         anchor={createPanel?.anchor ?? null}
-        mode={createPanel?.mode ?? "new"}
-        initialTitle={createPanel?.initialTitle ?? ""}
-        initialRange={createPanel?.initialRange ?? {}}
+        initialTitle=""
         onClose={closePanel}
-        onSubmit={onSubmitPanel}
+        onCreate={onCreateTitle}
       />
     </div>
   );

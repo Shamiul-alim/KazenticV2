@@ -9,14 +9,13 @@ export function GanttCreateTaskGhost(props: {
 }) {
   return (
     <div
-      className={props.hovered ? "bg-[#F2F9FE]" : ""}
+      className={[
+        "absolute left-0 right-0 transition-colors",
+        props.hovered ? "bg-[#F2F9FE]" : "",
+      ].join(" ")}
       style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
         top: props.rowTop,
         height: props.rowHeight,
-        opacity: props.hovered ? 0.4 : 0,
       }}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}

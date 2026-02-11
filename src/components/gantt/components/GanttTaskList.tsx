@@ -25,6 +25,8 @@ export function GanttTaskList(props: {
   setTasks: Dispatch<SetStateAction<GanttTask[]>>;
 
   onOpenCreateFromList: (anchor: { x: number; y: number }) => void;
+
+  onSetDates: (taskId: string, from: Date, to: Date) => void;
 }) {
   const reorder = useGanttRowReorder({
     listScrollRef: props.listScrollRef,
@@ -68,14 +70,14 @@ export function GanttTaskList(props: {
               dragging={reorder.draggingId === row.task.id}
               overTarget={reorder.overId === row.task.id}
               onReorderPointerDown={(e) => reorder.start(e, row)}
+              onSetDates={props.onSetDates}
             />
           </div>
         ))}
-        {/* ✅ ClickUp-like Add Task row */}
         <button
           type="button"
           className={[
-            "w-full flex items-center gap-2 border-b border-[#EBEBEB] px-3",
+            "w-full flex items-center gap-2 border-b border-[#EBEBEB] pl-15",
             props.hoverRowId === "__create__" ? "bg-[#F2F9FE]" : "bg-[#FFFFFF]",
           ].join(" ")}
           style={{ height: props.rowHeight }}
