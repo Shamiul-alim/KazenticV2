@@ -211,13 +211,79 @@ export function GanttCanvas(props: {
     }
   };
 
+  // ✅ resizable width state
+  const [leftWidth, setLeftWidth] = useState<number>(props.leftPaneWidth);
+
+  // container to clamp max width
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [wrapWidth, setWrapWidth] = useState<number>(0);
+
+  // divider UI state
+  const [isResizing, setIsResizing] = useState(false);
+
+  const dragRef = useRef<{ startX: number; startW: number }>({
+    startX: 0,
+    startW: props.leftPaneWidth,
+  });
+
+  // keep wrapWidth updated
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+
+    const ro = new ResizeObserver(() => {
+      setWrapWidth(el.getBoundingClientRect().width);
+    });
+
+    ro.observe(el);
+    setWrapWidth(el.getBoundingClientRect().width);
+
+    return () => ro.disconnect();
+  }, []);
+
+  const clamp = (v: number, min: number, max: number) =>
+    Math.max(min, Math.min(max, v));
+
+  const MIN_LEFT = 260; // you can tune
+  const MAX_LEFT = Math.max(MIN_LEFT, wrapWidth ? wrapWidth - 320 : 900); // keep room for grid
+
+  const onSplitterPointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setIsResizing(true);
+    dragRef.current = { startX: e.clientX, startW: leftWidth };
+
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+  };
+
+  const onSplitterPointerMove = (e: React.PointerEvent) => {
+    if (!isResizing) return;
+
+    const dx = e.clientX - dragRef.current.startX;
+    const next = clamp(dragRef.current.startW + dx, MIN_LEFT, MAX_LEFT);
+    setLeftWidth(next);
+  };
+
+  const endResize = () => {
+    setIsResizing(false);
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+  };
+
+  const onSplitterPointerUp = () => endResize();
+  const onSplitterLostCapture = () => endResize();
+
   return (
-    <div className="w-full h-full">
+    <div ref={wrapRef} className="w-full h-full">
       <div className="flex w-full h-full min-w-0">
         {/* LEFT SIDE */}
         <div
           className="shrink-0 h-full border-r border-[#EBEBEB] bg-[#FFFFFF] flex flex-col"
-          style={{ width: props.leftPaneWidth }}
+          style={{ width: leftWidth }}
         >
           <div
             className="border-b border-[#EBEBEB]"
@@ -248,7 +314,7 @@ export function GanttCanvas(props: {
           <div className="flex-1 min-h-0">
             <GanttTaskList
               listScrollRef={listScrollRef}
-              width={props.leftPaneWidth}
+              width={leftWidth}
               rowHeight={props.rowHeight}
               rows={rows}
               expanded={expanded}
@@ -259,6 +325,24 @@ export function GanttCanvas(props: {
               onOpenCreateFromList={openCreateFromList}
             />
           </div>
+        </div>
+
+        <div
+          className="relative shrink-0"
+          style={{ width: 1 }}
+          onPointerDown={onSplitterPointerDown}
+          onPointerMove={onSplitterPointerMove}
+          onPointerUp={onSplitterPointerUp}
+          onLostPointerCapture={onSplitterLostCapture}
+        >
+          <div className="absolute -left-2 -right-2 top-0 bottom-0 cursor-col-resize" />
+
+          <div
+            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px"
+            style={{
+              backgroundColor: isResizing ? "#4157FE" : "#EBEBEB",
+            }}
+          />
         </div>
 
         {/* RIGHT SIDE */}
