@@ -4,6 +4,7 @@ import { useState } from "react";
 import ProjectDetails from "@/components/project/projectDetails/ProjectDetails";
 import ProjectNavbar from "@/components/project/projectDetails/ProjectNavbar";
 import ProjectDashboard from "@/components/project/projectDetails/ProjectDashboard";
+import Timeline from "@/components/project/projectDetails/Timeline";
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState("overview");
@@ -14,6 +15,8 @@ export default function Page() {
         return <ProjectDetails />;
       case "dashboard":
         return <ProjectDashboard />;
+      case "timeline":
+        return <Timeline />;
       default:
         return (
           <div className="p-6 text-gray-400">
@@ -25,9 +28,9 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF]">
+    <div className="min-h-screen bg-[#FFFFFF] flex flex-col">
       <ProjectNavbar activeTab={activeSection} onTabChange={setActiveSection} />
-      <main>{renderContent()}</main>
+      <main className="flex-1 min-h-0">{renderContent()}</main>
     </div>
   );
 }

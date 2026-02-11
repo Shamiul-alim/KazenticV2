@@ -1,0 +1,54 @@
+{
+    "taskVisibility": [
+        {
+            "id": "filter",
+            "label": "Filter",
+            "value": "None",
+            "icon": "Filter"
+        },
+        {
+            "id": "group",
+            "label": "Group",
+            "value": "Status",
+            "icon": "Layers"
+        },
+        {
+            "id": "subtasks",
+            "label": "Subtasks",
+            "value": "Collapsed",
+            "icon": "ListTree"
+        },
+        {
+            "id": "sort",
+            "label": "Sort",
+            "value": "None",
+            "icon": "Filter"
+        }
+    ],
+    "viewSettings": [
+        {
+            "id": "pin",
+            "label": "Pin This View",
+            "icon": "Pin",
+            "default": true
+        },
+        {
+            "id": "secure",
+            "label": "Secure View",
+            "icon": "ShieldCheck",
+            "default": true
+        },
+        {
+            "id": "private",
+            "label": "Private View",
+            "icon": "Lock",
+            "default": true
+        },
+        {
+            "id": "default",
+            "label": "Make Default",
+            "icon": "Home",
+            "default": true
+        }
+    ]
+}

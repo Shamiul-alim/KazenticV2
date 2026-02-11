@@ -1,0 +1,123 @@
+{
+    "statusThemes": {
+        "IN_PROGRESS": {
+            "bg": "#EEF2FF",
+            "border": "#4157FE",
+            "text": "#191F38",
+            "solidBg": "#4157FE",
+            "solidText": "#FFFFFF",
+            "cardBg": "#FDFDFD",
+            "cardText": "#191F38",
+            "cardBorder": "rgba(65,87,254,0.20)",
+            "cardMuted": "#CAD0FF"
+        },
+        "DONE": {
+            "bg": "#ECFDF5",
+            "border": "#10B981",
+            "text": "#191F38",
+            "solidBg": "#10B981",
+            "solidText": "#FFFFFF",
+            "cardBg": "#FDFDFD",
+            "cardText": "#191F38",
+            "cardBorder": "rgba(16,185,129,0.20)",
+            "cardMuted": "#C8FFEE"
+        },
+        "BLOCKED": {
+            "bg": "#FEE2E2",
+            "border": "#EF4444",
+            "text": "#191F38",
+            "solidBg": "#EF4444",
+            "solidText": "#FFFFFF",
+            "cardBg": "#FDFDFD",
+            "cardText": "#191F38",
+            "cardBorder": "rgba(239,68,68,0.20)",
+            "cardMuted": "#CAD0FF"
+        }
+    },
+    "tasks": [
+        {
+            "id": "t1",
+            "title": "Design new Landing page",
+            "startDate": "2026-02-09",
+            "dueDate": "2026-02-19",
+            "status": "IN_PROGRESS",
+            "assignee": "/assets/profile.svg",
+            "children": [
+                {
+                    "id": "t1-1",
+                    "title": "Design new About page",
+                    "startDate": "2026-02-12",
+                    "dueDate": "2026-02-16",
+                    "status": "IN_PROGRESS",
+                    "assignee": "/assets/profile.svg"
+                },
+                {
+                    "id": "t1-2",
+                    "title": "Design new Service page",
+                    "startDate": "2026-02-14",
+                    "dueDate": "2026-02-18",
+                    "status": "IN_PROGRESS",
+                    "assignee": "/assets/profile.svg"
+                },
+                {
+                    "id": "t1-3",
+                    "title": "Design new Contact page",
+                    "startDate": "2026-02-16",
+                    "dueDate": "2026-02-22",
+                    "status": "DONE",
+                    "assignee": "/assets/profile.svg"
+                }
+            ]
+        },
+        {
+            "id": "t2",
+            "title": "Develop the Landing page",
+            "startDate": "2026-02-12",
+            "dueDate": "2026-02-17",
+            "status": "IN_PROGRESS",
+            "assignee": "/assets/profile.svg"
+        },
+        {
+            "id": "t3",
+            "title": "Develop the Service page",
+            "startDate": "2026-02-14",
+            "dueDate": "2026-02-20",
+            "status": "IN_PROGRESS",
+            "assignee": "/assets/profile.svg"
+        },
+        {
+            "id": "t4",
+            "title": "Develop the Service page",
+            "startDate": "2026-02-14",
+            "dueDate": "2026-02-20",
+            "status": "IN_PROGRESS",
+            "assignee": "/assets/profile.svg"
+        },
+        {
+            "id": "t5",
+            "title": "Backend Development with Api Testing and other things",
+            "startDate": "2026-02-15",
+            "dueDate": "2026-02-21",
+            "status": "IN_PROGRESS",
+            "assignee": "/assets/profile.svg"
+        }
+    ],
+    "dependencies": [
+        {
+            "id": "d1",
+            "fromTaskId": "t1",
+            "toTaskId": "t1-1",
+            "fromSide": "end",
+            "toSide": "start",
+            "color": "#EF4444"
+        },
+        {
+            "id": "d2",
+            "fromTaskId": "t2",
+            "toTaskId": "t3",
+            "fromSide": "end",
+            "toSide": "start",
+            "color": "#F59E0B"
+        }
+    ]
+}

@@ -1,0 +1,108 @@
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { differenceInDays, startOfWeek } from "date-fns";
+
+import { GanttTask, GanttDependency } from "@/data/gantt/gantt.types";
+
+import { useTimelineRange } from "@/components/timeline/hooks/useTimelineRange";
+import { useBuckets } from "@/components/timeline/hooks/useBuckets";
+import { useMonthSegments } from "@/components/timeline/hooks/useMonthSegments";
+import { useRafScroll } from "@/components/timeline/hooks/useRafScroll";
+import { useViewportSize } from "@/components/timeline/hooks/useViewportSize";
+import { useVirtualColumns } from "@/components/timeline/hooks/useVirtualColumns";
+import { getRadixScrollViewport } from "@/components/timeline/utils/dom";
+
+import { GanttCanvas } from "@/components/gantt/GanttCanvas";
+
+export default function MonthGanttView(props: {
+  tasks: GanttTask[];
+  setTasks: React.Dispatch<React.SetStateAction<GanttTask[]>>;
+  dependencies: GanttDependency[];
+  setDependencies: React.Dispatch<React.SetStateAction<GanttDependency[]>>;
+  statusThemes: Record<string, any>;
+  zoom: number;
+  onCreateTask: () => void;
+}) {
+  const scrollRootRef = useRef<HTMLDivElement | null>(null);
+
+  const flatForRange = props.tasks.flatMap((t) => [t, ...(t.children ?? [])]);
+  const range = useTimelineRange(flatForRange as any);
+
+  // Month mode uses WEEK buckets in your Timeline system
+  const buckets = useBuckets("month", range.start, range.end);
+  const segments = useMonthSegments(buckets);
+
+  const scrollLeft = useRafScroll(
+    scrollRootRef as React.RefObject<HTMLDivElement>,
+  );
+  const { width: viewportWidth, height: viewportHeight } = useViewportSize(
+    scrollRootRef as React.RefObject<HTMLDivElement>,
+  );
+
+  // Month mode: larger cells (like Timeline)
+  const baseCell = 120;
+  const cellWidth = Math.max(80, Math.round(baseCell * props.zoom));
+
+  const leftPaneWidth = 420;
+
+  const virtual = useVirtualColumns({
+    scrollLeft,
+    viewportWidth: Math.max(0, viewportWidth - leftPaneWidth),
+    cellWidth,
+    total: buckets.length,
+    overscan: 10,
+  });
+
+  // ✅ scroll to today for month mode (week-aligned buckets)
+  useEffect(() => {
+    const scrollToToday = (behavior: ScrollBehavior = "smooth") => {
+      const viewport = getRadixScrollViewport(scrollRootRef.current);
+      if (!viewport || !buckets.length) return;
+
+      const base = startOfWeek(range.start, { weekStartsOn: 1 });
+      const today = new Date();
+      const w = startOfWeek(today, { weekStartsOn: 1 });
+
+      const idx = Math.floor(differenceInDays(w, base) / 7);
+
+      const todayCenterX = idx * cellWidth + cellWidth / 2;
+      const targetLeft = todayCenterX - viewport.clientWidth / 2;
+
+      const maxLeft = viewport.scrollWidth - viewport.clientWidth;
+      const nextLeft = Math.max(0, Math.min(targetLeft, maxLeft));
+
+      viewport.scrollTo({ left: nextLeft, behavior });
+    };
+
+    const handler = (e: Event) => {
+      const ce = e as CustomEvent<{ mode?: string }>;
+      if (ce.detail?.mode && ce.detail.mode !== "month") return;
+      requestAnimationFrame(() => scrollToToday("smooth"));
+    };
+
+    window.addEventListener("gantt:scrollToToday", handler);
+    return () => window.removeEventListener("gantt:scrollToToday", handler);
+  }, [buckets.length, cellWidth, range.start]);
+
+  return (
+    <GanttCanvas
+      mode="month"
+      scrollRootRef={scrollRootRef}
+      viewportHeight={viewportHeight}
+      leftPaneWidth={leftPaneWidth}
+      headerMonthHeight={36}
+      headerSecondHeight={40}
+      rowHeight={40}
+      cellWidth={cellWidth}
+      buckets={buckets}
+      monthSegments={segments}
+      virtual={virtual}
+      tasks={props.tasks}
+      setTasks={props.setTasks}
+      dependencies={props.dependencies}
+      setDependencies={props.setDependencies}
+      statusThemes={props.statusThemes}
+    />
+  );
+}

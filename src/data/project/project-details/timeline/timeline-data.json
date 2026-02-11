@@ -1,0 +1,222 @@
+{
+    "projectSettings": {
+        "viewStart": "2026-01-08",
+        "viewEnd": "2026-01-28",
+        "statusThemes": {
+            "not_started": {
+                "bg": "#FFE4E6",
+                "border": "#EF4444",
+                "text": "#EF4444",
+                "solidBg": "#EF4444",
+                "solidText": "#FFFFFF",
+                "cardBg": "#FFF1F2",
+                "cardText": "#B91C1C",
+                "cardBorder": "rgba(239,68,68,0.20)",
+                "cardMuted": "rgba(185,28,28,0.70)"
+            },
+            "in_progress": {
+                "bg": "#EEF2FF",
+                "border": "#4157FE",
+                "text": "#4157FE",
+                "solidBg": "#4157FE",
+                "solidText": "#FFFFFF",
+                "cardBg": "#EEF2FF",
+                "cardText": "#4157FE",
+                "cardBorder": "rgba(65,87,254,0.20)",
+                "cardMuted": "rgba(65,87,254,0.70)"
+            },
+            "to_do": {
+                "bg": "#FFF7ED",
+                "border": "#F97316",
+                "text": "#F97316",
+                "solidBg": "#F97316",
+                "solidText": "#FFFFFF",
+                "cardBg": "#FFF7ED",
+                "cardText": "#C2410C",
+                "cardBorder": "rgba(249,115,22,0.20)",
+                "cardMuted": "rgba(194,65,12,0.70)"
+            },
+            "complete": {
+                "bg": "#C4FFE2",
+                "border": "#178D6C",
+                "text": "#178D6C",
+                "solidBg": "#178D6C",
+                "solidText": "#FFFFFF",
+                "cardBg": "#E9FFF4",
+                "cardText": "#178D6C",
+                "cardBorder": "rgba(23,141,108,0.20)",
+                "cardMuted": "rgba(23,141,108,0.70)"
+            }
+        }
+    },
+    "tasks": [
+        {
+            "id": "ns-1",
+            "title": "Design the Project Details Page",
+            "startDate": "2026-02-05",
+            "dueDate": "2026-02-06",
+            "status": "not_started",
+            "priority": "high",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "ns-2",
+            "title": "Create UI Components",
+            "startDate": "2026-02-06",
+            "dueDate": "2026-02-07",
+            "status": "not_started",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "ns-3",
+            "title": "Prepare Design Handoff",
+            "startDate": "2026-02-07",
+            "dueDate": "2026-02-08",
+            "status": "not_started",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "ip-1",
+            "title": "V3 Reported Design Update",
+            "startDate": "2026-02-08",
+            "dueDate": "2026-02-11",
+            "status": "in_progress",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "ip-2",
+            "title": "Timeline Drag Fix",
+            "startDate": "2026-02-10",
+            "dueDate": "2026-02-13",
+            "status": "in_progress",
+            "priority": "high",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "ip-3",
+            "title": "Resize UX Improvement",
+            "startDate": "2026-02-12",
+            "dueDate": "2026-02-15",
+            "status": "in_progress",
+            "priority": "urgent",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "td-1",
+            "title": "Add Status Filter UI",
+            "startDate": "2026-02-09",
+            "dueDate": "2026-02-10",
+            "status": "to_do",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "td-2",
+            "title": "Header Variant Cleanup",
+            "startDate": "2026-02-11",
+            "dueDate": "2026-02-12",
+            "status": "to_do",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "td-3",
+            "title": "Improve Month Labels",
+            "startDate": "2026-02-14",
+            "dueDate": "2026-02-16",
+            "status": "to_do",
+            "priority": "low",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "cp-1",
+            "title": "Serial Number Done",
+            "startDate": "2026-02-05",
+            "dueDate": "2026-02-05",
+            "status": "complete",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "cp-2",
+            "title": "Hover Cell Fixed",
+            "startDate": "2026-02-06",
+            "dueDate": "2026-02-06",
+            "status": "complete",
+            "priority": "urgent",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        },
+        {
+            "id": "cp-3",
+            "title": "Background Styling Done",
+            "startDate": "2026-02-07",
+            "dueDate": "2026-02-07",
+            "status": "complete",
+            "priority": "normal",
+            "path": [
+                "Team Space",
+                "Kazentic",
+                "Implement"
+            ],
+            "assignee": "https://github.com/shadcn.png"
+        }
+    ]
+}

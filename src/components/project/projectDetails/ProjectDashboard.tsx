@@ -19,7 +19,7 @@ import { ChevronDown, Plus, ChevronsUpDown, Flag } from "lucide-react";
 
 import dashboardData from "@/data/projectDashboard.json";
 import { Button } from "@/components/ui/Button";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/card2";
 
 const WidgetActions = () => (
   <div className="flex items-center">

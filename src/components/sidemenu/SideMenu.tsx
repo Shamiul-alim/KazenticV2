@@ -50,7 +50,7 @@ export default function SideMenu() {
   return (
     <div className="w-50 bg-[#FFFFFF] text-[#191F38] border-r border-[#EBEBEB] flex flex-col h-full  rounded-tl-md md:relative absolute z-50 ">
       {/* Carbon Stream Section */}
-      <div className="flex items-center mb-2 border-b border-[#EBEBEB] p-3 h-[2.188rem] rounded-tl-md">
+      <div className="flex items-center border-b border-[#EBEBEB] p-3 h-[2.188rem] rounded-tl-md">
         <div className="flex items-center gap-2">
           <button className="w-6 h-6 bg-[#FDBF00] rounded-lg flex justify-center text-center ">
             <span className="text-[#FFFFFF] text-[1rem] font-medium">C</span>
@@ -68,22 +68,24 @@ export default function SideMenu() {
         />
       </div>
 
-      {/* Sidebar Menu */}
-      <div className="space-y-2 pl-3 pr-3 pt-0.5">
-        {sectionsData.map((section) => {
-          return renderSection(section);
-        })}
-      </div>
+      <div className="overflow-y-auto hide-scrollbar">
+        {/* Sidebar Menu */}
+        <div className="space-y-2 pl-3 pr-3 pt-0.5">
+          {sectionsData.map((section) => {
+            return renderSection(section);
+          })}
+        </div>
 
-      {/* Upgrade Space */}
-      <div className="mt-auto">
-        <Image
-          alt="upgrade"
-          src="/assets/add.svg"
-          width={178}
-          height={129}
-          className="w-full"
-        />
+        {/* Upgrade Space */}
+        <div className="mt-auto">
+          <Image
+            alt="upgrade"
+            src="/assets/add.svg"
+            width={178}
+            height={129}
+            className="w-full"
+          />
+        </div>
       </div>
     </div>
   );

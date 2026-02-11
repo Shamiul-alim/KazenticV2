@@ -1,0 +1,567 @@
+{
+    "pipeline": [
+        {
+            "id": "contacted",
+            "title": "CONTACTED",
+            "count": 4,
+            "theme": "green",
+            "items": [
+                {
+                    "id": 1,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                },
+                {
+                    "id": 2,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                },
+                {
+                    "id": 3,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                }
+            ]
+        },
+        {
+            "id": "not-contacted",
+            "title": "NOT CONTACTED",
+            "count": 4,
+            "theme": "orange",
+            "items": [
+                {
+                    "id": 4,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                },
+                {
+                    "id": 5,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                }
+            ]
+        },
+        {
+            "id": "closed",
+            "title": "CLOSED",
+            "count": 4,
+            "theme": "pink",
+            "items": [
+                {
+                    "id": 6,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                },
+                {
+                    "id": 7,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                }
+            ]
+        },
+        {
+            "id": "lost",
+            "title": "LOST",
+            "count": 4,
+            "theme": "gray",
+            "items": [
+                {
+                    "id": 8,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                },
+                {
+                    "id": 9,
+                    "name": "John Doe",
+                    "email": "john@gmail.com",
+                    "avatar": "/assets/profile.svg",
+                    "phone": "+880170-3454542",
+                    "company": "BBC Technology",
+                    "date": "Mon, Aug 4 • 12:34 PM",
+                    "value": "22,000"
+                }
+            ]
+        }
+    ],
+    "listGroups": [
+        {
+            "id": "contacted",
+            "title": "Contacted",
+            "count": 4,
+            "theme": "green",
+            "items": [
+                {
+                    "id": "1",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },
+                {
+                    "id": "2",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },
+                {
+                    "id": "3",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },
+                {
+                    "id": "4",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },
+                {
+                    "id": "5",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                }
+            ]
+        },
+        {
+            "id": "not-contacted",
+            "title": "Not Contacted",
+            "count": 4,
+            "theme": "orange",
+            "items": [
+                {
+                    "id": "6",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },{
+                    "id": "7",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },{
+                    "id": "8",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },{
+                    "id": "9",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                },{
+                    "id": "10",
+                    "name": "John Doe",
+                    "avatar": "/assets/profile.svg",
+                    "company": "BBC Technology",
+                    "phone": "+91237474585066",
+                    "email": "john.bbc@gmail.com",
+                    "source": "Linkedin",
+                    "owner": "Pat Cummins",
+                    "creationDate": "11/12/2024",
+                    "followUp": "11/12/2024"
+                }
+            ]
+        }
+    ],
+    "leadDetails": {
+        "profile": {
+            "name": "John Doe",
+            "email": "johndoe@gmail.com",
+            "avatar": "/assets/profile.svg",
+            "status": "Closed"
+        },
+        "info": {
+            "creationDate": "Mon, Aug 4 • 12:34 PM",
+            "lastModified": "Mon, Aug 4 • 12:34 PM",
+            "secondaryEmail": "johndoe@gmail.com",
+            "secondaryPhone": "+99 457575757",
+            "leadSource": "Linkedin",
+            "industry": "BBC technology",
+            "leadValue": "22,000 $",
+            "followUpDate": "Mon, Aug 4 • 12:34 PM"
+        },
+        "otherInfo": {
+            "owner": {
+                "name": "Alan Walker",
+                "avatar": "/assets/profile.svg"
+            },
+            "tags": [
+                "Tag 1",
+                "Tag 2",
+                "Tag 3"
+            ],
+            "priority": "Urgent",
+            "socials": {
+                "facebook": "@johnDoe",
+                "linkedin": "@johnDoe",
+                "x": "@johnDoe",
+                "telegram": "+99 457575757 / @johndoe",
+                "whatsapp": "+99 457575757"
+            }
+        },
+        "pipelineSteps": [
+            {
+                "label": "New Lead",
+                "status": "current"
+            },
+            {
+                "label": "Contacted",
+                "status": "pending"
+            },
+            {
+                "label": "Qualified",
+                "status": "pending"
+            },
+            {
+                "label": "Follow-Up",
+                "status": "pending"
+            },
+            {
+                "label": "Converted to deal",
+                "status": "pending"
+            },
+            {
+                "label": "Disqualified",
+                "status": "pending"
+            }
+        ],
+        "activities": [
+            {
+                "date": "Today",
+                "items": [
+                    {
+                        "type": "message",
+                        "content": "You have sent a message to the <span class='text-blue-600 font-medium'>Pat Cummins</span>.",
+                        "time": "10:34 AM",
+                        "avatar": "/assets/profile.svg"
+                    },
+                    {
+                        "type": "email",
+                        "content": "You have sent an Email to the <span class='text-blue-600 font-medium'>Pat Cummins</span>.",
+                        "time": "10:34 AM",
+                        "avatar": "/assets/profile.svg"
+                    },
+                    {
+                        "type": "message",
+                        "content": "You have sent a message to the <span class='text-blue-600 font-medium'>Pat Cummins</span>.",
+                        "time": "10:34 AM",
+                        "avatar": "/assets/profile.svg"
+                    }
+                ]
+            },
+            {
+                "date": "Yesterday",
+                "items": [
+                    {
+                        "type": "message",
+                        "content": "You have sent a message to the <span class='text-blue-600 font-medium'>Pat Cummins</span>.",
+                        "time": "10:34 AM",
+                        "avatar": "/assets/profile.svg"
+                    },
+                    {
+                        "type": "meeting",
+                        "content": "Client Meeting with Product Dev Team",
+                        "time": "10:34 AM",
+                        "icon": "video"
+                    }
+                ]
+            },
+            {
+                "date": "31st Aug, 2025",
+                "items": [
+                    {
+                        "type": "message",
+                        "content": "You have sent a message to the <span class='text-blue-600 font-medium'>Pat Cummins</span>.",
+                        "time": "10:34 AM",
+                        "avatar": "/assets/profile.svg"
+                    },
+                    {
+                        "type": "meeting",
+                        "content": "Client Meeting with Product Dev Team",
+                        "time": "10:34 AM",
+                        "icon": "video",
+                        "data": "Lorem ipsum dolor sit amet consectetur. Odio viverra gravida nunc aliquam. Sed tellus egestas vehicula morbi nec"
+                    }
+                ]
+            }
+        ],
+        "notes": [
+            {
+                "id": 1,
+                "title": "Note Title",
+                "content": "Lorem ipsum dolor sit amet consectetur. Cras turpis purus viverra duis diam magna semper. Ac varius egestas morbi neque ac ornare magna dapibus.",
+                "timestamp": "Today, 8 PM",
+                "comments": []
+            },
+            {
+                "id": 2,
+                "title": "Note Title",
+                "content": "Lorem ipsum dolor sit amet consectetur. Cras turpis purus viverra duis diam magna semper. Ac varius egestas morbi neque ac ornare magna dapibus.",
+                "timestamp": "Today, 8 PM",
+                "comments": [
+                    {
+                        "id": 101,
+                        "user": "Tonmoy Asif",
+                        "avatar": "/assets/avatar-ta.png",
+                        "initials": "TA",
+                        "color": "#4157FE",
+                        "content": "Lorem ipsum dolor sit amet consectetur.",
+                        "time": "10:24 PM"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": "Note Title",
+                "content": "Lorem ipsum dolor sit amet consectetur. Cras turpis purus viverra duis diam magna semper. Ac varius egestas morbi neque ac ornare magna dapibus.",
+                "timestamp": "Today, 8 PM",
+                "comments": []
+            }
+        ],
+        "calls": [
+            {
+                "id": 1,
+                "user": "John Doe logged a call",
+                "avatar": "/assets/profile.svg",
+                "type": "Missed In-Coming Call",
+                "typeColor": "#EF4444",
+                "status": "Select Call Status",
+                "date": "31 Aug, 2025",
+                "duration": "3m 21s",
+                "isMissed": true
+            },
+            {
+                "id": 5,
+                "user": "John Doe logged a call",
+                "avatar": "/assets/profile.svg",
+                "type": "Out-Going",
+                "typeColor": "#10B981",
+                "status": "Select Call Status",
+                "date": "31 Aug, 2025",
+                "duration": "3m 21s",
+                "isMissed": false
+            },
+            {
+                "id": 6,
+                "user": "John Doe logged a call",
+                "avatar": "/assets/profile.svg",
+                "type": "Out-Going",
+                "typeColor": "#10B981",
+                "status": "Answered",
+                "date": "31 Aug, 2025",
+                "duration": "3m 21s",
+                "isMissed": false
+            }
+        ],
+        "files": [
+            {
+                "id": "f1",
+                "title": "File 1 Headline",
+                "description": "Lorem ipsum dolor sit amet consectetur.",
+                "author": "John Doe",
+                "date": "Sep 26, 2024",
+                "time": "10:24 PM",
+                "avatar": "/assets/profile.svg",
+                "attachments": []
+            },
+            {
+                "id": "f2",
+                "title": "File 1 Headline",
+                "description": "Lorem ipsum dolor sit amet consectetur.",
+                "author": "John Doe",
+                "date": "Sep 26, 2024",
+                "time": "10:24 PM",
+                "avatar": "/assets/profile.svg",
+                "attachments": [
+                    {
+                        "name": "PRD",
+                        "size": "5 MB",
+                        "type": "PDF"
+                    },
+                    {
+                        "name": "PRD",
+                        "size": "5 MB",
+                        "type": "PDF"
+                    }
+                ]
+            }
+        ],
+        "contacts": [
+            {
+                "id": "c1",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c2",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c3",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c4",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c5",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c6",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c7",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c8",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            },
+            {
+                "id": "c9",
+                "name": "John Doe",
+                "email": "john@gmail.com",
+                "phone": "+880170-3454542",
+                "role": "CEO, BBC Technology",
+                "location": "Dhaka, Bangladesh",
+                "avatar": "/assets/profile.svg"
+            }
+        ]
+    }
+}
