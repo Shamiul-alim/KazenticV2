@@ -2,25 +2,26 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
-import { Button } from '../ui/Button'
+import { Button } from '../../ui/Button'
 import { ArrowLeftToLine, ChevronRight, User, Group as GroupIcon } from 'lucide-react'
-import Calendar2Icon from './icons/calendar-2'
-import ProfileIcon from "./icons/profile"
-import ArrowRightBoldIcon from "./icons/arrow-right-bold"
-import ArrowLeftBoldIcon from "./icons/arrow-left-bold"
-import { useWorkload } from './workload-context'
-import { Separator } from "../ui/separator"
-import { TimeLimitPopover } from "./time-limit-popover"
-import { USER_DB, TASK_DB } from './data'
+import Calendar2Icon from '../icons/calendar-2'
+import ProfileIcon from "../icons/profile"
+import ArrowRightBoldIcon from "../icons/arrow-right-bold"
+import ArrowLeftBoldIcon from "../icons/arrow-left-bold"
+import { useWorkload } from '../workload-context'
+import { Separator } from "../../ui/separator"
+import { TimeLimitPopover } from "../time-limit-popover"
+import { USER_DB, TASK_DB } from '../data'
 import { useMemo } from 'react'
+import { SidebarUserRow } from "./sidebar-row"
 
-type Subtask = {
+export type Subtask = {
     id: string
     name: string
     loggedHours?: string
 }
 
-type User = {
+export type User = {
     id: string
     name: string
     role?: string
@@ -29,7 +30,7 @@ type User = {
     subtasks?: Subtask[]
 }
 
-export default function WorkloadLeftSidebar() {
+export default function WorkloadLeftSidebar({ className }: { className?: string }) {
     const { expandedUsers, toggleUser, isCollapsed, toggleCollapsed, engine, shiftPrev, shiftNext, getDateRange, groupBy, sortOrder } = useWorkload()
 
     // Map users based on groupBy selection
@@ -112,8 +113,9 @@ export default function WorkloadLeftSidebar() {
     return (
         <aside
             className={cn(
-                'border-r bg-background flex flex-col transition-all duration-300',
-                !isCollapsed && 'w-80'
+                'border-r flex flex-col transition-all duration-300',
+                !isCollapsed && 'max-w-80',
+                className
             )}
             style={{ width: isCollapsed ? '32px' : undefined }}
         >
@@ -163,7 +165,7 @@ export default function WorkloadLeftSidebar() {
                                 isExpanded={isUserExpanded}
                                 onToggle={() => toggleUser(user.id)}
                                 isCollapsed={isCollapsed}
-                                cellHeight={userRowHeight}
+                            // cellHeight={userRowHeight}
                             />
                             {isUserExpanded && user.subtasks?.map((subtask) => (
                                 <Separator key={subtask.id} className="bg-white" style={{ height: 32 }} />
@@ -197,97 +199,5 @@ export default function WorkloadLeftSidebar() {
                 )}
             </div>
         </aside >
-    )
-}
-
-type SidebarUserRowProps = {
-    user: User
-    isExpanded: boolean
-    onToggle: () => void
-    isCollapsed: boolean
-    cellHeight: number
-}
-
-function SidebarUserRow({ user, isExpanded, onToggle, isCollapsed, cellHeight }: SidebarUserRowProps) {
-    const isGroupRow = !user.avatar // Group rows have no avatar
-
-    if (isCollapsed) {
-        return (
-            <Button
-                variant="ghost"
-                onClick={onToggle}
-                className={cn(
-                    "w-full flex items-center justify-center px-2 border-t border-muted",
-                    "hover:bg-muted transition"
-                )}
-                style={{ height: cellHeight }}
-            >
-                {isGroupRow ? (
-                    <GroupIcon className="h-6 w-6 text-muted-foreground" />
-                ) : (
-                    <Avatar className="h-9 w-9">
-                        <AvatarImage src={user.avatar || undefined} />
-                        <AvatarFallback>
-                            {user.name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")}
-                        </AvatarFallback>
-                    </Avatar>
-                )}
-            </Button>
-        )
-    }
-
-    return (
-        <Button
-            variant="ghost"
-            onClick={onToggle}
-            className={cn(
-                "w-full flex items-center justify-between px-4 border-t border-muted",
-                "hover:bg-muted transition"
-            )}
-            style={{ height: cellHeight }}
-        >
-            <div className="flex items-center gap-3">
-                {isGroupRow ? (
-                    <GroupIcon className="h-6 w-6 text-muted-foreground" />
-                ) : (
-                    <Avatar className="h-9 w-9">
-                        <AvatarImage src={user.avatar || undefined} />
-                        <AvatarFallback>
-                            {user.name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")}
-                        </AvatarFallback>
-                    </Avatar>
-                )}
-
-                <div className="text-left">
-                    <p className="font-medium leading-none">
-                        {user.name}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                        {user.role}
-                    </p>
-                </div>
-            </div>
-
-            {user.loggedHours && (
-                <div onClick={(e) => e.stopPropagation()}>
-                    <TimeLimitPopover userId={user.id} loggedHours={user.loggedHours} />
-                </div>
-            )}
-
-            {user.subtasks && user.subtasks.length > 0 && (
-                <ArrowRightBoldIcon
-                    className={cn(
-                        "h-4 w-4 text-muted-foreground transition-transform",
-                        isExpanded && "rotate-90"
-                    )}
-                />
-            )}
-        </Button>
     )
 }

@@ -6,6 +6,7 @@ import { WorkloadItem } from './workload-engine'
 import { useWorkload, WorkloadUnit, GroupByOption } from './workload-context'
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { TASK_DB, Task } from './data'
+import { cn } from '@/lib/utils'
 
 // Transform TASK_DB to workloadItems format based on groupBy
 function transformTasksToWorkloadItems(tasks: Task[], groupBy: GroupByOption): Record<string, WorkloadItem[]> {
@@ -51,7 +52,7 @@ function transformTasksToWorkloadItems(tasks: Task[], groupBy: GroupByOption): R
     return workloadMap
 }
 
-export default function WorkloadTimeline() {
+export default function WorkloadTimeline({ className }: { className?: string }) {
     const { engine, refreshKey, unit, groupBy } = useWorkload();
     const [localRefresh, setLocalRefresh] = useState(0);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -162,9 +163,18 @@ export default function WorkloadTimeline() {
     }))
 
     return (
-        <div ref={scrollContainerRef} className='flex-1 overflow-x-auto overflow-y-visible relative text-[11px]'>
-            <TimelineHeader columns={columns} />
-            <TimelineBody columns={columns} workloadItems={workloadItems} />
+        <div className={className}>
+            <div ref={scrollContainerRef} className="flex w-full overflow-x-scroll relative text-[11px]">
+                {/* <TimelineHeader columns={columns} />
+                <TimelineBody columns={columns} workloadItems={workloadItems} /> */}
+                {
+                    Array.from({ length: 100 }).map((_, i) => (
+                        <div key={i} className="inline-block w-60 h-20 border m-1">
+                            Column {i + 1}
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { ChevronsUpDown, MoreHorizontal } from 'lucide-react'
 import ProjectBadge from './project-badge'
 import dayjs from 'dayjs'
 import { ProgressRing } from '@/components/dashboard/progress-ring'
-import { ProjectHeaderDropdown } from './project-header-dropdown'
+import { TableHeaderDropdown } from './project-header-dropdown'
 
 type ProjectTableProps = {
     projects: Project[]
@@ -35,14 +35,14 @@ export default function ProjectTable({ projects, columns }: ProjectTableProps) {
                         </TableHead>
                         {columns.map((col) => (
                             <TableHead key={col.key} className="px-2.5">
-                                <ProjectHeaderDropdown>
+                                <TableHeaderDropdown>
                                     <Button variant="ghost" className="h-10 flex items-center justify-start gap-1 w-full px-0!">
                                         <span className="text-[#191F38] text-[11px] font-semibold h-full flex items-center">
                                             {col.label}
                                         </span>
                                         <ChevronsUpDown className="h-3 w-3 text-muted-foreground" />
                                     </Button>
-                                </ProjectHeaderDropdown>
+                                </TableHeaderDropdown>
                             </TableHead>
                         ))}
                     </TableRow>

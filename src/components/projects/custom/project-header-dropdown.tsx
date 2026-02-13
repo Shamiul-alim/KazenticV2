@@ -79,7 +79,7 @@ interface ProjectActionsDropdownProps {
     onDelete?: () => void
 }
 
-export function ProjectHeaderDropdown({
+export function TableHeaderDropdown({
     children,
     onCopyLink,
     onViewDetails,
