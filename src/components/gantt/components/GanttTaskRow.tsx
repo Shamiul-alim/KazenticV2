@@ -65,7 +65,7 @@ export function GanttTaskRow(props: {
       onMouseEnter={() => props.setHoverRowId(row.task.id)}
       onMouseLeave={() => props.setHoverRowId(null)}
     >
-      <div className="flex items-center gap-1 w-[52px] shrink-0">
+      <div className="flex items-center w-auto shrink-0">
         <button
           type="button"
           onPointerDown={(e) => {
@@ -73,7 +73,7 @@ export function GanttTaskRow(props: {
             props.onReorderPointerDown(e);
           }}
           className={[
-            "h-7 w-7 rounded-md flex items-center justify-center",
+            "h-4 w-6 rounded-md flex items-center justify-center",
             "transition-opacity",
             showHoverUI
               ? "opacity-100 cursor-grab active:cursor-grabbing"
@@ -114,7 +114,7 @@ export function GanttTaskRow(props: {
                       e.stopPropagation();
                       props.onToggle();
                     }}
-                    className="shrink-0"
+                    className="shrink-0 ml-2"
                   >
                     <Image
                       src="/assets/arrow-left-fill.svg"
@@ -146,7 +146,7 @@ export function GanttTaskRow(props: {
         </TooltipProvider>
 
         {showHoverUI && (
-          <div className="absolute right-0 top-0 bottom-0 w-20 pointer-events-none z-10 bg-gradient-to-l from-[#FFFFFF] via-[#FFFFFF]/95 to-transparent" />
+          <div className="absolute right-0 top-0 bottom-0 w-18.25 pointer-events-none z-10 bg-[#F2F9FE] to-transparent" />
         )}
 
         <div

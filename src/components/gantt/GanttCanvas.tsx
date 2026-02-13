@@ -195,6 +195,33 @@ export function GanttCanvas(props: {
 
   const [leftWidth, setLeftWidth] = useState<number>(props.leftPaneWidth);
 
+  const [leftCollapsed, setLeftCollapsed] = useState(false);
+  const lastOpenLeftWidthRef = useRef<number>(props.leftPaneWidth);
+
+  useEffect(() => {
+    if (!leftCollapsed) lastOpenLeftWidthRef.current = leftWidth;
+  }, [leftWidth, leftCollapsed]);
+
+  useEffect(() => {
+    const handler = () => {
+      setLeftCollapsed((prev) => {
+        const next = !prev;
+        if (next) {
+          // collapsing
+          lastOpenLeftWidthRef.current = leftWidth;
+          setLeftWidth(0);
+        } else {
+          // expanding
+          setLeftWidth(lastOpenLeftWidthRef.current || props.leftPaneWidth);
+        }
+        return next;
+      });
+    };
+
+    window.addEventListener("gantt:toggleLeftPane", handler);
+    return () => window.removeEventListener("gantt:toggleLeftPane", handler);
+  }, [leftWidth, props.leftPaneWidth]);
+
   // container to clamp max width
   const wrapRef = useRef<HTMLDivElement>(null);
   const [wrapWidth, setWrapWidth] = useState<number>(0);
@@ -229,6 +256,7 @@ export function GanttCanvas(props: {
   const MAX_LEFT = Math.max(MIN_LEFT, wrapWidth ? wrapWidth - 320 : 900); // keep room for grid
 
   const onSplitterPointerDown = (e: React.PointerEvent) => {
+    if (leftCollapsed) return;
     e.preventDefault();
     e.stopPropagation();
 
@@ -262,70 +290,74 @@ export function GanttCanvas(props: {
     <div ref={wrapRef} className="w-full h-full">
       <div className="flex w-full h-full min-w-0">
         {/* LEFT SIDE */}
-        <div
-          className="shrink-0 h-full border-r border-[#EBEBEB] bg-[#FFFFFF] flex flex-col"
-          style={{ width: leftWidth }}
-        >
-          <div
-            className="border-b border-[#EBEBEB]"
-            style={{ height: headerHeight }}
-          >
+        {!leftCollapsed && (
+          <>
             <div
-              className="border-b border-[#EBEBEB] bg-[#F2F9FE] flex items-center justify-between px-3"
-              style={{ height: props.headerMonthHeight }}
+              className="shrink-0 h-full border-r border-[#EBEBEB] bg-[#FFFFFF] flex flex-col"
+              style={{ width: leftWidth }}
             >
-              <span className="text-[11px] font-medium leading-5 tracking-tight text-[#4157FE]">
-                Name
-              </span>
+              <div
+                className="border-b border-[#EBEBEB]"
+                style={{ height: headerHeight }}
+              >
+                <div
+                  className="border-b border-[#EBEBEB] bg-[#F2F9FE] flex items-center justify-between px-3"
+                  style={{ height: props.headerMonthHeight }}
+                >
+                  <span className="text-[11px] font-medium leading-5 tracking-tight text-[#4157FE]">
+                    Name
+                  </span>
 
-              <Image
-                src="/assets/close-circle-black.svg"
-                alt=""
-                width={24}
-                height={24}
-              />
+                  <Image
+                    src="/assets/close-circle-black.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                  />
+                </div>
+
+                <div
+                  className="bg-[#FFFFFF] border-b border-[#EBEBEB]"
+                  style={{ height: props.headerSecondHeight }}
+                />
+              </div>
+
+              <div className="flex-1 min-h-0">
+                <GanttTaskList
+                  listScrollRef={listScrollRef}
+                  width={leftWidth}
+                  rowHeight={props.rowHeight}
+                  rows={rows}
+                  expanded={expanded}
+                  setExpanded={setExpanded}
+                  hoverRowId={hoverRowId}
+                  setHoverRowId={setHoverRowId}
+                  setTasks={props.setTasks}
+                  onOpenCreateFromList={openCreateFromList}
+                  onSetDates={onSetDates}
+                />
+              </div>
             </div>
 
             <div
-              className="bg-[#FFFFFF] border-b border-[#EBEBEB]"
-              style={{ height: props.headerSecondHeight }}
-            />
-          </div>
+              className="relative shrink-0"
+              style={{ width: 1 }}
+              onPointerDown={onSplitterPointerDown}
+              onPointerMove={onSplitterPointerMove}
+              onPointerUp={onSplitterPointerUp}
+              onLostPointerCapture={onSplitterLostCapture}
+            >
+              <div className="absolute -left-2 -right-2 top-0 bottom-0 cursor-col-resize" />
 
-          <div className="flex-1 min-h-0">
-            <GanttTaskList
-              listScrollRef={listScrollRef}
-              width={leftWidth}
-              rowHeight={props.rowHeight}
-              rows={rows}
-              expanded={expanded}
-              setExpanded={setExpanded}
-              hoverRowId={hoverRowId}
-              setHoverRowId={setHoverRowId}
-              setTasks={props.setTasks}
-              onOpenCreateFromList={openCreateFromList}
-              onSetDates={onSetDates}
-            />
-          </div>
-        </div>
-
-        <div
-          className="relative shrink-0"
-          style={{ width: 1 }}
-          onPointerDown={onSplitterPointerDown}
-          onPointerMove={onSplitterPointerMove}
-          onPointerUp={onSplitterPointerUp}
-          onLostPointerCapture={onSplitterLostCapture}
-        >
-          <div className="absolute -left-2 -right-2 top-0 bottom-0 cursor-col-resize" />
-
-          <div
-            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px"
-            style={{
-              backgroundColor: isResizing ? "#4157FE" : "#EBEBEB",
-            }}
-          />
-        </div>
+              <div
+                className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px"
+                style={{
+                  backgroundColor: isResizing ? "#4157FE" : "#EBEBEB",
+                }}
+              />
+            </div>
+          </>
+        )}
 
         {/* RIGHT SIDE */}
         <div className="flex-1 min-w-0 h-full bg-white overflow-hidden">

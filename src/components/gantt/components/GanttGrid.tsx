@@ -1,5 +1,6 @@
 "use client";
 
+import { getMonthBarRect } from "@/components/gantt/utils/monthPixels";
 import { parseISO } from "date-fns";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { GridBackground } from "@/components/timeline/components/GridBackground";
@@ -162,6 +163,8 @@ export function GanttGrid(props: {
     setHoverSafe(null);
   };
 
+  const viewportEl = getRadixScrollViewport(props.scrollRootRef.current);
+
   return (
     <div className="flex-1 h-full bg-[#FFFFFF]">
       <ScrollArea
@@ -246,17 +249,67 @@ export function GanttGrid(props: {
 
           {/* Bars */}
           {props.rows.map((row, i) => {
-            const sIdx = bucketIndexFromDate(
-              props.mode,
-              startDate,
-              parseISO(row.task.startDate),
-            );
-            const dIdx = bucketIndexFromDate(
-              props.mode,
-              startDate,
-              parseISO(row.task.dueDate),
-            );
             if (!row.task.startDate || !row.task.dueDate) return null;
+
+            const start = parseISO(row.task.startDate);
+            const due = parseISO(row.task.dueDate);
+
+            // --- MONTH VIEW: day-precision pill inside week columns ---
+            if (props.mode === "month") {
+              const rect = getMonthBarRect({
+                startWeek: startDate, // props.buckets[0]
+                start,
+                due,
+                cellWidth: props.cellWidth, // week width
+              });
+
+              // virtual window is in WEEK columns (because month buckets = weeks)
+              const vStart = props.virtual.start;
+              const vEnd = props.virtual.end;
+              if (rect.endCol < vStart - 20 || rect.startCol > vEnd + 20)
+                return null;
+
+              const theme = resolveStatusTheme(
+                props.statusThemes,
+                row.task.status,
+              );
+
+              return (
+                <GanttBar
+                  key={row.task.id}
+                  task={row.task}
+                  rowIndex={i}
+                  rowHeight={props.rowHeight}
+                  style={{
+                    left: rect.left,
+                    top:
+                      props.headerHeight +
+                      i * props.rowHeight +
+                      (props.rowHeight - 32) / 2,
+                    width: rect.width,
+                    height: 32,
+                    backgroundColor: theme.bg,
+                    borderColor: theme.border,
+                    color: theme.text,
+                  }}
+                  theme={theme}
+                  isHovered={props.hoveredBarId === row.task.id}
+                  setHovered={(v) =>
+                    props.setHoveredBarId(v ? row.task.id : null)
+                  }
+                  onMovePointerDown={(e) => drag.startDrag(e, row.task, "move")}
+                  onResizeStart={(e) =>
+                    drag.startDrag(e, row.task, "resize-start")
+                  }
+                  onResizeEnd={(e) => drag.startDrag(e, row.task, "resize-end")}
+                  dep={props.dep}
+                />
+              );
+            }
+
+            // --- DAY / WEEK (your existing logic) ---
+            const sIdx = bucketIndexFromDate(props.mode, startDate, start);
+            const dIdx = bucketIndexFromDate(props.mode, startDate, due);
 
             const preview =
               drag.dragPreview && drag.dragPreview.id === row.task.id
@@ -266,7 +319,6 @@ export function GanttGrid(props: {
             const startIdx = preview ? preview.startIdx : sIdx;
             const dueIdx = preview ? preview.dueIdx : dIdx;
 
-            // skip if outside virtual window (simple perf)
             const vStart = props.virtual.start;
             const vEnd = props.virtual.end;
             if (dueIdx < vStart - 20 || startIdx > vEnd + 20) return null;
@@ -291,7 +343,6 @@ export function GanttGrid(props: {
                     props.headerHeight +
                     i * props.rowHeight +
                     (props.rowHeight - 32) / 2,
-
                   width,
                   height: 32,
                   backgroundColor: theme.bg,
@@ -341,6 +392,7 @@ export function GanttGrid(props: {
               x={ghost.dotX}
               rowTop={createRowTop}
               rowHeight={props.rowHeight}
+              viewportEl={viewportEl}
               onClick={(e) => {
                 props.onOpenCreateFromGrid({
                   clientX: e.clientX,

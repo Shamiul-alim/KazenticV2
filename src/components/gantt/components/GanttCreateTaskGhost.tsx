@@ -10,7 +10,7 @@ export function GanttCreateTaskGhost(props: {
   return (
     <div
       className={[
-        "absolute left-0 right-0 transition-colors",
+        "absolute left-0 right-0 transition-colors pointer-events-none",
         props.hovered ? "bg-[#F2F9FE]" : "",
       ].join(" ")}
       style={{

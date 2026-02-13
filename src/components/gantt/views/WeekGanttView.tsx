@@ -26,7 +26,7 @@ export default function WeekGanttView(props: {
 }) {
   const scrollRootRef = useRef<HTMLDivElement | null>(null);
 
-  // buffered range based on all tasks (including children)
+  
   const flatForRange = props.tasks.flatMap((t) => [t, ...(t.children ?? [])]);
   const range = useTimelineRange(flatForRange as any);
 
@@ -40,7 +40,7 @@ export default function WeekGanttView(props: {
     scrollRootRef as React.RefObject<HTMLDivElement>,
   );
 
-  // Week mode: smaller cells (match Timeline-like feel)
+
   const baseCell = 48;
   const cellWidth = Math.max(28, Math.round(baseCell * props.zoom));
 
@@ -54,17 +54,20 @@ export default function WeekGanttView(props: {
     overscan: 10,
   });
 
-  // ✅ scroll to today for week mode (bucket = week starting Monday)
   useEffect(() => {
     const scrollToToday = (behavior: ScrollBehavior = "smooth") => {
       const viewport = getRadixScrollViewport(scrollRootRef.current);
       if (!viewport || !buckets.length) return;
 
-      const base = startOfWeek(range.start, { weekStartsOn: 1 });
       const today = new Date();
-      const w = startOfWeek(today, { weekStartsOn: 1 });
+      const weekStart = startOfWeek(today, { weekStartsOn: 1 });
 
-      const idx = Math.floor(differenceInDays(w, base) / 7);
+      const idx = buckets.findIndex((d) => {
+        const b = startOfWeek(d, { weekStartsOn: 1 });
+        return b.getTime() === weekStart.getTime();
+      });
+
+      if (idx < 0) return; 
 
       const todayCenterX = idx * cellWidth + cellWidth / 2;
       const targetLeft = todayCenterX - viewport.clientWidth / 2;

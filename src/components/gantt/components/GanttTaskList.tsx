@@ -77,7 +77,7 @@ export function GanttTaskList(props: {
         <button
           type="button"
           className={[
-            "w-full flex items-center gap-2 border-b border-[#EBEBEB] pl-15",
+            "w-full flex items-center gap-1 border-b border-[#EBEBEB] pl-15",
             props.hoverRowId === "__create__" ? "bg-[#F2F9FE]" : "bg-[#FFFFFF]",
           ].join(" ")}
           style={{ height: props.rowHeight }}
@@ -90,8 +90,10 @@ export function GanttTaskList(props: {
             props.onOpenCreateFromList({ x: r.left + 12, y: r.top + 8 });
           }}
         >
-          <Plus className="h-4 w-4 text-[#697588]" />
-          <span className="text-xs font-medium text-[#697588]">Add Task</span>
+          <Plus className="h-3 w-3 text-[#697588]" />
+          <span className="text-[11px] font-medium text-[#697588]">
+            Add Task
+          </span>
         </button>
       </div>
     </div>

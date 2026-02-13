@@ -15,7 +15,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
         <div className="flex-1 bg-[#111953] flex flex-col min-w-0 min-h-0">
           <ApplicationTopbar />
-          <main className="flex-1 min-h-0 relative">
+          <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
             {children}
           </main>
         </div>

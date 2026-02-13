@@ -17,7 +17,6 @@ type Dep = {
 
 type Pt = { x: number; y: number };
 
-// Define the shape of our rendered dependency object
 interface RenderedDep {
   dep: Dep;
   d: string;
@@ -182,10 +181,10 @@ export function GanttDependencyLayer(props: {
   ]);
 
   return (
-    <div className="absolute inset-0 z-20">
+    <div className="absolute inset-0 pointer-events-none">
       <svg
         ref={svgRef}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full pointer-events-auto"
         style={{ shapeRendering: "geometricPrecision", pointerEvents: "auto" }}
       >
         <rect
@@ -273,7 +272,7 @@ export function GanttDependencyLayer(props: {
 
       {hover && (
         <div
-          className="absolute z-50 pointer-events-auto"
+          className="absolute z-[90] pointer-events-auto"
           style={{
             left: hover.x,
             top: hover.y,
@@ -297,8 +296,10 @@ export function GanttDependencyLayer(props: {
           >
             {/* visible button */}
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex items-center justify-center w-5 h-5 bg-red-600 rounded-full border-[3px] border-white shadow-xl hover:scale-110 active:scale-95 transition-transform">
-                <X size={14} strokeWidth={4} className="text-white" />
+              <span className="border-[2px] border-red-500 rounded-full">
+                <span className="flex items-center justify-center w-4 h-4 bg-red-600 rounded-full border-[2px] border-white shadow-xl transition-transform">
+                  <X size={10} strokeWidth={4} className="text-white" />
+                </span>
               </span>
             </span>
           </button>

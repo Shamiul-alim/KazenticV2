@@ -223,7 +223,7 @@ export function ClickUpLightRangePicker(props: {
         <button
           type="button"
           className={cn(
-            "h-7 rounded-md border border-[#EBEBEB] bg-white hover:bg-[#F8FAFC]",
+            " bg-transparent",
             "flex items-center justify-center gap-2",
             hasDates ? "px-2" : "w-7 p-0",
           )}
@@ -238,7 +238,6 @@ export function ClickUpLightRangePicker(props: {
         </button>
       </PopoverTrigger>
 
-      {/* ✅ MUCH SMALLER + compact like your screenshot */}
       <PopoverContent
         align={props.align ?? "end"}
         className="p-0 w-[560px] rounded-md border border-[#E5E7EB] bg-white shadow-xl overflow-hidden"

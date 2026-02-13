@@ -83,7 +83,33 @@
             "startDate": "2026-02-14",
             "dueDate": "2026-02-20",
             "status": "IN_PROGRESS",
-            "assignee": "/assets/profile.svg"
+            "assignee": "/assets/profile.svg",
+            "children": [
+                {
+                    "id": "t3-1",
+                    "title": "Design new About page",
+                    "startDate": "2026-02-12",
+                    "dueDate": "2026-02-16",
+                    "status": "IN_PROGRESS",
+                    "assignee": "/assets/profile.svg"
+                },
+                {
+                    "id": "t3-2",
+                    "title": "Design new Service page",
+                    "startDate": "2026-02-14",
+                    "dueDate": "2026-02-18",
+                    "status": "IN_PROGRESS",
+                    "assignee": "/assets/profile.svg"
+                },
+                {
+                    "id": "t3-3",
+                    "title": "Design new Contact page",
+                    "startDate": "2026-02-16",
+                    "dueDate": "2026-02-22",
+                    "status": "DONE",
+                    "assignee": "/assets/profile.svg"
+                }
+            ]
         },
         {
             "id": "t4",
@@ -100,24 +126,6 @@
             "dueDate": "2026-02-21",
             "status": "IN_PROGRESS",
             "assignee": "/assets/profile.svg"
-        }
-    ],
-    "dependencies": [
-        {
-            "id": "d1",
-            "fromTaskId": "t1",
-            "toTaskId": "t1-1",
-            "fromSide": "end",
-            "toSide": "start",
-            "color": "#EF4444"
-        },
-        {
-            "id": "d2",
-            "fromTaskId": "t2",
-            "toTaskId": "t3",
-            "fromSide": "end",
-            "toSide": "start",
-            "color": "#F59E0B"
         }
     ]
 }

@@ -88,12 +88,30 @@ export default function GanttClient(props: {
     if (viewMode === "week") return "Week";
     return "Month";
   }, [viewMode]);
+  const [leftCollapsed, setLeftCollapsed] = useState(false);
+
+  const toggleLeftPane = () => {
+    setLeftCollapsed((p) => !p);
+    window.dispatchEvent(new CustomEvent("gantt:toggleLeftPane"));
+  };
 
   return (
     <div className="flex flex-col w-full h-screen bg-[#FDFDFD] border-t border-[#EBEBEB] text-xs font-medium leading-5 tracking-tight overflow-hidden">
       {/* Top toolbar */}
       <div className="flex items-center justify-between px-4 py-1.5 border-b border-[#EBEBEB] bg-white">
         <div className="flex items-center gap-2">
+          <Button variant="outline" size="md" onClick={toggleLeftPane}>
+            <Image
+              src="/assets/mingcute_arrow-to-left-line.svg"
+              alt=""
+              width={20}
+              height={20}
+              className={[
+                "transition-transform duration-200",
+                leftCollapsed ? "rotate-180" : "rotate-0",
+              ].join(" ")}
+            />{" "}
+          </Button>
           <Button
             variant="outline"
             size="md"
@@ -144,7 +162,7 @@ export default function GanttClient(props: {
               size="md"
               onClick={() => setIsAssigneeOpen((open) => !open)}
             >
-              <div className="w-4.5 h-4.5 rounded-full bg-[#4157FE] text-white flex items-center justify-center text-[8px] font-medium mr-2">
+              <div className="w-4 h-4 rounded-full bg-[#4157FE] text-white flex items-center justify-center text-[8px] font-medium">
                 AH
               </div>
               <span className="text-xs font-medium text-[#64748B]">
