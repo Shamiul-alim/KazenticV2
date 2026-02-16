@@ -1,0 +1,196 @@
+{
+    "myLogs": [
+        {
+            "id": 101,
+            "title": "Kazentic - My Time Logs UI Integration",
+            "status": "in_progress",
+            "isExpanded": true,
+            "weeklyHours": [
+                "-",
+                "3h",
+                "1h",
+                "0h",
+                "2h",
+                "1h",
+                "0h"
+            ],
+            "total": "7h",
+            "subEntries": [
+                {
+                    "id": "101-1",
+                    "startTime": "09:10 AM",
+                    "endTime": "11:20 AM",
+                    "payable": true,
+                    "status": "in_progress",
+                    "weeklyHours": [
+                        "1h",
+                        "1h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h"
+                    ]
+                },
+                {
+                    "id": "101-2",
+                    "startTime": "09:10 AM",
+                    "endTime": "11:20 AM",
+                    "payable": false,
+                    "status": "completed",
+                    "weeklyHours": [
+                        "0h",
+                        "1h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 102,
+            "title": "Bug Fix: Time Sheet Hour Bars",
+            "status": "completed",
+            "isExpanded": false,
+            "weeklyHours": [
+                "0h",
+                "2h",
+                "2h",
+                "1h",
+                "1h",
+                "0h",
+                "0h"
+            ],
+            "total": "6h",
+            "subEntries": [
+                {
+                    "id": "102-1",
+                    "startTime": "09:10 AM",
+                    "endTime": "11:20 AM",
+                    "payable": true,
+                    "status": "completed",
+                    "weeklyHours": [
+                        "0h",
+                        "2h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h"
+                    ]
+                },
+                {
+                    "id": "102-2",
+                    "startTime": "09:10 AM",
+                    "endTime": "11:20 AM",
+                    "payable": true,
+                    "status": "completed",
+                    "weeklyHours": [
+                        "0h",
+                        "0h",
+                        "2h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 103,
+            "title": "Add Menus + Drawer Behaviors",
+            "status": "in_progress",
+            "isExpanded": false,
+            "weeklyHours": [
+                "1h",
+                "1h",
+                "1h",
+                "1h",
+                "1h",
+                "1h",
+                "1h"
+            ],
+            "total": "7h",
+            "subEntries": [
+                {
+                    "id": "103-1",
+                    "startTime": "09:10 AM",
+                    "endTime": "11:20 AM",
+                    "payable": false,
+                    "status": "in_progress",
+                    "weeklyHours": [
+                        "1h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h",
+                        "0h"
+                    ]
+                }
+            ]
+        }
+    ],
+    "timeEntries": [
+        {
+            "date": "Sun, Dec 8",
+            "totalHours": "7h",
+            "limit": "9h",
+            "isExpanded": true,
+            "entries": [
+                {
+                    "id": 1,
+                    "task": "Kazentic - My Time Logs UI Integration",
+                    "description": "Wire up menus and drawer",
+                    "payable": true,
+                    "tag": "UI",
+                    "signIn": "09:10 AM",
+                    "signOut": "12:20 PM",
+                    "duration": "3h 10m"
+                },
+                {
+                    "id": 2,
+                    "task": "Bug Fix: Time Sheet Hour Bars",
+                    "description": "Progress bar alignment",
+                    "payable": false,
+                    "tag": "Bug",
+                    "signIn": "02:00 PM",
+                    "signOut": "03:50 PM",
+                    "duration": "1h 50m"
+                }
+            ]
+        },
+        {
+            "date": "Mon, Dec 9",
+            "totalHours": "6h",
+            "limit": "9h",
+            "isExpanded": true,
+            "entries": [
+                {
+                    "id": 3,
+                    "task": "Add Menus + Drawer Behaviors",
+                    "description": "Handle close/open states",
+                    "payable": true,
+                    "tag": "Logic",
+                    "signIn": "10:15 AM",
+                    "signOut": "01:45 PM",
+                    "duration": "3h 30m"
+                },
+                {
+                    "id": 4,
+                    "task": "Kazentic - My Time Logs UI Integration",
+                    "description": "Refactor state holders",
+                    "payable": true,
+                    "tag": "Refactor",
+                    "signIn": "04:00 PM",
+                    "signOut": "06:30 PM",
+                    "duration": "2h 30m"
+                }
+            ]
+        }
+    ]
+}
