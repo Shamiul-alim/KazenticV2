@@ -1,4 +1,4 @@
-import Header from "@/components/my-time-log/header";
+import Header from "@/components/time-tracker(update)/header/Header";
 
 export default function page() {
   return (

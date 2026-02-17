@@ -1,13 +1,15 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
 import mockData from "@/data/time-tracker/tracker-details.json";
-import { Button } from "../ui/Button";
-import SelectAssign from "../time-tracker/floating-component/SelectAssign";
-import MemberDropdown from "../time-tracker/floating-component/MemberDropdown";
+import { Button } from "@/components/ui/Button";
+
+import SelectAssign from "@/components/time-tracker/floating-component/SelectAssign";
+import MemberDropdown from "@/components/time-tracker/floating-component/MemberDropdown";
+import CustomizeSection from "@/components/time-tracker/floating-component/CustomizeSetting";
 import { ChevronDown } from "lucide-react";
-import CustomizeSection from "../time-tracker/floating-component/CustomizeSetting";
-import MyTimeLogs from "./MyTimeLogs";
+import MyTimeLogs from "../my-time-logs/MyTimeLogs";
 
 const tabs = mockData.header.tabs;
 
@@ -40,11 +42,10 @@ export default function Header() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] border-t border-[#EBEBEB]  text-[#475569] ">
-      <div className="mx-auto bg-[#FFFFFF]  overflow-hidden">
-        {/* Header Tabs */}
+    <div className="min-h-screen bg-[#F8FAFC] border-t border-[#EBEBEB] text-[#475569]">
+      <div className="mx-auto bg-[#FFFFFF] overflow-hidden">
         <div className="flex items-center pr-3 h-[2.188rem] justify-between border-b border-[#EBEBEB] relative">
-          <div className="flex ">
+          <div className="flex">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.key;
 
@@ -62,9 +63,7 @@ export default function Header() {
                     width={16}
                     height={16}
                   />
-
                   {tab.label}
-
                   {isActive && (
                     <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#4F46E5]" />
                   )}
@@ -72,6 +71,7 @@ export default function Header() {
               );
             })}
           </div>
+
           {activeTab === "My Time Logs" && (
             <Button
               variant="outline"
@@ -81,14 +81,17 @@ export default function Header() {
               Customize
             </Button>
           )}
+
           {isCustomizeOpen && (
             <CustomizeSection onClose={() => setIsCustomizeOpen(false)} />
           )}
+
           {activeTab === "Review Requests" && (
             <div className="flex items-center gap-2 relative">
               <Button variant="outline" size="md">
                 This Week
               </Button>
+
               <Button
                 onClick={() => setIsReviewMembersOpen(!isReviewMembersOpen)}
                 className={
@@ -99,6 +102,7 @@ export default function Header() {
               >
                 Teams <ChevronDown size={12} />
               </Button>
+
               {isReviewMembersOpen && (
                 <MemberDropdown
                   onClose={() => setIsReviewMembersOpen(false)}
@@ -122,6 +126,7 @@ export default function Header() {
                   Alif Hassan
                 </span>
               </Button>
+
               {isAssigneeOpen && (
                 <SelectAssign
                   onClose={() => setIsAssigneeOpen(false)}
@@ -142,7 +147,6 @@ export default function Header() {
           )}
         </div>
 
-        {/* Content */}
         <div className="min-h-lvw">
           {activeTab === "Time Tracker" && <>Comming Soon</>}
           {activeTab === "My Time Logs" && <MyTimeLogs />}
