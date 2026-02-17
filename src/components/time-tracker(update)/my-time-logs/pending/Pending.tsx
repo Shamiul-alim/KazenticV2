@@ -2,20 +2,24 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import mockData from "@/data/time-tracker(update)/my-time-logs.json";
+import pendingConfig from "@/data/time-tracker(update)/pending-config.json";
+
 import { Button } from "@/components/ui/Button";
 
 import TaskSection from "@/components/time-tracker/floating-component/TaskSection";
 import ThreeDotMenu from "@/components/time-tracker/floating-component/ThreeDotMenu";
-
 import RequestForm from "@/components/time-tracker/floating-component/RequestForm";
-
 import AddEntryFloating, {
   AddEntryAnchor,
   AddEntryPayload,
-} from "./floating/AddEntryFloating";
-import { TimeEntriesTable } from "./components/TimeEntriesTable";
+} from "../floating/AddEntryFloating";
+import TimeLogDrawer from "../floating/TimeLogDrawer";
+
+import { TimeEntriesTable } from "../components/TimeEntriesTable";
+import { TimeSheetView } from "../components/TimeSheetView";
 
 import type {
   ActiveTimer,
@@ -24,22 +28,24 @@ import type {
   MyLogTask,
   TimeEntryGroup,
   ViewMode,
-} from "./types";
-import type { TagDef } from "./utils/tags";
+} from "../types";
+import type { TagDef } from "../utils/tags";
 
-import { deepClone } from "./utils/clone";
-import { computeTaskFromSubs, padWeeklyHours } from "./utils/logs";
+import { deepClone } from "../utils/clone";
+import { computeTaskFromSubs, padWeeklyHours } from "../utils/logs";
 import {
   buildTimeOptions,
   formatClock,
   formatHMS,
   formatMinutes,
   toMinutes,
-} from "./utils/time";
-import { makeTimerSubId, norm, pickColor, uid } from "./utils/tags";
+} from "../utils/time";
+import { makeTimerSubId, norm, pickColor, uid } from "../utils/tags";
+import WithdrawLog from "../floating/WithdrawLog";
 
-import { TimeSheetView } from "./components/TimeSheetView";
-import TimeLogDrawer from "./floating/TimeLogDrawer";
+interface PendingDetailViewwProps {
+  onBack: () => void;
+}
 
 type AddEntryCtx = {
   taskId: string | number;
@@ -47,7 +53,16 @@ type AddEntryCtx = {
   anchor: AddEntryAnchor;
 };
 
-export default function MyTimeLogs() {
+export default function PendingDetailView({ onBack }: PendingDetailViewwProps) {
+  const metrics = pendingConfig.metrics;
+  const days = pendingConfig.days;
+
+  const router = useRouter();
+  const handleBackClick = () => {
+    onBack?.();
+    router.back();
+  };
+
   const [viewMode, setViewMode] = useState<ViewMode>("sheet");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTimeLogOpen, setIsTimeLogOpen] = useState(false);
@@ -72,7 +87,7 @@ export default function MyTimeLogs() {
   const [editing, setEditing] = useState<EditingCell>(null);
   const [draft, setDraft] = useState("");
 
-  // ✅ FIX: keep it nullable everywhere
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const originalMinsRef = useRef<number>(0);
@@ -80,6 +95,7 @@ export default function MyTimeLogs() {
 
   const [activeTimer, setActiveTimer] = useState<ActiveTimer | null>(null);
   const [nowTs, setNowTs] = useState<number>(() => Date.now());
+
   const timeOptions = useMemo(() => buildTimeOptions(), []);
 
   useEffect(() => {
@@ -89,17 +105,7 @@ export default function MyTimeLogs() {
     return () => window.clearInterval(id);
   }, [activeTimer]);
 
-  const days = [
-    "Sun, Dec 8",
-    "Mon, Dec 9",
-    "Tue, Dec 10",
-    "Wed, Dec 11",
-    "Thu, Dec 13",
-    "Fri, Dec 14",
-    "Sat, Dec 15",
-  ];
-
-  // ---- Tag catalog from mock timeEntries ----
+  // ---------- Tag catalog ----------
   const initialTagDefsRef = useRef<TagDef[] | null>(null);
   if (!initialTagDefsRef.current) {
     const raw: any[] = (mockData as any).timeEntries ?? [];
@@ -118,6 +124,7 @@ export default function MyTimeLogs() {
   const tagIdByLabel = (defs: TagDef[]) =>
     new Map(defs.map((t) => [norm(t.label), t.id]));
 
+  // ---------- Logs state ----------
   const [myLogs, setMyLogs] = useState<MyLogTask[]>(() => {
     const raw: MyLogTask[] = deepClone((mockData as any).myLogs ?? []);
     return raw.map((t) => {
@@ -157,6 +164,9 @@ export default function MyTimeLogs() {
   const [tagDefs, setTagDefs] = useState<TagDef[]>(() =>
     deepClone(initialTagDefsRef.current ?? []),
   );
+  const handleWithdrawConfirm = () => {
+    setIsWithdrawModalOpen(false);
+  };
 
   const [timeEntries, setTimeEntries] = useState<TimeEntryGroup[]>(() => {
     const raw: TimeEntryGroup[] = deepClone(
@@ -175,6 +185,7 @@ export default function MyTimeLogs() {
     }));
   });
 
+  // ---------- Menus / drawers ----------
   const closeAllMenus = () => {
     setActiveMenu(null);
     setMenuConfig((p) => ({ ...p, isOpen: false }));
@@ -228,7 +239,7 @@ export default function MyTimeLogs() {
     );
   };
 
-  // ✅ NEW: Toggle sub-entry payable (by subKey)
+  // ✅ Toggle sub-entry payable
   const toggleSubPayable = (taskId: string | number, subKey: string) => {
     setMyLogs((prev) =>
       prev.map((t) => {
@@ -282,6 +293,7 @@ export default function MyTimeLogs() {
     closeAddEntry();
   };
 
+  // ---------- Visible filters ----------
   const visibleMyLogs = useMemo(() => {
     if (!onlyPayable) return myLogs;
 
@@ -308,7 +320,7 @@ export default function MyTimeLogs() {
     }));
   }, [timeEntries, onlyPayable]);
 
-  // ---- Sheet edit ----
+  // ---------- Sheet edit ----------
   const startEdit = (cell: EditingCell, current: string) => {
     closeAllMenus();
     originalMinsRef.current = toMinutes(current);
@@ -427,7 +439,7 @@ export default function MyTimeLogs() {
     releaseLock();
   };
 
-  // ---- Timer ----
+  // ---------- Timer ----------
   const stopTimer = (timer: ActiveTimer) => {
     const endedAt = Date.now();
     const mins = Math.max(1, Math.round((endedAt - timer.startedAt) / 60000));
@@ -510,7 +522,7 @@ export default function MyTimeLogs() {
     return formatHMS(secs);
   }, [activeTimer, nowTs]);
 
-  // Global escape
+  // ---------- Global escape ----------
   useEffect(() => {
     const onKeyDown = (ev: KeyboardEvent) => {
       if (ev.key !== "Escape") return;
@@ -536,7 +548,96 @@ export default function MyTimeLogs() {
   }, [editing]);
 
   return (
-    <div className="space-y-3 leading-5 tracking-[-0.05em] text-[#191F38] w-full">
+    <div className="flex flex-col h-lvw bg-[#FFFFFF]">
+      {/* 1. Header Navigation Bar */}
+      <div className="flex items-center justify-between px-3 bg-white border-t border-[#EBEBEB]">
+        <div className="flex items-center gap-2 py-2 mt-1">
+          <button
+            onClick={handleBackClick}
+            className="p-1 bg-[#F4F5F6] rounded-sm transition-colors"
+          >
+            <Image src="/assets/arrow-left.svg" alt="" width={16} height={16} />
+          </button>
+
+          <Button variant="outline" size="md">
+            <div className="w-4.5 h-4.5 rounded-full bg-[#4157FE] text-white flex items-center justify-center text-[8px] font-medium">
+              {pendingConfig.header.user.initials}
+            </div>
+            <span className="text-xs font-medium leading-4 text-[#64748B]">
+              {pendingConfig.header.user.name}
+            </span>
+          </Button>
+
+          <Button variant="outline" size="md">
+            <Image
+              src="/assets/calendar-normal.svg"
+              alt="down"
+              width={12}
+              height={12}
+            />
+            <span className="text-xs">
+              {pendingConfig.header.dateRangeLabel}
+            </span>
+          </Button>
+
+          <Button variant="pending" size="md">
+            <Image
+              src="/assets/clock-red.svg"
+              alt="down"
+              width={13}
+              height={13}
+            />
+            Pending
+          </Button>
+        </div>
+
+        <Button
+          onClick={() => setIsWithdrawModalOpen(true)}
+          variant="outline"
+          size="md"
+        >
+          <Image src="/assets/redo-blue.svg" alt="" width={16} height={16} />
+          Withdraw
+        </Button>
+        <WithdrawLog
+          isOpen={isWithdrawModalOpen}
+          onClose={() => setIsWithdrawModalOpen(false)}
+          onConfirm={handleWithdrawConfirm}
+          userName="Alif Hassan"
+        />
+      </div>
+
+      {/* 2. Metrics Grid */}
+      <div className="px-3">
+        <div className="flex justify-items-start gap-4 pt-4 border-t border-[#EBEBEB]">
+          {metrics.map((m, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-3 px-2 py-2 min-w-[242px] bg-[#FDFDFD] border border-[#EBEBEB] rounded-lg cursor-pointer"
+            >
+              <div
+                className={`w-10 h-10 shrink-0 rounded-sm ${m.color} flex items-center justify-center border ${m.border}`}
+              >
+                <Image src={m.icon} alt="" width={m.width} height={m.height} />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-[#191F38] leading-5 tracking-tight">
+                  {m.label}
+                </span>
+                <div className="flex items-baseline gap-1 text-xs font-medium leading-5 tracking-tight">
+                  <span className="text-[#191F38] whitespace-nowrap">
+                    {m.value}
+                  </span>
+                  {m.total && <span className="text-[#697588]">{m.total}</span>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Menus / floating */}
       <TaskSection
         isOpen={menuConfig.isOpen}
         onClose={() => setMenuConfig({ ...menuConfig, isOpen: false })}
@@ -600,168 +701,111 @@ export default function MyTimeLogs() {
         }}
       />
 
-      <div className="flex items-center justify-between border-b border-[#EBEBEB] text-[#697588] px-4">
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="md"
-            onClick={() => {
-              closeAllMenus();
-              setOnlyPayable((v) => !v);
-            }}
+      <TimeLogDrawer
+        isOpen={isTimeLogOpen}
+        onClose={() => setIsTimeLogOpen(false)}
+      />
+
+      <RequestForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <div className="flex items-center justify-between text-[#697588] px-4 mt-2">
+        <Button
+          variant="outline"
+          onClick={() => {
+            closeAllMenus();
+            setOnlyPayable((v) => !v);
+          }}
+        >
+          <Image src="/assets/dollar.svg" alt="down" width={14} height={14} />
+          Payable
+        </Button>
+
+        <div className="flex py-1.5">
+          <button
+            onClick={() => setViewMode("entries")}
+            className={`flex items-center gap-1 px-1.5 py-1 border border-[#EBEBEB] rounded-tl-sm rounded-bl-sm text-xs leading-3 tracking-tighter font-medium cursor-pointer ${
+              viewMode === "entries"
+                ? "bg-[#F2F9FE] text-[#4157FE]"
+                : "bg-[#FDFDFD] text-[#697588]"
+            }`}
           >
-            <Image src="/assets/dollar.svg" alt="down" width={14} height={14} />
-            Payable
-          </Button>
-
-          <Button variant="outline" size="md" onClick={closeAllMenus}>
+            Time Entries
             <Image
-              src="/assets/arrow-down-fill.svg"
-              alt="down"
-              width={12}
-              height={12}
-              className="rotate-180"
-            />
-            <Image
-              src="/assets/calendar-normal.svg"
-              alt="down"
-              width={12}
-              height={12}
-            />
-            <span className="text-xs font-medium">Jan 8 - 22</span>
-            <Image
-              src="/assets/arrow-down-fill.svg"
-              alt="down"
-              width={12}
-              height={12}
-            />
-          </Button>
-
-          <Button variant="outline" size="md" onClick={closeAllMenus}>
-            This Week
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Button
-            onClick={() => {
-              closeAllMenus();
-              setIsModalOpen(true);
-            }}
-            variant="success"
-            size="md"
-          >
-            Send for Review
-          </Button>
-
-          <Button
-            variant="outline"
-            onClick={() => {
-              closeAllMenus();
-              setIsTimeLogOpen(true);
-            }}
-          >
-            <Image
-              src="/assets/blue-tik.svg"
+              src={
+                viewMode === "entries"
+                  ? "/assets/task-square-blue.svg"
+                  : "/assets/task-square.svg"
+              }
               alt="down"
               width={14}
               height={14}
             />
-          </Button>
+          </button>
 
-          <TimeLogDrawer
-            isOpen={isTimeLogOpen}
-            onClose={() => setIsTimeLogOpen(false)}
-          />
-
-          <div className="flex py-1.5">
-            <button
-              onClick={() => setViewMode("entries")}
-              className={`flex items-center gap-1 px-1.5 py-1 border border-[#EBEBEB] rounded-tl-sm rounded-bl-sm text-xs leading-3 tracking-tighter font-medium cursor-pointer ${
-                viewMode === "entries"
-                  ? "bg-[#F2F9FE] text-[#4157FE]"
-                  : "bg-[#FDFDFD] text-[#697588]"
-              }`}
-            >
-              Time Entries
-              <Image
-                src={
-                  viewMode === "entries"
-                    ? "/assets/task-square-blue.svg"
-                    : "/assets/task-square.svg"
-                }
-                alt="down"
-                width={14}
-                height={14}
-              />
-            </button>
-
-            <button
-              onClick={() => setViewMode("sheet")}
-              className={`flex items-center gap-1 px-1.5 py-1 border border-[#EBEBEB] rounded-tr-sm rounded-br-sm text-xs leading-3 tracking-tighter font-medium cursor-pointer ${
+          <button
+            onClick={() => setViewMode("sheet")}
+            className={`flex items-center gap-1 px-1.5 py-1 border border-[#EBEBEB] rounded-tr-sm rounded-br-sm text-xs leading-3 tracking-tighter font-medium cursor-pointer ${
+              viewMode === "sheet"
+                ? "bg-[#F2F9FE] text-[#4157FE]"
+                : "bg-[#FDFDFD] text-[#697588]"
+            }`}
+          >
+            Time Sheet
+            <Image
+              src={
                 viewMode === "sheet"
-                  ? "bg-[#F2F9FE] text-[#4157FE]"
-                  : "bg-[#FDFDFD] text-[#697588]"
-              }`}
-            >
-              Time Sheet
-              <Image
-                src={
-                  viewMode === "sheet"
-                    ? "/assets/grid-5-blue.svg"
-                    : "/assets/grid-5.svg"
-                }
-                alt="down"
-                width={14}
-                height={14}
-              />
-            </button>
-          </div>
+                  ? "/assets/grid-5-blue.svg"
+                  : "/assets/grid-5.svg"
+              }
+              alt="down"
+              width={14}
+              height={14}
+            />
+          </button>
         </div>
       </div>
 
-      <RequestForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-      {viewMode === "sheet" ? (
-        <TimeSheetView
-          days={days}
-          tasks={visibleMyLogs}
-          activeTimer={activeTimer}
-          elapsedLabel={elapsedLabel}
-          editing={editing}
-          draft={draft}
-          setDraft={setDraft}
-          inputRef={inputRef}
-          onHeaderClick={handleHeaderClick}
-          onThreeDotClick={handleThreeDotClick}
-          onToggleTaskExpanded={toggleTaskExpanded}
-          onToggleTimer={toggleTimer}
-          onOpenTimeLog={openTimeLog}
-          onOpenAddEntry={openAddEntry}
-          onStartEdit={startEdit}
-          onCommitEdit={commitEdit}
-          onCancelEdit={cancelEdit}
-          onToggleSubPayable={toggleSubPayable}
-          timeOptions={timeOptions}
-          onOpenTimePicker={onOpenTimePicker}
-          onSetSubStartTime={setSubStartTime}
-          onSetSubEndTime={setSubEndTime}
-        />
-      ) : (
-        <TimeEntriesTable
-          visibleTimeEntries={visibleTimeEntries}
-          onlyPayable={onlyPayable}
-          tagDefs={tagDefs}
-          setTagDefs={setTagDefs}
-          setTimeEntries={setTimeEntries}
-          myColors={["#111827"]}
-          addMyColor={() => {}}
-          openTimeLog={openTimeLog}
-          handleThreeDotClick={handleThreeDotClick}
-          closeAllMenus={closeAllMenus}
-          closeAddEntry={closeAddEntry}
-        />
-      )}
+      <div className="mt-3">
+        {viewMode === "sheet" ? (
+          <TimeSheetView
+            days={days}
+            tasks={visibleMyLogs}
+            activeTimer={activeTimer}
+            elapsedLabel={elapsedLabel}
+            editing={editing}
+            draft={draft}
+            setDraft={setDraft}
+            inputRef={inputRef}
+            onHeaderClick={handleHeaderClick}
+            onThreeDotClick={handleThreeDotClick}
+            onToggleTaskExpanded={toggleTaskExpanded}
+            onToggleTimer={toggleTimer}
+            onOpenTimeLog={openTimeLog}
+            onOpenAddEntry={openAddEntry}
+            onStartEdit={startEdit}
+            onCommitEdit={commitEdit}
+            onCancelEdit={cancelEdit}
+            onToggleSubPayable={toggleSubPayable}
+            timeOptions={timeOptions}
+            onOpenTimePicker={onOpenTimePicker}
+            onSetSubStartTime={setSubStartTime}
+            onSetSubEndTime={setSubEndTime}
+          />
+        ) : (
+          <TimeEntriesTable
+            visibleTimeEntries={visibleTimeEntries}
+            onlyPayable={onlyPayable}
+            tagDefs={tagDefs}
+            setTagDefs={setTagDefs}
+            setTimeEntries={setTimeEntries}
+            myColors={["#111827"]}
+            addMyColor={() => {}}
+            openTimeLog={openTimeLog}
+            handleThreeDotClick={handleThreeDotClick}
+            closeAllMenus={closeAllMenus}
+            closeAddEntry={closeAddEntry}
+          />
+        )}
+      </div>
     </div>
   );
 }

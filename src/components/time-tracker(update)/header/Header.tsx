@@ -10,6 +10,7 @@ import MemberDropdown from "@/components/time-tracker/floating-component/MemberD
 import CustomizeSection from "@/components/time-tracker/floating-component/CustomizeSetting";
 import { ChevronDown } from "lucide-react";
 import MyTimeLogs from "../my-time-logs/MyTimeLogs";
+import TimeTracker from "../time-tracker/TimeTracker";
 
 const tabs = mockData.header.tabs;
 
@@ -148,7 +149,7 @@ export default function Header() {
         </div>
 
         <div className="min-h-lvw">
-          {activeTab === "Time Tracker" && <>Comming Soon</>}
+          {activeTab === "Time Tracker" && <TimeTracker />}
           {activeTab === "My Time Logs" && <MyTimeLogs />}
           {activeTab === "All Time Logs" && <>Comming Soon</>}
           {activeTab === "Review Requests" && <>Comming Soon</>}

@@ -1,0 +1,30 @@
+{
+    "header": {
+        "tabs": [
+            {
+                "key": "Time Tracker",
+                "label": "Time Tracker",
+                "icon": "/assets/clock.svg",
+                "activeIcon": "/assets/clock-blue.svg"
+            },
+            {
+                "key": "My Time Logs",
+                "label": "My Time Logs",
+                "icon": "/assets/timer2.svg",
+                "activeIcon": "/assets/timer2-blue.svg"
+            },
+            {
+                "key": "All Time Logs",
+                "label": "All Time Logs",
+                "icon": "/assets/timer.svg",
+                "activeIcon": "/assets/timer-blue.svg"
+            },
+            {
+                "key": "Review Requests",
+                "label": "Review Requests",
+                "icon": "/assets/tick-circle.svg",
+                "activeIcon": "/assets/tick-circle-blue.svg"
+            }
+        ]
+    }
+}

@@ -152,6 +152,13 @@ export function HourCell(props: {
   const previewMins = isEditing ? toMinutes(draft) : 0;
   const showPreview = isEditing && draft.trim().length > 0 && previewMins > 0;
   const previewLabel = humanizeMinutes(previewMins);
+  const canShowAddEntryIcon =
+    hovered &&
+    !isTotal &&
+    !isEditing &&
+    !!onAddEntry &&
+    editable &&
+    !runningPill;
 
   return (
     <td
@@ -183,14 +190,7 @@ export function HourCell(props: {
       </div>
 
       <CellHoverIcon
-        show={
-          hovered &&
-          !isTotal &&
-          !isSubEntry &&
-          !isEditing &&
-          canEdit &&
-          !!onAddEntry
-        }
+        show={canShowAddEntryIcon}
         label="Add entry"
         iconSrc="/assets/clock-blue.svg"
         onClick={(e) => onAddEntry?.(e)}
@@ -209,7 +209,7 @@ export function HourCell(props: {
                 <Clock size={14} className="text-[#697588]" />
               ) : (
                 <span
-                  className={`text-[11px] leading-4 ${isTotal ? "text-[#1E293B]" : "text-[#191F38] font-medium"}`}
+                  className={` text-[11px] text-[#191F38] font-medium leading-4 tracking-[-0.05em]`}
                 >
                   {displayHour}
                 </span>

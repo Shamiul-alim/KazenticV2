@@ -95,9 +95,9 @@ export function TimeSheetView({
     <div className="border border-[#E2E8F0] rounded-md mx-4">
       <table className="w-full text-left rounded-md border-collapse text-[11px]">
         <thead>
-          <tr className="bg-[#F2F9FE] border-b border-[#EBEBEB] text-[#191F38] font-semibold">
+          <tr className="bg-[#F2F9FE] border-b border-[#EBEBEB] text-[#191F38] leading-3.5 tracking-[-0.05em] font-semibold rounded-tl-md rounded-tr-md">
             <th
-              className="px-3 h-11 py-0 w-100 cursor-pointer"
+              className="px-3 h-11 py-0 w-100 cursor-pointer rounded-tl-md"
               onClick={onHeaderClick}
             >
               Task
@@ -106,16 +106,16 @@ export function TimeSheetView({
             {days.map((day) => (
               <th
                 key={day}
-                className="text-center border-l border-[#E2E8F0] font-semibold w-[80px] min-w-[80px] h-11 py-0 bg-[#F2F9FE]"
+                className="text-center border-l border-[#E2E8F0] w-[80px] min-w-[80px] h-11 py-0 bg-[#F2F9FE]"
               >
                 {day}
               </th>
             ))}
 
-            <th className="text-center border-l border-[#E2E8F0] font-semibold w-[80px] min-w-[80px] h-11 py-0 bg-[#F2F9FE]">
+            <th className="text-center border-l border-[#E2E8F0]  w-[80px] min-w-[80px] h-11 py-0 bg-[#F2F9FE]">
               Total
             </th>
-            <th className="w-20 border-l border-[#E2E8F0] h-11 py-0 bg-[#F2F9FE]" />
+            <th className="w-20 border-l border-[#E2E8F0] h-11 py-0 bg-[#F2F9FE]  rounded-tr-md" />
           </tr>
         </thead>
 
@@ -128,9 +128,9 @@ export function TimeSheetView({
               <React.Fragment key={task.id}>
                 {/* Task Row */}
                 <tr
-                  className={`border-b group hover:opacity-90 transition-all ${rowBg}`}
+                  className={`border-t border-[#EBEBEB] group hover:opacity-90 transition-all ${rowBg}`}
                 >
-                  <td className="px-3 h-11 py-0">
+                  <td className="px-3 h-11 py-0 rounded-bl-md rounded-br-md">
                     <div className="flex items-center gap-3 w-full h-11">
                       <Image
                         src="/assets/arrow-down.svg"
@@ -144,7 +144,7 @@ export function TimeSheetView({
                       />
 
                       <span
-                        className="font-medium text-[11px] text-[#191F38] cursor-pointer"
+                        className="font-medium text-[11px] text-[#191F38] font-medium leading-4 tracking-[-0.05em] cursor-pointer"
                         onClick={() => onToggleTaskExpanded(task.id)}
                       >
                         {task.title}
@@ -226,7 +226,7 @@ export function TimeSheetView({
 
                 {/* Sub header */}
                 {task.isExpanded && (task.subEntries?.length ?? 0) > 0 && (
-                  <tr className="bg-[#F2F9FE] border-b">
+                  <tr className="bg-[#F2F9FE] border-t border-[#EBEBEB">
                     <td
                       colSpan={days.length + 3}
                       className="pl-8 h-11 py-0 text-[11px] text-[#697588] font-medium align-middle"
@@ -248,7 +248,10 @@ export function TimeSheetView({
                       activeTimer.subId === subKey;
 
                     return (
-                      <tr key={subKey} className="bg-[#F2F9FE] border-b">
+                      <tr
+                        key={subKey}
+                        className="bg-[#F2F9FE] border-t border-[#EBEBEB]"
+                      >
                         <td className="pl-8 h-11 py-0">
                           <div className="h-11 flex items-center gap-2">
                             <div className="flex items-center bg-[#DBE9FF] rounded-sm px-2 h-[26px]">
@@ -263,7 +266,6 @@ export function TimeSheetView({
 
                               <div className="ml-1.5 flex items-center gap-1">
                                 {isRunningRow ? (
-                                  // If running, keep read-only (optional)
                                   <span className="text-[10px] font-bold text-[#1E293B]">
                                     {tr.start} - {tr.end}
                                   </span>
@@ -337,12 +339,15 @@ export function TimeSheetView({
                           const showPill =
                             isRunningRow && activeTimer?.dayIndex === i;
 
+                          const subCellEditable =
+                            !showPill && toMinutes(hour) > 0;
+
                           return (
                             <HourCell
                               key={`sub-${subKey}-day-${i}`}
                               hour={hour}
                               isSubEntry
-                              editable={!showPill && toMinutes(hour) > 0}
+                              editable={subCellEditable}
                               dayIndex={i}
                               editCell={{
                                 kind: "sub",
@@ -352,6 +357,11 @@ export function TimeSheetView({
                               }}
                               onEdit={(cell, current) =>
                                 onStartEdit(cell, current)
+                              }
+                              onAddEntry={
+                                subCellEditable
+                                  ? (e) => onOpenAddEntry(task.id, i, e)
+                                  : undefined
                               }
                               runningPill={
                                 showPill

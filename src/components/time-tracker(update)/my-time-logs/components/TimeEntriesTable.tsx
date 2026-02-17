@@ -310,7 +310,7 @@ export function TimeEntriesTable(props: {
               <div className="border border-[#E2E8F0] rounded-md overflow-hidden mt-3">
                 <table className="w-full text-left text-[11px] table-fixed">
                   <thead>
-                    <tr className="bg-[#F2F9FE] border-b text-[#191F38] font-semibold">
+                    <tr className="bg-[#F2F9FE] border-b text-[#191F38] leading-3.5 tracking-[-0.05em] font-semibold">
                       <th className="px-3 py-2 w-[28%]">Task</th>
                       <th className="px-3 py-2 w-[15%]">Description</th>
                       <th className="px-3 py-2">Payable</th>

@@ -1,0 +1,72 @@
+{
+    "header": {
+        "user": {
+            "name": "Alif Hassan",
+            "initials": "AH"
+        },
+        "dateRangeLabel": "Jan 7 - Jan 13, 2025",
+        "status": {
+            "label": "Pending",
+            "icon": "/assets/clock-red.svg"
+        },
+        "withdraw": {
+            "label": "Withdraw",
+            "icon": "/assets/redo-blue.svg"
+        }
+    },
+    "metrics": [
+        {
+            "label": "Time Tracked",
+            "value": "36h 5m",
+            "total": "/ 40h",
+            "icon": "/assets/timer-blue.svg",
+            "width": 20,
+            "height": 20,
+            "color": "bg-[#F2F9FE]",
+            "border": "border-[#4157FEB2]"
+        },
+        {
+            "label": "Payable",
+            "total": "25h",
+            "icon": "/assets/dollar.svg",
+            "width": 20,
+            "height": 20,
+            "color": "bg-[#C4FFE2]",
+            "border": "border-[#178D6CB2]"
+        },
+        {
+            "label": "Non-Payable",
+            "value": "6h 5m",
+            "total": "/ 40h",
+            "icon": "/assets/dollar-cross.svg",
+            "width": 15,
+            "height": 15,
+            "color": "bg-[#FFFFFF]",
+            "border": "border-[#EBEBEB]"
+        },
+        {
+            "label": "Approved At",
+            "value": "Thu, Jan 12, 2025 | 11:45 PM",
+            "icon": "/assets/tick-circle.svg",
+            "width": 20,
+            "height": 20,
+            "color": "bg-[#FFFFFF]",
+            "border": "border-[#EBEBEB]"
+        }
+    ],
+    "days": [
+        "Sun, Dec 8",
+        "Mon, Dec 9",
+        "Tue, Dec 10",
+        "Wed, Dec 11",
+        "Thu, Dec 13",
+        "Fri, Dec 14",
+        "Sat, Dec 15"
+    ],
+    "labels": {
+        "payableToggle": "Payable",
+        "timeEntries": "Time Entries",
+        "timeSheet": "Time Sheet"
+    },
+    "addEntryUserName": "Shamiul Alim Shihab"
+}
